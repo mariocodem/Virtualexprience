@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { cx } from '@/ui/cx';
 import { IconPlus } from '@/ui/icons';
-import { Wordmark } from '@/ui/Wordmark';
+import { Logo } from '@/ui/Logo';
 
 const links = [
   { to: '/mundo', label: 'El mundo' },
@@ -18,8 +18,10 @@ export function SiteHeader() {
   return (
     <header className="relative z-10 border-b-[1.5px] border-ink bg-plate">
       <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-x-8 px-4 py-2 sm:px-8 sm:py-3">
-        <Link to="/" className="inline-flex min-h-11 items-center text-ink no-underline">
-          <Wordmark />
+        <Link to="/" className="inline-flex min-h-11 items-center gap-4 text-ink no-underline">
+          <Logo className="h-9 sm:h-11" />
+          <span aria-hidden="true" className="hidden h-8 w-[1.5px] bg-ink md:block" />
+          <span className="hidden toponym text-[0.6875rem] md:block">Archipiélago VirtuX</span>
         </Link>
         <button
           type="button"

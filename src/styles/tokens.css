@@ -1,0 +1,74 @@
+/*
+ * Design tokens · Atlas en relieve
+ *
+ * La interfaz es una plancha de atlas escolar: lámina blanca fría, mar en
+ * franjas batimétricas, tierra en terrazas hipsométricas y una sola tinta roja
+ * reservada para lo que está en curso.
+ *
+ * Marca: --ink / --sea-900 (azul) y --land-sun (amarillo) son valores
+ * PROVISIONALES hasta incorporar el manual de marca de UNIMINUTO.
+ */
+:root {
+  /* Plancha */
+  --plate: #f6f7f3;
+  --plate-sunk: #eceee8;
+  --plate-edge: #d9ddd4;
+
+  /* Tinta */
+  --ink: #0f2e5c;
+  --ink-soft: #2a4f80;
+
+  /* Batimetría: de abismo a bajos */
+  --sea-950: #0b2347;
+  --sea-900: #0f2e5c;
+  --sea-800: #173f75;
+  --sea-700: #22548f;
+  --sea-500: #3f7fb8;
+  --sea-300: #6fa8d3;
+  --sea-100: #9ccbe4;
+
+  /* Hipsometría: de llanura a cumbre */
+  --land-low: #5e9e4b;
+  --land-mid: #a9b94a;
+  --land-sun: #f5c400;
+  --land-high: #c7782e;
+  --land-peak: #f6f7f3;
+
+  /* Tinta reservada: solo lo que está en curso (posición, estación activa, foco) */
+  --route: #d7262e;
+
+  /* Acento por isla (rótulos, convenciones, marcadores) */
+  --isle-ecos: #b23c64;
+  --isle-fractal: #0f766f;
+  --isle-agora: #a3560b;
+  --isle-timon: #4a5bb8;
+  --isle-chispa: #856500;
+  --isle-raiz: #2f7d4f;
+
+  /* Funcionales */
+  --focus: var(--route);
+  --veil: rgb(11 35 71 / 0.62);
+
+  /* Tipografía */
+  --type-display: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --type-body: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --text-scale: 1;
+
+  /* Trazos de plancha */
+  --hairline: 1px;
+  --rule: 1.5px;
+  --rule-strong: 2px;
+
+  /* Movimiento: un solo reloj de marea para todo lo que respira */
+  --tide: 14s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur-base: 320ms;
+  --dur-slow: 640ms;
+}
+
+/* Regiones sobre mar profundo: el foco cambia a amarillo para conservar contraste */
+.on-sea {
+  --focus: var(--land-sun);
+}

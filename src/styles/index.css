@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/archivo/wdth-italic.css';
+@import '@fontsource-variable/inter/wght.css';
+@import './tokens.css';
+
+/* Solo existen los colores del mundo: nada de la paleta por defecto de Tailwind. */
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+}
+
+@theme inline {
+  --color-plate: var(--plate);
+  --color-plate-sunk: var(--plate-sunk);
+  --color-plate-edge: var(--plate-edge);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-sea-950: var(--sea-950);
+  --color-sea-900: var(--sea-900);
+  --color-sea-800: var(--sea-800);
+  --color-sea-700: var(--sea-700);
+  --color-sea-500: var(--sea-500);
+  --color-sea-300: var(--sea-300);
+  --color-sea-100: var(--sea-100);
+  --color-land-low: var(--land-low);
+  --color-land-mid: var(--land-mid);
+  --color-land-sun: var(--land-sun);
+  --color-land-high: var(--land-high);
+  --color-land-peak: var(--land-peak);
+  --color-route: var(--route);
+  --color-isle-ecos: var(--isle-ecos);
+  --color-isle-fractal: var(--isle-fractal);
+  --color-isle-agora: var(--isle-agora);
+  --color-isle-timon: var(--isle-timon);
+  --color-isle-chispa: var(--isle-chispa);
+  --color-isle-raiz: var(--isle-raiz);
+  --color-veil: var(--veil);
+
+  --font-display: var(--type-display);
+  --font-sans: var(--type-body);
+
+  --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+}
+
+/* Rótulo de isla o lugar: versalitas expandidas y espaciadas, como la toponimia de una plancha. */
+@utility toponym {
+  font-family: var(--type-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* Rótulo de agua: itálica, como la hidrografía del atlas. */
+@utility hydronym {
+  font-family: var(--type-display);
+  font-style: italic;
+  font-stretch: 100%;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* Titular de plancha: grotesca semicondensada y pesada. */
+@utility display {
+  font-family: var(--type-display);
+  font-stretch: 87.5%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* Filete de plancha: el borde de todo recuadro del atlas. */
+@utility plate-rule {
+  border: var(--rule) solid var(--ink);
+}
+
+@layer base {
+  html {
+    font-size: calc(100% * var(--text-scale));
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--sea-700) var(--plate-sunk);
+    scrollbar-width: thin;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--plate);
+    color: var(--ink);
+    font-family: var(--type-body);
+    font-size: 1rem;
+    line-height: 1.55;
+    font-feature-settings: 'cv11', 'ss03';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--type-display);
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-decoration-thickness: var(--rule);
+    text-underline-offset: 0.22em;
+  }
+
+  ::selection {
+    background: var(--land-sun);
+    color: var(--sea-950);
+  }
+
+  input,
+  textarea {
+    caret-color: var(--route);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  [data-motion='reduced'] *,
+  [data-motion='reduced'] *::before,
+  [data-motion='reduced'] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

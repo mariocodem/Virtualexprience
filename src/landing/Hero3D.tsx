@@ -67,7 +67,9 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
         ))}
       </div>
 
-      <div className="relative flex flex-col lg:block lg:pl-6">
+      {/* En escritorio, plancha y columna de la cartela comparten celda: la plancha crece con su
+          contenido y la señal de scroll queda siempre bajo la cartela, nunca encima. */}
+      <div className="relative flex flex-col lg:grid lg:min-h-[max(36rem,calc(100svh-var(--header-h,10rem)-4.5rem))] lg:pl-6">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 left-0 hidden w-6 grid-rows-5 lg:grid"
@@ -79,11 +81,40 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
           ))}
         </div>
 
-        <TitleCard reduced={reduced} resume={resume} />
+        <div className="relative z-[2] flex flex-col lg:col-start-1 lg:row-start-1 lg:m-6 lg:w-[min(36rem,42%)]">
+          <TitleCard reduced={reduced} resume={resume} />
+          <a
+            href="#manifiesto"
+            onClick={(event) => {
+              event.preventDefault();
+              goToSection('manifiesto', reduced);
+            }}
+            data-map-obstacle
+            className="mt-auto hidden min-h-11 items-center gap-3 self-start pt-6 toponym text-[0.6875rem] text-plate no-underline lg:inline-flex"
+          >
+            Desliza para zarpar
+            <svg
+              width="14"
+              height="28"
+              viewBox="0 0 14 28"
+              aria-hidden="true"
+              className="text-land-sun"
+            >
+              <path
+                d="M7 0v22"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeDasharray="4 3"
+                className="scroll-cue"
+              />
+              <path d="M2 18l5 6 5-6" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </a>
+        </div>
 
         <div
           ref={plate}
-          className="on-sea relative -mt-10 h-[70svh] min-h-96 overflow-hidden plate-rule lg:mt-0 lg:h-auto lg:min-h-[max(36rem,calc(100svh-14.5rem))]"
+          className="on-sea relative -mt-10 h-[70svh] min-h-96 overflow-hidden plate-rule lg:col-start-1 lg:row-start-1 lg:mt-0 lg:h-auto lg:min-h-0"
         >
           {/* Plancha impresa: pinta al instante y se retira cuando el relieve 3D está listo. */}
           <ArchipelagoPlate2D
@@ -126,33 +157,6 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
             <figcaption className="mt-1 hydronym text-sm text-plate">Brújula</figcaption>
           </figure>
         </div>
-
-        <a
-          href="#manifiesto"
-          onClick={(event) => {
-            event.preventDefault();
-            goToSection('manifiesto', reduced);
-          }}
-          className="absolute bottom-5 left-12 z-[2] hidden min-h-11 items-center gap-3 toponym text-[0.6875rem] text-plate no-underline lg:[@media(min-height:52rem)]:inline-flex"
-        >
-          Desliza para zarpar
-          <svg
-            width="14"
-            height="28"
-            viewBox="0 0 14 28"
-            aria-hidden="true"
-            className="text-land-sun"
-          >
-            <path
-              d="M7 0v22"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeDasharray="4 3"
-              className="scroll-cue"
-            />
-            <path d="M2 18l5 6 5-6" fill="none" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </a>
       </div>
     </section>
   );
@@ -162,7 +166,7 @@ function TitleCard({ reduced, resume }: Pick<Hero3DProps, 'reduced' | 'resume'>)
   return (
     <div
       data-map-obstacle
-      className="relative z-[2] bg-plate p-6 plate-rule sm:max-w-[34rem] sm:p-8 lg:absolute lg:top-6 lg:left-12 lg:w-[min(36rem,42%)] lg:max-w-none lg:p-8 2xl:p-10"
+      className="relative bg-plate p-6 plate-rule sm:max-w-[34rem] sm:p-8 lg:max-w-none lg:p-8 2xl:p-10"
     >
       <h1
         id="hero-titulo"

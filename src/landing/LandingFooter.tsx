@@ -15,11 +15,11 @@ export function LandingFooter() {
         </div>
         <nav aria-label="Pie de página">
           <p className="toponym text-[0.625rem] text-plate">Recorrer</p>
-          <ul className="mt-3 space-y-1 text-sm">
+          <ul className="mt-2 text-sm">
             <li>
               <Link
                 to="/mundo"
-                className="inline-flex min-h-8 items-center text-sea-100 hover:text-plate"
+                className="inline-flex min-h-11 items-center text-sea-100 hover:text-plate"
               >
                 El mundo
               </Link>
@@ -27,7 +27,7 @@ export function LandingFooter() {
             <li>
               <Link
                 to="/pasaporte"
-                className="inline-flex min-h-8 items-center text-sea-100 hover:text-plate"
+                className="inline-flex min-h-11 items-center text-sea-100 hover:text-plate"
               >
                 Pasaporte
               </Link>
@@ -35,7 +35,7 @@ export function LandingFooter() {
             <li>
               <Link
                 to="/accesibilidad"
-                className="inline-flex min-h-8 items-center text-sea-100 hover:text-plate"
+                className="inline-flex min-h-11 items-center text-sea-100 hover:text-plate"
               >
                 Accesibilidad
               </Link>
@@ -43,7 +43,7 @@ export function LandingFooter() {
             <li>
               <a
                 href="https://www.uniminuto.edu/virtuxperience-home"
-                className="inline-flex min-h-8 items-center text-sea-100 hover:text-plate"
+                className="inline-flex min-h-11 items-center text-sea-100 hover:text-plate"
                 rel="noopener noreferrer"
                 target="_blank"
               >

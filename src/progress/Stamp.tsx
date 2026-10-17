@@ -64,7 +64,7 @@ export function Stamp({ badge, size = 132 }: { badge: Badge; size?: number }) {
           fontSize="10.5"
           fontWeight="700"
           letterSpacing="1.6"
-          style={{ fontFamily: 'var(--type-display)', fontStretch: '112%' }}
+          style={{ fontFamily: 'var(--type-display)', fontStretch: '100%' }}
         >
           <textPath href={`#${id}-top`} startOffset="50%" textAnchor="middle">
             {badge.name.toUpperCase()}

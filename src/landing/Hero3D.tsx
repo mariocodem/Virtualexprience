@@ -6,7 +6,7 @@ import type { IslandId } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
 import { CompassRose } from '@/ui/CompassRose';
 import { cx } from '@/ui/cx';
-import { IconArrowRight } from '@/ui/icons';
+import { IconArrowRight, IconPlus } from '@/ui/icons';
 import { StationSymbol } from '@/ui/StationSymbol';
 import { ArchipelagoPlate2D } from '@/world/ArchipelagoPlate2D';
 import { archipelagoBounds } from '@/world/geography';
@@ -249,12 +249,10 @@ function PlateLegend() {
     >
       <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-5 toponym text-[0.6875rem] lg:pointer-events-none">
         Convenciones
-        <span
-          aria-hidden="true"
-          className="text-base transition-transform group-open:rotate-45 lg:hidden"
-        >
-          +
-        </span>
+        <IconPlus
+          size={18}
+          className="transition-transform duration-(--dur-fast) group-open:rotate-45 lg:hidden"
+        />
       </summary>
       <div className="flex items-start gap-5 px-5 pb-5">
         <div>
@@ -297,7 +295,7 @@ function LocationInset({
   const island = activeIsland ? world.islands.find((i) => i.id === activeIsland) : undefined;
   const marker = insetPosition(island?.position ?? { x: 0, z: 0 });
   return (
-    <figure className="w-28 shrink-0 bg-plate p-1.5 plate-rule">
+    <figure className="w-24 shrink-0 bg-plate p-1.5 plate-rule">
       <div className="relative aspect-square overflow-hidden">
         <ArchipelagoPlate2D
           fit="contain"
@@ -310,7 +308,7 @@ function LocationInset({
           style={{ left: `${marker.left.toFixed(2)}%`, top: `${marker.top.toFixed(2)}%` }}
         />
       </div>
-      <figcaption className="mt-1.5 flex flex-col toponym text-[0.5625rem] leading-snug">
+      <figcaption className="mt-1 flex flex-col font-display text-[0.625rem] leading-snug font-bold tracking-[0.1em] uppercase">
         <span>Ubicación</span>
         <span className="text-route">{island ? island.name : 'Estás aquí'}</span>
       </figcaption>

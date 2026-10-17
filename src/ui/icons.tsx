@@ -30,6 +30,15 @@ export function IconArrowRight(props: IconProps) {
   );
 }
 
+/** Más: abre una sección plegada; girado 45° se lee como cerrar. */
+export function IconPlus(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 5v14M5 12h14" />
+    </Svg>
+  );
+}
+
 export function IconClose(props: IconProps) {
   return (
     <Svg {...props}>

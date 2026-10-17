@@ -1,6 +1,7 @@
 import { useId, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { cx } from '@/ui/cx';
+import { IconPlus } from '@/ui/icons';
 import { Wordmark } from '@/ui/Wordmark';
 
 const links = [
@@ -30,9 +31,10 @@ export function SiteHeader() {
           className="inline-flex min-h-11 items-center gap-2 px-1 font-display font-semibold sm:hidden"
         >
           Menú
-          <span aria-hidden="true" className={cx('transition-transform', open && 'rotate-45')}>
-            +
-          </span>
+          <IconPlus
+            size={18}
+            className={cx('transition-transform duration-(--dur-fast)', open && 'rotate-45')}
+          />
         </button>
         <nav
           id={menuId}

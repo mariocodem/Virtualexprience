@@ -30,6 +30,54 @@ export function IconArrowRight(props: IconProps) {
   );
 }
 
+export function IconChevronDown(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 9l6 6 6-6" />
+    </Svg>
+  );
+}
+
+export function IconPin(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path
+        d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"
+        fill="currentColor"
+      />
+      <circle cx="12" cy="10" r="2.4" fill="var(--uni-navy)" stroke="none" />
+    </Svg>
+  );
+}
+
+export function IconUser(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="8" r="4" fill="currentColor" />
+      <path d="M4.5 20.5c.8-4 3.8-6 7.5-6s6.7 2 7.5 6z" fill="currentColor" />
+    </Svg>
+  );
+}
+
+export function IconPhone(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path
+        d="M6.6 3.5l2.6 3.9-1.7 2.1a12.5 12.5 0 0 0 7 7l2.1-1.7 3.9 2.6-1.3 3.1c-.3.6-1 1-1.7.9C10 20.6 3.4 14 2.6 6.6c-.1-.7.3-1.4.9-1.7z"
+        fill="currentColor"
+      />
+    </Svg>
+  );
+}
+
+export function IconMenu(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </Svg>
+  );
+}
+
 /** Más: abre una sección plegada; girado 45° se lee como cerrar. */
 export function IconPlus(props: IconProps) {
   return (

@@ -30,7 +30,8 @@ describe('rutas', () => {
       'href',
       '#contenido',
     );
-    expect(screen.getByRole('navigation', { name: 'Principal' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Archipiélago VirtuX' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'UNIMINUTO' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Pasaporte' })).toHaveAttribute('aria-current', 'page');
   });
 });

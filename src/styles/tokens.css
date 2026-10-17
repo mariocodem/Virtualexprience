@@ -46,6 +46,10 @@
   --isle-activatuidea: #7a5c00;
   --isle-latidosocial: #286f45;
 
+  /* Cromo institucional UNIMINUTO (encabezado oficial, medido en uniminuto.edu) */
+  --uni-navy: #162644;
+  --uni-violet: #7000f0;
+
   /* Funcionales */
   /* Punto de partida del revelado de texto grande: legible (≥ 3:1) antes de llegar a su tinta. */
   --reveal-from: #6a84a8;

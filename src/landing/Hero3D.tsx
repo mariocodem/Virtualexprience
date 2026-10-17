@@ -83,7 +83,7 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
 
         <div
           ref={plate}
-          className="on-sea relative -mt-10 h-[70svh] min-h-96 overflow-hidden plate-rule lg:mt-0 lg:h-auto lg:min-h-[calc(100svh-7.5rem)]"
+          className="on-sea relative -mt-10 h-[70svh] min-h-96 overflow-hidden plate-rule lg:mt-0 lg:h-auto lg:min-h-[max(36rem,calc(100svh-14.5rem))]"
         >
           {/* Plancha impresa: pinta al instante y se retira cuando el relieve 3D está listo. */}
           <ArchipelagoPlate2D

@@ -9,8 +9,8 @@ export default function WorldRoute() {
         desarrollando una competencia.
       </p>
       <p>
-        <ButtonLink to="/mundo/ecos" variant="secondary">
-          Zarpar hacia la Isla de los Ecos
+        <ButtonLink to="/mundo/comunicarte" variant="secondary">
+          Zarpar hacia ComunicArte
         </ButtonLink>
       </p>
     </PlateStub>

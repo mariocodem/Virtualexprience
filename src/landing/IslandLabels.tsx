@@ -63,7 +63,7 @@ export function IslandLabels({
             <span
               data-map-label
               className={cx(
-                'toponym text-[0.625rem] whitespace-nowrap halo sm:text-[0.6875rem]',
+                'placename text-[0.75rem] whitespace-nowrap halo sm:text-[0.8125rem]',
                 id === activeIsland ? 'text-route' : 'text-ink',
               )}
             >

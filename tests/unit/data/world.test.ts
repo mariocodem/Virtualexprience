@@ -21,25 +21,25 @@ describe('contenido del mundo', () => {
     }
   });
 
-  it('la Isla de los Ecos es jugable de punta a punta y mezcla los cinco tipos de estación', () => {
-    const ecos = stationsOf('ecos');
-    expect(ecos.map((s) => s.id)).toEqual([
-      'ecos-imprenta',
-      'ecos-titulares',
-      'ecos-radio',
-      'ecos-sala-redaccion',
-      'ecos-bitacora-editor',
-      'ecos-cierre',
+  it('ComunicArte es jugable de punta a punta y mezcla los cinco tipos de estación', () => {
+    const comunicarte = stationsOf('comunicarte');
+    expect(comunicarte.map((s) => s.id)).toEqual([
+      'comunicarte-imprenta',
+      'comunicarte-titulares',
+      'comunicarte-radio',
+      'comunicarte-sala-redaccion',
+      'comunicarte-bitacora-editor',
+      'comunicarte-cierre',
     ]);
-    expect(ecos.every((s) => s.availability === 'disponible')).toBe(true);
-    expect(new Set(ecos.map((s) => s.type))).toEqual(
+    expect(comunicarte.every((s) => s.availability === 'disponible')).toBe(true);
+    expect(new Set(comunicarte.map((s) => s.type))).toEqual(
       new Set(['explorar', 'practicar', 'reto', 'reflexionar', 'desafio']),
     );
-    expect(ecos.find((s) => s.type === 'reto')?.minigame).toBe('sala-de-redaccion');
+    expect(comunicarte.find((s) => s.type === 'reto')?.minigame).toBe('sala-de-redaccion');
   });
 
   it('las estaciones de explorar de Ecos ofrecen los cinco formatos (DUA)', () => {
-    for (const station of stationsOf('ecos').filter((s) => s.type === 'explorar')) {
+    for (const station of stationsOf('comunicarte').filter((s) => s.type === 'explorar')) {
       expect(station.formats).toHaveLength(5);
     }
   });
@@ -52,7 +52,7 @@ describe('contenido del mundo', () => {
   });
 
   it('busca islas por el segmento de la URL', () => {
-    expect(findIsland('ecos')?.name).toBe('Isla de los Ecos');
+    expect(findIsland('comunicarte')?.name).toBe('ComunicArte');
     expect(findIsland('atlantida')).toBeUndefined();
   });
 });
@@ -74,18 +74,18 @@ describe('validación del contenido', () => {
 
   it('detecta ciclos en el sendero', () => {
     const w: World = structuredClone(world);
-    const first = w.stations.find((s) => s.id === 'ecos-imprenta');
+    const first = w.stations.find((s) => s.id === 'comunicarte-imprenta');
     if (!first) throw new Error('sin estación');
-    first.requires = ['ecos-cierre'];
+    first.requires = ['comunicarte-cierre'];
     expect(validateWorld(w)).toContainEqual(expect.stringMatching(/ciclo/));
   });
 
   it('detecta una isla jugable con estaciones en preparación', () => {
     const w: World = structuredClone(world);
-    const station = w.stations.find((s) => s.id === 'ecos-radio');
+    const station = w.stations.find((s) => s.id === 'comunicarte-radio');
     if (!station) throw new Error('sin estación');
     station.availability = 'en-preparacion';
-    expect(validateWorld(w)).toContainEqual(expect.stringMatching(/jugable "ecos"/));
+    expect(validateWorld(w)).toContainEqual(expect.stringMatching(/jugable "comunicarte"/));
   });
 
   it('detecta niveles de explorador desordenados', () => {

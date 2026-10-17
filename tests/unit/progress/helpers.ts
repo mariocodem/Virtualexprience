@@ -16,10 +16,10 @@ export function completeAll(
 }
 
 export const ECOS_PATH = [
-  'ecos-imprenta',
-  'ecos-titulares',
-  'ecos-radio',
-  'ecos-sala-redaccion',
-  'ecos-bitacora-editor',
-  'ecos-cierre',
+  'comunicarte-imprenta',
+  'comunicarte-titulares',
+  'comunicarte-radio',
+  'comunicarte-sala-redaccion',
+  'comunicarte-bitacora-editor',
+  'comunicarte-cierre',
 ];

@@ -17,7 +17,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
       aria-hidden="true"
       focusable="false"
     >
-      {id === 'ecos' && (
+      {id === 'comunicarte' && (
         <>
           <path d="M32 52V24M26 52h12M32 24l-5 8h10z" />
           <path className="glyph-wave" d="M22 18a14 14 0 0 1 20 0" />
@@ -31,7 +31,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
           />
         </>
       )}
-      {id === 'fractal' && (
+      {id === 'neuromath' && (
         <>
           <path d="M32 10L54 50H10z" />
           <path className="glyph-draw" d="M21 30h22L32 50z" />
@@ -41,7 +41,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
           />
         </>
       )}
-      {id === 'agora' && (
+      {id === 'voxcivitas' && (
         <>
           <circle cx="32" cy="32" r="20" strokeDasharray="2 3" />
           {[0, 1, 2, 3, 4, 5].map((i) => (
@@ -58,7 +58,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
           <circle cx="32" cy="32" r="4" fill="currentColor" />
         </>
       )}
-      {id === 'timon' && (
+      {id === 'gerencia' && (
         <g className="glyph-turn">
           <circle cx="32" cy="32" r="14" />
           <circle cx="32" cy="32" r="4" />
@@ -73,7 +73,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
           })}
         </g>
       )}
-      {id === 'chispa' && (
+      {id === 'activatuidea' && (
         <>
           <path d="M32 18v28M18 32h28" className="glyph-spark" />
           <path
@@ -83,7 +83,7 @@ export function IslandGlyph({ id, size = 64 }: { id: IslandId; size?: number }) 
           <circle cx="32" cy="32" r="5" fill="var(--land-sun)" />
         </>
       )}
-      {id === 'raiz' && (
+      {id === 'latidosocial' && (
         <>
           <path d="M32 8v20M24 14l8 6 8-6" />
           <path className="glyph-draw" d="M32 28c0 8-10 10-14 20M32 28c0 8 10 10 14 20M32 28v26" />

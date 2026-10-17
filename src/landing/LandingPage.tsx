@@ -40,7 +40,7 @@ export default function LandingPage() {
   const resume = useMemo(() => {
     const snapshot = pickProgress(progress);
     if (!hasProgress(snapshot)) return null;
-    const islandId = lastIsland(snapshot) ?? 'ecos';
+    const islandId = lastIsland(snapshot) ?? 'comunicarte';
     const island = world.islands.find((i) => i.id === islandId);
     return island ? { islandId, islandName: island.name } : null;
   }, [progress]);

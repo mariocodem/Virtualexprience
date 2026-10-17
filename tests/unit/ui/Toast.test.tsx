@@ -10,7 +10,7 @@ function Trigger() {
     <button
       type="button"
       onClick={() => {
-        notify({ title: 'Fragmento recuperado', description: 'Isla de los Ecos', tone: 'success' });
+        notify({ title: 'Fragmento recuperado', description: 'ComunicArte', tone: 'success' });
       }}
     >
       Avisar

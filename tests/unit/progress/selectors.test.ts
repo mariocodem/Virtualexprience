@@ -15,50 +15,52 @@ const station = (id: string) => {
 describe('estado de una estación', () => {
   it('sigue el sendero: bloqueada → disponible → en curso → completada', () => {
     let progress = initialProgress();
-    expect(stationStatus(progress, station('ecos-imprenta'))).toBe('disponible');
-    expect(stationStatus(progress, station('ecos-titulares'))).toBe('bloqueada');
+    expect(stationStatus(progress, station('comunicarte-imprenta'))).toBe('disponible');
+    expect(stationStatus(progress, station('comunicarte-titulares'))).toBe('bloqueada');
 
-    progress = t.startStation(progress, world, 'ecos-imprenta', DAY_1).progress;
-    expect(stationStatus(progress, station('ecos-imprenta'))).toBe('en-curso');
+    progress = t.startStation(progress, world, 'comunicarte-imprenta', DAY_1).progress;
+    expect(stationStatus(progress, station('comunicarte-imprenta'))).toBe('en-curso');
 
-    progress = t.completeStation(progress, world, 'ecos-imprenta', 1, DAY_1).progress;
-    expect(stationStatus(progress, station('ecos-imprenta'))).toBe('completada');
-    expect(stationStatus(progress, station('ecos-titulares'))).toBe('disponible');
+    progress = t.completeStation(progress, world, 'comunicarte-imprenta', 1, DAY_1).progress;
+    expect(stationStatus(progress, station('comunicarte-imprenta'))).toBe('completada');
+    expect(stationStatus(progress, station('comunicarte-titulares'))).toBe('disponible');
   });
 
   it('las estaciones en preparación lo dicen, aunque se cumplan sus requisitos', () => {
-    const progress = completeAll(['fractal-patrones', 'fractal-proporciones']);
-    expect(stationStatus(progress, station('fractal-puentes'))).toBe('en-preparacion');
+    const progress = completeAll(['neuromath-patrones', 'neuromath-proporciones']);
+    expect(stationStatus(progress, station('neuromath-puentes'))).toBe('en-preparacion');
   });
 
   it('no se puede iniciar una estación bloqueada', () => {
     const start = initialProgress();
-    expect(t.startStation(start, world, 'ecos-radio', DAY_1).progress).toBe(start);
+    expect(t.startStation(start, world, 'comunicarte-radio', DAY_1).progress).toBe(start);
   });
 });
 
 describe('progreso de la isla y sugerencia', () => {
   it('cuenta solo estaciones disponibles y sugiere la siguiente del sendero', () => {
     const progress = completeAll(ECOS_PATH.slice(0, 2));
-    expect(islandProgress(progress, world, 'ecos')).toEqual({
+    expect(islandProgress(progress, world, 'comunicarte')).toEqual({
       completed: 2,
       playable: 6,
       ratio: 2 / 6,
       hasFragment: false,
     });
-    expect(nextStation(progress, world, 'ecos')?.id).toBe('ecos-radio');
-    expect(islandProgress(progress, world, 'fractal').playable).toBe(2);
+    expect(nextStation(progress, world, 'comunicarte')?.id).toBe('comunicarte-radio');
+    expect(islandProgress(progress, world, 'neuromath').playable).toBe(2);
   });
 
   it('prefiere la estación que quedó en curso', () => {
-    let progress = completeAll(['agora-argumentos']);
-    progress = t.startStation(progress, world, 'agora-dilemas', DAY_1).progress;
-    expect(nextStation(progress, world, 'agora')?.id).toBe('agora-dilemas');
+    let progress = completeAll(['voxcivitas-argumentos']);
+    progress = t.startStation(progress, world, 'voxcivitas-dilemas', DAY_1).progress;
+    expect(nextStation(progress, world, 'voxcivitas')?.id).toBe('voxcivitas-dilemas');
   });
 
   it('distingue a quien vuelve con progreso de quien llega por primera vez', () => {
     expect(hasProgress(initialProgress())).toBe(false);
-    expect(hasProgress(t.visitIsland(initialProgress(), world, 'ecos', DAY_1).progress)).toBe(true);
+    expect(
+      hasProgress(t.visitIsland(initialProgress(), world, 'comunicarte', DAY_1).progress),
+    ).toBe(true);
   });
 });
 

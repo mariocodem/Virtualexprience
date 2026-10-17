@@ -11,7 +11,7 @@ function closingTitle(fragments: number): { title: string; text: string } {
   if (fragments === 0) {
     return {
       title: 'El faro sigue apagado.',
-      text: 'Seis fragmentos lo devuelven a la vida. El primero te espera en la Isla de los Ecos.',
+      text: 'Seis fragmentos lo devuelven a la vida. El primero te espera en ComunicArte.',
     };
   }
   if (fragments < 6) {

@@ -7,7 +7,7 @@ import { ButtonLink } from '@/ui/ButtonLink';
 
 const PREVIEW_IDS = [
   'primer-zarpe',
-  'voz-de-los-ecos',
+  'voz-con-proposito',
   'editor-riguroso',
   'verificador',
   'otra-mirada',

@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Wordmark } from '@/ui/Wordmark';
+import { Logo } from '@/ui/Logo';
 
 /** Colofón de la plancha: quién la hizo, con qué y bajo qué licencias. */
 export function LandingFooter() {
@@ -7,7 +7,9 @@ export function LandingFooter() {
     <footer className="relative z-[1] border-t-[1.5px] border-plate/30 bg-sea-950 px-4 py-14 text-sea-100 sm:px-8">
       <div className="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]">
         <div>
-          <Wordmark className="text-plate" />
+          <span className="inline-block bg-plate px-4 py-3">
+            <Logo className="h-12" />
+          </span>
           <p className="mt-4 max-w-[48ch] text-sm">
             Archipiélago VirtuX es una propuesta conceptual para el ecosistema VirtuXperience de
             UNIMINUTO, desarrollada como prueba técnica por Mario Mendoza Huertas.

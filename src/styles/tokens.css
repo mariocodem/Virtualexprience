@@ -5,8 +5,9 @@
  * franjas batimétricas, tierra en terrazas hipsométricas y una sola tinta roja
  * reservada para lo que está en curso.
  *
- * Marca: --ink / --sea-900 (azul) y --land-sun (amarillo) son valores
- * PROVISIONALES hasta incorporar el manual de marca de UNIMINUTO.
+ * Marca: --land-sun (#fed300) y --sea-700 (#004b93) son el amarillo y el azul
+ * medidos en el logo oficial de UNIMINUTO (src/assets/brand). Pendiente
+ * confirmarlos contra el manual de marca.
  */
 :root {
   /* Plancha */
@@ -22,7 +23,7 @@
   --sea-950: #0b2347;
   --sea-900: #0f2e5c;
   --sea-800: #173f75;
-  --sea-700: #22548f;
+  --sea-700: #004b93;
   --sea-500: #3f7fb8;
   --sea-300: #6fa8d3;
   --sea-100: #9ccbe4;
@@ -30,7 +31,7 @@
   /* Hipsometría: de llanura a cumbre */
   --land-low: #5e9e4b;
   --land-mid: #a9b94a;
-  --land-sun: #f5c400;
+  --land-sun: #fed300;
   --land-high: #c7782e;
   --land-peak: #f3f6f8;
 
@@ -38,12 +39,12 @@
   --route: #d7262e;
 
   /* Acento por isla (rótulos, convenciones, marcadores) */
-  --isle-ecos: #a8375e;
-  --isle-fractal: #0d6c66;
-  --isle-agora: #97500a;
-  --isle-timon: #4a5bb8;
-  --isle-chispa: #7a5c00;
-  --isle-raiz: #286f45;
+  --isle-comunicarte: #a8375e;
+  --isle-neuromath: #0d6c66;
+  --isle-voxcivitas: #97500a;
+  --isle-gerencia: #4a5bb8;
+  --isle-activatuidea: #7a5c00;
+  --isle-latidosocial: #286f45;
 
   /* Funcionales */
   /* Punto de partida del revelado de texto grande: legible (≥ 3:1) antes de llegar a su tinta. */
@@ -84,12 +85,12 @@
   --ink-soft: #0b1f40;
   --sea-700: #0a2a5c;
   --route: #a8101a;
-  --isle-ecos: #8a1f45;
-  --isle-fractal: #08514c;
-  --isle-agora: #6e3a05;
-  --isle-timon: #2a3780;
-  --isle-chispa: #5a4400;
-  --isle-raiz: #1a5332;
+  --isle-comunicarte: #8a1f45;
+  --isle-neuromath: #08514c;
+  --isle-voxcivitas: #6e3a05;
+  --isle-gerencia: #2a3780;
+  --isle-activatuidea: #5a4400;
+  --isle-latidosocial: #1a5332;
   --reveal-from: var(--ink);
   --rule: 2px;
   --rule-strong: 3px;

@@ -5,7 +5,14 @@ import { z } from 'zod';
  * aquí al cargar: así el mundo escala a nuevas rutas sin tocar componentes.
  */
 
-export const islandIdSchema = z.enum(['ecos', 'fractal', 'agora', 'timon', 'chispa', 'raiz']);
+export const islandIdSchema = z.enum([
+  'comunicarte',
+  'neuromath',
+  'voxcivitas',
+  'gerencia',
+  'activatuidea',
+  'latidosocial',
+]);
 
 export const stationTypeSchema = z.enum([
   'explorar',
@@ -25,9 +32,10 @@ const idSchema = z
 
 export const islandSchema = z.strictObject({
   id: islandIdSchema,
+  /** Nombre oficial de la línea de VirtuXperience: la isla se llama como su ruta. */
   name: z.string().min(3),
-  /** Línea de VirtuXperience que representa la isla. */
-  line: z.string().min(2),
+  /** Lema oficial de la línea en VirtuXperience. */
+  tagline: z.string().min(10),
   competency: z.string().min(3),
   metaphor: z.string().min(3),
   summary: z.string().min(20),

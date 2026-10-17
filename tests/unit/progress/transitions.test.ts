@@ -9,14 +9,17 @@ describe('completar estaciones', () => {
     const { progress, events } = t.completeStation(
       initialProgress(),
       world,
-      'ecos-imprenta',
+      'comunicarte-imprenta',
       0.9,
       DAY_1,
     );
     expect(progress.xp).toBe(30);
-    expect(progress.stations['ecos-imprenta']).toMatchObject({ attempts: 1, bestScore: 0.9 });
+    expect(progress.stations['comunicarte-imprenta']).toMatchObject({
+      attempts: 1,
+      bestScore: 0.9,
+    });
     expect(events).toEqual([
-      { type: 'station-completed', stationId: 'ecos-imprenta' },
+      { type: 'station-completed', stationId: 'comunicarte-imprenta' },
       { type: 'xp', amount: 30 },
       { type: 'badge', badgeId: 'primer-zarpe' },
     ]);
@@ -24,25 +27,34 @@ describe('completar estaciones', () => {
   });
 
   it('repetir una estación mejora el resultado pero no duplica la XP', () => {
-    const once = t.completeStation(initialProgress(), world, 'ecos-imprenta', 0.5, DAY_1).progress;
-    const { progress, events } = t.completeStation(once, world, 'ecos-imprenta', 0.8, DAY_1);
+    const once = t.completeStation(
+      initialProgress(),
+      world,
+      'comunicarte-imprenta',
+      0.5,
+      DAY_1,
+    ).progress;
+    const { progress, events } = t.completeStation(once, world, 'comunicarte-imprenta', 0.8, DAY_1);
     expect(progress.xp).toBe(30);
-    expect(progress.stations['ecos-imprenta']).toMatchObject({ attempts: 2, bestScore: 0.8 });
+    expect(progress.stations['comunicarte-imprenta']).toMatchObject({
+      attempts: 2,
+      bestScore: 0.8,
+    });
     expect(events).toEqual([]);
   });
 
   it('no permite completar una estación bloqueada ni una en preparación', () => {
     const start = initialProgress();
-    expect(t.completeStation(start, world, 'ecos-titulares', 1, DAY_1).progress).toBe(start);
-    expect(t.completeStation(start, world, 'fractal-puentes', 1, DAY_1).progress).toBe(start);
+    expect(t.completeStation(start, world, 'comunicarte-titulares', 1, DAY_1).progress).toBe(start);
+    expect(t.completeStation(start, world, 'neuromath-puentes', 1, DAY_1).progress).toBe(start);
   });
 
   it('el desafío entrega el fragmento de la isla y las insignias de competencia', () => {
     const before = completeAll(ECOS_PATH.slice(0, -1));
-    const { progress, events } = t.completeStation(before, world, 'ecos-cierre', 1, DAY_1);
-    expect(progress.fragments).toEqual(['ecos']);
-    expect(events).toContainEqual({ type: 'fragment', islandId: 'ecos' });
-    expect(events).toContainEqual({ type: 'badge', badgeId: 'voz-de-los-ecos' });
+    const { progress, events } = t.completeStation(before, world, 'comunicarte-cierre', 1, DAY_1);
+    expect(progress.fragments).toEqual(['comunicarte']);
+    expect(events).toContainEqual({ type: 'fragment', islandId: 'comunicarte' });
+    expect(events).toContainEqual({ type: 'badge', badgeId: 'voz-con-proposito' });
     expect(events).toContainEqual({ type: 'badge', badgeId: 'primer-fragmento' });
   });
 
@@ -61,7 +73,7 @@ describe('completar estaciones', () => {
   it('no altera el estado anterior (transiciones puras)', () => {
     const start = initialProgress();
     const snapshot = structuredClone(start);
-    t.completeStation(start, world, 'ecos-imprenta', 1, DAY_1);
+    t.completeStation(start, world, 'comunicarte-imprenta', 1, DAY_1);
     expect(start).toEqual(snapshot);
   });
 });
@@ -95,7 +107,7 @@ describe('exploración, formatos y constancia', () => {
   it('cuenta días activos distintos y otorga Marea constante al tercero', () => {
     let progress = initialProgress();
     for (const day of [DAY_1, DAY_1, DAY_2, DAY_3]) {
-      progress = t.visitIsland(progress, world, 'ecos', day).progress;
+      progress = t.visitIsland(progress, world, 'comunicarte', day).progress;
     }
     expect(progress.activeDays).toEqual(['2026-10-17', '2026-10-18', '2026-10-20']);
     expect(progress.badges).toHaveProperty('marea-constante');
@@ -104,7 +116,7 @@ describe('exploración, formatos y constancia', () => {
   it('tres reflexiones otorgan Bitácora viva', () => {
     let progress = initialProgress();
     for (let i = 0; i < 3; i++) {
-      progress = t.recordReflection(progress, world, 'ecos-bitacora-editor', DAY_1).progress;
+      progress = t.recordReflection(progress, world, 'comunicarte-bitacora-editor', DAY_1).progress;
     }
     expect(progress.reflections).toBe(3);
     expect(progress.badges).toHaveProperty('bitacora-viva');
@@ -139,18 +151,29 @@ describe('minijuegos y dominio', () => {
   });
 
   it('acota el dominio entre 0 y 1', () => {
-    expect(t.setMastery(initialProgress(), world, 'ecos', 1.4, DAY_1).progress.mastery.ecos).toBe(
-      1,
-    );
     expect(
-      t.setMastery(initialProgress(), world, 'ecos', Number.NaN, DAY_1).progress.mastery.ecos,
+      t.setMastery(initialProgress(), world, 'comunicarte', 1.4, DAY_1).progress.mastery
+        .comunicarte,
+    ).toBe(1);
+    expect(
+      t.setMastery(initialProgress(), world, 'comunicarte', Number.NaN, DAY_1).progress.mastery
+        .comunicarte,
     ).toBe(0);
   });
 
   it('un intento fallido cuenta para el motor adaptativo sin completar la estación', () => {
-    const { progress } = t.recordAttempt(initialProgress(), world, 'ecos-imprenta', 0.3, DAY_1);
-    expect(progress.stations['ecos-imprenta']).toMatchObject({ attempts: 1, bestScore: 0.3 });
-    expect(progress.stations['ecos-imprenta']?.completedAt).toBeUndefined();
+    const { progress } = t.recordAttempt(
+      initialProgress(),
+      world,
+      'comunicarte-imprenta',
+      0.3,
+      DAY_1,
+    );
+    expect(progress.stations['comunicarte-imprenta']).toMatchObject({
+      attempts: 1,
+      bestScore: 0.3,
+    });
+    expect(progress.stations['comunicarte-imprenta']?.completedAt).toBeUndefined();
     expect(progress.xp).toBe(0);
   });
 });

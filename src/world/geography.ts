@@ -41,12 +41,12 @@ export function seededRandom(seed: number): () => number {
 }
 
 const ISLAND_SEEDS: Record<IslandId, number> = {
-  ecos: 11,
-  fractal: 23,
-  agora: 37,
-  timon: 41,
-  chispa: 53,
-  raiz: 67,
+  comunicarte: 11,
+  neuromath: 23,
+  voxcivitas: 37,
+  gerencia: 41,
+  activatuidea: 53,
+  latidosocial: 67,
 };
 
 export function islandSeed(id: IslandId): number {

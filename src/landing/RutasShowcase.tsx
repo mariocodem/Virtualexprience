@@ -151,7 +151,7 @@ export function RutasShowcase({
                         }}
                         aria-current={active === island.id ? 'step' : undefined}
                         className={cx(
-                          'inline-flex min-h-11 items-center gap-2 px-2 toponym text-[0.625rem] hover:bg-plate-sunk',
+                          'inline-flex min-h-11 items-center gap-2 px-2 placename text-xs hover:bg-plate-sunk',
                           active === island.id ? 'text-route' : 'text-ink',
                         )}
                       >
@@ -164,7 +164,7 @@ export function RutasShowcase({
                               : 'border-ink bg-transparent',
                           )}
                         />
-                        {island.name.replace('Isla de los ', '').replace('Isla ', '')}
+                        {island.name}
                       </button>
                     </li>
                   ))}
@@ -209,13 +209,13 @@ function IslandSheet({
             <h3 id={`isla-${id}`} className="display text-[clamp(2rem,1.4rem+2vw,3.25rem)]">
               {island.name}
             </h3>
-            <p className="mt-2">
-              <span className="font-display font-bold" style={{ color: `var(--isle-${id})` }}>
-                {island.line}
-              </span>
-              <span className="text-ink-soft"> · </span>
-              <span className="hydronym text-ink-soft">{island.metaphor}</span>
+            <p
+              className="mt-2 max-w-[34ch] font-display text-lg leading-snug font-bold"
+              style={{ color: `var(--isle-${id})` }}
+            >
+              {island.tagline}
             </p>
+            <p className="mt-1 hydronym text-ink-soft">{island.metaphor}</p>
           </div>
           <IslandGlyph id={id} />
         </div>

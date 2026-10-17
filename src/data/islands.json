@@ -1,20 +1,20 @@
 [
   {
-    "id": "ecos",
-    "name": "Isla de los Ecos",
-    "line": "Comunicarte",
+    "id": "comunicarte",
+    "name": "ComunicArte",
+    "tagline": "Desarrolla tu pensamiento crítico y comunica con propósito.",
     "competency": "Comunicación oral y escrita, y verificación de información",
     "metaphor": "Ciudad-puerto con imprenta y radio",
-    "summary": "Al puerto de los Ecos llegan noticias a toda hora. Aprende a leerlas con lupa, a escribir con claridad y a decidir qué merece salir al aire.",
+    "summary": "Al puerto de ComunicArte llegan noticias a toda hora. Aprende a leerlas con lupa, a escribir con claridad y a decidir qué merece salir al aire.",
     "fragmentName": "Fragmento de la Palabra",
     "expedition": "jugable",
     "position": { "x": -12.5, "z": -6.5 },
     "radius": 4.2
   },
   {
-    "id": "fractal",
-    "name": "Isla Fractal",
-    "line": "NeuroMath",
+    "id": "neuromath",
+    "name": "NeuroMath",
+    "tagline": "Estimula tu mente. Fortalece tu pensamiento lógico y matemático.",
     "competency": "Pensamiento lógico-matemático",
     "metaphor": "Observatorio y puentes geométricos",
     "summary": "Desde el observatorio, los patrones del archipiélago se vuelven ecuaciones. Razona, estima y construye puentes que resistan.",
@@ -24,10 +24,10 @@
     "radius": 3.4
   },
   {
-    "id": "agora",
-    "name": "Isla Ágora",
-    "line": "VoxCivitas",
-    "competency": "Ciudadanía, ética y debate",
+    "id": "voxcivitas",
+    "name": "Voxcivitas",
+    "tagline": "Desarrolla autonomía, proyecto de vida y ciudadanía.",
+    "competency": "Ciudadanía, ética y proyecto de vida",
     "metaphor": "Plaza pública con cabildo",
     "summary": "En la plaza se decide lo que es de todos. Escucha argumentos, sopesa dilemas y participa en el cabildo con respeto y criterio.",
     "fragmentName": "Fragmento de la Voz Común",
@@ -36,9 +36,9 @@
     "radius": 3.8
   },
   {
-    "id": "timon",
-    "name": "Isla Timón",
-    "line": "Gerencia+",
+    "id": "gerencia",
+    "name": "Gerencia+",
+    "tagline": "Lidera con propósito, crece con confianza.",
     "competency": "Gestión, toma de decisiones y liderazgo",
     "metaphor": "Astillero y mercado",
     "summary": "Entre el astillero y el mercado se aprende a dirigir: planear con recursos limitados, decidir con datos y llevar un equipo a puerto.",
@@ -48,9 +48,9 @@
     "radius": 3.6
   },
   {
-    "id": "chispa",
-    "name": "Isla Chispa",
-    "line": "Activa tu idea",
+    "id": "activatuidea",
+    "name": "ActivaTuIdea",
+    "tagline": "Convierte tu creatividad en proyectos reales.",
     "competency": "Emprendimiento e innovación",
     "metaphor": "Taller-laboratorio maker",
     "summary": "En el taller las ideas se prueban con las manos: detecta un problema real, haz un prototipo rápido y aprende de cada intento.",
@@ -60,9 +60,9 @@
     "radius": 3.2
   },
   {
-    "id": "raiz",
-    "name": "Isla Raíz",
-    "line": "Latido Social",
+    "id": "latidosocial",
+    "name": "LatidoSocial",
+    "tagline": "¡Aquí se vibra con el corazón del impacto social!",
     "competency": "Proyección social y bienestar",
     "metaphor": "Bosque comunitario y huerta",
     "summary": "En el bosque comunitario cada raíz sostiene a otra. Reconoce tu territorio, cuida tu bienestar y diseña acciones con la comunidad.",

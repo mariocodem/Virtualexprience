@@ -62,12 +62,12 @@ test.describe('landing', () => {
   test('el índice de islas muestra la ficha elegida', async ({ page }) => {
     await page.goto('/');
     const index = page.getByRole('navigation', { name: 'Índice de islas' });
-    await index.getByRole('button', { name: 'Fractal' }).click();
-    await expect(index.getByRole('button', { name: 'Fractal' })).toHaveAttribute(
+    await index.getByRole('button', { name: 'NeuroMath' }).click();
+    await expect(index.getByRole('button', { name: 'NeuroMath' })).toHaveAttribute(
       'aria-current',
       'step',
     );
-    await expect(page.getByRole('heading', { name: 'Isla Fractal' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'NeuroMath', level: 3 })).toBeVisible();
   });
 
   test('quien vuelve con progreso ve «Continuar expedición»', async ({ page }) => {
@@ -81,9 +81,14 @@ test.describe('landing', () => {
             version: 1,
             xp: 30,
             stations: {
-              'ecos-imprenta': { startedAt: now, completedAt: now, attempts: 1, bestScore: 1 },
+              'comunicarte-imprenta': {
+                startedAt: now,
+                completedAt: now,
+                attempts: 1,
+                bestScore: 1,
+              },
             },
-            visitedIslands: ['ecos'],
+            visitedIslands: ['comunicarte'],
             fragments: [],
             badges: { 'primer-zarpe': now },
             formatsTried: [],
@@ -91,7 +96,9 @@ test.describe('landing', () => {
             activeDays: [],
             minigames: {},
             mastery: {},
-            journal: [{ id: '1', at: now, kind: 'estacion-completada', ref: 'ecos-imprenta' }],
+            journal: [
+              { id: '1', at: now, kind: 'estacion-completada', ref: 'comunicarte-imprenta' },
+            ],
           },
           version: 1,
         }),
@@ -100,9 +107,9 @@ test.describe('landing', () => {
     await page.reload();
     await expect(page.getByRole('link', { name: 'Continuar expedición' }).first()).toHaveAttribute(
       'href',
-      '/mundo/ecos',
+      '/mundo/comunicarte',
     );
-    await expect(page.getByText('Tu última escala fue Isla de los Ecos.')).toBeVisible();
+    await expect(page.getByText('Tu última escala fue ComunicArte.')).toBeVisible();
   });
 
   test('con movimiento reducido el título se muestra completo desde el inicio', async ({

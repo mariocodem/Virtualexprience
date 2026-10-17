@@ -29,12 +29,12 @@
   --color-land-high: var(--land-high);
   --color-land-peak: var(--land-peak);
   --color-route: var(--route);
-  --color-isle-ecos: var(--isle-ecos);
-  --color-isle-fractal: var(--isle-fractal);
-  --color-isle-agora: var(--isle-agora);
-  --color-isle-timon: var(--isle-timon);
-  --color-isle-chispa: var(--isle-chispa);
-  --color-isle-raiz: var(--isle-raiz);
+  --color-isle-comunicarte: var(--isle-comunicarte);
+  --color-isle-neuromath: var(--isle-neuromath);
+  --color-isle-voxcivitas: var(--isle-voxcivitas);
+  --color-isle-gerencia: var(--isle-gerencia);
+  --color-isle-activatuidea: var(--isle-activatuidea);
+  --color-isle-latidosocial: var(--isle-latidosocial);
   --color-veil: var(--veil);
 
   --font-display: var(--type-display);
@@ -51,6 +51,15 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* Nombre de isla: la misma letra expandida, conservando la grafía oficial de cada línea (ActivaTuIdea, Gerencia+). */
+@utility placename {
+  font-family: var(--type-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 1.2;
 }
 

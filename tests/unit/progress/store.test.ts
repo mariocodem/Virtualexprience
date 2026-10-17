@@ -10,7 +10,7 @@ describe('store de progreso', () => {
 
   it('las acciones devuelven los eventos y persisten en localStorage', () => {
     const store = createProgressStore(world, () => DAY_1);
-    const events = store.getState().completeStation('ecos-imprenta', 1);
+    const events = store.getState().completeStation('comunicarte-imprenta', 1);
     expect(events).toContainEqual({ type: 'xp', amount: 30 });
     expect(store.getState().xp).toBe(30);
 
@@ -18,16 +18,16 @@ describe('store de progreso', () => {
       state: { xp: number; stations: Record<string, unknown> };
     };
     expect(saved.state.xp).toBe(30);
-    expect(saved.state.stations).toHaveProperty('ecos-imprenta');
+    expect(saved.state.stations).toHaveProperty('comunicarte-imprenta');
     expect(saved.state).not.toHaveProperty('completeStation');
   });
 
   it('recupera el progreso guardado al crear otro store (otra sesión)', () => {
     createProgressStore(world, () => DAY_1)
       .getState()
-      .visitIsland('ecos');
+      .visitIsland('comunicarte');
     const next = createProgressStore(world, () => DAY_1);
-    expect(next.getState().visitedIslands).toEqual(['ecos']);
+    expect(next.getState().visitedIslands).toEqual(['comunicarte']);
   });
 
   it('ignora datos guardados corruptos en vez de romper la app', () => {
@@ -42,7 +42,7 @@ describe('store de progreso', () => {
 
   it('reiniciar deja el progreso como el primer día', () => {
     const store = createProgressStore(world, () => DAY_1);
-    store.getState().completeStation('ecos-imprenta', 1);
+    store.getState().completeStation('comunicarte-imprenta', 1);
     store.getState().reset();
     expect(store.getState().xp).toBe(0);
     expect(store.getState().journal).toEqual([]);

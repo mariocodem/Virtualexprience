@@ -4,12 +4,12 @@ import type { Badge } from '@/types/domain';
 export function stampInk(badge: Badge): string {
   const { criterion } = badge;
   if (criterion.kind === 'island-completed') return `var(--isle-${criterion.islandId})`;
-  if (criterion.kind === 'minigame') return 'var(--isle-ecos)';
+  if (criterion.kind === 'minigame') return 'var(--isle-comunicarte)';
   switch (badge.category) {
     case 'accesibilidad':
       return 'var(--sea-700)';
     case 'constancia':
-      return 'var(--isle-raiz)';
+      return 'var(--isle-latidosocial)';
     default:
       return 'var(--ink)';
   }

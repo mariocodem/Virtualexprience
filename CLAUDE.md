@@ -29,15 +29,17 @@ Entregables obligatorios (ambos, no se sustituyen entre sí):
 
 Guía narrativa: **"Brújula"**, un asistente con IA que acompaña, da pistas y adapta la ruta.
 
-| Isla (ruta) | Línea VirtuXperience | Metáfora del lugar | Competencia que trabaja |
+Las islas se llaman como las **líneas oficiales de VirtuXperience**, con su lema oficial (decisión de Mario, 2026-10-17; ids de URL entre paréntesis). La metáfora describe el lugar de cada isla.
+
+| Isla = línea VirtuXperience | Lema oficial | Metáfora del lugar | Competencia que trabaja |
 |---|---|---|---|
-| Isla de los Ecos | **Comunicarte** | Ciudad-puerto con imprenta y radio | Comunicación oral y escrita, verificación de información |
-| Isla Fractal | **NeuroMath** | Observatorio y puentes geométricos | Pensamiento lógico-matemático |
-| Isla Ágora | **VoxCivitas** | Plaza pública con cabildo | Ciudadanía, ética y debate |
-| Isla Timón | **Gerencia+** | Astillero y mercado | Gestión, toma de decisiones, liderazgo |
-| Isla Chispa | **Activa tu idea** | Taller-laboratorio maker | Emprendimiento e innovación |
-| Isla Raíz | **Latido Social** | Bosque comunitario y huerta | Proyección social y bienestar |
-| **Faro Minuto** (centro) | Integradora | Faro en la isla central | Gran Reto que combina las 6 |
+| **ComunicArte** (`comunicarte`) | Desarrolla tu pensamiento crítico y comunica con propósito. | Ciudad-puerto con imprenta y radio | Comunicación oral y escrita, verificación de información |
+| **NeuroMath** (`neuromath`) | Estimula tu mente. Fortalece tu pensamiento lógico y matemático. | Observatorio y puentes geométricos | Pensamiento lógico-matemático |
+| **Voxcivitas** (`voxcivitas`) | Desarrolla autonomía, proyecto de vida y ciudadanía. | Plaza pública con cabildo | Ciudadanía, ética y proyecto de vida |
+| **Gerencia+** (`gerencia`) | Lidera con propósito, crece con confianza. | Astillero y mercado | Gestión, toma de decisiones, liderazgo |
+| **ActivaTuIdea** (`activatuidea`) | Convierte tu creatividad en proyectos reales. | Taller-laboratorio maker | Emprendimiento e innovación |
+| **LatidoSocial** (`latidosocial`) | ¡Aquí se vibra con el corazón del impacto social! | Bosque comunitario y huerta | Proyección social y bienestar |
+| **Faro Minuto** (centro) | — | Faro en la isla central | Gran Reto Integrador: combina las seis competencias |
 
 Coherencia: toda la UI usa vocabulario del mundo (fragmentos, bitácora, pasaporte, mareas), sin romper con jerga web ("Página 2", "Siguiente").
 
@@ -156,7 +158,7 @@ Referencia: landing actual de VirtuXperience/UNIMINUTO. Meta: **más inmersiva, 
 - Paleta institucional UNIMINUTO (amarillo y azul como base; **verificar los valores exactos contra el manual de marca o el sitio oficial** antes de fijarlos en `tokens.css`) + un color de acento por isla.
 - Tipografía: display moderna (p. ej. *Sora* o *Plus Jakarta Sans*) + cuerpo legible (*Inter*). Opción de *Atkinson Hyperlegible*.
 - Estilo 3D: **low-poly estilizado**, iluminación cálida, niebla atmosférica, sombras suaves. Nada de assets genéricos que se vean "de plantilla".
-- Logo: usar el logo oficial **solo si Mario lo suministra**; de lo contrario, wordmark de texto "UNIMINUTO · VirtuX". No inventar ni redibujar el logo.
+- Logo: el **logo oficial** de UNIMINUTO (suministrado por Mario) está en `src/assets/brand/uniminuto-logo.png` y se usa con `<Logo />`, sin redibujarlo, recolorearlo ni recortarlo; sobre fondos oscuros va en una placa clara. Colores medidos en el logo: amarillo `#FED300`, azul `#004B93` (confirmar contra el manual de marca).
 - Micro-interacciones: botones magnéticos, cursor personalizado sutil (desactivable), transiciones de página con *fade + blur*.
 - **`prefers-reduced-motion`**: desactivar parallax, orbitado de cámara y split text; mostrar estados finales.
 
@@ -180,16 +182,16 @@ Referencia: landing actual de VirtuXperience/UNIMINUTO. Meta: **más inmersiva, 
 - 🏆 **Desafío de isla**: al completarlo se obtiene el fragmento de luz.
 
 ### Alcance realista (priorizar profundidad sobre amplitud)
-- **Isla de los Ecos (Comunicarte): 100 % jugable** — 5 estaciones + minijuego completo + desafío.
-- **Isla Fractal (NeuroMath): segundo minijuego corto** (si el tiempo alcanza).
+- **ComunicArte: 100 % jugable** — 5 estaciones + minijuego completo + desafío.
+- **NeuroMath: segundo minijuego corto** (si el tiempo alcanza).
 - **Resto de islas**: navegables, con estaciones de muestra y contenido real breve, marcadas "Expedición en preparación" con elegancia (no pantallas vacías).
 - **Faro Minuto**: animación de encendido parcial según fragmentos + descripción del Gran Reto.
 
 ---
 
-## 7. Minijuego principal — "Sala de Redacción" (Comunicarte)
+## 7. Minijuego principal — "Sala de Redacción" (ComunicArte)
 
-**Situación:** la radio de la Isla de los Ecos recibe noticias; algunas son falsas. El estudiante es editor/a y debe decidir qué se publica antes del cierre de edición.
+**Situación:** la radio de la isla ComunicArte recibe noticias; algunas son falsas. El estudiante es editor/a y debe decidir qué se publica antes del cierre de edición.
 
 **Mecánica:**
 1. Llegan tarjetas de noticia (titular, fuente, fecha, cita, imagen).
@@ -341,7 +343,7 @@ Trabaja **fase por fase**; al terminar cada una: tests en verde, commit, y breve
 2. **Datos y dominio**: esquemas Zod, JSON de islas/estaciones/insignias, store de progreso + tests.
 3. **Landing**: secciones con animaciones, hero 3D, responsive, reduced-motion.
 4. **Mundo 3D**: océano, islas, faro, rutas, marcadores, cámara, minimapa, modo 2D.
-5. **Isla de los Ecos completa**: estaciones + "Sala de Redacción".
+5. **ComunicArte completa**: estaciones + "Sala de Redacción".
 6. **IA**: motor adaptativo local + Brújula + proxy opcional.
 7. **Progreso**: XP, niveles, insignias, fragmentos, faro, pasaporte exportable, modo demo.
 8. **Accesibilidad**: panel, TTS, teclado, auditoría axe.
@@ -355,7 +357,7 @@ Trabaja **fase por fase**; al terminar cada una: tests en verde, commit, y breve
 
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm test:e2e` en verde.
 - [ ] La landing se ve impecable en 1920px, 1366px, tablet y móvil.
-- [ ] Se puede ir del landing al mundo, volar a la Isla de los Ecos, completar el minijuego y ver el pasaporte actualizado, **solo con teclado**.
+- [ ] Se puede ir del landing al mundo, volar a ComunicArte, completar el minijuego y ver el pasaporte actualizado, **solo con teclado**.
 - [ ] El ejecutable instala y abre sin internet en Windows 10/11.
 - [ ] Modo demo funciona.
 - [ ] README cubre todos los puntos del §15 y cada requerimiento tiene evidencia.

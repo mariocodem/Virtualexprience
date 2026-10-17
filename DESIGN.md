@@ -10,13 +10,13 @@ colors:
   sea-950: '#0b2347'
   sea-900: '#0f2e5c'
   sea-800: '#173f75'
-  sea-700: '#22548f'
+  sea-700: '#004b93'
   sea-500: '#3f7fb8'
   sea-300: '#6fa8d3'
   sea-100: '#9ccbe4'
   land-low: '#5e9e4b'
   land-mid: '#a9b94a'
-  land-sun: '#f5c400'
+  land-sun: '#fed300'
   land-high: '#c7782e'
   land-peak: '#f3f6f8'
   route: '#d7262e'
@@ -158,7 +158,7 @@ La interfaz es una plancha de atlas escolar, no una web con un mapa dentro. La p
 
 La densidad es la de una lámina impresa: pocas superficies, filetes en lugar de sombras, mucho mar o lámina abierta alrededor de cartelas compactas. El archipiélago 3D low-poly (three.js) y su equivalente SVG 2D comparten geografía y paleta; la plancha SVG pinta al instante y cede el sitio al relieve cuando la escena está lista. El movimiento obedece a un único reloj de marea: lo que respira (olas, glifos de isla, señal de scroll, escena 3D) late con él; el texto que se lee no se mueve una vez revelado.
 
-Azul (`sea-900` / `ink`) y amarillo (`land-sun`) representan la marca UNIMINUTO y son **provisionales** hasta incorporar el manual de marca. La marca se escribe con el wordmark de texto «UNIMINUTO · VirtuX» en toponimia; no hay logo dibujado.
+El amarillo (`land-sun`, `#fed300`) y el azul (`sea-700`, `#004b93`) son los de la marca UNIMINUTO, medidos en el logo oficial; falta confirmarlos con el manual de marca. El logo oficial (`src/assets/brand/uniminuto-logo.png`) firma el encabezado y el pie, sin alterarse. Las islas llevan los nombres oficiales de las líneas de VirtuXperience con su grafía exacta (ComunicArte, NeuroMath, Voxcivitas, Gerencia+, ActivaTuIdea, LatidoSocial).
 
 **Key Characteristics:**
 
@@ -176,8 +176,8 @@ Una lámina fría impresa a dos tintas de marca (azul profundo y amarillo sol) s
 
 ### Primary
 
-- **Azul Abismo de Tinta** (`ink` / `sea-900`): la tinta de todo texto, filete y trazo, y el fondo del mar profundo y de las secciones «sobre mar» (CTA final). Relleno del botón principal. Azul UNIMINUTO provisional.
-- **Amarillo Sol de Cota** (`land-sun`): la terraza media de la hipsometría y el texto del botón principal sobre azul; relleno del botón `sun` sobre mar; color de selección de texto; foco sobre mar. Amarillo UNIMINUTO provisional. Nunca como texto sobre lámina blanca.
+- **Azul Abismo de Tinta** (`ink` / `sea-900`): la tinta de todo texto, filete y trazo, y el fondo del mar profundo y de las secciones «sobre mar» (CTA final). Relleno del botón principal. El azul de marca exacto (`#004b93`) vive en `sea-700`: segunda línea del titular, rutas y franja media del mar.
+- **Amarillo Sol de Cota** (`land-sun`): la terraza media de la hipsometría y el texto del botón principal sobre azul; relleno del botón `sun` sobre mar; color de selección de texto; foco sobre mar. Amarillo UNIMINUTO medido en el logo. Nunca como texto sobre lámina blanca.
 
 ### Secondary
 
@@ -223,7 +223,8 @@ Una lámina fría impresa a dos tintas de marca (azul profundo y amarillo sol) s
 - **Headline** (800, `wdth` 87.5%, clamp(2.25rem … 4rem), 0.95): título de cada sección-escala; lleva `data-escala` para que la ruta lo una. Ancho limitado a 14–16ch.
 - **Title** (800, `wdth` 87.5%, 1.5rem): pasos, principios DUA, títulos de diálogo (en `display` a 1.875rem); las cifras de datos usan el mismo corte a 3rem con `tabular-nums`.
 - **Body** (400, 1rem, 1.55, `cv11` + `ss03`): texto corrido en 32–56ch; el párrafo de entrada sube a 1.125–1.25rem.
-- **Toponym** (700, `wdth` 125%, 0.6875rem / 0.625rem, +0.22em, versalitas): rótulos de isla sobre el mapa, cabeceras de cartela («Convenciones», «Bitácora · Sala de Redacción»), índice de islas, coordenadas del margen, wordmark (0.8125rem), encabezados de columna del pie.
+- **Placename** (700, `wdth` 125%, 0.75–0.8125rem, +0.04em, grafía original): nombres de isla sobre el mapa y en el índice; conserva la escritura oficial de cada línea (ActivaTuIdea, Gerencia+), que en versalitas se volvería ilegible.
+- **Toponym** (700, `wdth` 125%, 0.6875rem / 0.625rem, +0.22em, versalitas): cabeceras de cartela («Convenciones», «Bitácora · Sala de Redacción»), coordenadas del margen, «Archipiélago VirtuX» junto al logo, encabezados de columna del pie.
 - **Hydronym** (500 itálica, `wdth` 100%, +0.04em): nombres de agua sobre el mapa (con `halo`), la metáfora de cada isla, el pie de la rosa de los vientos.
 
 ### Named Rules
@@ -309,9 +310,9 @@ Signature. Los cinco estados de una estación como signos de leyenda de 18px: �
 
 Signature. Sello de aduana de doble aro (3px y 1px) con el nombre de la insignia en arco superior y la categoría en el inferior, estrella central y textura de tinta prensada (turbulencia + desplazamiento).
 
-### Compass Rose and Wordmark
+### Compass Rose and Logo
 
-La rosa de los vientos acompaña al mapa de ubicación y a las convenciones con el pie «Brújula» en hydronym. El wordmark «UNIMINUTO · VirtuX» es texto toponym a 0.8125rem, sustituto del logo oficial.
+La rosa de los vientos acompaña al mapa de ubicación en la esquina norte de la plancha, con el pie «Brújula» en hydronym. El logo oficial de UNIMINUTO (`<Logo />`) va en el encabezado (36–44px de alto), seguido de un filete vertical y «Archipiélago VirtuX» en toponym; en el pie va sobre una placa `plate`, porque su texto es negro.
 
 ## Do's and Don'ts
 
@@ -325,7 +326,7 @@ La rosa de los vientos acompaña al mapa de ubicación y a las convenciones con 
 - **Do** dar a cada color de texto nuevo su valor en `:root[data-contrast='high']`, y dimensionar el texto en `rem` para que `--text-scale` (1, 1.125, 1.25, 1.5) lo escale.
 - **Do** rotular lugares en toponym, agua en hydronym y titulares en display; con `halo` cuando van sobre el mapa.
 - **Do** mostrar estados finales y detener bucles con `prefers-reduced-motion` o `data-motion='reduced'`.
-- **Do** tratar azul y amarillo como provisionales y cambiarlos solo desde los tokens cuando llegue el manual de marca.
+- **Do** cambiar azul y amarillo solo desde los tokens (y `palette.ts`) si el manual de marca corrige los valores medidos en el logo.
 
 ### Don't:
 
@@ -334,6 +335,6 @@ La rosa de los vientos acompaña al mapa de ubicación y a las convenciones con 
 - **Don't** poner `land-sun` como texto sobre `plate`; el amarillo va sobre azul o como relleno con texto `sea-950`.
 - **Don't** reintroducir la paleta ni los radios por defecto de Tailwind.
 - **Don't** animar en bucle ni desplazar con parallax el texto que se lee.
-- **Don't** dibujar, redibujar ni imitar el logo de UNIMINUTO; usar el wordmark de texto hasta tener el archivo oficial.
+- **Don't** dibujar, redibujar, recolorear ni recortar el logo de UNIMINUTO; sobre fondo oscuro va en una placa clara.
 - **Don't** poner un rótulo pequeño encima de un titular como etiqueta de sección; el toponym rotula lugares, cartelas y columnas, no titulares.
 - **Don't** bajar el toponym de 0.625rem.

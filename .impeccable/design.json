@@ -12,7 +12,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -27,7 +27,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -37,7 +37,7 @@
       "land-sun": {
         "role": "primary",
         "displayName": "Amarillo Sol de Cota",
-        "canonical": "#f5c400",
+        "canonical": "#fed300",
         "tonalRamp": [
           "oklch(15% 0.066 90)",
           "oklch(26% 0.108 90)",
@@ -51,7 +51,7 @@
         "hypsometricRamp": [
           "#5e9e4b",
           "#a9b94a",
-          "#f5c400",
+          "#fed300",
           "#c7782e",
           "#f3f6f8"
         ]
@@ -229,7 +229,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -244,7 +244,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -254,12 +254,12 @@
       "sea-700": {
         "role": "neutral",
         "displayName": "Batimetría · Plataforma",
-        "canonical": "#22548f",
+        "canonical": "#004b93",
         "tonalRamp": [
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -274,7 +274,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -289,7 +289,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -304,7 +304,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -328,7 +328,7 @@
         "hypsometricRamp": [
           "#5e9e4b",
           "#a9b94a",
-          "#f5c400",
+          "#fed300",
           "#c7782e",
           "#f3f6f8"
         ]
@@ -350,7 +350,7 @@
         "hypsometricRamp": [
           "#5e9e4b",
           "#a9b94a",
-          "#f5c400",
+          "#fed300",
           "#c7782e",
           "#f3f6f8"
         ]
@@ -372,7 +372,7 @@
         "hypsometricRamp": [
           "#5e9e4b",
           "#a9b94a",
-          "#f5c400",
+          "#fed300",
           "#c7782e",
           "#f3f6f8"
         ]
@@ -394,7 +394,7 @@
         "hypsometricRamp": [
           "#5e9e4b",
           "#a9b94a",
-          "#f5c400",
+          "#fed300",
           "#c7782e",
           "#f3f6f8"
         ]
@@ -422,7 +422,7 @@
           "#0b2347",
           "#0f2e5c",
           "#173f75",
-          "#22548f",
+          "#004b93",
           "#3f7fb8",
           "#6fa8d3",
           "#9ccbe4",
@@ -473,8 +473,8 @@
         "sea-900",
         "land-sun"
       ],
-      "note": "Azul y amarillo UNIMINUTO provisionales hasta incorporar el manual de marca.",
-      "wordmark": "UNIMINUTO · VirtuX (texto toponym, sustituto del logo oficial)"
+      "note": "Azul (#004b93) y amarillo (#fed300) medidos en el logo oficial de UNIMINUTO; pendientes de confirmar con el manual de marca.",
+      "wordmark": "Logo oficial en src/assets/brand/uniminuto-logo.png; en el encabezado lo sigue «Archipiélago VirtuX» en toponym"
     },
     "typographyMeta": {
       "display": {
@@ -658,13 +658,13 @@
       "kind": "custom",
       "refersTo": "",
       "description": "Toponimia sobre el mapa con halo de lámina y línea guía; roja si es la isla activa.",
-      "html": "<div class=\"ds-map\"><span class=\"ds-label\"><span class=\"ds-label-name\">Isla de los Ecos</span><span class=\"ds-label-leader\"></span></span><span class=\"ds-hydro\">Mar de las Mareas</span></div>",
+      "html": "<div class=\"ds-map\"><span class=\"ds-label\"><span class=\"ds-label-name\">ComunicArte</span><span class=\"ds-label-leader\"></span></span><span class=\"ds-hydro\">Mar de las Mareas</span></div>",
       "css": ".ds-map{display:flex;gap:40px;align-items:flex-end;padding:32px;background:var(--sea-300);} .ds-label{display:inline-flex;flex-direction:column;align-items:center;} .ds-label-name{font-family:var(--type-display);font-stretch:125%;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.6875rem;color:var(--ink);-webkit-text-stroke:3px var(--plate);paint-order:stroke fill;} .ds-label-leader{margin-top:4px;width:1px;height:16px;background:var(--route);} .ds-hydro{font-family:var(--type-display);font-style:italic;font-weight:600;letter-spacing:0.04em;font-size:0.8125rem;color:var(--sea-700);-webkit-text-stroke:3px var(--plate);paint-order:stroke fill;}"
     }
   ],
   "narrative": {
     "northStar": "Atlas en relieve",
-    "overview": "La interfaz es una plancha de atlas escolar, no una web con un mapa dentro. La página entera es la lámina: blanco frío con filete de plancha y retícula de coordenadas en el margen, mar en franjas batimétricas azules, tierra en terrazas hipsométricas (verde, oliva, amarillo, ocre, cumbre clara) y una sola tinta roja reservada para lo que está en curso. Todo recuadro de texto es una cartela con filete; toda leyenda es un cuadro de convenciones; los rótulos siguen la toponimia de los atlas: versalitas expandidas para lugares, itálica para el agua, grotesca semicondensada y pesada para los titulares.\n\nLa densidad es la de una lámina impresa: pocas superficies, filetes en lugar de sombras, mucho mar o lámina abierta alrededor de cartelas compactas. El archipiélago 3D low-poly (three.js) y su equivalente SVG 2D comparten geografía y paleta; la plancha SVG pinta al instante y cede el sitio al relieve cuando la escena está lista. El movimiento obedece a un único reloj de marea: lo que respira (olas, glifos de isla, señal de scroll, escena 3D) late con él; el texto que se lee no se mueve una vez revelado.\n\nAzul (`sea-900` / `ink`) y amarillo (`land-sun`) representan la marca UNIMINUTO y son **provisionales** hasta incorporar el manual de marca. La marca se escribe con el wordmark de texto «UNIMINUTO · VirtuX» en toponimia; no hay logo dibujado.",
+    "overview": "La interfaz es una plancha de atlas escolar, no una web con un mapa dentro. La página entera es la lámina: blanco frío con filete de plancha y retícula de coordenadas en el margen, mar en franjas batimétricas azules, tierra en terrazas hipsométricas (verde, oliva, amarillo, ocre, cumbre clara) y una sola tinta roja reservada para lo que está en curso. Todo recuadro de texto es una cartela con filete; toda leyenda es un cuadro de convenciones; los rótulos siguen la toponimia de los atlas: versalitas expandidas para lugares, itálica para el agua, grotesca semicondensada y pesada para los titulares.\n\nLa densidad es la de una lámina impresa: pocas superficies, filetes en lugar de sombras, mucho mar o lámina abierta alrededor de cartelas compactas. El archipiélago 3D low-poly (three.js) y su equivalente SVG 2D comparten geografía y paleta; la plancha SVG pinta al instante y cede el sitio al relieve cuando la escena está lista. El movimiento obedece a un único reloj de marea: lo que respira (olas, glifos de isla, señal de scroll, escena 3D) late con él; el texto que se lee no se mueve una vez revelado.\n\nEl amarillo (`land-sun`, `#fed300`) y el azul (`sea-700`, `#004b93`) son los de la marca UNIMINUTO, medidos en el logo oficial; falta confirmarlos con el manual de marca. El logo oficial (`src/assets/brand/uniminuto-logo.png`) firma el encabezado y el pie, sin alterarse. Las islas llevan los nombres oficiales de las líneas de VirtuXperience con su grafía exacta (ComunicArte, NeuroMath, Voxcivitas, Gerencia+, ActivaTuIdea, LatidoSocial).",
     "keyCharacteristics": [
       "Lámina blanca fría (`plate`) con filete de 1.5px en tinta azul como borde de todo recuadro.",
       "Esquinas rectas en todo rectángulo; el círculo existe solo como signo cartográfico.",
@@ -730,7 +730,7 @@
       "**Do** dar a cada color de texto nuevo su valor en `:root[data-contrast='high']`, y dimensionar el texto en `rem` para que `--text-scale` (1, 1.125, 1.25, 1.5) lo escale.",
       "**Do** rotular lugares en toponym, agua en hydronym y titulares en display; con `halo` cuando van sobre el mapa.",
       "**Do** mostrar estados finales y detener bucles con `prefers-reduced-motion` o `data-motion='reduced'`.",
-      "**Do** tratar azul y amarillo como provisionales y cambiarlos solo desde los tokens cuando llegue el manual de marca."
+      "**Do** cambiar azul y amarillo solo desde los tokens (y palette.ts) si el manual de marca corrige los valores medidos en el logo."
     ],
     "donts": [
       "**Don't** redondear rectángulos ni usar sombras blandas o desplazadas; el círculo queda para signos cartográficos.",
@@ -738,9 +738,26 @@
       "**Don't** poner `land-sun` como texto sobre `plate`; el amarillo va sobre azul o como relleno con texto `sea-950`.",
       "**Don't** reintroducir la paleta ni los radios por defecto de Tailwind.",
       "**Don't** animar en bucle ni desplazar con parallax el texto que se lee.",
-      "**Don't** dibujar, redibujar ni imitar el logo de UNIMINUTO; usar el wordmark de texto hasta tener el archivo oficial.",
+      "**Don't** dibujar, redibujar, recolorear ni recortar el logo de UNIMINUTO; sobre fondo oscuro va en una placa clara.",
       "**Don't** poner un rótulo pequeño encima de un titular como etiqueta de sección; el toponym rotula lugares, cartelas y columnas, no titulares.",
       "**Don't** bajar el toponym de 0.625rem."
+    ]
+  },
+  "brand": {
+    "measuredFromLogo": [
+      "sea-700",
+      "land-sun"
+    ],
+    "pendingManualConfirmation": true,
+    "note": "Azul (#004b93) y amarillo (#fed300) medidos en el logo oficial de UNIMINUTO; pendientes de confirmar con el manual de marca.",
+    "logo": "src/assets/brand/uniminuto-logo.png (componente <Logo />); en el encabezado lo sigue «Archipiélago VirtuX» en toponym; sobre fondos oscuros, en placa clara.",
+    "islandNames": [
+      "ComunicArte",
+      "NeuroMath",
+      "Voxcivitas",
+      "Gerencia+",
+      "ActivaTuIdea",
+      "LatidoSocial"
     ]
   }
 }

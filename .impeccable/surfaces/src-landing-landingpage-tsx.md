@@ -14,7 +14,7 @@ Modo: **Persuade**. Contexto de producto en PRODUCT.md; especificación de secci
 - **Prueba:** el mapa es la interfaz (convenciones = estados de estación, rosa de los vientos = Brújula, mapa de ubicación = minimapa). Solo cifras del producto, nunca institucionales.
 - **Visitante que vuelve:** si hay progreso guardado, la plancha muestra sus islas encendidas y la acción principal dice «Continuar expedición».
 - **Anti-metas:** portal institucional rígido; plantilla SaaS (hero centrado sobre filas de tarjetas, degradados, iconos en cajitas); pergamino, mapa del tesoro, lo pirata; coordenadas reales.
-- **Abierto:** valores exactos del amarillo y el azul y archivos del logo (manual de Mario, pendiente); hasta entonces los colores de marca son provisionales.
+- **Marca:** logo oficial en `src/assets/brand/` (header y pie); amarillo `#FED300` y azul `#004B93` medidos en el logo, pendientes de confirmar con el manual. Las islas llevan los nombres y lemas oficiales de las líneas de VirtuXperience.
 
 ## Direction contract
 

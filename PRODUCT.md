@@ -36,7 +36,7 @@ Evolucionar el ecosistema actual de VirtuXperience (https://www.uniminuto.edu/vi
 
 Hay éxito cuando:
 - El estudiante desarrolla y evidencia competencias en lugar de solo consumir contenido.
-- Se puede ir del landing al mundo, completar la Isla de los Ecos con su minijuego y ver el pasaporte actualizado, solo con teclado.
+- Se puede ir del landing al mundo, completar ComunicArte con su minijuego y ver el pasaporte actualizado, solo con teclado.
 - El ejecutable funciona sin internet.
 
 ## Positioning
@@ -57,7 +57,7 @@ En otros productos las rutas de aprendizaje son listas. Aquí son lugares:
 ## Capabilities and Constraints
 
 El alcance completo está en CLAUDE.md §6–§12. Lo que no se negocia:
-- **Isla de los Ecos (Comunicarte) 100 % jugable.** Las demás islas son navegables, con estaciones de muestra y marcadas "Expedición en preparación", sin pantallas vacías. NeuroMath tendrá un segundo minijuego solo si alcanza el tiempo.
+- **ComunicArte 100 % jugable.** Las demás islas son navegables, con estaciones de muestra y marcadas "Expedición en preparación", sin pantallas vacías. NeuroMath tendrá un segundo minijuego solo si alcanza el tiempo.
 - **Funciona 100 % offline.** El LLM es opcional y pasa por un proxy; la API key nunca va en el frontend ni en el ejecutable.
 - **El contenido pedagógico vive en `src/data/*.json` validado con Zod**, nunca en componentes.
 - **La UI habla el idioma del mundo:** fragmentos, bitácora, pasaporte, mareas. Nada de jerga web como "Página 2".
@@ -67,15 +67,16 @@ El alcance completo está en CLAUDE.md §6–§12. Lo que no se negocia:
 ## Brand Commitments
 
 - **Marca que encabeza:** UNIMINUTO, ecosistema VirtuXperience. El mundo se llama "Archipiélago VirtuX" y la guía con IA se llama "Brújula".
-- **Logo oficial de UNIMINUTO:** Mario lo tiene. Se usa solo el archivo suministrado, sin redibujarlo ni alterarlo. Si falta, se usa el wordmark de texto "UNIMINUTO · VirtuX".
-- **Colores institucionales:** Mario tiene el manual de marca. El amarillo y el azul base salen de sus valores exactos, más un acento por isla.
+- **Logo oficial de UNIMINUTO:** suministrado por Mario el 2026-10-17, en `src/assets/brand/uniminuto-logo.png`. Se usa tal cual, sin redibujarlo ni alterarlo.
+- **Colores institucionales:** amarillo `#FED300` y azul `#004B93`, medidos en el logo oficial; falta confirmarlos con el manual de marca. Cada isla tiene además un acento propio.
+- **Nombres de las islas:** son las líneas oficiales de VirtuXperience con su grafía exacta (ComunicArte, NeuroMath, Voxcivitas, Gerencia+, ActivaTuIdea, LatidoSocial) y su lema oficial.
 - **Ejecutable:** producto "Virtual Experience Engineering SAS", appId `co.virtualexperience.archipielago`, con icono propio que no es el logo institucional.
 - **Estilo fijado por el brief (CLAUDE.md §5):** 3D low-poly estilizado, iluminación cálida y niebla atmosférica, sin assets "de plantilla".
 
 ## Evidence on Hand
 
 - `CLAUDE.md`: brief completo del producto, la narrativa, el alcance y el plan por fases.
-- Logo oficial y manual de marca de UNIMINUTO: Mario los tiene, pero **aún no están en el repo**. Hay que pedirlos antes de fijar `tokens.css` o colocar el logo.
+- Logo oficial de UNIMINUTO en el repo (`src/assets/brand/`). El manual de marca todavía no está: los colores salen del logo.
 - Lo que **no** está disponible y no se debe inventar:
   - el enunciado original de la prueba (los 8 requerimientos de CLAUDE.md §18 son una paráfrasis; no citarlos como texto oficial);
   - cifras o datos institucionales de UNIMINUTO, nombres de personas, testimonios y datos de uso reales;

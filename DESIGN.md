@@ -328,6 +328,10 @@ Signature. Sello de aduana de doble aro (3px y 1px) con el nombre de la insignia
 
 La rosa de los vientos acompaña al mapa de ubicación en la esquina norte de la plancha, con el pie «Brújula» en hydronym. El logo oficial de UNIMINUTO (`<Logo />`) va en el encabezado (36–44px de alto), seguido de un filete vertical y «Archipiélago VirtuX» en toponym; en el pie va sobre una placa `plate`, porque su texto es negro.
 
+### Institutional Footer (Pie institucional)
+
+Global en todas las páginas (`src/app/SiteFooter.tsx`). Reproduce el pie oficial de uniminuto.edu: cuatro columnas (logo blanco y notificaciones judiciales; información legal; explora; redes y contacto), franjas centradas de reconocimientos y de la Organización Minuto de Dios, y una barra inferior con las políticas y el texto legal. Fondo `sea-950`, títulos en `land-sun` (versales, 0.8125rem), enlaces en `plate`. Las imágenes son las oficiales, sin alterar (`src/assets/brand/footer/`, procedencia en `PROCEDENCIA.md`); los enlaces y textos viven en `src/app/footerData.ts`. Las listas de enlaces usan filas de 32px (WCAG 2.5.8 pide 24px); las redes, 44px. Cierra con la aclaración de que el sitio es una propuesta conceptual, no un sitio oficial.
+
 ## Do's and Don'ts
 
 ### Do:

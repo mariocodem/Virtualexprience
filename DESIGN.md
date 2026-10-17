@@ -75,6 +75,20 @@ typography:
     fontWeight: 500
     letterSpacing: '0.04em'
     fontVariation: "'wdth' 100"
+  placename:
+    fontFamily: 'Archivo Variable, Archivo, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.8125rem'
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: '0.04em'
+    fontVariation: "'wdth' 125"
+  placename-sm:
+    fontFamily: 'Archivo Variable, Archivo, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.75rem'
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: '0.04em'
+    fontVariation: "'wdth' 125"
 rounded:
   none: '0px'
 spacing:

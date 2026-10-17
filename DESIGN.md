@@ -28,6 +28,8 @@ colors:
   isle-raiz: '#286f45'
   reveal-from: '#6a84a8'
   veil: 'rgb(11 35 71 / 0.62)'
+  uni-navy: '#162644'
+  uni-violet: '#7000f0'
 typography:
   display:
     fontFamily: 'Archivo Variable, Archivo, ui-sans-serif, system-ui, sans-serif'
@@ -327,6 +329,10 @@ Signature. Sello de aduana de doble aro (3px y 1px) con el nombre de la insignia
 ### Compass Rose and Logo
 
 La rosa de los vientos acompaña al mapa de ubicación en la esquina norte de la plancha, con el pie «Brújula» en hydronym. El logo oficial de UNIMINUTO (`<Logo />`) va en el encabezado (36–44px de alto), seguido de un filete vertical y «Archipiélago VirtuX» en toponym; en el pie va sobre una placa `plate`, porque su texto es negro.
+
+### Institutional Header (Encabezado institucional)
+
+Global (`src/app/SiteHeader.tsx`). Reproduce el encabezado oficial de uniminuto.edu sobre `uni-navy` (`#162644`, medido en el portal): logo oficial del encabezado; barra superior con «Nuestras sedes», «Soy», «Contáctanos» (iconos en `land-sun`) e «Inscríbete Gratis» (botón `land-sun` con texto `sea-700`); fila de menús en versales con paneles desplegables (`plate`, filete superior amarillo de 4px) y «Haz tu donación» en `uni-violet` (`#7000f0`). Es cromo institucional: sus botones llevan el radio de 6px del portal, la única excepción a las esquinas rectas. Los menús abren con clic o con el puntero tras 120ms, se cierran con Esc (el foco vuelve al disparador) o con un clic fuera; en móvil todo va en acordeones `details`. Debajo, una franja `plate` propia con «Archipiélago VirtuX» y las rutas de la app. Datos en `src/app/headerData.ts`; las noticias de los menús oficiales se omiten porque cambian a diario.
 
 ### Institutional Footer (Pie institucional)
 

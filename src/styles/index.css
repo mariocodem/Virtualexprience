@@ -73,6 +73,15 @@
   text-wrap: balance;
 }
 
+/* Halo cartográfico: el rótulo se lee sobre cualquier franja del mapa. */
+@utility halo {
+  text-shadow:
+    0 0 1px var(--plate),
+    0 0 2px var(--plate),
+    0 0 3px var(--plate),
+    0 0 6px var(--plate);
+}
+
 /* Filete de plancha: el borde de todo recuadro del atlas. */
 @utility plate-rule {
   border: var(--rule) solid var(--ink);

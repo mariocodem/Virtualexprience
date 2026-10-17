@@ -10,9 +10,9 @@
  */
 :root {
   /* Plancha */
-  --plate: #f6f7f3;
-  --plate-sunk: #eceee8;
-  --plate-edge: #d9ddd4;
+  --plate: #f3f6f8;
+  --plate-sunk: #e6ecf0;
+  --plate-edge: #cdd6de;
 
   /* Tinta */
   --ink: #0f2e5c;
@@ -32,20 +32,22 @@
   --land-mid: #a9b94a;
   --land-sun: #f5c400;
   --land-high: #c7782e;
-  --land-peak: #f6f7f3;
+  --land-peak: #f3f6f8;
 
   /* Tinta reservada: solo lo que está en curso (posición, estación activa, foco) */
   --route: #d7262e;
 
   /* Acento por isla (rótulos, convenciones, marcadores) */
-  --isle-ecos: #b23c64;
-  --isle-fractal: #0f766f;
-  --isle-agora: #a3560b;
+  --isle-ecos: #a8375e;
+  --isle-fractal: #0d6c66;
+  --isle-agora: #97500a;
   --isle-timon: #4a5bb8;
-  --isle-chispa: #856500;
-  --isle-raiz: #2f7d4f;
+  --isle-chispa: #7a5c00;
+  --isle-raiz: #286f45;
 
   /* Funcionales */
+  /* Punto de partida del revelado de texto grande: legible (≥ 3:1) antes de llegar a su tinta. */
+  --reveal-from: #6a84a8;
   --focus: var(--route);
   --veil: rgb(11 35 71 / 0.62);
 
@@ -71,4 +73,24 @@
 /* Regiones sobre mar profundo: el foco cambia a amarillo para conservar contraste */
 .on-sea {
   --focus: var(--land-sun);
+}
+
+/* Alto contraste: tinta casi negra, lámina blanca pura y filetes más gruesos. */
+:root[data-contrast='high'] {
+  --plate: #ffffff;
+  --plate-sunk: #eef1f5;
+  --plate-edge: #5b6577;
+  --ink: #000c24;
+  --ink-soft: #0b1f40;
+  --sea-700: #0a2a5c;
+  --route: #a8101a;
+  --isle-ecos: #8a1f45;
+  --isle-fractal: #08514c;
+  --isle-agora: #6e3a05;
+  --isle-timon: #2a3780;
+  --isle-chispa: #5a4400;
+  --isle-raiz: #1a5332;
+  --reveal-from: var(--ink);
+  --rule: 2px;
+  --rule-strong: 3px;
 }

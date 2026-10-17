@@ -1,35 +1,96 @@
-import { ButtonLink } from '@/ui/ButtonLink';
-import { IconArrowRight } from '@/ui/icons';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { useReducedMotion } from '@/a11y/useReducedMotion';
+import { getStation, world } from '@/data';
+import { hasProgress } from '@/progress/selectors';
+import { pickProgress, useProgress } from '@/progress/store';
+import type { Progress } from '@/progress/types';
+import type { IslandId } from '@/types/domain';
+import { ComoFunciona } from './ComoFunciona';
+import { CTAFinal } from './CTAFinal';
+import { DuaSection } from './DuaSection';
+import { Hero3D } from './Hero3D';
+import { IASection } from './IASection';
+import './landing.css';
+import { LandingFooter } from './LandingFooter';
+import { Manifiesto } from './Manifiesto';
+import { PasaportePreview } from './PasaportePreview';
+import { RouteSegment } from './RouteSegment';
+import { RutasShowcase } from './RutasShowcase';
+import { useSmoothScroll } from './useSmoothScroll';
+import { hasWebGL2 } from './webgl';
 
-/**
- * Landing provisional de la Fase 1: la cartela del título sobre la plancha.
- * La plancha completa (hero 3D, secciones y ruta de scroll) llega en la Fase 3.
- */
+const LandingCanvas = lazy(() => import('./scene/LandingCanvas'));
+
+/** ¿Dónde quedó la expedición? La isla de la última actividad registrada. */
+function lastIsland(progress: Progress): IslandId | null {
+  for (const entry of [...progress.journal].reverse()) {
+    if (entry.kind === 'isla-visitada' || entry.kind === 'fragmento') return entry.ref as IslandId;
+    const station = getStation(entry.ref);
+    if (station) return station.islandId;
+  }
+  return progress.visitedIslands.at(-1) ?? null;
+}
+
 export default function LandingPage() {
+  const reduced = useReducedMotion();
+  const [enable3D, setEnable3D] = useState(false);
+  const progress = useProgress((s) => s);
+  const litIslands = progress.fragments;
+
+  const resume = useMemo(() => {
+    const snapshot = pickProgress(progress);
+    if (!hasProgress(snapshot)) return null;
+    const islandId = lastIsland(snapshot) ?? 'ecos';
+    const island = world.islands.find((i) => i.id === islandId);
+    return island ? { islandId, islandName: island.name } : null;
+  }, [progress]);
+
+  useSmoothScroll(!reduced);
+
+  // El relieve 3D llega después del primer pintado: la plancha SVG y el título ya están en pantalla.
+  useEffect(() => {
+    if (!hasWebGL2()) return;
+    const start = () => {
+      setEnable3D(true);
+    };
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(start, { timeout: 800 });
+      return () => {
+        window.cancelIdleCallback(id);
+      };
+    }
+    const timer = setTimeout(start, 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
-    <div className="mx-auto max-w-[90rem] px-4 py-12 sm:px-8 sm:py-20">
+    <div className="relative">
       <title>Archipiélago VirtuX · Aprende explorando</title>
-      <section aria-labelledby="hero-titulo" className="max-w-2xl bg-plate p-8 plate-rule sm:p-10">
-        <h1 id="hero-titulo" className="display text-[clamp(3rem,7vw,5.5rem)]">
-          Aprende explorando. <span className="text-sea-700">Enciende el Faro.</span>
-        </h1>
-        <p className="mt-6 max-w-[46ch] text-lg text-ink-soft">
-          Seis islas, seis rutas de aprendizaje y un faro que espera tu luz. Explora, practica y
-          recupera los fragmentos.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <ButtonLink to="/mundo" size="lg">
-            Entrar al mundo
-          </ButtonLink>
-          <ButtonLink to="/mundo" size="lg" variant="secondary">
-            Ver cómo funciona
-          </ButtonLink>
-        </div>
-        <ButtonLink to="/mundo?demo=1" variant="quiet" className="mt-5 gap-2">
-          Recorrido rápido con progreso precargado
-          <IconArrowRight size={18} />
-        </ButtonLink>
-      </section>
+      {enable3D && (
+        <Suspense fallback={null}>
+          <LandingCanvas />
+        </Suspense>
+      )}
+      <Hero3D enable3D={enable3D} reduced={reduced} litIslands={litIslands} resume={resume} />
+      <RouteSegment reduced={reduced}>
+        <Manifiesto reduced={reduced} />
+      </RouteSegment>
+      <RutasShowcase enable3D={enable3D} reduced={reduced} litIslands={litIslands} />
+      <RouteSegment reduced={reduced}>
+        <ComoFunciona reduced={reduced} />
+        <IASection reduced={reduced} />
+        <DuaSection />
+        <PasaportePreview reduced={reduced} />
+        <CTAFinal
+          resumeTo={resume ? `/mundo/${resume.islandId}` : null}
+          enable3D={enable3D}
+          reduced={reduced}
+          litIslands={litIslands}
+        />
+      </RouteSegment>
+      <LandingFooter />
     </div>
   );
 }

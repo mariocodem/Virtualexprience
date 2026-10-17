@@ -1,0 +1,102 @@
+/* Microbucles de las islas: todos laten con el reloj de marea (--tide). */
+.glyph-wave {
+  animation: glyph-wave calc(var(--tide) / 3) var(--ease-in-out) infinite;
+}
+.glyph-draw {
+  stroke-dasharray: 80;
+  animation: glyph-draw calc(var(--tide) / 2) var(--ease-in-out) infinite;
+}
+.glyph-speak {
+  animation: glyph-speak var(--tide) steps(1, end) infinite;
+}
+.glyph-turn {
+  transform-origin: 32px 32px;
+  animation: glyph-turn calc(var(--tide) * 2) linear infinite;
+}
+.glyph-spark {
+  transform-origin: 32px 32px;
+  animation: glyph-spark calc(var(--tide) / 4) var(--ease-in-out) infinite alternate;
+}
+
+@keyframes glyph-wave {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes glyph-draw {
+  0% {
+    stroke-dashoffset: 80;
+  }
+  55%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes glyph-speak {
+  0%,
+  16.6% {
+    fill: currentColor;
+  }
+  16.7%,
+  100% {
+    fill: var(--plate);
+  }
+}
+@keyframes glyph-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes glyph-spark {
+  from {
+    transform: scale(0.82);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph-wave,
+  .glyph-draw,
+  .glyph-speak,
+  .glyph-turn,
+  .glyph-spark {
+    animation: none;
+  }
+}
+[data-motion='reduced'] :is(.glyph-wave, .glyph-draw, .glyph-speak, .glyph-turn, .glyph-spark) {
+  animation: none;
+}
+
+/* Señal de scroll: la ruta punteada avanza hacia abajo. */
+.scroll-cue {
+  animation: scroll-cue calc(var(--tide) / 7) linear infinite;
+}
+@keyframes scroll-cue {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+  }
+}
+[data-motion='reduced'] .scroll-cue {
+  animation: none;
+}
+
+/* Revelado del manifiesto: el color va de un azul pálido legible a su tinta (nunca texto ilegible). */
+[data-line] {
+  --reveal: 1;
+  color: color-mix(
+    in oklab,
+    var(--line-to, var(--ink)) calc(var(--reveal) * 100%),
+    var(--reveal-from)
+  );
+}

@@ -11,6 +11,7 @@ export default defineConfig({
   use: {
     baseURL: `http://127.0.0.1:${String(port)}`,
     trace: 'on-first-retry',
+    launchOptions: { args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] },
   },
   projects: [
     {

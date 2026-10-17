@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 test('la landing presenta el mundo y su acción principal', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Aprende explorando');
-  await expect(page.getByRole('link', { name: 'Entrar al mundo' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Entrar al mundo' }).first()).toBeVisible();
   await expect(page).toHaveTitle(/Archipiélago VirtuX/);
 });
 
@@ -16,7 +16,7 @@ test('con teclado: saltar al contenido y entrar al mundo', async ({ page }) => {
   await expect(skip).toBeFocused();
   await expect(skip).toBeVisible();
 
-  await page.getByRole('link', { name: 'Entrar al mundo' }).focus();
+  await page.getByRole('link', { name: 'Entrar al mundo' }).first().focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/mundo$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Carta del archipiélago');
@@ -31,6 +31,8 @@ for (const path of ['/', '/mundo', '/pasaporte', '/accesibilidad']) {
   test(`axe: ${path} sin violaciones serias ni críticas`, async ({ page }) => {
     await page.goto(path);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    // Deja terminar la entrada animada del título antes de medir contraste.
+    await page.waitForTimeout(1600);
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();

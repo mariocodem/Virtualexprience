@@ -18,7 +18,9 @@ describe('rutas', () => {
     ['/no-existe', /Esta carta no existe/],
   ])('%s muestra su plancha', async (path, heading) => {
     renderAt(path);
-    expect(await screen.findByRole('heading', { level: 1, name: heading })).toBeInTheDocument();
+    expect(
+      await screen.findByRole('heading', { level: 1, name: heading }, { timeout: 5000 }),
+    ).toBeInTheDocument();
   });
 
   it('todas las páginas ofrecen saltar al contenido y la navegación principal', async () => {

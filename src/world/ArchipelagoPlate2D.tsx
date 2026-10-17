@@ -2,13 +2,13 @@ import { memo, useMemo } from 'react';
 import { world } from '@/data';
 import type { Island, IslandId } from '@/types/domain';
 import {
-  archipelagoBounds,
   BATHYMETRY,
   bandsForIsland,
   bandsForLighthouse,
   islandBands,
   islandSeed,
   LIGHTHOUSE_ISLAND,
+  plateBounds,
   type Point,
 } from './geography';
 import { ATLAS } from './palette';
@@ -45,7 +45,6 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
         toPath(islandBands(center, radius * factor, seed, 1)[0]?.outline ?? []),
       );
     return {
-      bounds: archipelagoBounds(world.islands, 9),
       islands: world.islands.map((island) => ({
         island,
         shelf: shelf(island.position, island.radius, islandSeed(island.id)),
@@ -58,14 +57,7 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
     };
   }, []);
 
-  const bounds = focus
-    ? {
-        minX: focus.x - focus.span / 2,
-        maxX: focus.x + focus.span / 2,
-        minZ: focus.z - focus.span / 2,
-        maxZ: focus.z + focus.span / 2,
-      }
-    : geometry.bounds;
+  const bounds = plateBounds(world.islands, focus);
   const width = bounds.maxX - bounds.minX;
   const height = bounds.maxZ - bounds.minZ;
 

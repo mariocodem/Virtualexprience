@@ -122,3 +122,40 @@ export function archipelagoBounds(islands: Island[], margin = 6) {
     maxZ: Math.max(...zs) + margin,
   };
 }
+
+export interface PlateBounds {
+  minX: number;
+  maxX: number;
+  minZ: number;
+  maxZ: number;
+}
+
+/** Caja que dibuja la plancha SVG: toda la carta, o un encuadre alrededor de un punto. */
+export function plateBounds(
+  islands: Island[],
+  focus?: { x: number; z: number; span: number },
+): PlateBounds {
+  if (!focus) return archipelagoBounds(islands, 9);
+  return {
+    minX: focus.x - focus.span / 2,
+    maxX: focus.x + focus.span / 2,
+    minZ: focus.z - focus.span / 2,
+    maxZ: focus.z + focus.span / 2,
+  };
+}
+
+/** Posición en píxeles de un punto del mundo dentro de una plancha dibujada con `contain`. */
+export function projectToPlate(
+  point: { x: number; z: number },
+  bounds: PlateBounds,
+  width: number,
+  height: number,
+): { left: number; top: number } {
+  const w = bounds.maxX - bounds.minX;
+  const h = bounds.maxZ - bounds.minZ;
+  const scale = Math.min(width / w, height / h);
+  return {
+    left: (width - w * scale) / 2 + (point.x - bounds.minX) * scale,
+    top: (height - h * scale) / 2 + (point.z - bounds.minZ) * scale,
+  };
+}

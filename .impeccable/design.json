@@ -1,0 +1,746 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T00:00:00Z",
+  "title": "Design System: Archipiélago VirtuX",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Azul Abismo de Tinta",
+        "canonical": "#0f2e5c",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-900": {
+        "role": "primary",
+        "displayName": "Azul Abismo de Tinta (mar)",
+        "canonical": "#0f2e5c",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "land-sun": {
+        "role": "primary",
+        "displayName": "Amarillo Sol de Cota",
+        "canonical": "#f5c400",
+        "tonalRamp": [
+          "oklch(15% 0.066 90)",
+          "oklch(26% 0.108 90)",
+          "oklch(38% 0.150 90)",
+          "oklch(49% 0.172 90)",
+          "oklch(61% 0.155 90)",
+          "oklch(72% 0.113 90)",
+          "oklch(84% 0.071 90)",
+          "oklch(95% 0.028 90)"
+        ],
+        "hypsometricRamp": [
+          "#5e9e4b",
+          "#a9b94a",
+          "#f5c400",
+          "#c7782e",
+          "#f3f6f8"
+        ]
+      },
+      "route": {
+        "role": "secondary",
+        "displayName": "Rojo de Ruta",
+        "canonical": "#d7262e",
+        "tonalRamp": [
+          "oklch(15% 0.066 25)",
+          "oklch(26% 0.108 25)",
+          "oklch(38% 0.150 25)",
+          "oklch(49% 0.192 25)",
+          "oklch(61% 0.155 25)",
+          "oklch(72% 0.113 25)",
+          "oklch(84% 0.071 25)",
+          "oklch(95% 0.028 25)"
+        ]
+      },
+      "isle-ecos": {
+        "role": "tertiary",
+        "displayName": "Ecos · Magenta Vino",
+        "canonical": "#a8375e",
+        "tonalRamp": [
+          "oklch(15% 0.066 3)",
+          "oklch(26% 0.108 3)",
+          "oklch(38% 0.150 3)",
+          "oklch(49% 0.151 3)",
+          "oklch(61% 0.151 3)",
+          "oklch(72% 0.113 3)",
+          "oklch(84% 0.071 3)",
+          "oklch(95% 0.028 3)"
+        ]
+      },
+      "isle-fractal": {
+        "role": "tertiary",
+        "displayName": "Fractal · Verde Azulado Profundo",
+        "canonical": "#0d6c66",
+        "tonalRamp": [
+          "oklch(15% 0.066 188)",
+          "oklch(26% 0.080 188)",
+          "oklch(38% 0.080 188)",
+          "oklch(49% 0.080 188)",
+          "oklch(61% 0.080 188)",
+          "oklch(72% 0.080 188)",
+          "oklch(84% 0.071 188)",
+          "oklch(95% 0.028 188)"
+        ]
+      },
+      "isle-agora": {
+        "role": "tertiary",
+        "displayName": "Ágora · Siena",
+        "canonical": "#97500a",
+        "tonalRamp": [
+          "oklch(15% 0.066 57)",
+          "oklch(26% 0.108 57)",
+          "oklch(38% 0.119 57)",
+          "oklch(49% 0.119 57)",
+          "oklch(61% 0.119 57)",
+          "oklch(72% 0.113 57)",
+          "oklch(84% 0.071 57)",
+          "oklch(95% 0.028 57)"
+        ]
+      },
+      "isle-timon": {
+        "role": "tertiary",
+        "displayName": "Timón · Añil",
+        "canonical": "#4a5bb8",
+        "tonalRamp": [
+          "oklch(15% 0.066 272)",
+          "oklch(26% 0.108 272)",
+          "oklch(38% 0.147 272)",
+          "oklch(49% 0.147 272)",
+          "oklch(61% 0.147 272)",
+          "oklch(72% 0.113 272)",
+          "oklch(84% 0.071 272)",
+          "oklch(95% 0.028 272)"
+        ]
+      },
+      "isle-chispa": {
+        "role": "tertiary",
+        "displayName": "Chispa · Ocre Oscuro",
+        "canonical": "#7a5c00",
+        "tonalRamp": [
+          "oklch(15% 0.066 86)",
+          "oklch(26% 0.101 86)",
+          "oklch(38% 0.101 86)",
+          "oklch(49% 0.101 86)",
+          "oklch(61% 0.101 86)",
+          "oklch(72% 0.101 86)",
+          "oklch(84% 0.071 86)",
+          "oklch(95% 0.028 86)"
+        ]
+      },
+      "isle-raiz": {
+        "role": "tertiary",
+        "displayName": "Raíz · Verde Bosque",
+        "canonical": "#286f45",
+        "tonalRamp": [
+          "oklch(15% 0.066 154)",
+          "oklch(26% 0.098 154)",
+          "oklch(38% 0.098 154)",
+          "oklch(49% 0.098 154)",
+          "oklch(61% 0.098 154)",
+          "oklch(72% 0.098 154)",
+          "oklch(84% 0.071 154)",
+          "oklch(95% 0.028 154)"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Lámina Fría",
+        "canonical": "#f3f6f8",
+        "tonalRamp": [
+          "oklch(15% 0.004 236)",
+          "oklch(26% 0.004 236)",
+          "oklch(38% 0.004 236)",
+          "oklch(49% 0.004 236)",
+          "oklch(61% 0.004 236)",
+          "oklch(72% 0.004 236)",
+          "oklch(84% 0.004 236)",
+          "oklch(95% 0.004 236)"
+        ]
+      },
+      "plate-sunk": {
+        "role": "neutral",
+        "displayName": "Lámina Hundida",
+        "canonical": "#e6ecf0",
+        "tonalRamp": [
+          "oklch(15% 0.008 237)",
+          "oklch(26% 0.008 237)",
+          "oklch(38% 0.008 237)",
+          "oklch(49% 0.008 237)",
+          "oklch(61% 0.008 237)",
+          "oklch(72% 0.008 237)",
+          "oklch(84% 0.008 237)",
+          "oklch(95% 0.008 237)"
+        ]
+      },
+      "plate-edge": {
+        "role": "neutral",
+        "displayName": "Canto de Lámina",
+        "canonical": "#cdd6de",
+        "tonalRamp": [
+          "oklch(15% 0.015 245)",
+          "oklch(26% 0.015 245)",
+          "oklch(38% 0.015 245)",
+          "oklch(49% 0.015 245)",
+          "oklch(61% 0.015 245)",
+          "oklch(72% 0.015 245)",
+          "oklch(84% 0.015 245)",
+          "oklch(95% 0.015 245)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "canonical": "#2a4f80",
+        "tonalRamp": [
+          "oklch(15% 0.066 256)",
+          "oklch(26% 0.092 256)",
+          "oklch(38% 0.092 256)",
+          "oklch(49% 0.092 256)",
+          "oklch(61% 0.092 256)",
+          "oklch(72% 0.092 256)",
+          "oklch(84% 0.071 256)",
+          "oklch(95% 0.028 256)"
+        ]
+      },
+      "sea-950": {
+        "role": "neutral",
+        "displayName": "Batimetría · Abismo",
+        "canonical": "#0b2347",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-800": {
+        "role": "neutral",
+        "displayName": "Batimetría · Talud",
+        "canonical": "#173f75",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-700": {
+        "role": "neutral",
+        "displayName": "Batimetría · Plataforma",
+        "canonical": "#22548f",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-500": {
+        "role": "neutral",
+        "displayName": "Batimetría · Aguas medias",
+        "canonical": "#3f7fb8",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-300": {
+        "role": "neutral",
+        "displayName": "Batimetría · Aguas someras",
+        "canonical": "#6fa8d3",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "sea-100": {
+        "role": "neutral",
+        "displayName": "Batimetría · Bajos",
+        "canonical": "#9ccbe4",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      },
+      "land-low": {
+        "role": "neutral",
+        "displayName": "Hipsometría · Llanura",
+        "canonical": "#5e9e4b",
+        "tonalRamp": [
+          "oklch(15% 0.066 139)",
+          "oklch(26% 0.108 139)",
+          "oklch(38% 0.134 139)",
+          "oklch(49% 0.134 139)",
+          "oklch(61% 0.134 139)",
+          "oklch(72% 0.113 139)",
+          "oklch(84% 0.071 139)",
+          "oklch(95% 0.028 139)"
+        ],
+        "hypsometricRamp": [
+          "#5e9e4b",
+          "#a9b94a",
+          "#f5c400",
+          "#c7782e",
+          "#f3f6f8"
+        ]
+      },
+      "land-mid": {
+        "role": "neutral",
+        "displayName": "Hipsometría · Colina",
+        "canonical": "#a9b94a",
+        "tonalRamp": [
+          "oklch(15% 0.066 117)",
+          "oklch(26% 0.108 117)",
+          "oklch(38% 0.137 117)",
+          "oklch(49% 0.137 117)",
+          "oklch(61% 0.137 117)",
+          "oklch(72% 0.113 117)",
+          "oklch(84% 0.071 117)",
+          "oklch(95% 0.028 117)"
+        ],
+        "hypsometricRamp": [
+          "#5e9e4b",
+          "#a9b94a",
+          "#f5c400",
+          "#c7782e",
+          "#f3f6f8"
+        ]
+      },
+      "land-high": {
+        "role": "neutral",
+        "displayName": "Hipsometría · Ladera",
+        "canonical": "#c7782e",
+        "tonalRamp": [
+          "oklch(15% 0.066 60)",
+          "oklch(26% 0.108 60)",
+          "oklch(38% 0.131 60)",
+          "oklch(49% 0.131 60)",
+          "oklch(61% 0.131 60)",
+          "oklch(72% 0.113 60)",
+          "oklch(84% 0.071 60)",
+          "oklch(95% 0.028 60)"
+        ],
+        "hypsometricRamp": [
+          "#5e9e4b",
+          "#a9b94a",
+          "#f5c400",
+          "#c7782e",
+          "#f3f6f8"
+        ]
+      },
+      "land-peak": {
+        "role": "neutral",
+        "displayName": "Hipsometría · Cumbre",
+        "canonical": "#f3f6f8",
+        "tonalRamp": [
+          "oklch(15% 0.004 236)",
+          "oklch(26% 0.004 236)",
+          "oklch(38% 0.004 236)",
+          "oklch(49% 0.004 236)",
+          "oklch(61% 0.004 236)",
+          "oklch(72% 0.004 236)",
+          "oklch(84% 0.004 236)",
+          "oklch(95% 0.004 236)"
+        ],
+        "hypsometricRamp": [
+          "#5e9e4b",
+          "#a9b94a",
+          "#f5c400",
+          "#c7782e",
+          "#f3f6f8"
+        ]
+      },
+      "reveal-from": {
+        "role": "neutral",
+        "displayName": "Azul de Revelado",
+        "canonical": "#6a84a8",
+        "tonalRamp": [
+          "oklch(15% 0.063 257)",
+          "oklch(26% 0.063 257)",
+          "oklch(38% 0.063 257)",
+          "oklch(49% 0.063 257)",
+          "oklch(61% 0.063 257)",
+          "oklch(72% 0.063 257)",
+          "oklch(84% 0.063 257)",
+          "oklch(95% 0.028 257)"
+        ]
+      },
+      "veil": {
+        "role": "neutral",
+        "displayName": "Velo",
+        "canonical": "rgb(11 35 71 / 0.62)",
+        "tonalRamp": [
+          "#0b2347",
+          "#0f2e5c",
+          "#173f75",
+          "#22548f",
+          "#3f7fb8",
+          "#6fa8d3",
+          "#9ccbe4",
+          "#f3f6f8"
+        ]
+      }
+    },
+    "colorModes": {
+      "high-contrast": {
+        "selector": ":root[data-contrast='high']",
+        "overrides": {
+          "plate": "#ffffff",
+          "plate-sunk": "#eef1f5",
+          "plate-edge": "#5b6577",
+          "ink": "#000c24",
+          "ink-soft": "#0b1f40",
+          "sea-700": "#0a2a5c",
+          "route": "#a8101a",
+          "isle-ecos": "#8a1f45",
+          "isle-fractal": "#08514c",
+          "isle-agora": "#6e3a05",
+          "isle-timon": "#2a3780",
+          "isle-chispa": "#5a4400",
+          "isle-raiz": "#1a5332",
+          "reveal-from": "var(--ink)",
+          "rule": "2px",
+          "rule-strong": "3px"
+        }
+      },
+      "on-sea": {
+        "selector": ".on-sea",
+        "overrides": {
+          "focus": "var(--land-sun)"
+        }
+      }
+    },
+    "scene3D": {
+      "source": "src/world/palette.ts",
+      "mirrors": "src/styles/tokens.css",
+      "sceneOnly": {
+        "haze": "#dfe7ea",
+        "dawn": "#ffd9a8"
+      }
+    },
+    "brand": {
+      "provisional": [
+        "ink",
+        "sea-900",
+        "land-sun"
+      ],
+      "note": "Azul y amarillo UNIMINUTO provisionales hasta incorporar el manual de marca.",
+      "wordmark": "UNIMINUTO · VirtuX (texto toponym, sustituto del logo oficial)"
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular de plancha del hero y del CTA final; dos líneas tonales, revelado por palabras."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de cada sección-escala, marcado con data-escala para la ruta."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Pasos, principios, títulos de diálogo y cifras."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura en Inter, 32–56ch."
+      },
+      "toponym": {
+        "displayName": "Toponimia",
+        "purpose": "Rótulos de lugar, cabeceras de cartela, wordmark."
+      },
+      "toponym-sm": {
+        "displayName": "Toponimia menor",
+        "purpose": "Índice de islas, coordenadas del margen, columnas del pie. Mínimo absoluto."
+      },
+      "hydronym": {
+        "displayName": "Hidronimia",
+        "purpose": "Nombres de agua y metáforas de isla, en itálica."
+      }
+    },
+    "textScale": {
+      "variable": "--text-scale",
+      "steps": [
+        1,
+        1.125,
+        1.25,
+        1.5
+      ],
+      "appliesTo": "html font-size"
+    },
+    "strokes": [
+      {
+        "name": "hairline",
+        "value": "1px"
+      },
+      {
+        "name": "rule",
+        "value": "1.5px",
+        "purpose": "Filete de plancha: borde de toda cartela, botón y separador."
+      },
+      {
+        "name": "rule-strong",
+        "value": "2px"
+      }
+    ],
+    "shadows": [],
+    "motion": [
+      {
+        "name": "tide",
+        "value": "14s",
+        "purpose": "Reloj de marea compartido; todo bucle usa este periodo o una fracción. Espejo: TIDE_PERIOD en src/world/scene/tide.ts."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Transiciones de estado y revelados."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Bucles de glifos y vuelos."
+      },
+      {
+        "name": "dur-fast",
+        "value": "160ms",
+        "purpose": "Hover y pulsación de controles."
+      },
+      {
+        "name": "dur-base",
+        "value": "320ms",
+        "purpose": "Aparición de rótulos y cambio de contenido."
+      },
+      {
+        "name": "dur-slow",
+        "value": "640ms",
+        "purpose": "Fundido plancha 2D → relieve 3D, cambio de ficha de isla."
+      },
+      {
+        "name": "word-reveal",
+        "value": "900ms, stagger 90ms, opacity + 0.35em + blur(6px)",
+        "purpose": "Revelado único del titular del hero."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "md",
+        "value": "48rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      },
+      {
+        "name": "2xl",
+        "value": "96rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal (Entrar al mundo): relleno azul de mar, texto amarillo sol.",
+      "html": "<button class=\"ds-btn-primary\">Entrar al mundo <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border:var(--rule) solid;border-radius:0;font-family:var(--type-display);font-weight:700;font-size:1rem;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out);background:var(--sea-900);border-color:var(--sea-900);color:var(--land-sun);} .ds-btn-primary:hover{background:var(--sea-800);border-color:var(--sea-800);} .ds-btn-primary:active{transform:translateY(1px);} .ds-btn-primary:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción secundaria: transparente con filete de tinta.",
+      "html": "<button class=\"ds-btn-secondary\">Ver cómo funciona</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border:var(--rule) solid;border-radius:0;font-family:var(--type-display);font-weight:700;font-size:1rem;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out);background:transparent;border-color:var(--ink);color:var(--ink);} .ds-btn-secondary:hover{background:var(--plate-sunk);} .ds-btn-secondary:active{transform:translateY(1px);} .ds-btn-secondary:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Sun Button",
+      "kind": "button",
+      "refersTo": "button-sun",
+      "description": "Acción principal sobre mar profundo (CTA final); el foco pasa a amarillo.",
+      "html": "<div class=\"ds-sea\"><button class=\"ds-btn-sun\">Zarpar ahora</button></div>",
+      "css": ".ds-sea{--focus:var(--land-sun);background:var(--sea-900);padding:24px;} .ds-btn-sun{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border:var(--rule) solid;border-radius:0;font-family:var(--type-display);font-weight:700;font-size:1rem;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out);background:var(--land-sun);border-color:var(--land-sun);color:var(--sea-950);} .ds-btn-sun:hover{background:var(--plate);border-color:var(--plate);} .ds-btn-sun:active{transform:translateY(1px);} .ds-btn-sun:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Enlace de acción subrayado; el subrayado pasa a rojo de ruta en hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-quiet\">Recorrido rápido</a>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;min-height:44px;font-family:var(--type-display);font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:0.22em;transition:text-decoration-color var(--dur-fast) var(--ease-out);} .ds-btn-quiet:hover{text-decoration-color:var(--route);} .ds-btn-quiet:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Cartela",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Recuadro de plancha con filete: la unidad de agrupación del atlas.",
+      "html": "<section class=\"ds-panel\"><div class=\"ds-panel-head\"><span class=\"ds-toponym\">Convenciones</span></div><p class=\"ds-panel-body\">Cada isla guarda un fragmento de luz.</p></section>",
+      "css": ".ds-panel{background:var(--plate);color:var(--ink);border:var(--rule) solid var(--ink);border-radius:0;max-width:28rem;font-family:var(--type-body);line-height:1.55;} .ds-panel-head{border-bottom:var(--rule) solid var(--ink);padding:12px 24px;} .ds-panel-body{margin:0;padding:24px;} .ds-toponym{font-family:var(--type-display);font-stretch:125%;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.6875rem;}"
+    },
+    {
+      "name": "Interruptor",
+      "kind": "input",
+      "refersTo": "",
+      "description": "Interruptor recto de preferencia (alto contraste, reducir movimiento).",
+      "html": "<button class=\"ds-switch\" role=\"switch\" aria-checked=\"true\">Alto contraste<span class=\"ds-switch-track\"><span class=\"ds-switch-knob\"></span></span></button>",
+      "css": ".ds-switch{display:flex;width:20rem;min-height:44px;align-items:center;justify-content:space-between;gap:16px;background:none;border:0;font-family:var(--type-body);font-weight:600;color:var(--ink);cursor:pointer;} .ds-switch-track{position:relative;width:48px;height:28px;border:var(--rule) solid var(--ink);background:var(--ink);transition:background-color var(--dur-fast);} .ds-switch-knob{position:absolute;top:50%;left:calc(100% - 1.25rem);width:16px;height:16px;transform:translateY(-50%);background:var(--land-sun);transition:left var(--dur-fast) var(--ease-out);} .ds-switch[aria-checked=false] .ds-switch-track{background:var(--plate);} .ds-switch[aria-checked=false] .ds-switch-knob{left:4px;background:var(--ink);} .ds-switch:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Índice de islas",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Navegación toponym entre islas; la activa en rojo de ruta.",
+      "html": "<nav class=\"ds-index\"><button class=\"ds-index-item\" aria-current=\"step\"><span class=\"ds-dot ds-dot-on\"></span>Ecos</button><button class=\"ds-index-item\"><span class=\"ds-dot\"></span>Fractal</button><button class=\"ds-index-item\"><span class=\"ds-dot\"></span>Ágora</button></nav>",
+      "css": ".ds-index{display:flex;flex-wrap:wrap;gap:4px;border-top:var(--rule) solid var(--ink);padding-top:16px;} .ds-index-item{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 8px;background:none;border:0;color:var(--ink);font-family:var(--type-display);font-stretch:125%;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.625rem;cursor:pointer;} .ds-index-item:hover{background:var(--plate-sunk);} .ds-index-item[aria-current]{color:var(--route);} .ds-index-item:focus-visible{outline:3px solid var(--focus);outline-offset:3px;} .ds-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);} .ds-dot-on{border-color:var(--route);background:var(--route);}"
+    },
+    {
+      "name": "Aviso",
+      "kind": "custom",
+      "refersTo": "toast",
+      "description": "Aviso breve en cartela; el cuadrito codifica el tono (rojo = progreso).",
+      "html": "<div class=\"ds-toast\"><span class=\"ds-toast-mark\"></span><div><p class=\"ds-toast-title\">Fragmento recuperado</p><p class=\"ds-toast-desc\">La Isla de los Ecos ya brilla.</p></div><button class=\"ds-toast-close\" aria-label=\"Descartar aviso\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\" aria-hidden=\"true\"><path d=\"M5 5l14 14M19 5L5 19\"/></svg></button></div>",
+      "css": ".ds-toast{display:flex;align-items:flex-start;gap:12px;width:min(92vw,24rem);padding:12px 8px 12px 16px;background:var(--plate);color:var(--ink);border:var(--rule) solid var(--ink);} .ds-toast-mark{flex:none;width:10px;height:10px;margin-top:6px;background:var(--route);} .ds-toast-title{margin:0;font-family:var(--type-display);font-weight:700;} .ds-toast-desc{margin:0;font-size:0.875rem;color:var(--ink-soft);} .ds-toast-close{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;margin-left:auto;background:none;border:0;color:var(--ink);cursor:pointer;} .ds-toast-close:hover{background:var(--plate-sunk);} .ds-toast-close:focus-visible{outline:3px solid var(--focus);outline-offset:3px;}"
+    },
+    {
+      "name": "Rótulo de isla",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Toponimia sobre el mapa con halo de lámina y línea guía; roja si es la isla activa.",
+      "html": "<div class=\"ds-map\"><span class=\"ds-label\"><span class=\"ds-label-name\">Isla de los Ecos</span><span class=\"ds-label-leader\"></span></span><span class=\"ds-hydro\">Mar de las Mareas</span></div>",
+      "css": ".ds-map{display:flex;gap:40px;align-items:flex-end;padding:32px;background:var(--sea-300);} .ds-label{display:inline-flex;flex-direction:column;align-items:center;} .ds-label-name{font-family:var(--type-display);font-stretch:125%;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.6875rem;color:var(--ink);-webkit-text-stroke:3px var(--plate);paint-order:stroke fill;} .ds-label-leader{margin-top:4px;width:1px;height:16px;background:var(--route);} .ds-hydro{font-family:var(--type-display);font-style:italic;font-weight:600;letter-spacing:0.04em;font-size:0.8125rem;color:var(--sea-700);-webkit-text-stroke:3px var(--plate);paint-order:stroke fill;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Atlas en relieve",
+    "overview": "La interfaz es una plancha de atlas escolar, no una web con un mapa dentro. La página entera es la lámina: blanco frío con filete de plancha y retícula de coordenadas en el margen, mar en franjas batimétricas azules, tierra en terrazas hipsométricas (verde, oliva, amarillo, ocre, cumbre clara) y una sola tinta roja reservada para lo que está en curso. Todo recuadro de texto es una cartela con filete; toda leyenda es un cuadro de convenciones; los rótulos siguen la toponimia de los atlas: versalitas expandidas para lugares, itálica para el agua, grotesca semicondensada y pesada para los titulares.\n\nLa densidad es la de una lámina impresa: pocas superficies, filetes en lugar de sombras, mucho mar o lámina abierta alrededor de cartelas compactas. El archipiélago 3D low-poly (three.js) y su equivalente SVG 2D comparten geografía y paleta; la plancha SVG pinta al instante y cede el sitio al relieve cuando la escena está lista. El movimiento obedece a un único reloj de marea: lo que respira (olas, glifos de isla, señal de scroll, escena 3D) late con él; el texto que se lee no se mueve una vez revelado.\n\nAzul (`sea-900` / `ink`) y amarillo (`land-sun`) representan la marca UNIMINUTO y son **provisionales** hasta incorporar el manual de marca. La marca se escribe con el wordmark de texto «UNIMINUTO · VirtuX» en toponimia; no hay logo dibujado.",
+    "keyCharacteristics": [
+      "Lámina blanca fría (`plate`) con filete de 1.5px en tinta azul como borde de todo recuadro.",
+      "Esquinas rectas en todo rectángulo; el círculo existe solo como signo cartográfico.",
+      "Sin sombras de interfaz: la profundidad es del relieve 3D y de la batimetría, no de las tarjetas.",
+      "Rojo de ruta exclusivo para «en curso / tu posición / foco».",
+      "Un acento propio por isla, usado en rótulos, convenciones y marcadores, nunca como fondo.",
+      "Un solo reloj de marea (14s) para todo lo que se mueve en bucle.",
+      "Alto contraste y escala de texto de 4 pasos son modos del propio sistema, no capas añadidas."
+    ],
+    "rules": [
+      {
+        "name": "The One Red Rule",
+        "body": "`route` significa «en curso»: posición, estación activa, ruta recorrida, foco. Nunca decora, nunca marca error, nunca rellena un botón.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sea-Focus Rule",
+        "body": "Toda región sobre mar profundo lleva la clase `on-sea`, que cambia `--focus` a `land-sun`; el rojo no se pone sobre azul oscuro.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Sources Rule",
+        "body": "La escena 3D lee sus colores de `src/world/palette.ts` (`ATLAS`), que replica `tokens.css`. Cambiar un token de mar, tierra, lámina, tinta o ruta exige cambiarlo en ambos archivos. `haze` (#dfe7ea, bruma de islas sin fragmento) y `dawn` (#ffd9a8, luz de amanecer) existen solo en 3D.",
+        "section": "colors"
+      },
+      {
+        "name": "The High-Contrast Rule",
+        "body": "`:root[data-contrast='high']` redefine `plate` a blanco puro, oscurece `ink`, `ink-soft`, `sea-700`, `route` y los seis acentos, endurece `plate-edge` y engruesa los filetes (`--rule` 2px, `--rule-strong` 3px). Todo color nuevo debe tener su par en ese bloque si se usa como texto.",
+        "section": "colors"
+      },
+      {
+        "name": "The Closed Palette Rule",
+        "body": "`@theme { --color-*: initial; }` borra la paleta de Tailwind: solo existen los colores del mundo.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Toda rotulación es Archivo; cambia la anchura (87.5 / 100 / 125), no la familia. Inter solo para lectura.",
+        "section": "typography"
+      },
+      {
+        "name": "The Halo Rule",
+        "body": "Todo rótulo puesto sobre el mapa lleva `halo`: contorno de 3px en `plate` pintado bajo el trazo, para leerse sobre cualquier franja.",
+        "section": "typography"
+      },
+      {
+        "name": "The Still Text Rule",
+        "body": "El texto que se lee no se mueve en bucle ni con parallax; solo se revela una vez (por palabras en el hero, de `reveal-from` a su tinta en el manifiesto) y queda quieto.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rule-Not-Shadow Rule",
+        "body": "Una superficie se separa con filete, tono o mar, nunca con sombra blanda ni desplazada.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** encerrar todo recuadro de contenido en una cartela: `plate` o `plate-sunk`, filete de 1.5px en `ink`, esquinas rectas.",
+      "**Do** reservar `route` para lo que está en curso: posición, estación activa, tramo recorrido, foco.",
+      "**Do** añadir `on-sea` a toda región sobre mar profundo para que el foco pase a `land-sun`.",
+      "**Do** derivar todo bucle de `--tide` (14s) o de sus fracciones, y en 3D de `TIDE_PERIOD` en `src/world/scene/tide.ts`; ambos deben valer lo mismo.",
+      "**Do** actualizar `src/world/palette.ts` en el mismo cambio que `tokens.css`.",
+      "**Do** dar a cada color de texto nuevo su valor en `:root[data-contrast='high']`, y dimensionar el texto en `rem` para que `--text-scale` (1, 1.125, 1.25, 1.5) lo escale.",
+      "**Do** rotular lugares en toponym, agua en hydronym y titulares en display; con `halo` cuando van sobre el mapa.",
+      "**Do** mostrar estados finales y detener bucles con `prefers-reduced-motion` o `data-motion='reduced'`.",
+      "**Do** tratar azul y amarillo como provisionales y cambiarlos solo desde los tokens cuando llegue el manual de marca."
+    ],
+    "donts": [
+      "**Don't** redondear rectángulos ni usar sombras blandas o desplazadas; el círculo queda para signos cartográficos.",
+      "**Don't** usar `route` como relleno de botón, decoración ni color de error.",
+      "**Don't** poner `land-sun` como texto sobre `plate`; el amarillo va sobre azul o como relleno con texto `sea-950`.",
+      "**Don't** reintroducir la paleta ni los radios por defecto de Tailwind.",
+      "**Don't** animar en bucle ni desplazar con parallax el texto que se lee.",
+      "**Don't** dibujar, redibujar ni imitar el logo de UNIMINUTO; usar el wordmark de texto hasta tener el archivo oficial.",
+      "**Don't** poner un rótulo pequeño encima de un titular como etiqueta de sección; el toponym rotula lugares, cartelas y columnas, no titulares.",
+      "**Don't** bajar el toponym de 0.625rem."
+    ]
+  }
+}

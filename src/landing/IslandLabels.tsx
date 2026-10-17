@@ -47,7 +47,7 @@ export function IslandLabels({
         >
           <span
             data-map-label
-            className="block -translate-x-1/2 -translate-y-1/2 hydronym text-[0.8125rem] whitespace-nowrap text-sea-700 halo"
+            className="block -translate-x-1/2 -translate-y-1/2 hydronym text-[0.8125rem] font-semibold whitespace-nowrap text-sea-700 halo"
           >
             {name}
           </span>

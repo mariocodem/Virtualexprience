@@ -69,8 +69,15 @@ for (const viewport of [
 
     const { frame, obstacles, labels } = await heroLabels(page);
     if (!frame) throw new Error('sin plancha');
-    for (const label of labels.filter((l) => l.visible)) {
+    const visible = labels.filter((l) => l.visible);
+    for (const label of visible) {
       expect(inside(label.rect, frame), `${label.text} se sale de la plancha`).toBe(true);
+      for (const other of visible) {
+        if (other === label) continue;
+        expect(overlaps(label.rect, other.rect), `${label.text} choca con ${other.text}`).toBe(
+          false,
+        );
+      }
       for (const obstacle of obstacles) {
         expect(overlaps(label.rect, obstacle), `${label.text} queda bajo un recuadro`).toBe(false);
       }

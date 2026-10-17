@@ -112,17 +112,20 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
           </p>
         </div>
 
-        <PlateLegend activeIsland={activeIsland} litIslands={litIslands} />
+        <PlateLegend />
 
-        {/* Rosa de los vientos: el norte de la plancha, sobre mar abierto. */}
-        <figure
+        {/* Esquina norte de la plancha: mapa de ubicación y rosa de los vientos, sobre mar abierto. */}
+        <div
           data-map-obstacle
           aria-hidden="true"
-          className="absolute top-6 right-6 z-[2] hidden flex-col items-center lg:flex"
+          className="absolute top-6 right-6 z-[2] hidden items-start gap-3 lg:flex"
         >
-          <CompassRose size={76} className="text-plate" />
-          <figcaption className="mt-1 hydronym text-sm text-plate">Brújula</figcaption>
-        </figure>
+          <LocationInset activeIsland={activeIsland} litIslands={litIslands} />
+          <figure className="flex flex-col items-center">
+            <CompassRose size={64} className="text-plate" />
+            <figcaption className="mt-1 hydronym text-sm text-plate">Brújula</figcaption>
+          </figure>
+        </div>
 
         <a
           href="#manifiesto"
@@ -130,7 +133,7 @@ export function Hero3D({ enable3D, reduced, litIslands, resume }: Hero3DProps) {
             event.preventDefault();
             goToSection('manifiesto', reduced);
           }}
-          className="absolute bottom-5 left-12 z-[2] hidden min-h-11 items-center gap-3 toponym text-[0.6875rem] text-plate no-underline lg:inline-flex"
+          className="absolute bottom-5 left-12 z-[2] hidden min-h-11 items-center gap-3 toponym text-[0.6875rem] text-plate no-underline lg:[@media(min-height:52rem)]:inline-flex"
         >
           Desliza para zarpar
           <svg
@@ -230,14 +233,8 @@ function TitleCard({ reduced, resume }: Pick<Hero3DProps, 'reduced' | 'resume'>)
   );
 }
 
-/** Cuadro de convenciones con el mapa de ubicación: un solo recuadro en la esquina de la plancha. */
-function PlateLegend({
-  activeIsland,
-  litIslands,
-}: {
-  activeIsland: IslandId | null;
-  litIslands: readonly IslandId[];
-}) {
+/** Cuadro de convenciones: estados de estación y escala de la plancha. */
+function PlateLegend() {
   const ref = useRef<HTMLDetailsElement>(null);
   // Abierta en escritorio; plegada en pantallas pequeñas para no tapar la carta.
   useEffect(() => {
@@ -260,7 +257,6 @@ function PlateLegend({
         </span>
       </summary>
       <div className="flex items-start gap-5 px-5 pb-5">
-        <LocationInset activeIsland={activeIsland} litIslands={litIslands} />
         <div>
           <ul className="space-y-2 text-sm">
             {(['bloqueada', 'disponible', 'en-curso', 'completada'] as const).map((status) => (
@@ -301,8 +297,8 @@ function LocationInset({
   const island = activeIsland ? world.islands.find((i) => i.id === activeIsland) : undefined;
   const marker = insetPosition(island?.position ?? { x: 0, z: 0 });
   return (
-    <figure aria-hidden="true" className="hidden w-36 shrink-0 2xl:block">
-      <div className="relative aspect-square overflow-hidden plate-rule">
+    <figure className="w-28 shrink-0 bg-plate p-1.5 plate-rule">
+      <div className="relative aspect-square overflow-hidden">
         <ArchipelagoPlate2D
           fit="contain"
           litIslands={litIslands}
@@ -314,7 +310,7 @@ function LocationInset({
           style={{ left: `${marker.left.toFixed(2)}%`, top: `${marker.top.toFixed(2)}%` }}
         />
       </div>
-      <figcaption className="mt-2 flex justify-between toponym text-[0.5625rem]">
+      <figcaption className="mt-1.5 flex flex-col toponym text-[0.5625rem] leading-snug">
         <span>Ubicación</span>
         <span className="text-route">{island ? island.name : 'Estás aquí'}</span>
       </figcaption>

@@ -19,5 +19,10 @@ export const WATER_NAMES = [
 
 export const MAP_ANCHORS: LabelAnchor[] = [
   ...ISLAND_ANCHORS,
-  ...WATER_NAMES.map(({ id, position }) => ({ id, position })),
+  ...WATER_NAMES.map(({ id, position }) => ({
+    id,
+    position,
+    align: 'center' as const,
+    yields: true,
+  })),
 ];

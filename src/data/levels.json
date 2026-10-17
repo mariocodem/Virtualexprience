@@ -1,0 +1,13 @@
+{
+  "explorer": [
+    { "id": "grumete", "name": "Grumete", "minXp": 0 },
+    { "id": "navegante", "name": "Navegante", "minXp": 100 },
+    { "id": "cartografo", "name": "Cartógrafo", "minXp": 300 },
+    { "id": "guardian-del-faro", "name": "Guardián del Faro", "minXp": 600 }
+  ],
+  "competency": [
+    { "id": "inicial", "name": "Inicial", "minMastery": 0 },
+    { "id": "intermedio", "name": "Intermedio", "minMastery": 0.4 },
+    { "id": "avanzado", "name": "Avanzado", "minMastery": 0.75 }
+  ]
+}

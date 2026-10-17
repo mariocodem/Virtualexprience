@@ -1,0 +1,131 @@
+[
+  {
+    "id": "primer-zarpe",
+    "name": "Primer zarpe",
+    "description": "Completaste tu primera estación en el archipiélago.",
+    "category": "exploracion",
+    "criterion": { "kind": "stations-completed", "count": 1 }
+  },
+  {
+    "id": "cartografo",
+    "name": "Cartógrafo",
+    "description": "Visitaste las seis islas del archipiélago.",
+    "category": "exploracion",
+    "criterion": { "kind": "islands-visited", "count": 6 }
+  },
+  {
+    "id": "diez-escalas",
+    "name": "Diez escalas",
+    "description": "Completaste diez estaciones, en una isla o en varias.",
+    "category": "exploracion",
+    "criterion": { "kind": "stations-completed", "count": 10 }
+  },
+  {
+    "id": "voz-de-los-ecos",
+    "name": "Voz de los Ecos",
+    "description": "Completaste la ruta de Comunicarte y recuperaste el Fragmento de la Palabra.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "ecos" }
+  },
+  {
+    "id": "mente-fractal",
+    "name": "Mente Fractal",
+    "description": "Completaste la ruta de NeuroMath y recuperaste el Fragmento del Patrón.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "fractal" }
+  },
+  {
+    "id": "voz-del-agora",
+    "name": "Voz del Ágora",
+    "description": "Completaste la ruta de VoxCivitas y recuperaste el Fragmento de la Voz Común.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "agora" }
+  },
+  {
+    "id": "timonel",
+    "name": "Timonel",
+    "description": "Completaste la ruta de Gerencia+ y recuperaste el Fragmento del Rumbo.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "timon" }
+  },
+  {
+    "id": "chispa-encendida",
+    "name": "Chispa encendida",
+    "description": "Completaste la ruta de Activa tu idea y recuperaste el Fragmento de la Idea.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "chispa" }
+  },
+  {
+    "id": "raices-firmes",
+    "name": "Raíces firmes",
+    "description": "Completaste la ruta de Latido Social y recuperaste el Fragmento de la Raíz.",
+    "category": "competencia",
+    "criterion": { "kind": "island-completed", "islandId": "raiz" }
+  },
+  {
+    "id": "editor-riguroso",
+    "name": "Editor riguroso",
+    "description": "En la Sala de Redacción acertaste al menos el 80 % de las decisiones editoriales.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "sala-de-redaccion",
+      "metric": "accuracy",
+      "min": 0.8
+    }
+  },
+  {
+    "id": "verificador",
+    "name": "Verificador",
+    "description": "Usaste las cuatro pistas de verificación en una misma edición: fuente, fecha, cita e imagen.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "sala-de-redaccion",
+      "metric": "tools-used",
+      "min": 4
+    }
+  },
+  {
+    "id": "otra-mirada",
+    "name": "Otra mirada",
+    "description": "Probaste un formato distinto para aprender lo mismo.",
+    "category": "accesibilidad",
+    "criterion": { "kind": "formats-tried", "count": 2 }
+  },
+  {
+    "id": "cinco-sentidos",
+    "name": "Cinco sentidos",
+    "description": "Aprendiste en los cinco formatos: texto, audio, video, infografía e interactivo.",
+    "category": "accesibilidad",
+    "criterion": { "kind": "formats-tried", "count": 5 }
+  },
+  {
+    "id": "bitacora-viva",
+    "name": "Bitácora viva",
+    "description": "Escribiste tres reflexiones en tu bitácora.",
+    "category": "constancia",
+    "criterion": { "kind": "reflections", "count": 3 }
+  },
+  {
+    "id": "marea-constante",
+    "name": "Marea constante",
+    "description": "Volviste al archipiélago en tres días distintos.",
+    "category": "constancia",
+    "criterion": { "kind": "active-days", "count": 3 }
+  },
+  {
+    "id": "primer-fragmento",
+    "name": "Primera luz",
+    "description": "Recuperaste tu primer fragmento de luz para el Faro Minuto.",
+    "category": "competencia",
+    "criterion": { "kind": "fragments", "count": 1 }
+  },
+  {
+    "id": "guardian-del-faro",
+    "name": "Guardián del Faro",
+    "description": "Reuniste los seis fragmentos y encendiste el Faro Minuto.",
+    "category": "competencia",
+    "criterion": { "kind": "fragments", "count": 6 }
+  }
+]

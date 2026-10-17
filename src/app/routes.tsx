@@ -14,12 +14,10 @@ export const routes: RouteObject[] = [
         lazy: async () => ({ Component: (await import('@/landing/LandingPage')).default }),
       },
       {
-        path: 'mundo',
-        lazy: async () => ({ Component: (await import('@/routes/WorldRoute')).default }),
-      },
-      {
-        path: 'mundo/:isla',
-        lazy: async () => ({ Component: (await import('@/routes/IslandRoute')).default }),
+        // Una sola ruta para la carta y cada isla: el mundo no se desmonta y la cámara vuela.
+        path: 'mundo/:isla?',
+        handle: { immersive: true },
+        lazy: async () => ({ Component: (await import('@/world/WorldPage')).default }),
       },
       {
         path: 'pasaporte',

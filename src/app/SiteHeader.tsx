@@ -106,15 +106,17 @@ function Disclosure({ menu, open, setOpen, trigger, triggerClassName, kind }: Di
   // Esc cierra y devuelve el foco al disparador.
   useEffect(() => {
     if (!isOpen) return;
+    // En captura y marcado como usado: Esc cierra el menú y nada más (no saca del mundo).
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        event.preventDefault();
         setOpen(null);
         button.current?.focus();
       }
     };
-    document.addEventListener('keydown', onKey);
+    document.addEventListener('keydown', onKey, true);
     return () => {
-      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('keydown', onKey, true);
     };
   }, [isOpen, setOpen]);
 
@@ -210,6 +212,19 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const mobileId = useId();
+
+  // Publica la altura del encabezado para que el mundo ocupe exactamente el resto de la pantalla.
+  useEffect(() => {
+    const node = header.current;
+    if (!node) return;
+    const observer = new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--header-h', `${String(node.offsetHeight)}px`);
+    });
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   // Un clic fuera del encabezado cierra cualquier menú.
   useEffect(() => {

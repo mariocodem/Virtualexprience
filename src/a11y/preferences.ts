@@ -10,12 +10,15 @@ export interface Preferences {
   contrast: 'normal' | 'alto';
   /** `sistema` respeta `prefers-reduced-motion`; `reducido` lo fuerza. */
   motion: 'sistema' | 'reducido';
+  /** Cómo se ve el mundo: relieve 3D o carta 2D equivalente. */
+  mapMode: '3d' | '2d';
 }
 
 interface PreferencesActions {
   setTextStep: (step: TextStep) => void;
   setContrast: (contrast: Preferences['contrast']) => void;
   setMotion: (motion: Preferences['motion']) => void;
+  setMapMode: (mapMode: Preferences['mapMode']) => void;
 }
 
 export const PREFERENCES_STORAGE_KEY = 'virtux:preferencias';
@@ -26,6 +29,7 @@ export const usePreferences = create<Preferences & PreferencesActions>()(
       textStep: 0,
       contrast: 'normal',
       motion: 'sistema',
+      mapMode: '3d',
       setTextStep: (textStep) => {
         set({ textStep });
       },
@@ -35,12 +39,20 @@ export const usePreferences = create<Preferences & PreferencesActions>()(
       setMotion: (motion) => {
         set({ motion });
       },
+      setMapMode: (mapMode) => {
+        set({ mapMode });
+      },
     }),
     {
       name: PREFERENCES_STORAGE_KEY,
       version: 1,
       storage: createJSONStorage(() => localStorage),
-      partialize: ({ textStep, contrast, motion }) => ({ textStep, contrast, motion }),
+      partialize: ({ textStep, contrast, motion, mapMode }) => ({
+        textStep,
+        contrast,
+        motion,
+        mapMode,
+      }),
     },
   ),
 );

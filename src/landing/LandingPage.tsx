@@ -11,7 +11,6 @@ import { DuaSection } from './DuaSection';
 import { Hero3D } from './Hero3D';
 import { IASection } from './IASection';
 import './landing.css';
-import { LandingFooter } from './LandingFooter';
 import { Manifiesto } from './Manifiesto';
 import { PasaportePreview } from './PasaportePreview';
 import { RouteSegment } from './RouteSegment';
@@ -90,7 +89,6 @@ export default function LandingPage() {
           litIslands={litIslands}
         />
       </RouteSegment>
-      <LandingFooter />
     </div>
   );
 }

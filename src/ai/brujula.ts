@@ -146,3 +146,23 @@ export async function readReflection(
   const valid = new Set(content.rubric.map((r) => r.id));
   return { ...output, met: output.met.filter((id) => valid.has(id)), source: 'ia' };
 }
+
+/** Informe de cierre de un minijuego: Brújula comenta la partida si hay IA en línea. */
+export async function aiReport(params: {
+  competency: string;
+  game: string;
+  score: number;
+  highlights: string[];
+}): Promise<string | null> {
+  const output = await askAi(
+    {
+      task: 'informe-reto',
+      competency: params.competency,
+      game: params.game,
+      score: Math.min(1, Math.max(0, params.score)),
+      highlights: params.highlights.slice(0, 6).map((h) => h.slice(0, 200)),
+    },
+    9000,
+  );
+  return output ? [output.feedback, output.tip].filter(Boolean).join(' ') : null;
+}

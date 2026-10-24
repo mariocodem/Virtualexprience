@@ -8,7 +8,7 @@ import { z } from 'zod';
  * Las respuestas del modelo se validan con estos esquemas antes de mostrarse.
  */
 
-export const PROMPT_VERSION = '2026-10-17.1';
+export const PROMPT_VERSION = '2026-10-24.1';
 
 const short = (max: number) => z.string().trim().min(1).max(max);
 
@@ -44,10 +44,20 @@ export const reflectionInput = z.strictObject({
     .max(6),
 });
 
+/** Informe de un minijuego: solo cifras y hechos del juego, nunca datos personales. */
+export const reportInput = z.strictObject({
+  task: z.literal('informe-reto'),
+  competency: short(160),
+  game: short(80),
+  score: z.number().min(0).max(1),
+  highlights: z.array(short(200)).min(1).max(6),
+});
+
 export const aiInput = z.discriminatedUnion('task', [
   brumaLineInput,
   brujulaFeedbackInput,
   reflectionInput,
+  reportInput,
 ]);
 export type AiInput = z.infer<typeof aiInput>;
 
@@ -62,6 +72,10 @@ export const outputs = {
     met: z.array(z.string().max(40)).max(6),
     strengths: short(320),
     suggestion: short(320),
+  }),
+  'informe-reto': z.strictObject({
+    feedback: short(420),
+    tip: z.string().trim().max(220).optional(),
   }),
 } as const;
 
@@ -134,6 +148,19 @@ export function buildMessages(input: AiInput): {
           rubrica: input.rubric,
           respuesta: input.answer,
         }),
+      };
+    case 'informe-reto':
+      return {
+        temperature: 0.4,
+        system: [
+          `Eres Brújula y cierras una partida de «${input.game}» en el Archipiélago VirtuX.`,
+          `Comentas el desempeño en la competencia: ${input.competency}. Reconoce un logro concreto y propone un siguiente paso.`,
+          'Usa solo los hechos dados; no inventes cifras ni momentos de la partida.',
+          STYLE,
+          JSON_ONLY,
+          'Formato: {"feedback": "máximo 2 frases", "tip": "un consejo práctico de máximo 1 frase"}',
+        ].join(' '),
+        user: JSON.stringify({ resultado: input.score, hechos: input.highlights }),
       };
   }
 }

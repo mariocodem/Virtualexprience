@@ -24,7 +24,15 @@ export const stationTypeSchema = z.enum([
 
 export const formatKindSchema = z.enum(['texto', 'audio', 'video', 'infografia', 'interactivo']);
 
-export const minigameIdSchema = z.enum(['sala-de-redaccion', 'puentes-de-fractal']);
+/** Un minijuego por isla: cada uno ejercita la competencia de su línea con una mecánica propia. */
+export const minigameIdSchema = z.enum([
+  'sala-de-redaccion',
+  'puentes-de-fractal',
+  'sesion-de-cabildo',
+  'dia-de-mercado',
+  'banco-de-pruebas',
+  'huerta-comunitaria',
+]);
 
 const idSchema = z
   .string()

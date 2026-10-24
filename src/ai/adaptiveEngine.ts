@@ -77,8 +77,12 @@ export function shouldOfferHint(consecutiveMisses: number, mastery: number): boo
   return consecutiveMisses >= 2 || (consecutiveMisses >= 1 && mastery < 0.35);
 }
 
-/** Dificultad de la Sala de Redacción (1–5): sutileza, tiempo y número de noticias. */
-export function newsroomLevel(mastery: number): number {
+/**
+ * Dificultad de los minijuegos (1–5) según el dominio de la competencia de la
+ * isla. Cada juego traduce el nivel a su propio plan: sutileza de las señales,
+ * recursos disponibles y número de rondas.
+ */
+export function minigameLevel(mastery: number): number {
   return Math.min(5, Math.max(1, 1 + Math.round(mastery * 4)));
 }
 

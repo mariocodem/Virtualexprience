@@ -4,7 +4,7 @@ import {
   bossLevel,
   expectedScore,
   INITIAL_MASTERY,
-  newsroomLevel,
+  minigameLevel,
   shouldOfferHint,
   tierDifficulty,
   updateMastery,
@@ -63,8 +63,8 @@ describe('motor adaptativo', () => {
     expect(shouldOfferHint(1, 0.2)).toBe(true);
   });
 
-  it('la Sala de Redacción ajusta su nivel al dominio', () => {
-    expect(newsroomLevel(0)).toBe(1);
-    expect(newsroomLevel(1)).toBe(5);
+  it('los minijuegos ajustan su nivel al dominio', () => {
+    expect(minigameLevel(0)).toBe(1);
+    expect(minigameLevel(1)).toBe(5);
   });
 });

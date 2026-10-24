@@ -8,7 +8,7 @@ export function hasStationContent(stationId: string): boolean {
   return `./content/${stationId}.json` in loaders;
 }
 
-export async function loadStationContent(stationId: string): Promise<StationContent> {
+async function readStationContent(stationId: string): Promise<StationContent> {
   const loader = loaders[`./content/${stationId}.json`];
   if (!loader) throw new Error(`La estación «${stationId}» no tiene contenido.`);
   const module = await loader();
@@ -19,4 +19,24 @@ export async function loadStationContent(stationId: string): Promise<StationCont
     );
   }
   return result.data;
+}
+
+// Un solo pedido por estación: se reutiliza al abrirla, al precargarla o al repetirla.
+const cache = new Map<string, Promise<StationContent>>();
+
+/** Contenido validado de una estación; la misma promesa para cada llamada. */
+export function loadStationContent(stationId: string): Promise<StationContent> {
+  let promise = cache.get(stationId);
+  if (!promise) {
+    promise = readStationContent(stationId);
+    cache.set(stationId, promise);
+    // Un fallo no queda guardado: el siguiente intento vuelve a pedirlo.
+    promise.catch(() => cache.delete(stationId));
+  }
+  return promise;
+}
+
+/** Adelanta la descarga del contenido (p. ej. al abrir la ficha de la estación). */
+export function preloadStationContent(stationId: string): void {
+  if (hasStationContent(stationId)) void loadStationContent(stationId).catch(() => undefined);
 }

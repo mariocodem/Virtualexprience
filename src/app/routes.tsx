@@ -20,6 +20,12 @@ export const routes: RouteObject[] = [
         lazy: async () => ({ Component: (await import('@/world/WorldPage')).default }),
       },
       {
+        // Escenario de estación a pantalla completa: sin encabezado ni pie institucionales.
+        path: 'mundo/:isla/:estacion',
+        handle: { immersive: true, bare: true },
+        lazy: async () => ({ Component: (await import('@/stations/StationStage')).default }),
+      },
+      {
         path: 'pasaporte',
         lazy: async () => ({ Component: (await import('@/routes/PassportRoute')).default }),
       },

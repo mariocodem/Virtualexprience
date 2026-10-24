@@ -38,7 +38,20 @@ test.describe('el mundo', () => {
 
     const panelTitle = page.getByRole('heading', { level: 2, name: 'La imprenta del puerto' });
     await expect(panelTitle).toBeFocused();
-    await page.getByRole('button', { name: 'Comenzar estación' }).click();
+    await page.keyboard.press('Tab');
+    await expect(page.getByRole('link', { name: 'Comenzar estación' })).toBeFocused();
+    await page.keyboard.press('Enter');
+
+    // El escenario de la estación, a pantalla completa; Esc vuelve al sendero.
+    // Con el 3D por software (swiftshader) y pruebas en paralelo, la CPU puede tardar en liberarse.
+    await expect(page).toHaveURL(/\/mundo\/comunicarte\/comunicarte-imprenta$/, {
+      timeout: 30_000,
+    });
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'La imprenta del puerto' }),
+    ).toBeVisible({ timeout: 30_000 });
+    await page.keyboard.press('Escape');
+    await expect(page).toHaveURL(/\/mundo\/comunicarte\?estacion=comunicarte-imprenta$/);
     await expect(
       page.getByText('Estación en curso: tu bitácora registró el inicio.'),
     ).toBeVisible();
@@ -59,7 +72,7 @@ test.describe('el mundo', () => {
     await expect(page.getByText(/Para abrirla, completa antes/)).toContainText(
       'La imprenta del puerto',
     );
-    await expect(page.getByRole('button', { name: 'Comenzar estación' })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Comenzar estación' })).toHaveCount(0);
   });
 
   test('el faro muestra su luz y el Gran Reto Integrador', async ({ page }) => {
@@ -88,7 +101,7 @@ test.describe('el mundo', () => {
     await worldList(page)
       .getByRole('link', { name: /La imprenta del puerto/ })
       .click();
-    await expect(page.getByRole('button', { name: 'Comenzar estación' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Comenzar estación' })).toBeVisible();
     await page.reload();
     await expect(page.getByRole('radio', { name: 'Carta 2D' })).toBeChecked();
     await expect(page.locator('canvas')).toHaveCount(0);

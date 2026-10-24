@@ -3,19 +3,20 @@ import { SkipLink } from '@/ui/SkipLink';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
 
-function useImmersive(): boolean {
+function useHandle(key: 'immersive' | 'bare'): boolean {
   return useMatches().some((match) => {
-    const handle = match.handle as { immersive?: boolean } | undefined;
-    return handle?.immersive === true;
+    const handle = match.handle as Partial<Record<'immersive' | 'bare', boolean>> | undefined;
+    return handle?.[key] === true;
   });
 }
 
 export function RootLayout() {
-  const immersive = useImmersive();
+  const immersive = useHandle('immersive');
+  const bare = useHandle('bare');
   return (
     <>
       <SkipLink />
-      <SiteHeader />
+      {!bare && <SiteHeader />}
       <main id="contenido" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>

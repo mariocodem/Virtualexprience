@@ -19,7 +19,6 @@ import type { StationStatus } from '@/progress/types';
 import { useAnnouncer } from '@/progress/useAnnouncer';
 import type { IslandId } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
-import { useToast } from '@/ui/toastContext';
 import { ArchipelagoPlate2D } from './ArchipelagoPlate2D';
 import { FaroPanel } from './FaroPanel';
 import { summitHeight } from './geography';
@@ -70,7 +69,6 @@ export default function WorldPage() {
   const state = useProgress((s) => s);
   const progress = pickProgress(state);
   const announce = useAnnouncer();
-  const { notify } = useToast();
   const highlight = useWorldUi((s) => s.highlight);
   const setHighlight = useWorldUi((s) => s.setHighlight);
 
@@ -283,15 +281,6 @@ export default function WorldPage() {
             <StationPanel
               station={openStation}
               status={statuses[openStation.id] ?? 'bloqueada'}
-              onStart={() => {
-                const events = state.startStation(openStation.id);
-                notify({
-                  title: 'Estación iniciada',
-                  description: openStation.title,
-                  tone: 'progress',
-                });
-                announce(events);
-              }}
               onClose={closePanel}
             />
           )}

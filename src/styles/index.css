@@ -95,6 +95,28 @@
   border: var(--rule) solid var(--ink);
 }
 
+/*
+ * La Bruma sobre una isla sin fragmento: jirones fríos que derivan con el
+ * reloj de marea. Decorativa; con movimiento reducido queda quieta.
+ */
+@utility stage-fog {
+  background:
+    radial-gradient(60% 40% at 20% 30%, rgb(196 210 224 / 0.16), transparent 70%),
+    radial-gradient(50% 35% at 75% 60%, rgb(176 186 214 / 0.14), transparent 70%),
+    radial-gradient(70% 45% at 45% 90%, rgb(196 210 224 / 0.12), transparent 70%);
+  background-size: 140% 140%;
+  animation: stage-fog-drift calc(var(--tide) * 2) var(--ease-in-out) infinite alternate;
+}
+
+@keyframes stage-fog-drift {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 60%;
+  }
+}
+
 @layer base {
   html {
     font-size: calc(100% * var(--text-scale));

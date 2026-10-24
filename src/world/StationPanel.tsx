@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { getStation } from '@/data';
+import { preloadStationContent } from '@/data/content';
 import { STATUS_LABEL } from '@/progress/statusLabel';
 import type { StationStatus } from '@/progress/types';
 import type { Station } from '@/types/domain';
-import { Button } from '@/ui/Button';
+import { ButtonLink } from '@/ui/ButtonLink';
 import { IconClose } from '@/ui/icons';
 import { StationSymbol } from '@/ui/StationSymbol';
 import { FORMAT_LABEL, STATION_TYPE_LABEL } from './stationText';
@@ -12,12 +13,10 @@ import { FORMAT_LABEL, STATION_TYPE_LABEL } from './stationText';
 export function StationPanel({
   station,
   status,
-  onStart,
   onClose,
 }: {
   station: Station;
   status: StationStatus;
-  onStart: () => void;
   onClose: () => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
@@ -25,6 +24,15 @@ export function StationPanel({
     heading.current?.focus();
   }, [station.id]);
 
+  // Quien abre la ficha suele entrar: escenario y contenido se descargan de antemano.
+  const enterable = status !== 'bloqueada' && status !== 'en-preparacion';
+  useEffect(() => {
+    if (!enterable) return;
+    void import('@/stations/StationStage');
+    preloadStationContent(station.id);
+  }, [enterable, station.id]);
+
+  const stage = `/mundo/${station.islandId}/${station.id}`;
   const pending = station.requires
     .map((id) => getStation(id))
     .filter((s): s is Station => s !== undefined);
@@ -71,12 +79,22 @@ export function StationPanel({
       </dl>
 
       <div className="mt-5">
-        {status === 'disponible' && <Button onClick={onStart}>Comenzar estación</Button>}
+        {status === 'disponible' && <ButtonLink to={stage}>Comenzar estación</ButtonLink>}
         {status === 'en-curso' && (
-          <p className="text-sm">Estación en curso: tu bitácora registró el inicio.</p>
+          <>
+            <p className="mb-3 text-sm">Estación en curso: tu bitácora registró el inicio.</p>
+            <ButtonLink to={stage}>Continuar la estación</ButtonLink>
+          </>
         )}
         {status === 'completada' && (
-          <p className="text-sm">Completaste esta estación. Puedes repasarla cuando quieras.</p>
+          <>
+            <p className="mb-3 text-sm">
+              Completaste esta estación. Puedes repasarla cuando quieras.
+            </p>
+            <ButtonLink to={stage} variant="secondary">
+              Repasar la estación
+            </ButtonLink>
+          </>
         )}
         {status === 'bloqueada' && (
           <p className="text-sm">

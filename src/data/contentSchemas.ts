@@ -174,6 +174,8 @@ export const cabildoContentSchema = z.strictObject({
     .array(z.strictObject({ id: z.string().min(1), name: text, interest: text }))
     .min(3)
     .max(4),
+  /** Lo que Brújula enseña sobre cada tipo de intervención, tras elegirla. */
+  tips: z.record(deliberativeMoveSchema, text),
   /** Confianza inicial de cada grupo (0–100) y la necesaria para que respalde el acuerdo. */
   startTrust: z.number().int().min(0).max(100),
   threshold: z.number().int().min(0).max(100),

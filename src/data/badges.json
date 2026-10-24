@@ -126,6 +126,18 @@
     }
   },
   {
+    "id": "voz-que-une",
+    "name": "Voz que une",
+    "description": "En la Sesión de cabildo moderaste sin falacias ni imposiciones: todas tus intervenciones fueron deliberativas.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "sesion-de-cabildo",
+      "metric": "criteria",
+      "min": 1
+    }
+  },
+  {
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",

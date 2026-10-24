@@ -1,0 +1,348 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma de la indiferencia",
+    "nature": "Susurra que nada se puede acordar, que participar no sirve y que cada quien debe velar solo por lo suyo. Se disipa cuando alguien argumenta, escucha y asume lo común como propio.",
+    "intro": "¿Para qué ir al cabildo? Nadie escucha, nada cambia. Quédate en casa: lo común no es asunto tuyo.",
+    "victory": "Te retiras en silencio. Hoy la plaza se quedó vacía, como a mí me gusta.",
+    "defeat": "Me deshago… Una sola voz que argumenta y escucha vuelve a llenar la plaza.",
+    "taunts": {
+      "phase1": [
+        "Empecemos fácil. Total, tu opinión no cambia nada.",
+        "Todos piensan distinto: mejor no decir nada."
+      ],
+      "phase2": [
+        "Ahora mis argumentos se disfrazan de sentido común.",
+        "La mayoría ya decidió; ¿para qué escuchar al resto?"
+      ],
+      "phase3": [
+        "Última forma: falacias que suenan amables.",
+        "¿Y si lo justo y lo legal fueran lo mismo? Piensa rápido."
+      ],
+      "hit": [
+        "¡Diste una razón! Qué incómodo.",
+        "Escuchaste… me debilito.",
+        "Ese argumento no lo puedo tapar."
+      ],
+      "miss": [
+        "¿Ves? Mejor no complicarse.",
+        "Una falacia más y nadie vuelve a la plaza.",
+        "Así: decide por todos sin preguntar."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "voz-1",
+      "tier": 1,
+      "prompt": "¿Cuál de estas es una tesis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La isla debería tener un consejo juvenil con voz en el cabildo",
+          "correct": true,
+          "feedback": "Correcto: es una postura que se puede defender con razones."
+        },
+        {
+          "id": "b",
+          "text": "En la isla viven unos 2000 jóvenes",
+          "correct": false,
+          "feedback": "Es un dato: podría ser evidencia, no una tesis."
+        },
+        {
+          "id": "c",
+          "text": "¿Qué piensan los jóvenes?",
+          "correct": false,
+          "feedback": "Una pregunta abre la discusión, pero no defiende una postura."
+        }
+      ],
+      "explanation": "La tesis es una afirmación discutible que se defiende con razones y evidencias."
+    },
+    {
+      "id": "voz-2",
+      "tier": 1,
+      "prompt": "«Mi vecino no sabe nada de economía, así que su propuesta para el mercado es mala.» ¿Qué falla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ataca a la persona y no a la propuesta",
+          "correct": true,
+          "feedback": "Exacto: es un ad hominem."
+        },
+        {
+          "id": "b",
+          "text": "Usa demasiados datos",
+          "correct": false,
+          "feedback": "No usa ningún dato: descalifica a quien propone."
+        },
+        {
+          "id": "c",
+          "text": "No falla nada",
+          "correct": false,
+          "feedback": "La propuesta sigue sin evaluarse."
+        }
+      ],
+      "explanation": "Una propuesta se evalúa por sus razones y evidencias, no por quién la presenta."
+    },
+    {
+      "id": "voz-3",
+      "tier": 1,
+      "prompt": "En un cabildo, alguien expone una postura con la que no estás de acuerdo. ¿Qué haces primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Interrumpir para que no confunda a los demás",
+          "correct": false,
+          "feedback": "Interrumpir impide entender su postura y rompe la confianza."
+        },
+        {
+          "id": "b",
+          "text": "Escuchar hasta el final y preguntar por sus razones",
+          "correct": true,
+          "feedback": "Bien: entender una postura es el paso previo a discutirla."
+        },
+        {
+          "id": "c",
+          "text": "Irte: no vale la pena",
+          "correct": false,
+          "feedback": "Así gana la indiferencia: tu voz también cuenta."
+        }
+      ],
+      "explanation": "La escucha activa permite responder a lo que el otro realmente dijo, no a lo que suponemos."
+    },
+    {
+      "id": "voz-4",
+      "tier": 1,
+      "prompt": "¿Qué es el proyecto de vida?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un plan fijo que no se puede cambiar",
+          "correct": false,
+          "feedback": "Un proyecto de vida se revisa y ajusta con lo que aprendemos."
+        },
+        {
+          "id": "b",
+          "text": "Una construcción personal de metas y valores, que se revisa en el tiempo",
+          "correct": true,
+          "feedback": "Correcto: orienta decisiones y se ajusta con la experiencia."
+        },
+        {
+          "id": "c",
+          "text": "Lo que la familia decide para cada persona",
+          "correct": false,
+          "feedback": "La familia influye, pero el proyecto de vida es una construcción autónoma."
+        }
+      ],
+      "explanation": "El proyecto de vida integra metas, valores y decisiones propias, y se reconstruye a lo largo del camino."
+    },
+    {
+      "id": "voz-5",
+      "tier": 2,
+      "prompt": "«Todo el mundo comparte respuestas en los exámenes virtuales, así que no está mal.» ¿Qué falacia es?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apelación a la mayoría",
+          "correct": true,
+          "feedback": "Exacto: que muchos lo hagan no lo vuelve correcto."
+        },
+        {
+          "id": "b",
+          "text": "Ataque a la persona",
+          "correct": false,
+          "feedback": "No descalifica a nadie: se apoya en lo que «todos» hacen."
+        },
+        {
+          "id": "c",
+          "text": "Pendiente resbaladiza",
+          "correct": false,
+          "feedback": "No encadena consecuencias: apela a la costumbre."
+        }
+      ],
+      "explanation": "La apelación a la mayoría confunde lo frecuente con lo correcto."
+    },
+    {
+      "id": "voz-6",
+      "tier": 2,
+      "prompt": "La mayoría del cabildo aprueba cerrar un camino que usan las personas con movilidad reducida. ¿Qué principio se descuida?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La protección de los derechos de las minorías",
+          "correct": true,
+          "feedback": "Correcto: la mayoría decide, pero no puede vulnerar derechos de otros."
+        },
+        {
+          "id": "b",
+          "text": "La eficiencia del cabildo",
+          "correct": false,
+          "feedback": "El problema no es la rapidez, sino a quién perjudica la decisión."
+        },
+        {
+          "id": "c",
+          "text": "Ninguno: la mayoría siempre tiene la razón",
+          "correct": false,
+          "feedback": "La regla de la mayoría tiene límites: los derechos de todos."
+        }
+      ],
+      "explanation": "En democracia, decidir por mayoría convive con el deber de proteger los derechos de quienes quedan en minoría."
+    },
+    {
+      "id": "voz-7",
+      "tier": 2,
+      "prompt": "Dos grupos discuten si usar el salón comunal para estudio o para eventos. ¿Qué propuesta integra mejor ambos intereses?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sortear quién se queda con el salón",
+          "correct": false,
+          "feedback": "El azar resuelve, pero no integra: un grupo pierde todo."
+        },
+        {
+          "id": "b",
+          "text": "Horarios definidos: estudio entre semana y eventos los fines de semana, con reglas de uso",
+          "correct": true,
+          "feedback": "Bien: ambos intereses caben con reglas claras."
+        },
+        {
+          "id": "c",
+          "text": "Que decida el grupo más numeroso",
+          "correct": false,
+          "feedback": "La mayoría decide, pero no busca integrar."
+        }
+      ],
+      "explanation": "Integrar posturas es buscar soluciones donde varios intereses legítimos se satisfacen a la vez."
+    },
+    {
+      "id": "voz-8",
+      "tier": 2,
+      "prompt": "Una compañera propone una idea con la que no estás de acuerdo. ¿Cuál es la objeción más constructiva?",
+      "options": [
+        {
+          "id": "a",
+          "text": "«Esa idea es absurda.»",
+          "correct": false,
+          "feedback": "Descalifica sin razones: no ayuda a mejorar la idea."
+        },
+        {
+          "id": "b",
+          "text": "«Me preocupa el costo: ¿cómo lo financiaríamos? Tal vez empezar con una prueba pequeña.»",
+          "correct": true,
+          "feedback": "Exacto: nombra una razón concreta y propone una salida."
+        },
+        {
+          "id": "c",
+          "text": "«Hagan lo que quieran, a mí me da igual.»",
+          "correct": false,
+          "feedback": "La indiferencia también es una forma de abandonar lo común."
+        }
+      ],
+      "explanation": "Una objeción constructiva señala un problema concreto y abre una alternativa."
+    },
+    {
+      "id": "voz-9",
+      "tier": 3,
+      "prompt": "«Una experta en salud dijo que el nuevo puente es inseguro.» ¿Qué deberías preguntar antes de usar ese argumento?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Si la experta es reconocida en ingeniería de estructuras y en qué se basa",
+          "correct": true,
+          "feedback": "Bien: una autoridad cuenta en su campo y con sus razones."
+        },
+        {
+          "id": "b",
+          "text": "Nada: si es experta, tiene razón",
+          "correct": false,
+          "feedback": "Es una apelación a la autoridad fuera de su campo."
+        },
+        {
+          "id": "c",
+          "text": "Si la experta vive cerca del puente",
+          "correct": false,
+          "feedback": "Dónde vive no dice nada sobre la seguridad del puente."
+        }
+      ],
+      "explanation": "Apelar a una autoridad es válido si es experta en ese tema y si sus razones son verificables."
+    },
+    {
+      "id": "voz-10",
+      "tier": 3,
+      "prompt": "Una norma del barrio prohíbe reunirse en la plaza después de las 9 p. m. Un grupo quiere hacer una vigilia pacífica. ¿Cuál es la respuesta más ciudadana?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hacer la vigilia igual: la causa es justa",
+          "correct": false,
+          "feedback": "Una causa justa no exime de buscar los cauces legítimos primero."
+        },
+        {
+          "id": "b",
+          "text": "Solicitar un permiso o proponer al cabildo una excepción argumentada",
+          "correct": true,
+          "feedback": "Exacto: participas por vías legítimas y abres la discusión sobre la norma."
+        },
+        {
+          "id": "c",
+          "text": "Renunciar a la vigilia: la norma es la norma",
+          "correct": false,
+          "feedback": "Las normas también se pueden discutir y reformar con argumentos."
+        }
+      ],
+      "explanation": "La ciudadanía activa cumple las normas y, cuando parecen injustas, las discute por cauces legítimos."
+    },
+    {
+      "id": "voz-11",
+      "tier": 3,
+      "prompt": "«Si permitimos que los jóvenes hablen en el cabildo, después querrán decidir todo.» ¿Qué tipo de argumento es?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una pendiente resbaladiza",
+          "correct": true,
+          "feedback": "Correcto: salta a un extremo sin mostrar por qué ocurriría."
+        },
+        {
+          "id": "b",
+          "text": "Un argumento sólido basado en evidencia",
+          "correct": false,
+          "feedback": "No presenta ninguna evidencia de esa cadena de consecuencias."
+        },
+        {
+          "id": "c",
+          "text": "Una apelación a la autoridad",
+          "correct": false,
+          "feedback": "No se apoya en ninguna autoridad: exagera las consecuencias."
+        }
+      ],
+      "explanation": "La pendiente resbaladiza rechaza un primer paso razonable por un desenlace extremo no demostrado."
+    },
+    {
+      "id": "voz-12",
+      "tier": 3,
+      "prompt": "Tu proyecto de vida incluye estudiar de noche y trabajar de día. Te ofrecen un ascenso que exige viajar los fines de semana. ¿Cuál es la decisión más autónoma?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aceptar sin pensarlo: un ascenso siempre es bueno",
+          "correct": false,
+          "feedback": "Decidir sin revisar tus metas no es autonomía, es inercia."
+        },
+        {
+          "id": "b",
+          "text": "Revisar cómo afecta tus metas y valores, y decidir con información, aunque implique negociar condiciones",
+          "correct": true,
+          "feedback": "Bien: autonomía es decidir según tus prioridades, con información."
+        },
+        {
+          "id": "c",
+          "text": "Rechazarlo porque cambiar da miedo",
+          "correct": false,
+          "feedback": "El miedo cuenta, pero no reemplaza el análisis de tus metas."
+        }
+      ],
+      "explanation": "La autonomía consiste en decidir con base en las propias metas y valores, considerando alternativas y consecuencias."
+    }
+  ]
+}

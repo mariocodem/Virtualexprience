@@ -133,7 +133,7 @@
     "minutes": 6,
     "requires": [],
     "availability": "disponible",
-    "formats": ["texto", "audio", "infografia"]
+    "formats": ["texto", "audio", "video", "infografia", "interactivo"]
   },
   {
     "id": "voxcivitas-dilemas",
@@ -152,24 +152,25 @@
     "islandId": "voxcivitas",
     "title": "Sesión de cabildo",
     "type": "reto",
-    "summary": "Simulación de debate: representa a un grupo de la isla y busca acuerdos con los demás.",
+    "summary": "Simulación: modera el cabildo abierto y construye un acuerdo que todos los grupos puedan respaldar.",
     "xp": 80,
     "minutes": 12,
     "requires": ["voxcivitas-dilemas"],
-    "availability": "en-preparacion",
-    "formats": ["interactivo"]
+    "availability": "disponible",
+    "formats": ["interactivo"],
+    "minigame": "sesion-de-cabildo"
   },
   {
     "id": "voxcivitas-cierre",
     "islandId": "voxcivitas",
     "title": "La voz común",
     "type": "desafio",
-    "summary": "El desafío de la isla: redacta una propuesta que integre posturas distintas.",
+    "summary": "El desafío de la isla: enfrenta a la Bruma de la indiferencia, que convence a todos de que nada se puede acordar.",
     "xp": 120,
     "minutes": 15,
     "requires": ["voxcivitas-cabildo"],
-    "availability": "en-preparacion",
-    "formats": ["texto"]
+    "availability": "disponible",
+    "formats": ["interactivo"]
   },
 
   {

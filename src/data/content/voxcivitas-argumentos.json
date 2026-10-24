@@ -1,0 +1,150 @@
+{
+  "kind": "explorar",
+  "intro": "En la plaza de Voxcivitas todo se discute en voz alta. Antes de entrar al cabildo, aprende a reconocer de qué está hecho un argumento y qué lo vuelve débil.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "Tesis: lo que se defiende",
+          "body": "La tesis es la postura que alguien sostiene: «El muelle debe compartirse entre varios usos». Sin una tesis clara no hay de qué discutir; con una tesis confusa, cada quien discute algo distinto."
+        },
+        {
+          "heading": "Razones: por qué se defiende",
+          "body": "Las razones responden al «¿por qué?»: «porque varios grupos lo necesitan en horarios distintos». Una tesis sin razones es una opinión; con razones, se vuelve un argumento que otros pueden evaluar."
+        },
+        {
+          "heading": "Evidencias: cómo se sabe",
+          "body": "La evidencia sostiene las razones con datos, hechos, testimonios o ejemplos verificables: «los pescadores descargan de 4 a 9 a. m. y los talleres juveniles son en la tarde». Pedir evidencia no es desconfiar: es darle a todos la misma base para decidir."
+        },
+        {
+          "heading": "Falacias: argumentos que solo lo parecen",
+          "body": "Una falacia imita un argumento sin serlo: atacar a la persona en lugar de su idea, generalizar a partir de un caso, apelar a que «todos lo hacen» o a una autoridad sin verificar. Reconocerlas protege la deliberación, aunque vengan dichas con amabilidad."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida a la plaza de Voxcivitas, donde lo que es de todos se decide conversando.",
+        "Todo argumento tiene una tesis: la postura que se defiende.",
+        "Tiene razones: el porqué de esa postura.",
+        "Y tiene evidencias: los datos, hechos o testimonios que sostienen esas razones.",
+        "Cuidado con las falacias: atacar a la persona, generalizar, apelar a la mayoría o a una autoridad sin verificar. Parecen argumentos, pero no lo son.",
+        "En el cabildo, quien argumenta bien no es quien grita más, sino quien da razones que otros pueden revisar."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "Tesis",
+          "caption": "La postura que se defiende: «El muelle debe compartirse entre varios usos»."
+        },
+        {
+          "title": "Razones",
+          "caption": "El porqué: «varios grupos lo necesitan en horarios distintos»."
+        },
+        {
+          "title": "Evidencias",
+          "caption": "Lo que lo sostiene: horarios, datos y testimonios verificables."
+        },
+        {
+          "title": "Falacias",
+          "caption": "Atacar a la persona, generalizar o apelar a la mayoría parece argumentar, pero no lo es."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "Anatomía de un argumento",
+      "nodes": [
+        { "label": "Tesis", "detail": "¿Qué se defiende?" },
+        { "label": "Razones", "detail": "¿Por qué se defiende?" },
+        { "label": "Evidencias", "detail": "¿Cómo se sabe que las razones son ciertas?" },
+        { "label": "Objeciones", "detail": "¿Qué diría quien piensa distinto, y cómo se responde?" }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Clasifica cada frase dicha en el cabildo: ¿qué parte del argumento es?",
+      "categories": [
+        { "id": "tesis", "label": "Tesis" },
+        { "id": "razon", "label": "Razón" },
+        { "id": "evidencia", "label": "Evidencia" },
+        { "id": "falacia", "label": "Falacia" }
+      ],
+      "items": [
+        {
+          "text": "El muelle debería abrirse los fines de semana para un mercado.",
+          "category": "tesis"
+        },
+        {
+          "text": "Porque atraería visitantes y movería la economía de la plaza.",
+          "category": "razon"
+        },
+        {
+          "text": "El año pasado, la feria del puerto recibió 1200 visitantes en dos días.",
+          "category": "evidencia"
+        },
+        {
+          "text": "Quien se opone al mercado es porque no quiere que la isla progrese.",
+          "category": "falacia"
+        },
+        {
+          "text": "Si todas las islas tienen mercado, nosotros no podemos quedarnos atrás.",
+          "category": "falacia"
+        }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "argumentos-c1",
+      "tier": 1,
+      "prompt": "«El horario de la biblioteca debe ampliarse, porque muchos estudiantes trabajan de día.» ¿Cuál es la razón?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El horario de la biblioteca debe ampliarse",
+          "correct": false,
+          "feedback": "Esa es la tesis: lo que se defiende."
+        },
+        {
+          "id": "b",
+          "text": "Muchos estudiantes trabajan de día",
+          "correct": true,
+          "feedback": "Correcto: responde al «¿por qué?» de la tesis."
+        },
+        {
+          "id": "c",
+          "text": "La biblioteca",
+          "correct": false,
+          "feedback": "Es el tema, no una razón."
+        }
+      ],
+      "explanation": "La razón es el «porqué» que sostiene la tesis; aquí la introduce la palabra «porque»."
+    },
+    {
+      "id": "argumentos-c2",
+      "tier": 2,
+      "prompt": "«No le creas a la vocera: ella ni siquiera vive en la isla.» ¿Qué falacia es?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ataque a la persona (ad hominem)",
+          "correct": true,
+          "feedback": "Exacto: descalifica a quien habla en lugar de evaluar lo que dice."
+        },
+        {
+          "id": "b",
+          "text": "Apelación a la mayoría",
+          "correct": false,
+          "feedback": "No dice que «todos piensan así»: ataca a la vocera."
+        },
+        {
+          "id": "c",
+          "text": "No es una falacia",
+          "correct": false,
+          "feedback": "Dónde vive no hace verdadero ni falso su argumento."
+        }
+      ],
+      "explanation": "El ataque a la persona responde a quién habla y no a lo que dice; el argumento sigue sin evaluarse."
+    }
+  ]
+}

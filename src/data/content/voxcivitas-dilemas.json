@@ -1,0 +1,163 @@
+{
+  "kind": "practicar",
+  "intro": "En la plaza circulan casos breves que no tienen una respuesta fácil. En cada uno, identifica qué valores entran en tensión o cuál es la decisión más justificable.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "dilemas-1",
+      "tier": 1,
+      "prompt": "Tu equipo entrega un trabajo grupal y una compañera no aportó nada. El docente pregunta si todos participaron. ¿Qué valores están en tensión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Honestidad y lealtad al grupo",
+          "correct": true,
+          "feedback": "Exacto: decir la verdad choca con proteger a una compañera."
+        },
+        {
+          "id": "b",
+          "text": "Puntualidad y orden",
+          "correct": false,
+          "feedback": "El caso no trata de tiempos ni de organización."
+        },
+        {
+          "id": "c",
+          "text": "Creatividad y disciplina",
+          "correct": false,
+          "feedback": "No hay un conflicto entre crear y cumplir reglas aquí."
+        }
+      ],
+      "explanation": "Un dilema ético aparece cuando dos valores legítimos piden acciones distintas: aquí, la honestidad y la lealtad."
+    },
+    {
+      "id": "dilemas-2",
+      "tier": 1,
+      "prompt": "La junta del barrio puede usar su presupuesto para arreglar la cancha o para iluminar una calle oscura. ¿Qué criterio ayuda más a decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lo que prefiera quien preside la junta",
+          "correct": false,
+          "feedback": "La preferencia de una persona no es un criterio de bien común."
+        },
+        {
+          "id": "b",
+          "text": "Qué necesidad afecta más a la seguridad y a más personas, con datos del barrio",
+          "correct": true,
+          "feedback": "Bien: un criterio explícito, verificable y orientado al bien común."
+        },
+        {
+          "id": "c",
+          "text": "Lo que se hizo el año pasado",
+          "correct": false,
+          "feedback": "La costumbre no responde a las necesidades actuales."
+        }
+      ],
+      "explanation": "Las decisiones sobre lo común se justifican con criterios explícitos: a quién afecta, cuánto y con qué evidencia."
+    },
+    {
+      "id": "dilemas-3",
+      "tier": 2,
+      "prompt": "Un amigo te pide que le pases tus respuestas de un examen virtual «solo esta vez, porque trabajó toda la semana». ¿Cuál es la respuesta más coherente con un proyecto de vida autónomo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pasárselas, porque es un amigo y la intención es buena",
+          "correct": false,
+          "feedback": "La buena intención no cambia que ambos falsean lo que saben."
+        },
+        {
+          "id": "b",
+          "text": "No pasárselas y ofrecerle estudiar juntos o hablar con el docente sobre su situación",
+          "correct": true,
+          "feedback": "Exacto: cuidas la amistad sin renunciar a tu integridad, y buscas una salida real."
+        },
+        {
+          "id": "c",
+          "text": "Denunciarlo de inmediato ante la universidad",
+          "correct": false,
+          "feedback": "Saltas el diálogo: hay formas de responder que cuidan a ambos."
+        }
+      ],
+      "explanation": "Actuar con autonomía es decidir según principios propios, buscando alternativas que respeten a los demás."
+    },
+    {
+      "id": "dilemas-4",
+      "tier": 2,
+      "prompt": "Una empresa ofrece empleo a 50 personas de la isla, pero su planta contaminaría el río. ¿Qué valores entran en tensión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bienestar económico y cuidado del ambiente",
+          "correct": true,
+          "feedback": "Correcto: ambos son legítimos y aquí parecen excluirse."
+        },
+        {
+          "id": "b",
+          "text": "Libertad de expresión y seguridad",
+          "correct": false,
+          "feedback": "El caso no trata sobre lo que se puede decir."
+        },
+        {
+          "id": "c",
+          "text": "Tradición y tecnología",
+          "correct": false,
+          "feedback": "Podría aparecer, pero no es la tensión central del caso."
+        }
+      ],
+      "explanation": "Nombrar bien los valores en tensión permite buscar alternativas que cuiden ambos, como condiciones ambientales para la planta."
+    },
+    {
+      "id": "dilemas-5",
+      "tier": 3,
+      "prompt": "En el consejo estudiantil, la mayoría vota cerrar la sala de estudio de noche para ahorrar energía. Quienes trabajan de día solo pueden estudiar de noche. ¿Qué respuesta respeta mejor la ciudadanía democrática?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aplicar la votación: la mayoría decide y punto",
+          "correct": false,
+          "feedback": "La regla de la mayoría es necesaria, pero no autoriza a ignorar a una minoría afectada."
+        },
+        {
+          "id": "b",
+          "text": "Buscar una alternativa que ahorre energía sin excluir a quienes estudian de noche",
+          "correct": true,
+          "feedback": "Bien: respetas la decisión y proteges los derechos de la minoría."
+        },
+        {
+          "id": "c",
+          "text": "Anular la votación porque no fue justa",
+          "correct": false,
+          "feedback": "Desconocer un proceso legítimo debilita la democracia."
+        }
+      ],
+      "explanation": "En democracia, la mayoría decide, pero la ciudadanía también exige considerar a quienes una decisión afecta de forma desproporcionada."
+    },
+    {
+      "id": "dilemas-6",
+      "tier": 3,
+      "prompt": "Alguien dice: «Si dejamos que los estudiantes elijan un día de clase virtual, pronto nadie vendrá nunca a la universidad». ¿Qué problema tiene el argumento?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Es una pendiente resbaladiza: supone una cadena de consecuencias sin pruebas",
+          "correct": true,
+          "feedback": "Exacto: salta del primer paso al peor final sin mostrar por qué."
+        },
+        {
+          "id": "b",
+          "text": "Es un ataque a la persona",
+          "correct": false,
+          "feedback": "No descalifica a nadie: exagera las consecuencias."
+        },
+        {
+          "id": "c",
+          "text": "No tiene ningún problema",
+          "correct": false,
+          "feedback": "La conclusión no se sigue de la premisa sin evidencia."
+        }
+      ],
+      "explanation": "La pendiente resbaladiza rechaza una propuesta por un desenlace extremo que no se demuestra."
+    }
+  ]
+}

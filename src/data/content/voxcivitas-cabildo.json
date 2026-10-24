@@ -1,0 +1,365 @@
+{
+  "kind": "reto",
+  "minigame": "sesion-de-cabildo",
+  "intro": "Desde que llegó la Bruma, el viejo muelle de la plaza está cerrado. Hoy el cabildo abierto decide qué hacer con él, y te pidieron moderar la sesión. Cada grupo defiende lo suyo: tu tarea no es imponer una idea, sino construir un acuerdo que todos puedan respaldar.",
+  "matter": "¿Qué uso tendrá el viejo muelle de la plaza?",
+  "tips": {
+    "escuchar": "Escuchar no es ceder: es convertir una postura («el muelle es nuestro») en un interés concreto («necesitamos la madrugada para descargar»), que sí se puede negociar.",
+    "pedir-evidencia": "Pedir evidencia no es desconfiar: es darle a todos la misma base para decidir. Una afirmación con datos se discute mejor que una con adjetivos.",
+    "integrar": "Integrar es buscar la propuesta en la que varios intereses caben a la vez. Funciona mejor después de escuchar qué necesita cada grupo.",
+    "conceder": "Conceder construye confianza cuando responde a una propuesta concreta y cuida a los demás grupos. Si favorece a uno solo, se vuelve imposición.",
+    "falacia": "Una falacia parece un argumento, pero ataca a la persona, generaliza o apela a la autoridad o a la mayoría sin razones. Debilita la deliberación aunque suene amable.",
+    "imponer": "Imponer cierra la conversación con quien tenía un interés legítimo. En un cabildo, una decisión sin acuerdo dura poco."
+  },
+  "startTrust": 50,
+  "threshold": 60,
+  "factions": [
+    {
+      "id": "pescadores",
+      "name": "Asociación de pescadores",
+      "interest": "Recuperar el muelle para descargar la pesca y amarrar las lanchas."
+    },
+    {
+      "id": "jovenes",
+      "name": "Colectivo juvenil",
+      "interest": "Un espacio para ensayar música, hacer deporte y encontrarse."
+    },
+    {
+      "id": "comerciantes",
+      "name": "Comerciantes de la plaza",
+      "interest": "Un mercado de fin de semana que atraiga visitantes."
+    },
+    {
+      "id": "mayores",
+      "name": "Consejo de mayores",
+      "interest": "Conservar la memoria del muelle y un lugar tranquilo."
+    }
+  ],
+  "rounds": [
+    {
+      "id": "sustento",
+      "tier": 1,
+      "speaker": "pescadores",
+      "statement": "Ese muelle siempre fue de los pescadores. Sin él, perdemos la pesca del día. No hay nada que discutir.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Entiendo que el muelle es su sustento. ¿Qué necesitan exactamente: en qué horario y cuánto espacio?",
+          "move": "escuchar",
+          "quality": 1,
+          "feedback": "Reconoces el interés y lo vuelves concreto: así una postura cerrada se convierte en una necesidad negociable.",
+          "effects": { "pescadores": 12, "jovenes": 3, "comerciantes": 3, "mayores": 3 }
+        },
+        {
+          "id": "b",
+          "text": "El muelle es de todos. Si no les gusta, que pesquen en otro lado.",
+          "move": "imponer",
+          "quality": 0,
+          "feedback": "Cierras la conversación con un grupo que tiene un interés legítimo. La imposición genera resistencia, no acuerdos.",
+          "effects": { "pescadores": -20, "mayores": -5 }
+        },
+        {
+          "id": "c",
+          "text": "Ustedes siempre se quejan de todo; por eso nadie los escucha.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Es un ataque a las personas (ad hominem): no responde a lo que dijeron y rompe la confianza.",
+          "effects": { "pescadores": -15, "jovenes": -3 }
+        }
+      ]
+    },
+    {
+      "id": "ensayos",
+      "tier": 1,
+      "speaker": "jovenes",
+      "statement": "Necesitamos un lugar para ensayar música y hacer deporte. Hoy nos toca en la calle, y nos sacan de todas partes.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Todo el muelle será para los jóvenes, decidido.",
+          "move": "conceder",
+          "quality": 0,
+          "feedback": "Una concesión unilateral gana a un grupo y pierde a tres: no es un acuerdo, es otra imposición.",
+          "effects": { "jovenes": 15, "pescadores": -15, "mayores": -10, "comerciantes": -6 }
+        },
+        {
+          "id": "b",
+          "text": "¿Cuántas personas participarían y en qué horarios? Con eso vemos si cabe junto a otros usos.",
+          "move": "pedir-evidencia",
+          "quality": 1,
+          "feedback": "Pides datos para dimensionar la necesidad: es la base para repartir un espacio común.",
+          "effects": { "jovenes": 10, "comerciantes": 4, "mayores": 2, "pescadores": 2 }
+        },
+        {
+          "id": "c",
+          "text": "Los jóvenes solo quieren el muelle para hacer ruido.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Es una generalización apresurada sobre todo un grupo: descalifica en vez de argumentar.",
+          "effects": { "jovenes": -20 }
+        }
+      ]
+    },
+    {
+      "id": "mercado",
+      "tier": 1,
+      "speaker": "comerciantes",
+      "statement": "Si ponemos un mercado los fines de semana, vendrán visitantes de otras islas. Todos ganamos.",
+      "options": [
+        {
+          "id": "a",
+          "text": "¿Tienen datos de cuántos visitantes llegarían? ¿Y qué pasaría con el ruido y los residuos?",
+          "move": "pedir-evidencia",
+          "quality": 1,
+          "feedback": "«Todos ganamos» es una afirmación: pedir datos y pensar en los costos la vuelve discutible.",
+          "effects": { "comerciantes": 6, "mayores": 8, "pescadores": 4, "jovenes": 2 }
+        },
+        {
+          "id": "b",
+          "text": "Si todas las islas tienen mercado, nosotros también deberíamos tenerlo.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Es una apelación a la mayoría (ad populum): que otros lo hagan no prueba que convenga aquí.",
+          "effects": { "comerciantes": 4, "mayores": -8, "pescadores": -6 }
+        },
+        {
+          "id": "c",
+          "text": "¿Y si el mercado ocupa solo una franja del muelle los sábados?",
+          "move": "integrar",
+          "quality": 0.5,
+          "feedback": "La intención de integrar es buena, pero propones una solución antes de conocer su impacto en los demás.",
+          "effects": { "comerciantes": 6, "jovenes": 2, "mayores": -2 }
+        }
+      ]
+    },
+    {
+      "id": "memoria",
+      "tier": 2,
+      "speaker": "mayores",
+      "statement": "Ese muelle guarda la historia del archipiélago. Si lo llenan de puestos y parlantes, se pierde la memoria.",
+      "options": [
+        {
+          "id": "a",
+          "text": "El pasado ya pasó; lo nuevo siempre es mejor.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Es una apelación a la novedad: que algo sea nuevo no lo hace mejor, y desprecia un interés legítimo.",
+          "effects": { "mayores": -18, "jovenes": 2 }
+        },
+        {
+          "id": "b",
+          "text": "Propongo un rincón de memoria con fotos y relatos de ustedes, dentro del uso compartido del muelle.",
+          "move": "integrar",
+          "quality": 1,
+          "feedback": "Conviertes la preocupación en parte de la propuesta: la memoria cabe junto a los otros usos.",
+          "effects": { "mayores": 12, "jovenes": 4, "comerciantes": 2, "pescadores": 2 },
+          "agreement": "Habrá un rincón de memoria con fotos y relatos de los mayores en la entrada del muelle."
+        },
+        {
+          "id": "c",
+          "text": "¿Qué parte del muelle guarda más memoria para ustedes? Podemos empezar por protegerla.",
+          "move": "escuchar",
+          "quality": 1,
+          "feedback": "Escuchas para precisar el interés: proteger lo esencial deja espacio para lo demás.",
+          "effects": { "mayores": 10, "pescadores": 2, "jovenes": 2, "comerciantes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "residuos",
+      "tier": 2,
+      "speaker": "pescadores",
+      "statement": "Si hay mercado, la basura va a terminar en el agua y espantará los peces.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tienen razón: si hay mercado, después vendrán hoteles y la isla entera se arruinará.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Suena solidario, pero es una pendiente resbaladiza: encadena consecuencias sin pruebas y polariza.",
+          "effects": { "pescadores": 4, "comerciantes": -14, "jovenes": -4 }
+        },
+        {
+          "id": "b",
+          "text": "Es un riesgo real. ¿Qué haría falta para evitarlo? Propongo que el mercado presente un plan de residuos.",
+          "move": "pedir-evidencia",
+          "quality": 1,
+          "feedback": "Tomas en serio el riesgo y lo conviertes en una condición verificable para el mercado.",
+          "effects": { "pescadores": 10, "mayores": 4, "comerciantes": 2, "jovenes": 2 },
+          "agreement": "El mercado tendrá puntos de reciclaje y un turno de limpieza al cierre."
+        },
+        {
+          "id": "c",
+          "text": "Eso no va a pasar. No exageren.",
+          "move": "imponer",
+          "quality": 0,
+          "feedback": "Descartas una preocupación sin argumentos: el grupo se siente ignorado.",
+          "effects": { "pescadores": -12, "mayores": -4 }
+        }
+      ]
+    },
+    {
+      "id": "palabra",
+      "tier": 2,
+      "speaker": "jovenes",
+      "statement": "En este cabildo siempre deciden los mismos. A nosotros nunca nos toman en serio.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Es que todavía no tienen experiencia para decidir sobre estas cosas.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Descalifica por la edad, no por los argumentos: es un ataque a la persona.",
+          "effects": { "jovenes": -18, "mayores": 4 }
+        },
+        {
+          "id": "b",
+          "text": "No es momento de quejas. Sigamos con el tema.",
+          "move": "imponer",
+          "quality": 0,
+          "feedback": "La queja es sobre cómo se participa: ignorarla confirma lo que denuncian.",
+          "effects": { "jovenes": -12 }
+        },
+        {
+          "id": "c",
+          "text": "Propongo que cada grupo tenga el mismo tiempo de palabra y que el acta lo registre.",
+          "move": "integrar",
+          "quality": 1,
+          "feedback": "Respondes con una regla justa para todos: mejora la participación sin favorecer a nadie.",
+          "effects": { "jovenes": 10, "mayores": 3, "pescadores": 3, "comerciantes": 3 },
+          "agreement": "Cada grupo tendrá el mismo tiempo de palabra en los próximos cabildos."
+        }
+      ]
+    },
+    {
+      "id": "votemos",
+      "tier": 2,
+      "speaker": "comerciantes",
+      "statement": "Ya hablamos mucho. Votemos de una vez: somos más los que queremos el mercado.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tienen razón, votemos ya.",
+          "move": "conceder",
+          "quality": 0.5,
+          "feedback": "Votar es legítimo, pero hacerlo antes de buscar un acuerdo deja a las minorías por fuera.",
+          "effects": { "comerciantes": 8, "pescadores": -8, "mayores": -6 }
+        },
+        {
+          "id": "b",
+          "text": "Votaremos, pero primero busquemos una propuesta que recoja a todos; así la votación suma.",
+          "move": "integrar",
+          "quality": 1,
+          "feedback": "Respetas la regla de la mayoría y a la vez cuidas a quienes podrían perder: así se construye legitimidad.",
+          "effects": { "pescadores": 6, "mayores": 6, "jovenes": 6, "comerciantes": -2 }
+        },
+        {
+          "id": "c",
+          "text": "¿Mayoría según quién? Ustedes solo piensan en vender.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Atribuyes intenciones en lugar de responder a la propuesta: es un ataque a la persona.",
+          "effects": { "comerciantes": -15 }
+        }
+      ]
+    },
+    {
+      "id": "madrugada",
+      "tier": 3,
+      "speaker": "pescadores",
+      "statement": "Aceptamos compartir el muelle si nos dejan la madrugada para descargar, de 4 a 9 de la mañana.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Si les damos la madrugada, mañana van a pedir el día entero.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Pendiente resbaladiza: rechazas una propuesta concreta por un futuro imaginado.",
+          "effects": { "pescadores": -12 }
+        },
+        {
+          "id": "b",
+          "text": "Me parece razonable. ¿Los demás grupos pueden usar el muelle desde las 9?",
+          "move": "conceder",
+          "quality": 1,
+          "feedback": "Aceptas una concesión concreta y verificas que funcione para los demás: así nace un acuerdo.",
+          "effects": { "pescadores": 12, "jovenes": 4, "comerciantes": 4, "mayores": 2 },
+          "agreement": "La madrugada, de 4 a 9 a. m., queda reservada para la descarga de pesca."
+        },
+        {
+          "id": "c",
+          "text": "Mejor que los pescadores usen el muelle sur y dejen este libre.",
+          "move": "imponer",
+          "quality": 0,
+          "feedback": "Respondes a una propuesta de acuerdo con una decisión unilateral.",
+          "effects": { "pescadores": -15, "comerciantes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "estudio",
+      "tier": 3,
+      "speaker": "mayores",
+      "statement": "Un estudio dice que los mercados siempre traen inseguridad. Por eso no queremos ninguno.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Si lo dice un estudio, debe ser cierto: descartemos el mercado.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Parece respetuoso, pero es una apelación a la autoridad sin verificar: no sabemos qué estudio es ni si aplica aquí.",
+          "effects": { "mayores": 6, "comerciantes": -18, "jovenes": -4 }
+        },
+        {
+          "id": "b",
+          "text": "¿Qué estudio es y de dónde? Revisemos si aplica a un mercado de sábado en una isla pequeña.",
+          "move": "pedir-evidencia",
+          "quality": 1,
+          "feedback": "Tomas en serio la evidencia y verificas su alcance antes de usarla para decidir.",
+          "effects": { "mayores": 4, "comerciantes": 8, "jovenes": 4, "pescadores": 2 }
+        },
+        {
+          "id": "c",
+          "text": "Esos estudios no sirven para nada.",
+          "move": "imponer",
+          "quality": 0,
+          "feedback": "Descartar la evidencia en bloque es tan poco riguroso como aceptarla sin revisar.",
+          "effects": { "mayores": -12 }
+        }
+      ]
+    },
+    {
+      "id": "tardes",
+      "tier": 3,
+      "speaker": "jovenes",
+      "statement": "Podríamos usar el muelle en las tardes para talleres de música, y ayudar a cuidar el rincón de memoria con los mayores.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Primero que los mayores lo aprueben; después vemos.",
+          "move": "conceder",
+          "quality": 0.5,
+          "feedback": "Consultar está bien, pero subordinar a un grupo a otro desaprovecha una propuesta que ya integra a ambos.",
+          "effects": { "jovenes": -6, "mayores": 6 }
+        },
+        {
+          "id": "b",
+          "text": "Si los jóvenes cuidan el rincón, seguro lo terminan dañando.",
+          "move": "falacia",
+          "quality": 0,
+          "feedback": "Es un prejuicio presentado como argumento: no hay razones, solo una sospecha sobre un grupo.",
+          "effects": { "jovenes": -18, "mayores": -4 }
+        },
+        {
+          "id": "c",
+          "text": "Es un puente entre grupos: tardes para talleres, y el colectivo cuida el rincón de memoria junto a los mayores.",
+          "move": "integrar",
+          "quality": 1,
+          "feedback": "Recoges una propuesta que ya integra intereses distintos y la conviertes en acuerdo.",
+          "effects": { "jovenes": 10, "mayores": 10, "comerciantes": 2, "pescadores": 2 },
+          "agreement": "Las tardes entre semana serán para talleres juveniles, que cuidarán el rincón de memoria con los mayores."
+        }
+      ]
+    }
+  ]
+}

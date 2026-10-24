@@ -1,0 +1,172 @@
+{
+  "kind": "explorar",
+  "intro": "En la cabina de radio, una frase al aire llega a toda la isla en segundos. Antes de difundir, el equipo revisa siempre cuatro señales. Conócelas: las usarás como herramientas en la Sala de Redacción.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "1. La fuente: ¿quién lo dice?",
+          "body": "Pregunta quién publica y si tiene autoridad o conocimiento directo sobre el tema. Una capitanía sobre el cierre de un muelle, un hospital sobre su horario. Desconfía de cuentas sin autor, páginas que venden algo o «expertos» sin nombre ni institución verificable."
+        },
+        {
+          "heading": "2. La fecha: ¿cuándo pasó?",
+          "body": "Muchas noticias falsas son noticias viejas que vuelven a circular como si fueran de hoy. Busca la fecha de la publicación original, no la del mensaje que te llegó. Una inundación de hace cuatro años no es noticia de esta mañana."
+        },
+        {
+          "heading": "3. La cita: ¿lo dijo así?",
+          "body": "Busca la cita en su contexto: la grabación completa, el documento, la entrevista. Una frase recortada puede decir lo contrario de lo que dijo su autora. Si la cita es anónima o no se puede rastrear, no sostiene la noticia."
+        },
+        {
+          "heading": "4. La imagen: ¿muestra lo que dice?",
+          "body": "Una foto puede ser real y aun así engañar: de otro lugar, de otro año, un montaje o un render que no es la obra terminada. La búsqueda inversa de imágenes revela dónde apareció antes. Si la imagen es de archivo, la nota debe decirlo."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Estás en la cabina de radio de ComunicArte. Aquí, antes de decir algo al aire, revisamos cuatro señales.",
+        "Primera, la fuente: ¿quién lo dice y por qué sabría? Una autoridad responsable o un testigo directo pesan más que una cuenta sin autor.",
+        "Segunda, la fecha: muchas falsedades son noticias viejas que vuelven a circular. Busca cuándo se publicó por primera vez.",
+        "Tercera, la cita: escúchala completa. Una frase recortada puede decir lo contrario de lo que se dijo.",
+        "Cuarta, la imagen: puede ser real y engañar. ¿Es de otro lugar, de otro año, un montaje o un render?",
+        "Cuatro señales, una pregunta: ¿lo puedo sostener al aire?"
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "La fuente",
+          "caption": "¿Quién lo dice y por qué sabría? Desconfía de cuentas sin autor y de expertos sin nombre."
+        },
+        {
+          "title": "La fecha",
+          "caption": "Una noticia vieja compartida hoy sigue siendo vieja. Busca la publicación original."
+        },
+        {
+          "title": "La cita",
+          "caption": "Escúchala completa: un recorte puede cambiarle el sentido."
+        },
+        {
+          "title": "La imagen",
+          "caption": "Real no siempre es fiel: otro lugar, otro año, un montaje o un render."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "Las cuatro señales de la cabina",
+      "nodes": [
+        { "label": "Fuente", "detail": "¿Quién lo publica y qué autoridad tiene sobre el tema?" },
+        { "label": "Fecha", "detail": "¿Cuándo se publicó por primera vez?" },
+        { "label": "Cita", "detail": "¿Aparece textual y en contexto en el original?" },
+        { "label": "Imagen", "detail": "¿Es de este hecho, este lugar y este momento?" }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Cada pista revela un problema distinto. ¿Qué señal habría que revisar para descubrirlo?",
+      "categories": [
+        { "id": "fuente", "label": "Fuente" },
+        { "id": "fecha", "label": "Fecha" },
+        { "id": "cita", "label": "Cita" },
+        { "id": "imagen", "label": "Imagen" }
+      ],
+      "items": [
+        {
+          "text": "La foto del «tiburón en la playa» apareció en internet hace diez años.",
+          "category": "imagen"
+        },
+        {
+          "text": "El «estudio» lo firma una universidad que no existe en ningún registro.",
+          "category": "fuente"
+        },
+        {
+          "text": "La nota de la inundación es de hace cuatro años y hoy la reenviaron.",
+          "category": "fecha"
+        },
+        {
+          "text": "En la grabación completa, la rectora dice «la mitad de sexto necesita refuerzo», no «la mitad no sabe leer».",
+          "category": "cita"
+        }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "radio-c1",
+      "tier": 1,
+      "prompt": "Te llega una foto impactante de calles inundadas «de esta mañana». ¿Qué revisas primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cuántas personas ya la compartieron",
+          "correct": false,
+          "feedback": "Que muchos la compartan no la hace cierta ni actual."
+        },
+        {
+          "id": "b",
+          "text": "Si la imagen y la noticia original son de hoy",
+          "correct": true,
+          "feedback": "Bien: imagen y fecha son las señales que podrían delatar una noticia vieja."
+        },
+        {
+          "id": "c",
+          "text": "Si el texto tiene buena ortografía",
+          "correct": false,
+          "feedback": "La ortografía puede dar pistas, pero no dice si la foto es de hoy."
+        }
+      ],
+      "explanation": "Las fotos de desastres suelen reciclarse: la búsqueda inversa y la fecha original revelan si corresponden al hecho."
+    },
+    {
+      "id": "radio-c2",
+      "tier": 2,
+      "prompt": "Un titular cita a una funcionaria entre comillas. ¿Cuál es la mejor manera de verificar la cita?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Buscar la intervención completa: el video, el audio o el documento original",
+          "correct": true,
+          "feedback": "Exacto: solo el original muestra si la frase se dijo así y en qué contexto."
+        },
+        {
+          "id": "b",
+          "text": "Confiar en las comillas: si están, es textual",
+          "correct": false,
+          "feedback": "Las comillas se pueden poner a cualquier frase, incluso a una recortada."
+        },
+        {
+          "id": "c",
+          "text": "Preguntar en un grupo de chat si alguien la escuchó",
+          "correct": false,
+          "feedback": "Un rumor no confirma otro: hay que ir al original."
+        }
+      ],
+      "explanation": "Verificar una cita es encontrarla en su fuente original y leerla en su contexto completo."
+    },
+    {
+      "id": "radio-c3",
+      "tier": 2,
+      "prompt": "¿Qué señal falla en esta nota? «Un estudio de expertos internacionales confirma que el agua de coco cura la gripa», publicada por una tienda de productos naturales.",
+      "options": [
+        {
+          "id": "a",
+          "text": "La fecha",
+          "correct": false,
+          "feedback": "La nota no dice nada engañoso sobre cuándo ocurrió."
+        },
+        {
+          "id": "b",
+          "text": "La fuente",
+          "correct": true,
+          "feedback": "Sí: «expertos internacionales» sin nombre, publicados por quien vende el producto."
+        },
+        {
+          "id": "c",
+          "text": "La imagen",
+          "correct": false,
+          "feedback": "Ni siquiera menciona una imagen: el problema es quién lo dice."
+        }
+      ],
+      "explanation": "Una fuente sin nombre ni institución verificable, y con interés comercial en el tema, no sostiene una afirmación de salud."
+    }
+  ]
+}

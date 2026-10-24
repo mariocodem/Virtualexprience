@@ -1,0 +1,187 @@
+{
+  "kind": "reto",
+  "minigame": "sala-de-redaccion",
+  "intro": "Son las 3:30 de la tarde en Radio Puerto, la emisora de ComunicArte. Llegan notas de todas partes y la edición de las 6:00 p. m. la cierras tú. Lo que salga al aire lo escuchará toda la isla.",
+  "news": [
+    {
+      "id": "escuelas-cerradas",
+      "tier": 1,
+      "headline": "¡Confirmado! Cerrarán todas las escuelas del archipiélago durante un mes",
+      "source": "Mensaje reenviado en un grupo de chat, sin autor",
+      "date": "Circula desde hace tres días",
+      "quote": "«Lo dijo un funcionario que prefiere no dar su nombre.»",
+      "image": "Captura borrosa de un supuesto comunicado oficial",
+      "clues": {
+        "fuente": "No tiene autor ni medio. La Secretaría de Educación de la isla no tiene ningún comunicado sobre el tema en su sitio ni en sus redes oficiales.",
+        "fecha": "Circula desde hace tres días y nadie lo ha confirmado. Si fuera cierto, ya habría un anuncio oficial.",
+        "cita": "La cita es anónima: no se puede rastrear ni contrastar.",
+        "imagen": "El «comunicado» usa un logo distinto al de la Secretaría y tiene errores de ortografía en el encabezado."
+      },
+      "verdict": "descartar",
+      "criteria": ["fuente", "imagen"],
+      "explanation": "Sin fuente identificable y con un documento falsificado, la nota no se sostiene. Difundirla alarmaría a miles de familias."
+    },
+    {
+      "id": "muelle-norte",
+      "tier": 1,
+      "headline": "El muelle norte cerrará el sábado de 8 a. m. a 2 p. m. por mantenimiento",
+      "source": "Comunicado de la Capitanía del Puerto, en su página oficial",
+      "date": "Publicado ayer",
+      "quote": "«Se suspenden las salidas del muelle norte entre las 8 y las 14 horas», dice el comunicado.",
+      "image": "Foto del muelle norte con la señalización de cierre",
+      "clues": {
+        "fuente": "La Capitanía es la autoridad que decide los cierres. El comunicado está en su sitio y en sus redes verificadas.",
+        "fecha": "Es de ayer y se refiere a este sábado: está vigente.",
+        "cita": "La frase aparece textual en el comunicado.",
+        "imagen": "La tomó esta mañana un reportero de la radio."
+      },
+      "verdict": "publicar",
+      "criteria": ["fuente", "cita"],
+      "explanation": "La autoridad responsable lo anunció por su canal oficial y la cita es textual. Es útil para quienes viajan el sábado."
+    },
+    {
+      "id": "tiburon-garzas",
+      "tier": 1,
+      "headline": "Tiburón gigante en la playa de las Garzas: prohíben bañarse",
+      "source": "Página de memes «Isla Viral»",
+      "date": "Hace dos horas",
+      "quote": "«¡Compartan para que nadie se meta al agua!»",
+      "image": "Foto de una aleta enorme junto a un grupo de bañistas",
+      "clues": {
+        "fuente": "Es una página de humor, no un medio. No cita a salvavidas ni a ninguna autoridad de playas.",
+        "fecha": "La publicación es reciente, pero eso no dice nada de la foto.",
+        "cita": "No es una declaración de nadie: es un llamado a compartir.",
+        "imagen": "La búsqueda inversa muestra que es un montaje que circula desde 2015 con nombres de playas distintas."
+      },
+      "verdict": "descartar",
+      "criteria": ["imagen", "fuente"],
+      "explanation": "Un montaje viejo, publicado por una página de memes. Ninguna autoridad ha prohibido bañarse."
+    },
+    {
+      "id": "rectora-lectura",
+      "tier": 2,
+      "headline": "Rectora del Colegio del Faro: «La mitad de los estudiantes no sabe leer»",
+      "source": "Diario del Muelle, nota firmada por una periodista",
+      "date": "Hoy",
+      "quote": "«La mitad de los estudiantes no sabe leer.»",
+      "image": "Foto de la rectora en el acto de entrega de resultados",
+      "clues": {
+        "fuente": "El diario es un medio reconocido y la periodista estuvo en el acto.",
+        "fecha": "El acto fue esta mañana.",
+        "cita": "En la grabación completa, la rectora dice: «La mitad de los estudiantes de grado sexto necesita refuerzo en comprensión lectora». El titular recorta y exagera.",
+        "imagen": "La foto es del acto, tomada por el fotógrafo del diario."
+      },
+      "verdict": "corregir",
+      "criteria": ["cita"],
+      "explanation": "El hecho es real, pero la cita está distorsionada: se refiere a grado sexto y habla de refuerzo, no de no saber leer. Hay que corregirla antes de emitir."
+    },
+    {
+      "id": "inundacion-ensenada",
+      "tier": 2,
+      "headline": "Inundaciones dejan incomunicado el barrio La Ensenada",
+      "source": "Radio Bahía, nota con audio de un vecino",
+      "date": "Compartida hoy en redes",
+      "quote": "«El agua nos llega a la cintura», dice un vecino.",
+      "image": "Foto de calles inundadas con lanchas entre las casas",
+      "clues": {
+        "fuente": "Radio Bahía sí publicó la nota… hace cuatro años.",
+        "fecha": "La publicación original es de hace cuatro años. Hoy alguien la volvió a compartir como si fuera nueva, y no hay alertas de lluvia vigentes.",
+        "cita": "El audio del vecino es real, pero de aquella inundación.",
+        "imagen": "La foto acompaña la nota original, de hace cuatro años."
+      },
+      "verdict": "descartar",
+      "criteria": ["fecha"],
+      "explanation": "Todo es auténtico, excepto lo más importante: no está pasando hoy. Emitirla haría que la gente reaccione a una emergencia que no existe."
+    },
+    {
+      "id": "vacunacion-faro",
+      "tier": 2,
+      "headline": "El Hospital del Faro amplía su horario de vacunación hasta las 7 p. m.",
+      "source": "Cuenta oficial del Hospital del Faro",
+      "date": "Hoy, 9:15 a. m.",
+      "quote": "«Desde el lunes atenderemos de 7 a. m. a 7 p. m.», dijo el director médico en la emisora.",
+      "image": "Infografía con el nuevo horario",
+      "clues": {
+        "fuente": "Es la cuenta verificada del hospital, la institución que define su horario.",
+        "fecha": "Publicado hoy; el cambio empieza el lunes.",
+        "cita": "La grabación de la entrevista confirma la frase textual.",
+        "imagen": "La infografía coincide con la que está en el sitio del hospital."
+      },
+      "verdict": "publicar",
+      "criteria": ["fuente", "cita"],
+      "explanation": "La institución responsable lo confirma por su canal oficial y en la grabación. Es información útil y verificada."
+    },
+    {
+      "id": "malecon-render",
+      "tier": 2,
+      "headline": "Así quedó el nuevo malecón tras la remodelación",
+      "source": "Publicación oficial de la Alcaldía del puerto",
+      "date": "Hoy",
+      "quote": "«La obra se entregó a tiempo», dijo la secretaria de Obras.",
+      "image": "Imagen del malecón con palmeras, una fuente de agua y luces nocturnas",
+      "clues": {
+        "fuente": "La Alcaldía es la responsable de la obra: es fuente adecuada.",
+        "fecha": "La publicación es de hoy.",
+        "cita": "La secretaria lo dijo en rueda de prensa. La obra se entregó, aunque faltan detalles.",
+        "imagen": "No es una foto: es el render del proyecto. La fuente de agua y las luces aún no están instaladas."
+      },
+      "verdict": "corregir",
+      "criteria": ["imagen"],
+      "explanation": "La entrega es real, pero la imagen muestra un proyecto, no la obra. Se puede emitir aclarando que es un render o con una foto real."
+    },
+    {
+      "id": "pesca-record",
+      "tier": 3,
+      "headline": "Pescadores reportan récord: 40 % más de captura este año",
+      "source": "Informe anual de la Asociación de Pescadores de la Bahía",
+      "date": "Informe publicado esta semana",
+      "quote": "«Tuvimos un 40 % más de captura», dice el presidente de la asociación.",
+      "image": "Foto de una lancha cargada de pescado",
+      "clues": {
+        "fuente": "La asociación es la fuente adecuada y el informe es público.",
+        "fecha": "El informe es de esta semana.",
+        "cita": "En el informe, el 40 % se refiere a los tres meses posteriores a la veda, no a todo el año. En el año completo, el aumento fue de 12 %.",
+        "imagen": "Es una foto de archivo de la asociación, de una jornada de 2023. Debería decir que es de archivo."
+      },
+      "verdict": "corregir",
+      "criteria": ["cita"],
+      "explanation": "La cifra es real, pero de un periodo más corto: presentada como anual, infla el resultado. Hay que corregirla (y rotular la foto como archivo)."
+    },
+    {
+      "id": "agua-coco",
+      "tier": 3,
+      "headline": "Estudio revela que tomar agua de coco cura la gripa en 24 horas",
+      "source": "Portal «SaludNatural Hoy», que cita a la «Universidad Internacional de Ciencias Naturales»",
+      "date": "Hace cinco días",
+      "quote": "«Los resultados son contundentes», según el estudio.",
+      "image": "Foto de una persona en bata de laboratorio, sonriente",
+      "clues": {
+        "fuente": "La «universidad» no aparece en ningún registro de instituciones de educación superior, y el portal vende productos naturales.",
+        "fecha": "La fecha es reciente, pero eso no cambia nada.",
+        "cita": "No hay ningún investigador con nombre ni enlace al estudio: la cita no se puede rastrear.",
+        "imagen": "Es una foto de banco de imágenes, usada en cientos de sitios."
+      },
+      "verdict": "descartar",
+      "criteria": ["fuente", "cita"],
+      "explanation": "Una afirmación de salud sin estudio rastreable, publicada por quien vende el producto. Emitirla podría llevar a alguien a no consultar al médico."
+    },
+    {
+      "id": "alerta-lluvias",
+      "tier": 3,
+      "headline": "Alerta amarilla: lluvias fuertes esta noche en todo el archipiélago",
+      "source": "Boletín del Instituto de Meteorología del Archipiélago (IMA)",
+      "date": "Hoy, 2:00 p. m.",
+      "quote": "«Se esperan lluvias fuertes entre las 8 p. m. y la medianoche», señala el boletín.",
+      "image": "Mapa de radar del IMA",
+      "clues": {
+        "fuente": "El IMA es la autoridad meteorológica y el boletín está en su sitio oficial.",
+        "fecha": "Es el boletín más reciente: de hoy a las 2:00 p. m.",
+        "cita": "La frase está textual en el boletín.",
+        "imagen": "El mapa corresponde al radar de hoy."
+      },
+      "verdict": "publicar",
+      "criteria": ["fuente", "fecha"],
+      "explanation": "Suena alarmante, pero está verificada: la autoridad competente, el boletín vigente. No emitirla también tiene consecuencias."
+    }
+  ]
+}

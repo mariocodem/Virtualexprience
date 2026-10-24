@@ -1,0 +1,54 @@
+{
+  "kind": "reflexionar",
+  "prompt": "Cuenta cómo decidiste qué salía al aire en tu edición y qué harías distinto la próxima vez.",
+  "guidance": [
+    "Elige una nota concreta y explica qué señal revisaste: la fuente, la fecha, la cita o la imagen.",
+    "Di qué decidiste —publicar, descartar o pedir corrección— y por qué.",
+    "Cierra con algo que cambiarías en tu forma de verificar o de administrar el tiempo."
+  ],
+  "minChars": 140,
+  "rubric": [
+    {
+      "id": "criterio",
+      "label": "Nombra un criterio de verificación",
+      "keywords": ["fuente", "fecha", "cita", "imagen", "foto", "verifiqu", "revis", "contrast"]
+    },
+    {
+      "id": "caso",
+      "label": "Cuenta un caso concreto de la edición",
+      "keywords": [
+        "nota",
+        "noticia",
+        "titular",
+        "rectora",
+        "muelle",
+        "tiburón",
+        "inundación",
+        "malecón",
+        "hospital",
+        "coco",
+        "pesca",
+        "lluvia",
+        "escuela"
+      ]
+    },
+    {
+      "id": "decision",
+      "label": "Explica la decisión y su porqué",
+      "keywords": ["publiqu", "descart", "correg", "decid", "porque", "ya que", "por eso"]
+    },
+    {
+      "id": "mejora",
+      "label": "Propone qué haría distinto",
+      "keywords": [
+        "la próxima",
+        "próxima vez",
+        "haría",
+        "cambiaría",
+        "mejorar",
+        "debería",
+        "aprendí"
+      ]
+    }
+  ]
+}

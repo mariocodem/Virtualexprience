@@ -1,0 +1,349 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma de los rumores",
+    "nature": "Se alimenta de lo que se comparte sin verificar: titulares inflados, citas sin origen y fotos de otro tiempo. Cada vez que alguien reenvía sin mirar, se hace más espesa.",
+    "intro": "¿Verificar? Aquí nadie tiene tiempo para eso. Comparte primero y pregunta después… si es que preguntas.",
+    "victory": "Te retiras con la linterna apagada. Hoy el rumor llegó más lejos que tu verdad.",
+    "defeat": "Me disipo… Una sola persona que verifica basta para que el puerto vuelva a ver claro.",
+    "taunts": {
+      "phase1": [
+        "Empecemos fácil: ¿qué daño hace un reenvío más?",
+        "Todos lo están compartiendo. ¿Vas a ser tú quien se quede atrás?"
+      ],
+      "phase2": [
+        "Ahora mis rumores visten de periódico. A ver si los distingues.",
+        "Ya no grito: susurro con comillas y logos. Mira bien."
+      ],
+      "phase3": [
+        "Mis mentiras más finas están hechas de verdades recortadas.",
+        "Última forma: todo es real… menos el contexto."
+      ],
+      "hit": [
+        "¡Agh! Fuiste a la fuente…",
+        "Otra luz que no puedo tapar.",
+        "Revisaste la fecha. Qué molestia."
+      ],
+      "miss": [
+        "Así me gusta: rápido y sin mirar.",
+        "Un reenvío más y nadie verá el faro.",
+        "¿Ves? La primera versión siempre gana."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "rumor-1",
+      "tier": 1,
+      "prompt": "Te llega: «URGENTE: mañana no hay lanchas. Compártelo con todos». No dice quién lo envía. ¿Qué haces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lo reenvío por si acaso",
+          "correct": false,
+          "feedback": "«Por si acaso» es exactamente cómo crece un rumor."
+        },
+        {
+          "id": "b",
+          "text": "Busco el aviso en los canales de la Capitanía antes de difundirlo",
+          "correct": true,
+          "feedback": "Bien: la autoridad que decide es la fuente que confirma."
+        },
+        {
+          "id": "c",
+          "text": "Le pregunto a quien me lo mandó si es verdad",
+          "correct": false,
+          "feedback": "Quien lo reenvió probablemente tampoco lo verificó."
+        }
+      ],
+      "explanation": "Un mensaje sin autor que pide reenviarse con urgencia se verifica en la fuente oficial antes de compartirlo."
+    },
+    {
+      "id": "rumor-2",
+      "tier": 1,
+      "prompt": "¿Cuál de estas es una fuente adecuada para saber el horario del hospital?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un comentario en una publicación sobre el hospital",
+          "correct": false,
+          "feedback": "Un comentario no tiene responsabilidad sobre el horario."
+        },
+        {
+          "id": "b",
+          "text": "La cuenta verificada o el sitio del propio hospital",
+          "correct": true,
+          "feedback": "Exacto: la institución que define el horario."
+        },
+        {
+          "id": "c",
+          "text": "Una página de chismes de la isla",
+          "correct": false,
+          "feedback": "Puede repetir lo que oyó, pero no es fuente."
+        }
+      ],
+      "explanation": "La mejor fuente es quien tiene autoridad o conocimiento directo sobre el tema."
+    },
+    {
+      "id": "rumor-3",
+      "tier": 1,
+      "prompt": "Una foto de una ballena en el muelle se comparte como «hoy». ¿Qué herramienta revela si es de otro año?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La búsqueda inversa de imágenes",
+          "correct": true,
+          "feedback": "Sí: muestra dónde y cuándo apareció la foto antes."
+        },
+        {
+          "id": "b",
+          "text": "Contar cuántos «me gusta» tiene",
+          "correct": false,
+          "feedback": "La popularidad no dice nada de la fecha de la foto."
+        },
+        {
+          "id": "c",
+          "text": "Ampliar la foto para verla mejor",
+          "correct": false,
+          "feedback": "Ver mejor la imagen no revela su origen."
+        }
+      ],
+      "explanation": "La búsqueda inversa encuentra apariciones anteriores de una imagen y delata las fotos recicladas."
+    },
+    {
+      "id": "rumor-4",
+      "tier": 1,
+      "prompt": "¿Qué palabra delata que un titular opina en vez de informar?",
+      "context": "«Escandaloso aumento del pasaje de la lancha»",
+      "options": [
+        {
+          "id": "a",
+          "text": "«Aumento»",
+          "correct": false,
+          "feedback": "«Aumento» describe un hecho comprobable."
+        },
+        {
+          "id": "b",
+          "text": "«Escandaloso»",
+          "correct": true,
+          "feedback": "Correcto: califica y toma partido."
+        },
+        {
+          "id": "c",
+          "text": "«Pasaje»",
+          "correct": false,
+          "feedback": "Es el tema de la nota, no una valoración."
+        }
+      ],
+      "explanation": "Los adjetivos valorativos en un titular informativo son una señal de opinión o de sensacionalismo."
+    },
+    {
+      "id": "rumor-5",
+      "tier": 2,
+      "prompt": "Una cita dice: «El puente es un peligro», atribuida al ingeniero de la obra. En el video completo dice: «Sin la baranda, el puente sería un peligro; por eso la instalamos». ¿Qué pasó?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La cita es textual, así que la nota es correcta",
+          "correct": false,
+          "feedback": "Las palabras están, pero el sentido cambió por completo."
+        },
+        {
+          "id": "b",
+          "text": "Recortaron la cita y le cambiaron el sentido",
+          "correct": true,
+          "feedback": "Exacto: sacada de contexto, dice lo contrario."
+        },
+        {
+          "id": "c",
+          "text": "El ingeniero se contradijo",
+          "correct": false,
+          "feedback": "No se contradijo: alguien omitió la condición."
+        }
+      ],
+      "explanation": "Verificar una cita es leerla completa: un recorte puede invertir su sentido."
+    },
+    {
+      "id": "rumor-6",
+      "tier": 2,
+      "prompt": "Una nota sobre una protesta usa una foto real, pero de una marcha de hace tres años en otra ciudad. ¿Qué decide la radio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Emitirla: la foto es real",
+          "correct": false,
+          "feedback": "Real no es lo mismo que fiel: no muestra este hecho."
+        },
+        {
+          "id": "b",
+          "text": "Pedir corrección: usar una imagen del hecho o rotularla como archivo",
+          "correct": true,
+          "feedback": "Bien: la imagen debe corresponder al hecho o decir que no lo hace."
+        },
+        {
+          "id": "c",
+          "text": "Descartar la noticia completa",
+          "correct": false,
+          "feedback": "Si la protesta ocurrió, el problema es la imagen, no el hecho."
+        }
+      ],
+      "explanation": "Una imagen fuera de contexto engaña aunque sea auténtica; se corrige con una foto del hecho o con el rótulo de archivo."
+    },
+    {
+      "id": "rumor-7",
+      "tier": 2,
+      "prompt": "Un «estudio» dice que el 90 % de los jóvenes prefiere no votar. Lo publica una marca de videojuegos y no dice cuántas personas respondieron. ¿Qué falla primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La fecha",
+          "correct": false,
+          "feedback": "No sabemos nada sospechoso de la fecha."
+        },
+        {
+          "id": "b",
+          "text": "La fuente y su método",
+          "correct": true,
+          "feedback": "Sí: sin muestra ni método, y con un interés ajeno al tema."
+        },
+        {
+          "id": "c",
+          "text": "La imagen",
+          "correct": false,
+          "feedback": "El problema está en quién lo dice y cómo lo midió."
+        }
+      ],
+      "explanation": "Una cifra sin muestra ni método, publicada por alguien sin relación con el tema, no sostiene una noticia."
+    },
+    {
+      "id": "rumor-8",
+      "tier": 2,
+      "prompt": "Dos medios distintos publican la misma noticia. ¿Basta para darla por verificada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sí, dos medios no pueden equivocarse a la vez",
+          "correct": false,
+          "feedback": "Pueden, sobre todo si uno copió al otro."
+        },
+        {
+          "id": "b",
+          "text": "No: hay que ver si ambos tienen fuentes propias o si uno copió al otro",
+          "correct": true,
+          "feedback": "Exacto: dos copias de un mismo rumor siguen siendo un rumor."
+        },
+        {
+          "id": "c",
+          "text": "Solo si uno de los dos es de la capital",
+          "correct": false,
+          "feedback": "El lugar del medio no verifica nada."
+        }
+      ],
+      "explanation": "La confirmación cuenta cuando proviene de fuentes independientes, no de medios que se replican entre sí."
+    },
+    {
+      "id": "rumor-9",
+      "tier": 3,
+      "prompt": "Titular: «El desempleo en la isla se duplicó». El informe oficial dice que pasó de 4 % a 8 % en un trimestre, entre jóvenes de 18 a 20 años. ¿Qué haría una buena editora?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Emitirlo: la cifra sí se duplicó",
+          "correct": false,
+          "feedback": "Se duplicó solo en un grupo y un periodo: el titular lo vuelve general."
+        },
+        {
+          "id": "b",
+          "text": "Corregir el titular para precisar grupo y periodo",
+          "correct": true,
+          "feedback": "Bien: el dato es real, el alcance estaba inflado."
+        },
+        {
+          "id": "c",
+          "text": "Descartarlo porque el informe es oficial",
+          "correct": false,
+          "feedback": "Que sea oficial es una razón para usarlo bien, no para descartarlo."
+        }
+      ],
+      "explanation": "Un dato verdadero con el alcance cambiado engaña: el titular debe conservar a quién y a qué periodo se refiere."
+    },
+    {
+      "id": "rumor-10",
+      "tier": 3,
+      "prompt": "Una cuenta con el nombre «Capitanía del Puerto Oficial» anuncia un cierre. Tiene 300 seguidores y se creó la semana pasada. ¿Qué indica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que es la cuenta nueva de la Capitanía",
+          "correct": false,
+          "feedback": "Podría serlo, pero hay que confirmarlo en el sitio oficial."
+        },
+        {
+          "id": "b",
+          "text": "Que puede ser una cuenta suplantadora: hay que confirmarlo en el canal oficial",
+          "correct": true,
+          "feedback": "Exacto: un nombre no prueba identidad."
+        },
+        {
+          "id": "c",
+          "text": "Que el cierre es seguro porque dice «Oficial»",
+          "correct": false,
+          "feedback": "Cualquiera puede escribir «Oficial» en un nombre."
+        }
+      ],
+      "explanation": "Las cuentas suplantadoras imitan nombres oficiales; la identidad se confirma en los canales ya conocidos de la institución."
+    },
+    {
+      "id": "rumor-11",
+      "tier": 3,
+      "prompt": "Una nota verificada de hace un año reaparece hoy, sin cambios, y se vuelve viral. ¿Cuál es el problema?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ninguno: estaba verificada",
+          "correct": false,
+          "feedback": "Estaba verificada para su momento, no para hoy."
+        },
+        {
+          "id": "b",
+          "text": "Que la gente la lee como actual y puede tomar decisiones con información vencida",
+          "correct": true,
+          "feedback": "Bien: la fecha es parte de la verdad de una noticia."
+        },
+        {
+          "id": "c",
+          "text": "Que el medio original mintió",
+          "correct": false,
+          "feedback": "El medio no mintió; el problema es el contexto temporal."
+        }
+      ],
+      "explanation": "La vigencia es parte de la verificación: una noticia cierta en su momento puede desinformar si circula como actual."
+    },
+    {
+      "id": "rumor-12",
+      "tier": 3,
+      "prompt": "Tienes 10 minutos antes de salir al aire y una nota dudosa pero llamativa. ¿Qué decisión protege más a la audiencia?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Emitirla con un «al parecer» para cubrirse",
+          "correct": false,
+          "feedback": "El «al parecer» no impide que la gente la crea y la repita."
+        },
+        {
+          "id": "b",
+          "text": "Esperar a verificarla para la siguiente emisión",
+          "correct": true,
+          "feedback": "Exacto: llegar segundo con la verdad vale más que primero con un error."
+        },
+        {
+          "id": "c",
+          "text": "Emitirla y corregir después si resulta falsa",
+          "correct": false,
+          "feedback": "La corrección casi nunca llega tan lejos como el error."
+        }
+      ],
+      "explanation": "Ante la duda, la responsabilidad editorial es verificar antes de difundir, aunque se pierda la primicia."
+    }
+  ]
+}

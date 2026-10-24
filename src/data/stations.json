@@ -65,13 +65,12 @@
     "islandId": "comunicarte",
     "title": "Edición de cierre",
     "type": "desafio",
-    "summary": "El desafío de la isla: una edición más exigente, con menos tiempo y señales más sutiles.",
+    "summary": "El desafío de la isla: enfrenta a la Bruma de los rumores, que se vuelve más sutil a cada fase.",
     "xp": 120,
     "minutes": 15,
     "requires": ["comunicarte-bitacora-editor"],
     "availability": "disponible",
-    "formats": ["interactivo"],
-    "minigame": "sala-de-redaccion"
+    "formats": ["interactivo"]
   },
 
   {

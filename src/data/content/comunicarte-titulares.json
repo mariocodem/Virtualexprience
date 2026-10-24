@@ -1,0 +1,159 @@
+{
+  "kind": "practicar",
+  "intro": "En el taller de titulares, la editora jefe te pasa borradores. Decide cuál informa con precisión y cuál exagera lo que dice la nota.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "titulares-1",
+      "tier": 1,
+      "prompt": "¿Qué tipo de enunciado es este?",
+      "context": "«La feria del libro del puerto es la mejor de toda la región.»",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un hecho",
+          "correct": false,
+          "feedback": "«La mejor» no se puede comprobar: es una valoración."
+        },
+        {
+          "id": "b",
+          "text": "Una opinión",
+          "correct": true,
+          "feedback": "Correcto: compara y califica sin un dato que lo sostenga."
+        }
+      ],
+      "explanation": "Los superlativos («la mejor», «la peor») sin un dato verificable expresan una opinión."
+    },
+    {
+      "id": "titulares-2",
+      "tier": 1,
+      "prompt": "La nota dice: «12 de las 40 lanchas no pasaron la revisión técnica». ¿Qué titular la resume con precisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Caos en el puerto: las lanchas son un peligro",
+          "correct": false,
+          "feedback": "Generaliza a todas las lanchas y agrega una valoración («caos»)."
+        },
+        {
+          "id": "b",
+          "text": "12 de 40 lanchas no pasaron la revisión técnica",
+          "correct": true,
+          "feedback": "Exacto: conserva la cifra y la proporción."
+        },
+        {
+          "id": "c",
+          "text": "Casi todas las lanchas reprobaron la revisión",
+          "correct": false,
+          "feedback": "12 de 40 es el 30 %: «casi todas» distorsiona la cifra."
+        }
+      ],
+      "explanation": "Un titular preciso conserva las cifras de la nota y no las convierte en generalizaciones."
+    },
+    {
+      "id": "titulares-3",
+      "tier": 2,
+      "prompt": "¿Cuál de estos titulares mezcla hecho y opinión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El concejo aprobó el presupuesto del malecón por 7 votos contra 2",
+          "correct": false,
+          "feedback": "Informa quién, qué y cómo votó, sin calificar."
+        },
+        {
+          "id": "b",
+          "text": "El concejo aprobó, por fin, el necesario presupuesto del malecón",
+          "correct": true,
+          "feedback": "Sí: «por fin» y «necesario» toman partido dentro de un titular informativo."
+        },
+        {
+          "id": "c",
+          "text": "El presupuesto del malecón se discutirá el martes",
+          "correct": false,
+          "feedback": "Es un hecho con fecha, sin valoración."
+        }
+      ],
+      "explanation": "Palabras como «por fin», «necesario» o «polémico» introducen una postura en un titular que debería informar."
+    },
+    {
+      "id": "titulares-4",
+      "tier": 2,
+      "prompt": "La nota dice: «Un estudio con 30 estudiantes encontró que quienes duermen ocho horas recuerdan más vocabulario». ¿Qué titular exagera?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dormir ocho horas, ligado a recordar más vocabulario en un estudio pequeño",
+          "correct": false,
+          "feedback": "Conserva el alcance: «ligado» y «estudio pequeño»."
+        },
+        {
+          "id": "b",
+          "text": "Científicos demuestran que dormir te vuelve más inteligente",
+          "correct": true,
+          "feedback": "Correcto: convierte una asociación en 30 personas en una prueba general sobre inteligencia."
+        },
+        {
+          "id": "c",
+          "text": "Un estudio relaciona el sueño con la memoria de vocabulario",
+          "correct": false,
+          "feedback": "Es fiel a lo que encontró el estudio."
+        }
+      ],
+      "explanation": "Exagerar un estudio es cambiarle el alcance: de «relaciona» a «demuestra», de un grupo pequeño a «todos»."
+    },
+    {
+      "id": "titulares-5",
+      "tier": 3,
+      "prompt": "La alcaldesa dijo: «Si no llega el dinero del departamento, el puente podría retrasarse». ¿Qué titular es fiel?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Alcaldesa anuncia que el puente se retrasará",
+          "correct": false,
+          "feedback": "Convierte una posibilidad condicionada en un anuncio."
+        },
+        {
+          "id": "b",
+          "text": "El puente podría retrasarse si no llegan recursos del departamento, dice la alcaldesa",
+          "correct": true,
+          "feedback": "Bien: conserva la condición y el «podría»."
+        },
+        {
+          "id": "c",
+          "text": "El departamento frena el puente, según la alcaldesa",
+          "correct": false,
+          "feedback": "Atribuye una acción que la alcaldesa no afirmó."
+        }
+      ],
+      "explanation": "Las condiciones («si…») y los modos («podría») son parte de la cita: quitarlos cambia lo que se dijo."
+    },
+    {
+      "id": "titulares-6",
+      "tier": 3,
+      "prompt": "¿Qué titular es el más completo para la audiencia de la radio?",
+      "context": "Nota: la Capitanía suspende las salidas del muelle norte el sábado de 8 a. m. a 2 p. m.; las lanchas saldrán desde el muelle sur.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cierran el muelle norte",
+          "correct": false,
+          "feedback": "Es cierto, pero no dice cuándo ni qué hacer."
+        },
+        {
+          "id": "b",
+          "text": "Sábado de 8 a 2: lanchas saldrán por el muelle sur por cierre del norte",
+          "correct": true,
+          "feedback": "Exacto: dice qué, cuándo y qué alternativa tiene la gente."
+        },
+        {
+          "id": "c",
+          "text": "Otra vez problemas en el muelle norte",
+          "correct": false,
+          "feedback": "Insinúa un historial y no informa lo esencial."
+        }
+      ],
+      "explanation": "Comunicar con propósito es pensar en quien escucha: qué cambia, cuándo y qué puede hacer."
+    }
+  ]
+}

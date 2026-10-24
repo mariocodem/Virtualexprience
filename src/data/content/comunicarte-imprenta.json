@@ -1,0 +1,144 @@
+{
+  "kind": "explorar",
+  "intro": "En la imprenta del puerto se arman cada mañana las hojas que leerá toda la isla. Antes de entrar a la sala de redacción, aprende qué distingue una noticia de un rumor o de una opinión.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "Una noticia empieza por un hecho",
+          "body": "Un hecho es algo que ocurrió y que se puede comprobar: quién, qué, cuándo y dónde. «El muelle norte cerrará el sábado de 8 a. m. a 2 p. m.» es un hecho verificable. «El muelle está horrible» no lo es: es una valoración."
+        },
+        {
+          "heading": "Las fuentes sostienen el hecho",
+          "body": "Una noticia dice de dónde sale la información: un documento, una autoridad que decide sobre el tema, una persona que lo presenció. Cuanto más directa y responsable es la fuente, más confiable es la nota. «Me contaron» o «dicen en redes» no son fuentes."
+        },
+        {
+          "heading": "Informar no es opinar",
+          "body": "La columna de opinión interpreta y toma partido, y está bien que lo haga mientras se presente como opinión. La noticia, en cambio, separa los hechos de los adjetivos. Cuando un titular mezcla ambos —«Desastrosa decisión cierra el muelle»— ya está opinando."
+        },
+        {
+          "heading": "Comunicar con propósito",
+          "body": "Quien publica decide qué llega a muchas personas. Por eso la pregunta no es solo «¿es cierto?», sino también «¿es relevante?, ¿está completo?, ¿a quién afecta?». Comunicar con propósito es responder esas preguntas antes de difundir."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida a la imprenta del puerto. Aquí se arman las noticias que leerá la isla.",
+        "Una noticia empieza por un hecho: algo que pasó y que se puede comprobar. Quién, qué, cuándo y dónde.",
+        "El hecho necesita una fuente: un documento, una autoridad que decide sobre el tema o alguien que lo vio. «Dicen en redes» no es una fuente.",
+        "Informar no es opinar. La opinión interpreta y toma partido; la noticia separa los hechos de los adjetivos.",
+        "Y antes de publicar, pregúntate: ¿es cierto, es relevante, está completo y a quién afecta? Eso es comunicar con propósito."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "Un hecho",
+          "caption": "La noticia empieza por algo que ocurrió y se puede comprobar: quién, qué, cuándo y dónde."
+        },
+        {
+          "title": "Una fuente",
+          "caption": "Cada dato dice de dónde sale: un documento, una autoridad responsable o un testigo directo."
+        },
+        {
+          "title": "Sin adjetivos de más",
+          "caption": "Si el titular califica —«desastrosa», «increíble»— ya está opinando, no informando."
+        },
+        {
+          "title": "Con propósito",
+          "caption": "Antes de difundir: ¿es cierto, es relevante, está completo y a quién afecta?"
+        }
+      ]
+    },
+    "infografia": {
+      "title": "Del hecho a la noticia, en cuatro pasos",
+      "nodes": [
+        { "label": "Hecho", "detail": "Algo que ocurrió y se puede comprobar." },
+        { "label": "Fuente", "detail": "Quién lo sabe de primera mano o lo decide." },
+        { "label": "Contexto", "detail": "Cuándo, dónde y a quién afecta." },
+        { "label": "Redacción", "detail": "Hechos primero, sin adjetivos que opinen." }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Clasifica cada frase de la hoja del día: ¿informa un hecho o expresa una opinión?",
+      "categories": [
+        { "id": "hecho", "label": "Hecho" },
+        { "id": "opinion", "label": "Opinión" }
+      ],
+      "items": [
+        {
+          "text": "La lancha a la isla de NeuroMath saldrá a las 7:30 a. m. desde el muelle sur.",
+          "category": "hecho"
+        },
+        {
+          "text": "Es el peor horario que se le pudo ocurrir a la Capitanía.",
+          "category": "opinion"
+        },
+        {
+          "text": "Según el boletín del hospital, la vacunación va hasta las 7 p. m.",
+          "category": "hecho"
+        },
+        { "text": "La feria del puerto de este año será inolvidable.", "category": "opinion" },
+        {
+          "text": "El colegio entregó los resultados de las pruebas el jueves en la mañana.",
+          "category": "hecho"
+        }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "imprenta-c1",
+      "tier": 1,
+      "prompt": "¿Cuál de estos titulares informa sin opinar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Vergonzoso: otra vez sube el pasaje de la lancha",
+          "correct": false,
+          "feedback": "«Vergonzoso» y «otra vez» califican: el titular ya opina."
+        },
+        {
+          "id": "b",
+          "text": "El pasaje de la lancha sube 500 pesos desde el lunes",
+          "correct": true,
+          "feedback": "Dice qué cambia, cuánto y desde cuándo, sin adjetivos."
+        },
+        {
+          "id": "c",
+          "text": "Nadie aguanta más los precios de la lancha",
+          "correct": false,
+          "feedback": "«Nadie aguanta» es una generalización que no se puede comprobar."
+        }
+      ],
+      "explanation": "Un titular informativo presenta hechos comprobables —qué, cuánto, cuándo— y deja la valoración al lector."
+    },
+    {
+      "id": "imprenta-c2",
+      "tier": 2,
+      "prompt": "Una nota dice: «El cierre del muelle afectará a los pescadores, según comentan en el barrio». ¿Qué le falta para sostenerse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una fuente identificable, como la asociación de pescadores o la Capitanía",
+          "correct": true,
+          "feedback": "Exacto: «comentan en el barrio» no permite comprobar nada."
+        },
+        {
+          "id": "b",
+          "text": "Un titular más llamativo",
+          "correct": false,
+          "feedback": "Llamar la atención no hace más confiable una nota."
+        },
+        {
+          "id": "c",
+          "text": "Más adjetivos que muestren la gravedad",
+          "correct": false,
+          "feedback": "Los adjetivos opinan; lo que falta es una fuente."
+        }
+      ],
+      "explanation": "Toda afirmación en una noticia necesita una fuente identificable y responsable que la respalde."
+    }
+  ]
+}

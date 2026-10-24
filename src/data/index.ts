@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { Island, IslandId, Station, World } from '@/types/domain';
+import type { Island, IslandId, MinigameId, Station, World } from '@/types/domain';
 import badgesJson from './badges.json';
 import islandsJson from './islands.json';
 import levelsJson from './levels.json';
@@ -63,4 +63,9 @@ export function getStation(id: string): Station | undefined {
 /** Estaciones de una isla en el orden sugerido del sendero. */
 export function stationsOf(islandId: IslandId): Station[] {
   return world.stations.filter((station) => station.islandId === islandId);
+}
+
+/** Isla que aloja un minijuego (la de la estación que lo usa). */
+export function minigameIsland(id: MinigameId): IslandId | undefined {
+  return world.stations.find((station) => station.minigame === id)?.islandId;
 }

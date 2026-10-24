@@ -149,6 +149,8 @@ export const puentesContentSchema = z.strictObject({
   kind: z.literal('reto'),
   minigame: z.literal('puentes-de-fractal'),
   intro: text,
+  /** Pista de Brújula por concepto, tras una prueba fallida. */
+  hints: z.record(bridgeSchema.shape.concept, text),
   bridges: z.array(bridgeSchema).min(6),
 });
 

@@ -7,11 +7,17 @@ const SalaDeRedaccion = lazy(async () => ({
   default: (await import('./sala-de-redaccion/SalaDeRedaccion')).SalaDeRedaccion,
 }));
 
+const PuentesDeFractal = lazy(async () => ({
+  default: (await import('./puentes-de-fractal/PuentesDeFractal')).PuentesDeFractal,
+}));
+
 /** Elige el minijuego de la estación según su contenido. */
 export function MinigameHost({ content, ...props }: MinigameProps<RetoContent>) {
   switch (content.minigame) {
     case 'sala-de-redaccion':
       return <SalaDeRedaccion content={content} {...props} />;
+    case 'puentes-de-fractal':
+      return <PuentesDeFractal content={content} {...props} />;
     default:
       return null;
   }

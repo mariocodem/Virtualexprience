@@ -114,6 +114,18 @@
     }
   },
   {
+    "id": "constructor-de-puentes",
+    "name": "Constructor de puentes",
+    "description": "En Puentes de Fractal, todos los puentes de una partida resistieron la vagoneta.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "puentes-de-fractal",
+      "metric": "accuracy",
+      "min": 1
+    }
+  },
+  {
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",

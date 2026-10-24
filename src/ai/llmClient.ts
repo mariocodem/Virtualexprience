@@ -7,12 +7,16 @@ import { outputs, type AiInput, type AiOutput, type AiTask } from './prompts';
  * motor local. La API key no existe en el navegador.
  */
 const ENDPOINT: string = import.meta.env.VITE_BRUJULA_URL ?? '/api/brujula';
+/** Tras un fallo del proxy se espera antes de volver a intentarlo: sin red, no se insiste. */
+const BACKOFF_MS = 60_000;
+let pausedUntil = 0;
 
 export async function askAi<T extends AiTask>(
   input: AiInput & { task: T },
   timeoutMs = 6000,
 ): Promise<AiOutput<T> | null> {
   const status = useAiStatus.getState();
+  if (Date.now() < pausedUntil) return null;
   try {
     const response = await fetch(ENDPOINT, {
       method: 'POST',
@@ -21,6 +25,8 @@ export async function askAi<T extends AiTask>(
       signal: AbortSignal.timeout(timeoutMs),
     });
     if (!response.ok) {
+      // Una entrada rechazada (400) es de esa petición; lo demás indica que no hay proxy útil.
+      if (response.status !== 400) pausedUntil = Date.now() + BACKOFF_MS;
       status.setMode('sin-conexion');
       return null;
     }
@@ -30,6 +36,7 @@ export async function askAi<T extends AiTask>(
     status.setMode('en-linea');
     return parsed.data as AiOutput<T>;
   } catch {
+    pausedUntil = Date.now() + BACKOFF_MS;
     status.setMode('sin-conexion');
     return null;
   }

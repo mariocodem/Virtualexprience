@@ -183,7 +183,7 @@
     "minutes": 6,
     "requires": [],
     "availability": "disponible",
-    "formats": ["texto", "audio", "infografia"]
+    "formats": ["texto", "audio", "video", "infografia", "interactivo"]
   },
   {
     "id": "gerencia-decisiones",
@@ -219,7 +219,7 @@
     "xp": 120,
     "minutes": 15,
     "requires": ["gerencia-mercado"],
-    "availability": "en-preparacion",
+    "availability": "disponible",
     "formats": ["interactivo"]
   },
 

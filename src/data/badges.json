@@ -138,6 +138,18 @@
     }
   },
   {
+    "id": "cuentas-claras",
+    "name": "Cuentas claras",
+    "description": "En el Día de mercado, al menos el 80 % de tus pedidos respondió a lo que decían los datos.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "dia-de-mercado",
+      "metric": "accuracy",
+      "min": 0.8
+    }
+  },
+  {
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",

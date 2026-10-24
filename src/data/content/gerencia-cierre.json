@@ -1,0 +1,348 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma de la deriva",
+    "nature": "Empuja a decidir sin rumbo: por corazonada, por lo que ya se gastó o por lo que dice el más ruidoso. Se disipa cuando alguien fija un objetivo, mira los datos y cuida a su equipo.",
+    "intro": "¿Planear? ¿Para qué? Navega a ver dónde te lleva la marea. Al final, todo es suerte.",
+    "victory": "Te retiras a la deriva. Hoy el barco va donde yo quiero.",
+    "defeat": "Me deshago… Un rumbo claro y un equipo que rema junto valen más que toda mi niebla.",
+    "taunts": {
+      "phase1": [
+        "Empecemos suave: ¿para qué un objetivo si todo cambia?",
+        "Decide rápido, que pensar cansa."
+      ],
+      "phase2": [
+        "Ahora mis números mienten con la verdad.",
+        "Ya gastaste tanto… no puedes abandonar ahora, ¿verdad?"
+      ],
+      "phase3": [
+        "Última forma: decisiones que parecen valientes y son imprudentes.",
+        "Tu equipo aguanta todo. ¿O no?"
+      ],
+      "hit": [
+        "¡Fijaste el rumbo! Qué molestia.",
+        "Miraste los datos… me debilito.",
+        "Cuidaste al equipo: pierdo fuerza."
+      ],
+      "miss": [
+        "¿Ves? La corazonada siempre gana.",
+        "Otra decisión a la deriva.",
+        "Así: que decida el que grite más."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "deriva-1",
+      "tier": 1,
+      "prompt": "¿Cuál es un objetivo bien planteado para el astillero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ser el mejor astillero",
+          "correct": false,
+          "feedback": "Es una aspiración, pero no se puede medir ni tiene plazo."
+        },
+        {
+          "id": "b",
+          "text": "Entregar 6 lanchas revisadas antes de fin de mes",
+          "correct": true,
+          "feedback": "Correcto: es concreto, medible y con plazo."
+        },
+        {
+          "id": "c",
+          "text": "Trabajar más duro",
+          "correct": false,
+          "feedback": "Dice cómo esforzarse, no qué lograr."
+        }
+      ],
+      "explanation": "Un objetivo útil es específico, medible y con plazo: así se sabe si se cumplió."
+    },
+    {
+      "id": "deriva-2",
+      "tier": 1,
+      "prompt": "Tu equipo tiene más tareas de las que alcanza a hacer esta semana. ¿Qué haces primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Priorizar con el equipo lo imprescindible y aplazar lo demás",
+          "correct": true,
+          "feedback": "Bien: decidir qué no hacer también es gestionar."
+        },
+        {
+          "id": "b",
+          "text": "Pedir horas extra a todos sin revisar nada",
+          "correct": false,
+          "feedback": "Agota al equipo sin resolver la sobrecarga."
+        },
+        {
+          "id": "c",
+          "text": "Empezar por las tareas más fáciles",
+          "correct": false,
+          "feedback": "Lo fácil no siempre es lo importante."
+        }
+      ],
+      "explanation": "Ante recursos limitados, priorizar por aporte e importancia evita que lo urgente desplace a lo esencial."
+    },
+    {
+      "id": "deriva-3",
+      "tier": 1,
+      "prompt": "¿Qué caracteriza a un liderazgo con propósito?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Decidir todo sin consultar para ir más rápido",
+          "correct": false,
+          "feedback": "La rapidez sin participación suele costar compromiso."
+        },
+        {
+          "id": "b",
+          "text": "Orientar al equipo hacia un objetivo compartido, escuchando y asumiendo responsabilidad",
+          "correct": true,
+          "feedback": "Exacto: dirección, escucha y responsabilidad."
+        },
+        {
+          "id": "c",
+          "text": "Evitar cualquier conflicto",
+          "correct": false,
+          "feedback": "Los conflictos bien llevados también hacen crecer al equipo."
+        }
+      ],
+      "explanation": "Liderar con propósito es dar sentido al trabajo común y responder por las decisiones."
+    },
+    {
+      "id": "deriva-4",
+      "tier": 1,
+      "prompt": "Un presupuesto de 10 millones gastó 7 en la primera mitad del proyecto. ¿Qué indica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que todo va según lo planeado",
+          "correct": false,
+          "feedback": "A mitad de camino se gastó el 70 %: va por encima del ritmo."
+        },
+        {
+          "id": "b",
+          "text": "Que el gasto va adelantado y hay que revisarlo antes de quedarse sin fondos",
+          "correct": true,
+          "feedback": "Bien: quedan 3 millones para la otra mitad."
+        },
+        {
+          "id": "c",
+          "text": "Que sobrará dinero",
+          "correct": false,
+          "feedback": "Al ritmo actual, faltaría dinero."
+        }
+      ],
+      "explanation": "Comparar el gasto con el avance permite corregir a tiempo: al ritmo actual faltaría presupuesto."
+    },
+    {
+      "id": "deriva-5",
+      "tier": 2,
+      "prompt": "Ya invertiste 6 meses en un producto que nadie compra. Un socio dice: «No podemos abandonarlo después de tanto esfuerzo». ¿Qué error comete?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ninguno: la perseverancia siempre paga",
+          "correct": false,
+          "feedback": "Perseverar sin evidencia es insistir en el error."
+        },
+        {
+          "id": "b",
+          "text": "Decide por los costos hundidos y no por lo que viene",
+          "correct": true,
+          "feedback": "Exacto: el esfuerzo pasado no cambia las ventas futuras."
+        },
+        {
+          "id": "c",
+          "text": "Debería haber invertido más",
+          "correct": false,
+          "feedback": "Invertir más sin evidencia agrava el problema."
+        }
+      ],
+      "explanation": "Los recursos ya gastados no se recuperan; la decisión debe mirar los costos y beneficios futuros."
+    },
+    {
+      "id": "deriva-6",
+      "tier": 2,
+      "prompt": "En una reunión, una persona del equipo propone una idea, pero nadie la discute porque el jefe ya dio su opinión. ¿Qué riesgo hay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que se decida por jerarquía y se pierdan buenas ideas",
+          "correct": true,
+          "feedback": "Bien: el silencio no siempre es acuerdo."
+        },
+        {
+          "id": "b",
+          "text": "Ninguno: así se ahorra tiempo",
+          "correct": false,
+          "feedback": "Se ahorra hoy y se paga después con malas decisiones."
+        },
+        {
+          "id": "c",
+          "text": "Que la reunión dure más",
+          "correct": false,
+          "feedback": "El riesgo es la calidad de la decisión, no la duración."
+        }
+      ],
+      "explanation": "Un buen liderazgo abre espacio para que las ideas se discutan por sus razones, no por quién las dice."
+    },
+    {
+      "id": "deriva-7",
+      "tier": 2,
+      "prompt": "Dos proveedores: A falla en el 2 % de sus entregas; B, en el 10 %, pero cuesta 15 % menos. Una entrega fallida detiene la producción un día. ¿Qué falta para decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nada: B es más barato",
+          "correct": false,
+          "feedback": "El precio no incluye el costo de los días detenidos."
+        },
+        {
+          "id": "b",
+          "text": "Cuánto cuesta un día detenido, para comparar el costo total de cada uno",
+          "correct": true,
+          "feedback": "Exacto: el costo total suma precio y fallas."
+        },
+        {
+          "id": "c",
+          "text": "Saber cuál proveedor es más antiguo",
+          "correct": false,
+          "feedback": "La antigüedad no responde la pregunta de costos."
+        }
+      ],
+      "explanation": "Comparar opciones exige el costo total, no solo el precio: incluye riesgos y sus consecuencias."
+    },
+    {
+      "id": "deriva-8",
+      "tier": 2,
+      "prompt": "Delegar una tarea significa…",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pasarla a otra persona y olvidarse de ella",
+          "correct": false,
+          "feedback": "Eso es abandonarla, no delegarla."
+        },
+        {
+          "id": "b",
+          "text": "Asignarla con un objetivo claro, la autoridad necesaria y un momento para revisar juntos",
+          "correct": true,
+          "feedback": "Bien: se confía y se acompaña."
+        },
+        {
+          "id": "c",
+          "text": "Hacerla uno mismo porque así sale mejor",
+          "correct": false,
+          "feedback": "No delegar sobrecarga al líder y frena el crecimiento del equipo."
+        }
+      ],
+      "explanation": "Delegar bien combina confianza, claridad y seguimiento."
+    },
+    {
+      "id": "deriva-9",
+      "tier": 3,
+      "prompt": "El astillero cumplió su meta de entregas, pero la mitad del equipo pidió traslado. ¿Cómo evalúas la gestión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Exitosa: se cumplió la meta",
+          "correct": false,
+          "feedback": "Una meta cumplida a costa del equipo compromete las siguientes."
+        },
+        {
+          "id": "b",
+          "text": "Incompleta: el resultado no es sostenible si el equipo se va",
+          "correct": true,
+          "feedback": "Exacto: la gestión se mide también por lo que deja para el futuro."
+        },
+        {
+          "id": "c",
+          "text": "Fallida por completo",
+          "correct": false,
+          "feedback": "Hubo un logro real; el problema es su costo humano."
+        }
+      ],
+      "explanation": "Una buena gestión equilibra resultados y bienestar; si uno se logra destruyendo el otro, no es sostenible."
+    },
+    {
+      "id": "deriva-10",
+      "tier": 3,
+      "prompt": "Las ventas promedian 100 lanchas al año, pero un solo cliente compró 40 el año pasado y no volverá. ¿Cuántas conviene planear para este año?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unas 100, porque es el promedio",
+          "correct": false,
+          "feedback": "El promedio incluye un cliente excepcional que no se repetirá."
+        },
+        {
+          "id": "b",
+          "text": "Unas 60, descontando el cliente excepcional",
+          "correct": true,
+          "feedback": "Bien: se planea con la demanda que se espera repetir."
+        },
+        {
+          "id": "c",
+          "text": "Unas 140, para crecer",
+          "correct": false,
+          "feedback": "Crecer es un objetivo, no un dato: planear así arriesga inventario."
+        }
+      ],
+      "explanation": "Planear con datos exige separar lo recurrente de lo excepcional antes de proyectar."
+    },
+    {
+      "id": "deriva-11",
+      "tier": 3,
+      "prompt": "Una tormenta retrasará una semana la entrega más importante del año. ¿Qué haces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No decir nada y esperar que el cliente no lo note",
+          "correct": false,
+          "feedback": "Ocultar un retraso destruye la confianza cuando se descubre."
+        },
+        {
+          "id": "b",
+          "text": "Avisar al cliente de inmediato con un plan y una nueva fecha realista",
+          "correct": true,
+          "feedback": "Exacto: transparencia y plan concreto mantienen la confianza."
+        },
+        {
+          "id": "c",
+          "text": "Prometer la fecha original y obligar al equipo a trabajar día y noche",
+          "correct": false,
+          "feedback": "Una promesa irreal agota al equipo y probablemente igual se incumple."
+        }
+      ],
+      "explanation": "Ante un imprevisto, comunicar pronto, con un plan realista, protege la relación y al equipo."
+    },
+    {
+      "id": "deriva-12",
+      "tier": 3,
+      "prompt": "Un indicador muestra que el tiempo de reparación bajó de 5 a 3 días, pero las quejas por reparaciones mal hechas se duplicaron. ¿Qué concluyes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el equipo mejoró: repara más rápido",
+          "correct": false,
+          "feedback": "Mirar un solo indicador oculta lo que se sacrificó."
+        },
+        {
+          "id": "b",
+          "text": "Que se ganó rapidez a costa de calidad: hay que medir ambos juntos",
+          "correct": true,
+          "feedback": "Bien: los indicadores se leen en conjunto."
+        },
+        {
+          "id": "c",
+          "text": "Que las quejas no importan si se cumple el tiempo",
+          "correct": false,
+          "feedback": "Las quejas son el costo de esa rapidez."
+        }
+      ],
+      "explanation": "Optimizar un solo indicador puede empeorar otros: la gestión mira el conjunto."
+    }
+  ]
+}

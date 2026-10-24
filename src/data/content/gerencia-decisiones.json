@@ -1,0 +1,163 @@
+{
+  "kind": "practicar",
+  "intro": "En la oficina del astillero llegan decisiones todos los días. Compara las opciones con criterios explícitos y elige la que mejor se justifica con los datos.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "decisiones-1",
+      "tier": 1,
+      "prompt": "Hay que elegir proveedor de madera. A cobra 2 millones y entrega en 10 días; B cobra 2,2 millones y entrega en 3 días. La lancha debe estar lista en una semana. ¿Cuál conviene?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A, porque es más barato",
+          "correct": false,
+          "feedback": "Más barato, pero no cumple el plazo: la entrega llegaría tarde."
+        },
+        {
+          "id": "b",
+          "text": "B, porque cumple el plazo aunque cueste un poco más",
+          "correct": true,
+          "feedback": "Correcto: el plazo es un criterio que A no cumple."
+        },
+        {
+          "id": "c",
+          "text": "Cualquiera: da lo mismo",
+          "correct": false,
+          "feedback": "Con el plazo de una semana, no da lo mismo."
+        }
+      ],
+      "explanation": "Primero se descartan las opciones que no cumplen un requisito obligatorio (el plazo); luego se compara el resto por costo."
+    },
+    {
+      "id": "decisiones-2",
+      "tier": 1,
+      "prompt": "Para decidir entre dos motores, ¿qué es un criterio explícito?",
+      "options": [
+        {
+          "id": "a",
+          "text": "«Me gusta más el rojo»",
+          "correct": false,
+          "feedback": "Es una preferencia personal, no un criterio que otros puedan verificar."
+        },
+        {
+          "id": "b",
+          "text": "«Consumo de combustible por hora de navegación»",
+          "correct": true,
+          "feedback": "Bien: es medible y se puede comparar entre opciones."
+        },
+        {
+          "id": "c",
+          "text": "«El que recomiende cualquier persona»",
+          "correct": false,
+          "feedback": "Una recomendación sin razones no es un criterio."
+        }
+      ],
+      "explanation": "Un criterio explícito es medible o verificable, y permite que otros revisen por qué se eligió una opción."
+    },
+    {
+      "id": "decisiones-3",
+      "tier": 2,
+      "prompt": "Dos lanchas se comparan con pesos: seguridad (50 %), costo (30 %) y velocidad (20 %). La lancha X obtiene 8, 6 y 9; la Y, 9, 5 y 6 (sobre 10). ¿Cuál gana?",
+      "options": [
+        {
+          "id": "a",
+          "text": "X, con 7,6 puntos",
+          "correct": true,
+          "feedback": "Correcto: 8×0,5 + 6×0,3 + 9×0,2 = 4 + 1,8 + 1,8 = 7,6; Y suma 4,5 + 1,5 + 1,2 = 7,2."
+        },
+        {
+          "id": "b",
+          "text": "Y, porque es la más segura",
+          "correct": false,
+          "feedback": "La seguridad pesa la mitad, pero no lo es todo: suma los demás criterios."
+        },
+        {
+          "id": "c",
+          "text": "Empatan",
+          "correct": false,
+          "feedback": "Haz la suma ponderada: X obtiene 7,6 y Y, 7,2."
+        }
+      ],
+      "explanation": "Una matriz de decisión multiplica el puntaje de cada criterio por su peso y suma: así las prioridades quedan explícitas."
+    },
+    {
+      "id": "decisiones-4",
+      "tier": 2,
+      "prompt": "Ya se gastaron 5 millones en un diseño que resultó inviable. Terminarlo costaría 4 millones más; un diseño nuevo, 3 millones. ¿Qué se debe considerar para decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Los 5 millones gastados: no se pueden perder",
+          "correct": false,
+          "feedback": "Ese dinero ya se gastó en cualquier caso: es un costo hundido."
+        },
+        {
+          "id": "b",
+          "text": "Solo los costos y beneficios de aquí en adelante: 4 contra 3 millones",
+          "correct": true,
+          "feedback": "Exacto: lo gastado no vuelve; se decide con lo que falta."
+        },
+        {
+          "id": "c",
+          "text": "Lo que opine quien hizo el primer diseño",
+          "correct": false,
+          "feedback": "Su opinión puede aportar, pero el criterio son los costos futuros."
+        }
+      ],
+      "explanation": "Los costos hundidos no cambian con la decisión; insistir por lo ya gastado es un error frecuente al decidir."
+    },
+    {
+      "id": "decisiones-5",
+      "tier": 3,
+      "prompt": "Las ventas de lanchas subieron justo después de una campaña publicitaria. ¿Qué se puede concluir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la campaña causó el aumento",
+          "correct": false,
+          "feedback": "Que algo ocurra después no prueba que sea la causa."
+        },
+        {
+          "id": "b",
+          "text": "Que hay que revisar otras causas posibles, como la temporada o los precios, antes de atribuirlo a la campaña",
+          "correct": true,
+          "feedback": "Bien: coincidencia en el tiempo no es causalidad."
+        },
+        {
+          "id": "c",
+          "text": "Que la publicidad nunca funciona",
+          "correct": false,
+          "feedback": "Tampoco se puede concluir eso: faltan datos."
+        }
+      ],
+      "explanation": "Decidir con datos exige distinguir correlación de causalidad y descartar otras explicaciones."
+    },
+    {
+      "id": "decisiones-6",
+      "tier": 3,
+      "prompt": "Un informe dice: «El 80 % de nuestros clientes está satisfecho». La encuesta solo se hizo a quienes volvieron a comprar. ¿Qué problema tiene?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ninguno: 80 % es un buen resultado",
+          "correct": false,
+          "feedback": "El número depende de a quién se le preguntó."
+        },
+        {
+          "id": "b",
+          "text": "La muestra deja por fuera a quienes no volvieron, que probablemente estaban menos satisfechos",
+          "correct": true,
+          "feedback": "Exacto: es un sesgo de selección."
+        },
+        {
+          "id": "c",
+          "text": "Debería decir 8 de cada 10",
+          "correct": false,
+          "feedback": "Es lo mismo; el problema es la muestra."
+        }
+      ],
+      "explanation": "Un dato solo representa a la población de la que se tomó: si la muestra está sesgada, la conclusión también."
+    }
+  ]
+}

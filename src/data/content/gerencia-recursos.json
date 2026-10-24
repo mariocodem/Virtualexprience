@@ -1,0 +1,138 @@
+{
+  "kind": "explorar",
+  "intro": "En el astillero de Gerencia+ se construyen las lanchas del archipiélago. Nunca sobra nada: el tiempo, el dinero y las personas alcanzan solo si se planea. Aprende cómo se reparte lo que no alcanza para todo.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "Tres recursos que siempre escasean",
+          "body": "Todo proyecto consume tiempo, dinero y el trabajo de personas. Si uno falta, los otros se resienten: con poco tiempo se paga más o se exige más al equipo; con poco dinero se tarda más. Planear es decidir cómo equilibrarlos desde el principio."
+        },
+        {
+          "heading": "Priorizar: lo importante antes que lo urgente",
+          "body": "No todo pesa igual. Una forma práctica es preguntar por cada tarea: ¿qué pasa si no se hace? ¿cuánto aporta al objetivo? Primero va lo que aporta mucho y es imprescindible; lo que aporta poco puede esperar o descartarse."
+        },
+        {
+          "heading": "Presupuestar con margen",
+          "body": "Un presupuesto lista lo que costará cada parte y deja un margen para imprevistos, que siempre llegan: una pieza que se daña, una lluvia que retrasa la obra. Sin margen, el primer imprevisto obliga a recortar en lo esencial."
+        },
+        {
+          "heading": "El equipo también es un recurso que se cuida",
+          "body": "Las personas no son máquinas: rinden mejor con roles claros, cargas equilibradas y descanso. Un plan que agota al equipo parece rápido en el papel y se vuelve lento en la práctica."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida al astillero de Gerencia+, donde se construyen las lanchas del archipiélago.",
+        "Todo proyecto usa tres recursos: tiempo, dinero y personas. Si falta uno, los otros se resienten.",
+        "Priorizar es preguntar por cada tarea: ¿qué pasa si no se hace?, ¿cuánto aporta al objetivo?",
+        "Un buen presupuesto deja margen para imprevistos, porque siempre llegan.",
+        "Y el equipo también se cuida: roles claros, cargas equilibradas y descanso. Un equipo agotado vuelve lento cualquier plan."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "Tiempo · Dinero · Personas",
+          "caption": "Los tres recursos de todo proyecto: si falta uno, los otros se resienten."
+        },
+        {
+          "title": "Priorizar",
+          "caption": "Primero lo que más aporta y es imprescindible; lo demás puede esperar."
+        },
+        {
+          "title": "Margen",
+          "caption": "Un presupuesto sin margen se rompe con el primer imprevisto."
+        },
+        {
+          "title": "Cuidar al equipo",
+          "caption": "Roles claros y cargas equilibradas: un equipo agotado retrasa todo."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "Planear con recursos limitados",
+      "nodes": [
+        { "label": "Objetivo", "detail": "¿Qué resultado concreto se busca y para cuándo?" },
+        {
+          "label": "Prioridades",
+          "detail": "¿Qué tareas aportan más y cuáles son imprescindibles?"
+        },
+        {
+          "label": "Presupuesto",
+          "detail": "¿Cuánto cuesta cada parte, con margen para imprevistos?"
+        },
+        { "label": "Equipo", "detail": "¿Quién hace qué, con qué carga y en qué tiempo?" }
+      ]
+    },
+    "interactivo": {
+      "prompt": "El astillero debe entregar una lancha en dos semanas con un presupuesto ajustado. Clasifica cada tarea según su prioridad.",
+      "categories": [
+        { "id": "imprescindible", "label": "Imprescindible" },
+        { "id": "puede-esperar", "label": "Puede esperar" }
+      ],
+      "items": [
+        { "text": "Sellar el casco para que no entre agua", "category": "imprescindible" },
+        { "text": "Pintar el nombre de la lancha con letras doradas", "category": "puede-esperar" },
+        { "text": "Instalar los chalecos salvavidas", "category": "imprescindible" },
+        { "text": "Tapizar los asientos con tela nueva", "category": "puede-esperar" },
+        { "text": "Revisar el motor antes de la entrega", "category": "imprescindible" }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "recursos-c1",
+      "tier": 1,
+      "prompt": "Un proyecto tiene poco tiempo y el mismo presupuesto. ¿Qué suele pasar si no se ajusta nada más?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nada: los recursos no se afectan entre sí",
+          "correct": false,
+          "feedback": "Tiempo, dinero y personas están conectados."
+        },
+        {
+          "id": "b",
+          "text": "Se termina exigiendo más al equipo o recortando en calidad",
+          "correct": true,
+          "feedback": "Exacto: cuando un recurso se reduce, la presión pasa a los otros."
+        },
+        {
+          "id": "c",
+          "text": "El proyecto sale más barato",
+          "correct": false,
+          "feedback": "Apurar un proyecto rara vez lo abarata."
+        }
+      ],
+      "explanation": "Tiempo, dinero y personas se compensan entre sí: reducir uno sin ajustar los demás traslada la presión al equipo o a la calidad."
+    },
+    {
+      "id": "recursos-c2",
+      "tier": 2,
+      "prompt": "¿Por qué un presupuesto debe incluir un margen para imprevistos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para gastarlo al final en lo que sobre",
+          "correct": false,
+          "feedback": "El margen no es un premio: es una reserva para lo inesperado."
+        },
+        {
+          "id": "b",
+          "text": "Porque los imprevistos llegan y, sin margen, hay que recortar en lo esencial",
+          "correct": true,
+          "feedback": "Bien: el margen protege lo imprescindible."
+        },
+        {
+          "id": "c",
+          "text": "Porque así el proyecto parece más grande",
+          "correct": false,
+          "feedback": "Inflar un presupuesto sin razón le resta credibilidad."
+        }
+      ],
+      "explanation": "El margen absorbe lo inesperado sin sacrificar las partes imprescindibles del proyecto."
+    }
+  ]
+}

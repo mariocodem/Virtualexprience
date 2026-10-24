@@ -1,0 +1,158 @@
+{
+  "kind": "reto",
+  "minigame": "puentes-de-fractal",
+  "intro": "Los puentes que unían los islotes del observatorio se cayeron con la Bruma. En el taller quedan tramos marcados de formas muy distintas: fracciones, porcentajes, medidas de plano, ecuaciones. Elige los que cubren cada hueco exactamente y pon a prueba tu cálculo con la vagoneta.",
+  "hints": {
+    "fraccion": "Para hallar una fracción de una medida, divide la medida entre el denominador y multiplica por el numerador: ¾ de 8 m = 8 ÷ 4 × 3 = 6 m.",
+    "porcentaje": "Un porcentaje es una fracción de 100: el 25 % de 24 m es 24 × 25 ÷ 100 = 6 m. El 10 % es correr la coma un lugar.",
+    "escala": "En una escala 1:200, cada centímetro del plano son 200 cm reales, es decir 2 m. Multiplica la medida del plano por la escala y pasa a metros.",
+    "ecuacion": "Despeja x con la operación inversa en ambos lados: si 2x + 1 = 17, resta 1 (2x = 16) y divide entre 2 (x = 8).",
+    "proporcion": "«El doble», «la mitad», «la tercera parte»: cada palabra es una multiplicación o una división por un número."
+  },
+  "bridges": [
+    {
+      "id": "rocas-gemelas",
+      "tier": 1,
+      "concept": "fraccion",
+      "prompt": "El hueco entre las rocas gemelas mide 12 m. Tienes dos apoyos.",
+      "gap": 12,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "½ de 14 m", "value": 7 },
+        { "id": "b", "label": "⅓ de 15 m", "value": 5 },
+        { "id": "c", "label": "¾ de 8 m", "value": 6 },
+        { "id": "d", "label": "⅔ de 12 m", "value": 8 },
+        { "id": "e", "label": "¼ de 20 m", "value": 5 }
+      ],
+      "explanation": "½ de 14 m son 7 m y ⅓ de 15 m son 5 m: 7 + 5 = 12. También sirve ¼ de 20 m, que son otros 5 m."
+    },
+    {
+      "id": "paso-gaviotas",
+      "tier": 1,
+      "concept": "porcentaje",
+      "prompt": "El paso de las gaviotas mide 10 m. Tienes dos apoyos.",
+      "gap": 10,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "50 % de 8 m", "value": 4 },
+        { "id": "b", "label": "25 % de 24 m", "value": 6 },
+        { "id": "c", "label": "10 % de 45 m", "value": 4.5 },
+        { "id": "d", "label": "75 % de 4 m", "value": 3 },
+        { "id": "e", "label": "20 % de 35 m", "value": 7 }
+      ],
+      "explanation": "50 % de 8 m = 4 m y 25 % de 24 m = 6 m: suman 10. También 75 % de 4 m (3 m) con 20 % de 35 m (7 m)."
+    },
+    {
+      "id": "brazo-norte",
+      "tier": 1,
+      "concept": "proporcion",
+      "prompt": "El brazo norte del observatorio necesita un puente de 9 m. Tienes dos apoyos.",
+      "gap": 9,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "El doble de 2,5 m", "value": 5 },
+        { "id": "b", "label": "La mitad de 8 m", "value": 4 },
+        { "id": "c", "label": "El triple de 1,5 m", "value": 4.5 },
+        { "id": "d", "label": "La mitad de 7 m", "value": 3.5 },
+        { "id": "e", "label": "La tercera parte de 18 m", "value": 6 }
+      ],
+      "explanation": "El doble de 2,5 m son 5 m y la mitad de 8 m son 4 m: 5 + 4 = 9. El triple de 1,5 m (4,5 m) necesitaría otra pieza igual."
+    },
+    {
+      "id": "canal-plano",
+      "tier": 2,
+      "concept": "escala",
+      "prompt": "En el plano del observatorio, a escala 1:200, el canal mide 6 cm. Tienes dos apoyos.",
+      "gap": 12,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "3,5 cm en el plano", "value": 7 },
+        { "id": "b", "label": "4 cm en el plano", "value": 8 },
+        { "id": "c", "label": "5 m", "value": 5 },
+        { "id": "d", "label": "2,2 cm en el plano", "value": 4.4 },
+        { "id": "e", "label": "6 m", "value": 6 }
+      ],
+      "explanation": "A escala 1:200, 1 cm del plano son 2 m reales: el canal mide 6 × 2 = 12 m. 3,5 cm del plano son 7 m, que con el tramo de 5 m suman 12."
+    },
+    {
+      "id": "cuatro-incognitas",
+      "tier": 2,
+      "concept": "ecuacion",
+      "prompt": "El hueco de las cuatro incógnitas mide 15 m. Cada pieza mide x metros: resuelve su ecuación. Tienes dos apoyos.",
+      "gap": 15,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "2x + 1 = 17", "value": 8 },
+        { "id": "b", "label": "3x = 21", "value": 7 },
+        { "id": "c", "label": "x − 4 = 2,5", "value": 6.5 },
+        { "id": "d", "label": "x ÷ 2 = 4,5", "value": 9 },
+        { "id": "e", "label": "5x = 32,5", "value": 6.5 }
+      ],
+      "explanation": "2x + 1 = 17 da x = 8, y 3x = 21 da x = 7: 8 + 7 = 15. Las dos piezas de 6,5 m suman 13 y la de 9 m quedaría corta con cualquiera de ellas."
+    },
+    {
+      "id": "tres-arcos",
+      "tier": 2,
+      "concept": "porcentaje",
+      "prompt": "El puente de los tres arcos debe cubrir 20 m. Tienes tres apoyos.",
+      "gap": 20,
+      "slots": 3,
+      "pieces": [
+        { "id": "a", "label": "40 % de 20 m", "value": 8 },
+        { "id": "b", "label": "15 % de 40 m", "value": 6 },
+        { "id": "c", "label": "120 % de 5 m", "value": 6 },
+        { "id": "d", "label": "35 % de 20 m", "value": 7 },
+        { "id": "e", "label": "5 % de 90 m", "value": 4.5 }
+      ],
+      "explanation": "40 % de 20 m = 8 m, 15 % de 40 m = 6 m y 120 % de 5 m = 6 m: suman 20. Un porcentaje mayor que 100 % da más que la medida original."
+    },
+    {
+      "id": "atolon-plano",
+      "tier": 3,
+      "concept": "escala",
+      "prompt": "En la carta del atolón, a escala 1:500, el hueco mide 3,6 cm. Tienes tres apoyos.",
+      "gap": 18,
+      "slots": 3,
+      "pieces": [
+        { "id": "a", "label": "1,2 cm en la carta", "value": 6 },
+        { "id": "b", "label": "8 m", "value": 8 },
+        { "id": "c", "label": "0,8 cm en la carta", "value": 4 },
+        { "id": "d", "label": "1,1 cm en la carta", "value": 5.5 },
+        { "id": "e", "label": "9,5 m", "value": 9.5 }
+      ],
+      "explanation": "A escala 1:500, 1 cm de la carta son 5 m: el hueco mide 3,6 × 5 = 18 m. 1,2 cm (6 m) + 8 m + 0,8 cm (4 m) = 18 m."
+    },
+    {
+      "id": "ensenada-fracciones",
+      "tier": 3,
+      "concept": "fraccion",
+      "prompt": "La ensenada del eco mide 7,5 m. Tienes dos apoyos.",
+      "gap": 7.5,
+      "slots": 2,
+      "pieces": [
+        { "id": "a", "label": "⅝ de 8 m", "value": 5 },
+        { "id": "b", "label": "2 ½ m", "value": 2.5 },
+        { "id": "c", "label": "⅗ de 6 m", "value": 3.6 },
+        { "id": "d", "label": "1,5 veces 2,5 m", "value": 3.75 },
+        { "id": "e", "label": "⅞ de 4 m", "value": 3.5 }
+      ],
+      "explanation": "⅝ de 8 m = 8 ÷ 8 × 5 = 5 m, y 5 + 2,5 = 7,5. Ojo: ⅗ de 6 m (3,6 m) y ⅞ de 4 m (3,5 m) parecen cubrirlo, pero suman 7,1 m: les faltan 40 cm."
+    },
+    {
+      "id": "faro-ecuaciones",
+      "tier": 3,
+      "concept": "ecuacion",
+      "prompt": "El último puente hacia el faro mide 21 m. Cada pieza mide x metros. Tienes tres apoyos.",
+      "gap": 21,
+      "slots": 3,
+      "pieces": [
+        { "id": "a", "label": "x + x = 14", "value": 7 },
+        { "id": "b", "label": "3x − 2 = 13", "value": 5 },
+        { "id": "c", "label": "x ÷ 3 = 3", "value": 9 },
+        { "id": "d", "label": "4x + 4 = 30", "value": 6.5 },
+        { "id": "e", "label": "2(x − 1) = 7", "value": 4.5 }
+      ],
+      "explanation": "x + x = 14 da 7; 3x − 2 = 13 da 5; x ÷ 3 = 3 da 9. 7 + 5 + 9 = 21. Resolver cada ecuación antes de probar ahorra cargas."
+    }
+  ]
+}

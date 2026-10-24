@@ -1,0 +1,328 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma del cálculo a ciegas",
+    "nature": "Prefiere la corazonada al razonamiento: invierte proporciones, confunde porcentajes y te convence de que estimar es adivinar. Se disipa con cada paso que compruebas.",
+    "intro": "¿Para qué razonar si puedes adivinar? Los números son niebla: elige el que se vea más bonito.",
+    "victory": "Te retiras contando con los dedos. Hoy los números siguen siendo míos.",
+    "defeat": "Me deshago… Cada regla que compruebas es un rayo de luz que no puedo tapar.",
+    "taunts": {
+      "phase1": [
+        "Empecemos con algo fácil. ¿O también lo vas a adivinar?",
+        "Un patrón, dos patrones… todos se parecen en la niebla."
+      ],
+      "phase2": [
+        "Ahora mezclo porcentajes con proporciones. Buena suerte.",
+        "Mis números ya no suman: se multiplican, se invierten, se esconden."
+      ],
+      "phase3": [
+        "Última forma: respuestas que parecen correctas a primera vista.",
+        "Aquí la intuición te traiciona. ¿Vas a comprobar o a confiar?"
+      ],
+      "hit": [
+        "¡Comprobaste el paso! Qué molestia.",
+        "Otra regla que se me escapa.",
+        "Estimaste antes de calcular… me debilito."
+      ],
+      "miss": [
+        "¿Ves? Adivinar es más rápido.",
+        "Esa cifra se veía bien, ¿verdad?",
+        "Un número al azar más para mi niebla."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "calculo-1",
+      "tier": 1,
+      "prompt": "¿Qué número sigue? 6, 12, 18, 24…",
+      "options": [
+        { "id": "a", "text": "28", "correct": false, "feedback": "La secuencia suma 6, no 4." },
+        { "id": "b", "text": "30", "correct": true, "feedback": "Correcto: suma 6 en cada paso." },
+        {
+          "id": "c",
+          "text": "48",
+          "correct": false,
+          "feedback": "Duplicar solo funciona del primero al segundo término."
+        }
+      ],
+      "explanation": "La diferencia constante entre términos es 6: 24 + 6 = 30."
+    },
+    {
+      "id": "calculo-2",
+      "tier": 1,
+      "prompt": "¿Cuánto es el 50 % de 86?",
+      "options": [
+        { "id": "a", "text": "43", "correct": true, "feedback": "Exacto: el 50 % es la mitad." },
+        {
+          "id": "b",
+          "text": "50",
+          "correct": false,
+          "feedback": "El porcentaje no es el resultado: es la parte de 86."
+        },
+        {
+          "id": "c",
+          "text": "36",
+          "correct": false,
+          "feedback": "Restaste 50: el 50 % es dividir entre 2."
+        }
+      ],
+      "explanation": "El 50 % de una cantidad es su mitad: 86 ÷ 2 = 43."
+    },
+    {
+      "id": "calculo-3",
+      "tier": 1,
+      "prompt": "Si 2 cuadernos cuestan 7000 pesos, ¿cuánto cuestan 6?",
+      "options": [
+        {
+          "id": "a",
+          "text": "21 000 pesos",
+          "correct": true,
+          "feedback": "Bien: 6 es el triple de 2, así que el precio se triplica."
+        },
+        {
+          "id": "b",
+          "text": "11 000 pesos",
+          "correct": false,
+          "feedback": "Sumaste 4000 por 4 cuadernos más: cada uno cuesta 3500."
+        },
+        {
+          "id": "c",
+          "text": "42 000 pesos",
+          "correct": false,
+          "feedback": "Multiplicaste 7000 por 6: eso sería el precio de 12 cuadernos."
+        }
+      ],
+      "explanation": "Cada cuaderno cuesta 3500 pesos: 6 × 3500 = 21 000."
+    },
+    {
+      "id": "calculo-4",
+      "tier": 1,
+      "prompt": "¿Cuál es la mejor estimación de 19,8 × 5,1?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Alrededor de 10",
+          "correct": false,
+          "feedback": "20 × 5 no es 10: revisa la multiplicación."
+        },
+        {
+          "id": "b",
+          "text": "Alrededor de 100",
+          "correct": true,
+          "feedback": "Exacto: 20 × 5 = 100."
+        },
+        {
+          "id": "c",
+          "text": "Alrededor de 1000",
+          "correct": false,
+          "feedback": "Te sobra un cero."
+        }
+      ],
+      "explanation": "Redondear a 20 × 5 da 100: el resultado exacto (100,98) está muy cerca."
+    },
+    {
+      "id": "calculo-5",
+      "tier": 2,
+      "prompt": "Un pasaje de 20 000 pesos sube 10 % y luego baja 10 %. ¿Cuánto cuesta al final?",
+      "options": [
+        {
+          "id": "a",
+          "text": "20 000 pesos",
+          "correct": false,
+          "feedback": "El 10 % de bajada se calcula sobre 22 000, no sobre 20 000."
+        },
+        {
+          "id": "b",
+          "text": "19 800 pesos",
+          "correct": true,
+          "feedback": "Correcto: 22 000 − 2200 = 19 800."
+        },
+        {
+          "id": "c",
+          "text": "22 000 pesos",
+          "correct": false,
+          "feedback": "Ese es el precio después de subir, falta la bajada."
+        }
+      ],
+      "explanation": "Los porcentajes sucesivos se aplican sobre cantidades distintas: +10 % lleva a 22 000 y −10 % de 22 000 es 2200."
+    },
+    {
+      "id": "calculo-6",
+      "tier": 2,
+      "prompt": "5 personas pintan un muelle en 6 días. Al mismo ritmo, ¿cuánto tardarían 10 personas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "12 días",
+          "correct": false,
+          "feedback": "Con el doble de personas se tarda menos, no más."
+        },
+        {
+          "id": "b",
+          "text": "3 días",
+          "correct": true,
+          "feedback": "Bien: proporcionalidad inversa, 5 × 6 = 10 × 3."
+        },
+        {
+          "id": "c",
+          "text": "1 día",
+          "correct": false,
+          "feedback": "El trabajo total es 30 días-persona: 10 personas tardan 3 días."
+        }
+      ],
+      "explanation": "Personas y días son inversamente proporcionales: el trabajo total (30 días-persona) se reparte entre 10."
+    },
+    {
+      "id": "calculo-7",
+      "tier": 2,
+      "prompt": "Resuelve: 3x − 5 = 16",
+      "options": [
+        { "id": "a", "text": "x = 7", "correct": true, "feedback": "Exacto: 3x = 21, x = 7." },
+        {
+          "id": "b",
+          "text": "x = 11/3",
+          "correct": false,
+          "feedback": "Restaste 5 en lugar de sumarlo: 3x = 21."
+        },
+        {
+          "id": "c",
+          "text": "x = 3",
+          "correct": false,
+          "feedback": "Comprueba: 3 × 3 − 5 = 4, no 16."
+        }
+      ],
+      "explanation": "Suma 5 a ambos lados (3x = 21) y divide entre 3 (x = 7). Comprueba: 21 − 5 = 16."
+    },
+    {
+      "id": "calculo-8",
+      "tier": 2,
+      "prompt": "¿Qué número sigue? 2, 6, 18, 54…",
+      "options": [
+        {
+          "id": "a",
+          "text": "90",
+          "correct": false,
+          "feedback": "La diferencia no es constante: la regla multiplica."
+        },
+        {
+          "id": "b",
+          "text": "162",
+          "correct": true,
+          "feedback": "Correcto: cada término se multiplica por 3."
+        },
+        {
+          "id": "c",
+          "text": "108",
+          "correct": false,
+          "feedback": "Duplicaste el último: la regla es multiplicar por 3."
+        }
+      ],
+      "explanation": "6 ÷ 2 = 3, 18 ÷ 6 = 3, 54 ÷ 18 = 3: la regla es × 3, así que sigue 162."
+    },
+    {
+      "id": "calculo-9",
+      "tier": 3,
+      "prompt": "En un mapa a escala 1:25 000, una ruta mide 6 cm. Una lancha va a 15 km/h. ¿Cuánto tarda en recorrerla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6 minutos",
+          "correct": true,
+          "feedback": "Exacto: 6 × 25 000 cm = 1,5 km, y 1,5 km a 15 km/h es 0,1 h = 6 min."
+        },
+        {
+          "id": "b",
+          "text": "60 minutos",
+          "correct": false,
+          "feedback": "La ruta mide 1,5 km, no 15 km."
+        },
+        {
+          "id": "c",
+          "text": "10 minutos",
+          "correct": false,
+          "feedback": "Revisa: 1,5 ÷ 15 = 0,1 h, que son 6 minutos, no 10."
+        }
+      ],
+      "explanation": "Primero la distancia real (6 cm × 25 000 = 150 000 cm = 1,5 km), luego el tiempo (1,5 ÷ 15 = 0,1 h = 6 min)."
+    },
+    {
+      "id": "calculo-10",
+      "tier": 3,
+      "prompt": "Una camiseta tiene 20 % de descuento y cuesta 36 000 pesos. ¿Cuál era el precio original?",
+      "options": [
+        {
+          "id": "a",
+          "text": "43 200 pesos",
+          "correct": false,
+          "feedback": "Sumaste el 20 % de 36 000; el descuento se aplicó sobre el precio original."
+        },
+        {
+          "id": "b",
+          "text": "45 000 pesos",
+          "correct": true,
+          "feedback": "Correcto: 36 000 es el 80 % del original, 36 000 ÷ 0,8 = 45 000."
+        },
+        {
+          "id": "c",
+          "text": "56 000 pesos",
+          "correct": false,
+          "feedback": "Sumar 20 000 no tiene relación con el 20 %."
+        }
+      ],
+      "explanation": "Si se descontó el 20 %, se paga el 80 %: precio original = 36 000 ÷ 0,8 = 45 000."
+    },
+    {
+      "id": "calculo-11",
+      "tier": 3,
+      "prompt": "¿Qué número sigue? 1, 1, 2, 3, 5, 8…",
+      "options": [
+        {
+          "id": "a",
+          "text": "11",
+          "correct": false,
+          "feedback": "La diferencia no es constante en esta secuencia."
+        },
+        {
+          "id": "b",
+          "text": "13",
+          "correct": true,
+          "feedback": "Exacto: cada término es la suma de los dos anteriores."
+        },
+        {
+          "id": "c",
+          "text": "16",
+          "correct": false,
+          "feedback": "Duplicar solo coincide en algunos pasos."
+        }
+      ],
+      "explanation": "Cada término suma los dos anteriores: 5 + 8 = 13. Comprobar la regla en todos los pasos descarta las demás."
+    },
+    {
+      "id": "calculo-12",
+      "tier": 3,
+      "prompt": "Un estudiante dice: «Si 4 lanchas transportan 60 personas, 8 lanchas transportan 120, así que 12 lanchas transportan 240». ¿Dónde está el error?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No hay error: la proporción se mantiene",
+          "correct": false,
+          "feedback": "Revisa el último paso: 12 lanchas no son el doble de 8."
+        },
+        {
+          "id": "b",
+          "text": "12 lanchas son el triple de 4, así que transportan 180",
+          "correct": true,
+          "feedback": "Bien: cada lancha lleva 15 personas, 12 × 15 = 180."
+        },
+        {
+          "id": "c",
+          "text": "8 lanchas deberían transportar 90",
+          "correct": false,
+          "feedback": "8 lanchas sí transportan 120: el error está en el último paso."
+        }
+      ],
+      "explanation": "Cada lancha transporta 15 personas: 12 lanchas llevan 180. Duplicar 120 supone que 12 es el doble de 8, y no lo es."
+    }
+  ]
+}

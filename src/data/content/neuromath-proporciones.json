@@ -1,0 +1,163 @@
+{
+  "kind": "practicar",
+  "intro": "En la sala de cartas del observatorio se trabaja con escalas, recetas y planos. Resuelve cada situación de proporcionalidad; Brújula te explica el razonamiento después de cada respuesta.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "proporciones-1",
+      "tier": 1,
+      "prompt": "Una receta de arepas para 4 personas lleva 2 tazas de harina. ¿Cuántas tazas se necesitan para 10 personas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4 tazas",
+          "correct": false,
+          "feedback": "4 tazas alcanzan para 8 personas, no para 10."
+        },
+        {
+          "id": "b",
+          "text": "5 tazas",
+          "correct": true,
+          "feedback": "Correcto: media taza por persona, 10 × ½ = 5."
+        },
+        {
+          "id": "c",
+          "text": "8 tazas",
+          "correct": false,
+          "feedback": "Sumaste 6 tazas por las 6 personas extra: la relación es de media taza por persona."
+        }
+      ],
+      "explanation": "Si 4 personas usan 2 tazas, cada persona usa ½ taza: 10 personas usan 5 tazas."
+    },
+    {
+      "id": "proporciones-2",
+      "tier": 1,
+      "prompt": "En un mapa a escala 1:50 000, dos muelles están a 4 cm. ¿Qué distancia real los separa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2 km",
+          "correct": true,
+          "feedback": "Exacto: 4 × 50 000 cm = 200 000 cm = 2 km."
+        },
+        {
+          "id": "b",
+          "text": "20 km",
+          "correct": false,
+          "feedback": "200 000 cm son 2 km: revisa la conversión de centímetros a kilómetros."
+        },
+        {
+          "id": "c",
+          "text": "200 m",
+          "correct": false,
+          "feedback": "200 000 cm son 2000 m, no 200."
+        }
+      ],
+      "explanation": "En escala 1:50 000, 1 cm del mapa son 50 000 cm reales (500 m): 4 cm son 2000 m, es decir 2 km."
+    },
+    {
+      "id": "proporciones-3",
+      "tier": 2,
+      "prompt": "Una lancha recorre 30 km en 40 minutos a velocidad constante. ¿Cuánto tarda en recorrer 45 km?",
+      "options": [
+        {
+          "id": "a",
+          "text": "55 minutos",
+          "correct": false,
+          "feedback": "Sumaste 15 a ambos lados: la relación es multiplicativa, no aditiva."
+        },
+        {
+          "id": "b",
+          "text": "60 minutos",
+          "correct": true,
+          "feedback": "Bien: 45 km es 1,5 veces 30 km, y 1,5 × 40 = 60."
+        },
+        {
+          "id": "c",
+          "text": "67,5 minutos",
+          "correct": false,
+          "feedback": "Multiplicaste 45 por 1,5: el factor 1,5 se aplica al tiempo, no a la distancia."
+        }
+      ],
+      "explanation": "Distancia y tiempo son proporcionales a velocidad constante: si la distancia se multiplica por 1,5, el tiempo también."
+    },
+    {
+      "id": "proporciones-4",
+      "tier": 2,
+      "prompt": "3 bombas de agua llenan un tanque en 12 horas. ¿Cuánto tardarían 4 bombas iguales?",
+      "options": [
+        {
+          "id": "a",
+          "text": "16 horas",
+          "correct": false,
+          "feedback": "Con más bombas el tanque se llena más rápido, no más lento."
+        },
+        {
+          "id": "b",
+          "text": "9 horas",
+          "correct": true,
+          "feedback": "Correcto: es proporcionalidad inversa, 3 × 12 = 4 × 9."
+        },
+        {
+          "id": "c",
+          "text": "11 horas",
+          "correct": false,
+          "feedback": "Restar una hora por bomba no sigue ninguna regla de proporción."
+        }
+      ],
+      "explanation": "Más bombas, menos tiempo: el producto bombas × horas se mantiene (36), así que 4 bombas tardan 9 horas."
+    },
+    {
+      "id": "proporciones-5",
+      "tier": 3,
+      "prompt": "Un plano a escala 1:250 muestra un muelle de 8 cm de largo. Se quiere dibujar en otro plano a escala 1:100. ¿Cuánto medirá allí?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3,2 cm",
+          "correct": false,
+          "feedback": "Una escala 1:100 es más grande que 1:250: el dibujo debe crecer."
+        },
+        {
+          "id": "b",
+          "text": "20 cm",
+          "correct": true,
+          "feedback": "Exacto: el muelle mide 8 × 250 = 2000 cm reales, y 2000 ÷ 100 = 20 cm."
+        },
+        {
+          "id": "c",
+          "text": "10,5 cm",
+          "correct": false,
+          "feedback": "No se suman diferencias de escala: pasa primero a la medida real."
+        }
+      ],
+      "explanation": "Para cambiar de escala, pasa por la medida real: 8 cm × 250 = 20 m reales, que a 1:100 son 20 cm."
+    },
+    {
+      "id": "proporciones-6",
+      "tier": 3,
+      "prompt": "En una encuesta del barrio, 18 de 45 personas prefieren la ruta del muelle sur. Si la tendencia se mantiene, ¿cuántas de 300 personas la preferirían?",
+      "options": [
+        {
+          "id": "a",
+          "text": "120",
+          "correct": true,
+          "feedback": "Bien: 18 ÷ 45 = 0,4 y 0,4 × 300 = 120."
+        },
+        {
+          "id": "b",
+          "text": "273",
+          "correct": false,
+          "feedback": "Sumar la diferencia (300 − 45 + 18) no conserva la proporción."
+        },
+        {
+          "id": "c",
+          "text": "180",
+          "correct": false,
+          "feedback": "Eso sería el 60 %, que es la proporción de quienes no la prefieren."
+        }
+      ],
+      "explanation": "La proporción 18/45 es el 40 %; aplicada a 300 personas da 120."
+    }
+  ]
+}

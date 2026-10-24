@@ -4,7 +4,7 @@ import { competencyLevel, explorerStanding } from '@/progress/levels';
 import { hasProgress, islandProgress, nextStation, stationStatus } from '@/progress/selectors';
 import * as t from '@/progress/transitions';
 import { initialProgress } from '@/progress/types';
-import { completeAll, DAY_1, ECOS_PATH } from './helpers';
+import { completeAll, DAY_1, ECOS_PATH, worldPreparing } from './helpers';
 
 const station = (id: string) => {
   const found = getStation(id);
@@ -28,7 +28,8 @@ describe('estado de una estación', () => {
 
   it('las estaciones en preparación lo dicen, aunque se cumplan sus requisitos', () => {
     const progress = completeAll(['neuromath-patrones', 'neuromath-proporciones']);
-    expect(stationStatus(progress, station('neuromath-puentes'))).toBe('en-preparacion');
+    const preparing = { ...station('neuromath-puentes'), availability: 'en-preparacion' as const };
+    expect(stationStatus(progress, preparing)).toBe('en-preparacion');
   });
 
   it('no se puede iniciar una estación bloqueada', () => {
@@ -47,7 +48,8 @@ describe('progreso de la isla y sugerencia', () => {
       hasFragment: false,
     });
     expect(nextStation(progress, world, 'comunicarte')?.id).toBe('comunicarte-radio');
-    expect(islandProgress(progress, world, 'neuromath').playable).toBe(2);
+    const preparing = worldPreparing(['neuromath-puentes', 'neuromath-cierre']);
+    expect(islandProgress(progress, preparing, 'neuromath').playable).toBe(2);
   });
 
   it('prefiere la estación que quedó en curso', () => {

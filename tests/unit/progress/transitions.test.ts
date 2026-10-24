@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { world } from '@/data';
 import * as t from '@/progress/transitions';
 import { initialProgress } from '@/progress/types';
-import { completeAll, DAY_1, DAY_2, DAY_3, ECOS_PATH } from './helpers';
+import { completeAll, DAY_1, DAY_2, DAY_3, ECOS_PATH, worldPreparing } from './helpers';
 
 describe('completar estaciones', () => {
   it('la primera vez otorga la XP de la estación, registra la bitácora y la insignia de Primer zarpe', () => {
@@ -46,7 +46,10 @@ describe('completar estaciones', () => {
   it('no permite completar una estación bloqueada ni una en preparación', () => {
     const start = initialProgress();
     expect(t.completeStation(start, world, 'comunicarte-titulares', 1, DAY_1).progress).toBe(start);
-    expect(t.completeStation(start, world, 'neuromath-puentes', 1, DAY_1).progress).toBe(start);
+    const preparing = worldPreparing(['neuromath-patrones']);
+    expect(t.completeStation(start, preparing, 'neuromath-patrones', 1, DAY_1).progress).toBe(
+      start,
+    );
   });
 
   it('el desafío entrega el fragmento de la isla y las insignias de competencia', () => {

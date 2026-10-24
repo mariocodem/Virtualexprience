@@ -83,7 +83,7 @@
     "minutes": 6,
     "requires": [],
     "availability": "disponible",
-    "formats": ["texto", "audio", "infografia"]
+    "formats": ["texto", "audio", "video", "infografia", "interactivo"]
   },
   {
     "id": "neuromath-proporciones",
@@ -106,7 +106,7 @@
     "xp": 80,
     "minutes": 12,
     "requires": ["neuromath-proporciones"],
-    "availability": "en-preparacion",
+    "availability": "disponible",
     "formats": ["interactivo"],
     "minigame": "puentes-de-fractal"
   },
@@ -115,11 +115,11 @@
     "islandId": "neuromath",
     "title": "El gran puente",
     "type": "desafio",
-    "summary": "El desafío de la isla: un puente que debe cumplir varias restricciones a la vez.",
+    "summary": "El desafío de la isla: enfrenta a la Bruma del cálculo a ciegas, que confunde razonar con adivinar.",
     "xp": 120,
     "minutes": 15,
     "requires": ["neuromath-puentes"],
-    "availability": "en-preparacion",
+    "availability": "disponible",
     "formats": ["interactivo"]
   },
 

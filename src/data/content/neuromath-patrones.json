@@ -1,0 +1,128 @@
+{
+  "kind": "explorar",
+  "intro": "Desde la cúpula del observatorio, las luces de las boyas, las mareas y las rutas de las lanchas forman patrones. Quien los reconoce puede anticipar lo que viene y estimar antes de calcular.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "Un patrón es una regla que se repite",
+          "body": "En la secuencia 3, 7, 11, 15… cada término suma 4 al anterior: es un patrón aditivo. En 2, 6, 18, 54… cada término se multiplica por 3: es multiplicativo. Descubrir la regla permite predecir el término 10 sin escribir los nueve anteriores."
+        },
+        {
+          "heading": "Comprueba la regla con más de un paso",
+          "body": "Un solo par de números engaña: de 2 a 4 se puede llegar sumando 2 o multiplicando por 2. La regla se confirma cuando funciona en todos los pasos que conoces. Si falla en uno, no es la regla."
+        },
+        {
+          "heading": "Estimar no es adivinar",
+          "body": "Estimar es redondear con intención para obtener un resultado aproximado y razonable. 48 × 21 se parece a 50 × 20 = 1000. Si tu cálculo exacto da 10 080, la estimación te avisa que corriste una coma."
+        },
+        {
+          "heading": "La estimación ahorra cálculos",
+          "body": "Antes de resolver, pregúntate en qué rango debería estar la respuesta. Así descartas opciones imposibles, eliges el método más corto y detectas errores sin repetir todo el procedimiento."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida al observatorio de patrones de NeuroMath.",
+        "Un patrón es una regla que se repite. En 3, 7, 11, 15, cada término suma 4. En 2, 6, 18, 54, cada término se multiplica por 3.",
+        "Una regla se confirma cuando funciona en todos los pasos que conoces, no solo en el primero.",
+        "Estimar no es adivinar: es redondear con intención. 48 por 21 se parece a 50 por 20, es decir, mil.",
+        "Antes de calcular, pregúntate en qué rango debería estar la respuesta. Esa pregunta te ahorra cálculos y te avisa de los errores."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "3, 7, 11, 15…",
+          "caption": "Cada término suma 4: un patrón aditivo. El décimo término es 3 + 9 × 4 = 39."
+        },
+        {
+          "title": "2, 6, 18, 54…",
+          "caption": "Cada término se multiplica por 3: un patrón multiplicativo que crece muy rápido."
+        },
+        {
+          "title": "¿Sumar o multiplicar?",
+          "caption": "De 2 a 4 se llega de las dos formas. Comprueba la regla con más de un paso."
+        },
+        {
+          "title": "48 × 21 ≈ 1000",
+          "caption": "Redondear con intención da una estimación que avisa si el cálculo exacto se desvió."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "Cuatro movimientos del pensamiento lógico",
+      "nodes": [
+        { "label": "Observar", "detail": "Mira varios términos, no solo los dos primeros." },
+        { "label": "Conjeturar", "detail": "Propón una regla: ¿suma, multiplica, alterna?" },
+        { "label": "Comprobar", "detail": "Verifica la regla en todos los pasos conocidos." },
+        { "label": "Estimar", "detail": "Anticipa el rango de la respuesta antes de calcular." }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Clasifica cada secuencia según su regla.",
+      "categories": [
+        { "id": "suma", "label": "Suma o resta un número fijo" },
+        { "id": "multiplica", "label": "Multiplica o divide por un número fijo" },
+        { "id": "ninguna", "label": "No sigue ninguna de las dos" }
+      ],
+      "items": [
+        { "text": "5, 9, 13, 17, 21", "category": "suma" },
+        { "text": "3, 6, 12, 24, 48", "category": "multiplica" },
+        { "text": "1, 4, 9, 16, 25", "category": "ninguna" },
+        { "text": "100, 90, 80, 70, 60", "category": "suma" },
+        { "text": "81, 27, 9, 3, 1", "category": "multiplica" }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "patrones-c1",
+      "tier": 1,
+      "prompt": "¿Cuál es el siguiente término de 4, 9, 14, 19…?",
+      "options": [
+        {
+          "id": "a",
+          "text": "23",
+          "correct": false,
+          "feedback": "La regla suma 5 en cada paso: 19 + 5 no es 23."
+        },
+        { "id": "b", "text": "24", "correct": true, "feedback": "Correcto: cada término suma 5." },
+        {
+          "id": "c",
+          "text": "38",
+          "correct": false,
+          "feedback": "Eso sería duplicar, pero la secuencia suma 5."
+        }
+      ],
+      "explanation": "En una secuencia aditiva la diferencia entre términos es constante: aquí, 5."
+    },
+    {
+      "id": "patrones-c2",
+      "tier": 2,
+      "prompt": "Sin calcular exacto, ¿cuál es la mejor estimación de 398 × 51?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cerca de 2000",
+          "correct": false,
+          "feedback": "400 × 50 no da 2000: revisa los ceros."
+        },
+        {
+          "id": "b",
+          "text": "Cerca de 20 000",
+          "correct": true,
+          "feedback": "Bien: 400 × 50 = 20 000."
+        },
+        {
+          "id": "c",
+          "text": "Cerca de 200 000",
+          "correct": false,
+          "feedback": "Te sobra un cero: 400 × 50 = 20 000."
+        }
+      ],
+      "explanation": "Redondear a 400 × 50 da 20 000, un rango que permite descartar resultados con un cero de más o de menos."
+    }
+  ]
+}

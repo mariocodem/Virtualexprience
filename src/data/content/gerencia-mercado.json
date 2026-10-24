@@ -1,0 +1,372 @@
+{
+  "kind": "reto",
+  "minigame": "dia-de-mercado",
+  "intro": "En el mercado de Gerencia+ te entregan un puesto de empanadas para la temporada. Cada mañana decides cuántas encargar a la cocina —las que sobran se pierden— y cada jornada trae una decisión de gestión. Lidera con datos y con tu equipo: la caja, la reputación y el ánimo dependen de ti.",
+  "product": { "name": "empanadas", "unit": "empanadas", "cost": 1800, "price": 3000 },
+  "startCash": 250000,
+  "goal": 60000,
+  "days": [
+    {
+      "id": "sabado-sol",
+      "tier": 1,
+      "title": "Sábado de sol",
+      "data": [
+        { "label": "Ventas de los últimos tres sábados", "value": "70, 74 y 78 empanadas" },
+        { "label": "Clima", "value": "Soleado, como esos tres sábados" }
+      ],
+      "demand": 82,
+      "orders": [60, 80, 100, 120],
+      "reasoning": "Las ventas suben 4 por sábado: 78 + 4 = 82. Pedir 80 vende casi todo sin desperdiciar.",
+      "dilemma": {
+        "prompt": "Tu ayudante llegó 40 minutos tarde por segunda vez en el mes. ¿Qué haces?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lo regaño frente a los clientes para que no se repita.",
+            "quality": 0,
+            "feedback": "Corregir en público humilla y baja el ánimo de todo el equipo; los clientes también lo notan.",
+            "effects": { "equipo": -12, "reputacion": -4 }
+          },
+          {
+            "id": "b",
+            "text": "Hablo con él en privado, escucho la causa y acordamos un plan concreto.",
+            "quality": 1,
+            "feedback": "Liderar es corregir con respeto y buscar la causa: así el acuerdo se cumple.",
+            "effects": { "equipo": 8 }
+          },
+          {
+            "id": "c",
+            "text": "Lo dejo pasar para no generar conflictos.",
+            "quality": 0.5,
+            "feedback": "Evitas el conflicto hoy, pero el problema sigue y el resto del equipo lo percibe como injusto.",
+            "effects": { "equipo": -4 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "manana-lluvia",
+      "tier": 1,
+      "title": "Mañana de lluvia",
+      "data": [
+        { "label": "Un sábado normal", "value": "Unas 80 empanadas" },
+        { "label": "Pronóstico", "value": "Lluvia toda la mañana" },
+        { "label": "La última vez que llovió", "value": "Las ventas cayeron a la mitad" }
+      ],
+      "demand": 40,
+      "orders": [40, 60, 80, 100],
+      "reasoning": "Si con lluvia se vende la mitad, 80 ÷ 2 = 40. Pedir lo de siempre deja 40 empanadas perdidas.",
+      "dilemma": {
+        "prompt": "Un proveedor te ofrece carne un 30 % más barata, pero sin registro sanitario.",
+        "options": [
+          {
+            "id": "a",
+            "text": "La compro: nadie se va a dar cuenta.",
+            "quality": 0,
+            "feedback": "Ahorras hoy y arriesgas la salud de tus clientes y la confianza del puesto.",
+            "effects": { "caja": 10, "reputacion": -20 }
+          },
+          {
+            "id": "b",
+            "text": "La compro solo por hoy, que hay poca venta.",
+            "quality": 0,
+            "feedback": "El riesgo sanitario es el mismo aunque sea un solo día.",
+            "effects": { "caja": 5, "reputacion": -12 }
+          },
+          {
+            "id": "c",
+            "text": "La rechazo y sigo con mi proveedor habitual.",
+            "quality": 1,
+            "feedback": "Un costo más alto con calidad garantizada protege tu reputación, que es tu activo más valioso.",
+            "effects": { "reputacion": 6 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ferry-turistas",
+      "tier": 1,
+      "title": "Llega el ferry de turistas",
+      "data": [
+        { "label": "Un sábado normal", "value": "Unas 80 empanadas" },
+        { "label": "Hoy", "value": "Llega el ferry con 300 turistas" },
+        { "label": "Los días de ferry", "value": "Las ventas suben un 50 %" }
+      ],
+      "demand": 120,
+      "orders": [80, 100, 120, 140],
+      "reasoning": "Un 50 % más que 80 es 80 × 1,5 = 120. Pedir lo de siempre deja 40 clientes sin empanada.",
+      "dilemma": {
+        "prompt": "Hay una fila larga y tu equipo está desbordado.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Pido que trabajen más rápido, sin cambiar nada.",
+            "quality": 0,
+            "feedback": "Exigir más sin organizar agota al equipo y aumenta los errores.",
+            "effects": { "equipo": -10, "reputacion": -4 }
+          },
+          {
+            "id": "b",
+            "text": "Reorganizo: una persona cobra, otra despacha y yo reabastezco.",
+            "quality": 1,
+            "feedback": "Repartir roles según el cuello de botella es gestión: la fila avanza y el equipo respira.",
+            "effects": { "equipo": 6, "reputacion": 6 }
+          },
+          {
+            "id": "c",
+            "text": "Cierro una hora antes para que el equipo descanse.",
+            "quality": 0.5,
+            "feedback": "Cuidas al equipo, pero pierdes ventas del mejor día sin buscar otra salida.",
+            "effects": { "equipo": 4, "caja": -8 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "competencia",
+      "tier": 2,
+      "title": "Abre un puesto vecino",
+      "data": [
+        { "label": "Ventas recientes", "value": "80 empanadas por sábado" },
+        { "label": "Novedad", "value": "Abrió al lado un puesto de arepas, un 10 % más barato" },
+        {
+          "label": "En el muelle sur, un caso parecido",
+          "value": "Redujo las ventas una cuarta parte"
+        }
+      ],
+      "demand": 60,
+      "orders": [50, 60, 80, 100],
+      "reasoning": "Una cuarta parte menos de 80 es 80 − 20 = 60. Ignorar la competencia deja 20 empanadas sin vender.",
+      "dilemma": {
+        "prompt": "¿Cómo respondes a la competencia?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Bajo el precio a pérdida hasta sacarlos del mercado.",
+            "quality": 0,
+            "feedback": "Vender a pérdida desangra la caja y no construye ninguna ventaja duradera.",
+            "effects": { "caja": -20, "reputacion": -4 }
+          },
+          {
+            "id": "b",
+            "text": "Me diferencio: un combo con jugo y atención rápida, sin vender a pérdida.",
+            "quality": 1,
+            "feedback": "Competir con valor y no solo con precio protege el margen y fideliza.",
+            "effects": { "reputacion": 8, "caja": -4 }
+          },
+          {
+            "id": "c",
+            "text": "Les digo a mis clientes que las arepas del vecino no son higiénicas.",
+            "quality": 0,
+            "feedback": "Desprestigiar sin pruebas es deshonesto y, cuando se sabe, la reputación que cae es la tuya.",
+            "effects": { "reputacion": -15 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "festival-marea",
+      "tier": 2,
+      "title": "Festival de la marea",
+      "data": [
+        {
+          "label": "Ventas del festival el año pasado",
+          "value": "150 empanadas en el día completo"
+        },
+        { "label": "Este año", "value": "El festival dura solo la tarde: la mitad del tiempo" },
+        { "label": "En la mañana", "value": "El mercado permanece cerrado" }
+      ],
+      "demand": 75,
+      "orders": [75, 100, 150, 200],
+      "reasoning": "Con la mitad del tiempo, la mitad de las ventas: 150 ÷ 2 = 75. Repetir el pedido del año pasado deja la mitad sin vender.",
+      "dilemma": {
+        "prompt": "Una marca de bebidas azucaradas te ofrece patrocinio a cambio de su logo en el puesto. Algunas familias del colegio vecino se quejan.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lo consulto con mi equipo y con clientes habituales antes de decidir.",
+            "quality": 1,
+            "feedback": "Decidir con quienes se ven afectados da legitimidad, sea cual sea la decisión final.",
+            "effects": { "equipo": 6, "reputacion": 4 }
+          },
+          {
+            "id": "b",
+            "text": "Lo acepto sin consultar: el dinero viene bien.",
+            "quality": 0.5,
+            "feedback": "Es una decisión legítima de negocio, pero ignorar la queja tiene un costo en reputación.",
+            "effects": { "caja": 15, "reputacion": -8 }
+          },
+          {
+            "id": "c",
+            "text": "Lo rechazo con un mensaje burlón en las redes del puesto.",
+            "quality": 0,
+            "feedback": "Rechazar puede estar bien; burlarse en público no.",
+            "effects": { "reputacion": -6 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sube-harina",
+      "tier": 2,
+      "title": "Sube la harina",
+      "data": [
+        { "label": "Ventas de los últimos tres sábados", "value": "78, 82 y 80 empanadas" },
+        { "label": "Clima", "value": "Normal" },
+        { "label": "Proveedor", "value": "La harina subió y tu margen se redujo" }
+      ],
+      "demand": 80,
+      "orders": [60, 80, 100, 120],
+      "reasoning": "Las ventas se mantienen estables alrededor de 80: no hay razón para pedir más ni menos.",
+      "dilemma": {
+        "prompt": "Con la harina más cara, ¿qué haces con el precio?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Subo el precio sin avisar.",
+            "quality": 0,
+            "feedback": "Los clientes lo notan y se sienten engañados: el ajuste te cuesta confianza.",
+            "effects": { "caja": 10, "reputacion": -10 }
+          },
+          {
+            "id": "b",
+            "text": "Subo un poco el precio y lo explico en un cartel visible.",
+            "quality": 1,
+            "feedback": "Ajustar con transparencia protege el margen y la confianza.",
+            "effects": { "caja": 8, "reputacion": 2 }
+          },
+          {
+            "id": "c",
+            "text": "Absorbo el costo en silencio, aunque gane menos.",
+            "quality": 0.5,
+            "feedback": "Cuidas a los clientes a corto plazo, pero un margen que se achica sin plan pone en riesgo el puesto.",
+            "effects": { "caja": -10 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dato-atipico",
+      "tier": 3,
+      "title": "Un dato atípico",
+      "data": [
+        { "label": "Ventas de los últimos tres sábados", "value": "70, 74 y 112 empanadas" },
+        { "label": "El sábado de 112", "value": "Llegó el ferry de turistas" },
+        { "label": "Hoy", "value": "No hay ferry" }
+      ],
+      "demand": 78,
+      "orders": [80, 100, 115, 130],
+      "reasoning": "El 112 es atípico: fue día de ferry. Sin él, la tendencia normal es 70, 74… y sigue 78. Proyectar desde 112 deja 35 empanadas perdidas.",
+      "dilemma": {
+        "prompt": "Entusiasmado por el sábado de 112, tu socio propone endeudarse para comprar un segundo horno.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lo decidimos hoy, aprovechando el buen momento.",
+            "quality": 0,
+            "feedback": "Decidir una deuda con un dato atípico es apostar, no gestionar.",
+            "effects": { "caja": -15 }
+          },
+          {
+            "id": "b",
+            "text": "Pido los números: ventas sin ferry, costo del crédito y en cuánto tiempo se pagaría.",
+            "quality": 1,
+            "feedback": "Una inversión se decide con datos representativos y un plan de pago.",
+            "effects": { "equipo": 4 }
+          },
+          {
+            "id": "c",
+            "text": "Lo rechazo de plano: las deudas son malas.",
+            "quality": 0.5,
+            "feedback": "La prudencia está bien, pero rechazar sin analizar también es decidir sin datos.",
+            "effects": { "equipo": -4 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "promedio-enganoso",
+      "tier": 3,
+      "title": "Un promedio engañoso",
+      "data": [
+        { "label": "Promedio de ventas del mes", "value": "100 empanadas por sábado" },
+        {
+          "label": "Dos de esos cuatro sábados",
+          "value": "Fueron de festival: 140 empanadas cada uno"
+        },
+        { "label": "Hoy", "value": "Es un sábado normal" }
+      ],
+      "demand": 60,
+      "orders": [60, 80, 100, 140],
+      "reasoning": "El mes sumó 4 × 100 = 400. Los dos festivales fueron 280, así que los sábados normales sumaron 120: 60 cada uno. El promedio mezcla días distintos.",
+      "dilemma": {
+        "prompt": "Un cliente dice que se enfermó por tus empanadas. Tus registros de higiene están al día.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lo niego todo y le pido que se vaya.",
+            "quality": 0,
+            "feedback": "Negar sin escuchar se ve como ocultar algo, aunque tengas la razón.",
+            "effects": { "reputacion": -12 }
+          },
+          {
+            "id": "b",
+            "text": "Lo escucho, reviso mis registros, informo a la autoridad sanitaria y comunico con transparencia.",
+            "quality": 1,
+            "feedback": "Responder con hechos y transparencia protege a las personas y al puesto.",
+            "effects": { "reputacion": 8, "caja": -4 }
+          },
+          {
+            "id": "c",
+            "text": "Le regalo comida para que no se lo cuente a nadie.",
+            "quality": 0,
+            "feedback": "Comprar silencio no resuelve el problema y, si se sabe, destruye la confianza.",
+            "effects": { "caja": -6, "reputacion": -8 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "partido-plaza",
+      "tier": 3,
+      "title": "Partido en la plaza",
+      "data": [
+        { "label": "Ventas de los últimos tres sábados", "value": "90, 94 y 98 empanadas" },
+        { "label": "Hoy", "value": "Hay un partido de fútbol en la plaza a la misma hora" },
+        {
+          "label": "La última vez que hubo partido",
+          "value": "Las ventas bajaron una cuarta parte"
+        }
+      ],
+      "demand": 76,
+      "orders": [75, 100, 102, 120],
+      "reasoning": "La tendencia daría 102, pero el partido resta una cuarta parte: 102 × 0,75 ≈ 76. Los datos se combinan, no se usan por separado.",
+      "dilemma": {
+        "prompt": "Tu equipo te pide descansar el próximo sábado después de una racha de jornadas largas.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Les digo que no: el negocio va primero.",
+            "quality": 0,
+            "feedback": "Un equipo agotado rinde menos y se va. Cuidar al equipo también es cuidar el negocio.",
+            "effects": { "equipo": -15 }
+          },
+          {
+            "id": "b",
+            "text": "Organizo turnos para que cada quien descanse, aunque vendamos un poco menos.",
+            "quality": 1,
+            "feedback": "Liderar es equilibrar resultados y bienestar con un plan concreto.",
+            "effects": { "equipo": 10, "caja": -4 }
+          },
+          {
+            "id": "c",
+            "text": "Cierro el puesto el próximo sábado sin avisar a los clientes.",
+            "quality": 0.5,
+            "feedback": "El equipo descansa, pero los clientes que vengan se encontrarán el puesto cerrado.",
+            "effects": { "equipo": 8, "reputacion": -8 }
+          }
+        ]
+      }
+    }
+  ]
+}

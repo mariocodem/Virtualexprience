@@ -218,8 +218,8 @@ export const mercadoContentSchema = z.strictObject({
     price: z.number().int().positive(),
   }),
   startCash: z.number().int().positive(),
-  /** Caja con la que se considera una temporada bien llevada. */
-  target: z.number().int().positive(),
+  /** Ganancia diaria promedio con la que la temporada se considera bien llevada. */
+  goal: z.number().int().positive(),
   days: z
     .array(
       z.strictObject({

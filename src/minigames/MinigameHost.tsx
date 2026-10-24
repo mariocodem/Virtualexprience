@@ -15,6 +15,10 @@ const SesionDeCabildo = lazy(async () => ({
   default: (await import('./sesion-de-cabildo/SesionDeCabildo')).SesionDeCabildo,
 }));
 
+const DiaDeMercado = lazy(async () => ({
+  default: (await import('./dia-de-mercado/DiaDeMercado')).DiaDeMercado,
+}));
+
 /** Elige el minijuego de la estación según su contenido. */
 export function MinigameHost({ content, ...props }: MinigameProps<RetoContent>) {
   switch (content.minigame) {
@@ -24,6 +28,8 @@ export function MinigameHost({ content, ...props }: MinigameProps<RetoContent>) 
       return <PuentesDeFractal content={content} {...props} />;
     case 'sesion-de-cabildo':
       return <SesionDeCabildo content={content} {...props} />;
+    case 'dia-de-mercado':
+      return <DiaDeMercado content={content} {...props} />;
     default:
       return null;
   }

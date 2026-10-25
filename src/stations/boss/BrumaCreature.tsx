@@ -43,22 +43,30 @@ export function BrumaCreature({
   phase,
   pulse,
   still,
+  tint,
+  eyes = 2,
   className,
 }: {
   density: number;
   phase: 1 | 2 | 3;
   pulse: BrumaPulse | null;
   still: boolean;
+  /** Color de los jirones (RGB); por defecto, el gris frío que se tiñe con cada fase. */
+  tint?: readonly [number, number, number];
+  /** Ojos encendidos: la Gran Bruma conserva uno por cada luz que aún retiene. */
+  eyes?: number;
   className?: string;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
-  const live = useRef({ density, phase, pulse, shown: density });
+  const live = useRef({ density, phase, pulse, tint, eyes, shown: density });
   // En modo quieto se redibuja con cada cambio; animada, el bucle lee los valores vivos.
-  const redraw = still ? `${String(density)}:${String(phase)}` : 'vivo';
+  const redraw = still
+    ? `${String(density)}:${String(phase)}:${String(tint)}:${String(eyes)}`
+    : 'vivo';
 
   useEffect(() => {
-    live.current = { ...live.current, density, phase, pulse };
-  }, [density, phase, pulse]);
+    live.current = { ...live.current, density, phase, pulse, tint, eyes };
+  }, [density, phase, pulse, tint, eyes]);
 
   useEffect(() => {
     const node = canvas.current;
@@ -94,7 +102,12 @@ export function BrumaCreature({
 
       // Jirones: gris frío que se tiñe de violeta en las fases finales.
       const tint =
-        state.phase === 1 ? [196, 210, 224] : state.phase === 2 ? [176, 186, 214] : [168, 160, 214];
+        state.tint ??
+        (state.phase === 1
+          ? [196, 210, 224]
+          : state.phase === 2
+            ? [176, 186, 214]
+            : [168, 160, 214]);
       for (const w of WISPS) {
         const drift = still ? 0 : t * w.speed;
         const angle = w.angle + drift * 0.6;
@@ -116,23 +129,37 @@ export function BrumaCreature({
       }
 
       // Ojos: la luz robada al Faro. Se entrecierran a medida que la Bruma pierde fuerza.
-      if (d > 0.02) {
+      if (d > 0.02 && state.eyes > 0) {
         const blink = still ? 1 : Math.abs(Math.sin(t * 0.7)) > 0.985 ? 0.15 : 1;
         const open = Math.max(0.12, d) * blink * (1 - 0.7 * hit);
-        const gap = radius * 0.32;
         const eyeY = cy - radius * 0.08;
-        for (const side of [-1, 1]) {
-          const ex = cx + side * gap;
-          const glow = ctx.createRadialGradient(ex, eyeY, 0, ex, eyeY, radius * 0.22);
+        const n = state.eyes;
+        // Dos ojos como siempre; más, en arco, cada vez más pequeños.
+        const spread = n === 2 ? radius * 0.64 : radius * 0.24 * (n - 1);
+        const size = n <= 2 ? 1 : 0.72;
+        for (let k = 0; k < n; k++) {
+          const u = n === 1 ? 0 : k / (n - 1) - 0.5;
+          const ex = cx + u * spread;
+          const ey = eyeY + (n > 2 ? u * u * radius * 0.5 : 0);
+          const side = u === 0 ? 0 : Math.sign(u);
+          const glow = ctx.createRadialGradient(ex, ey, 0, ex, ey, radius * 0.22 * size);
           glow.addColorStop(0, `rgba(254, 211, 0, ${String(0.55 * d + 0.3 * surge)})`);
           glow.addColorStop(1, 'rgba(254, 211, 0, 0)');
           ctx.fillStyle = glow;
           ctx.beginPath();
-          ctx.arc(ex, eyeY, radius * 0.22, 0, Math.PI * 2);
+          ctx.arc(ex, ey, radius * 0.22 * size, 0, Math.PI * 2);
           ctx.fill();
           ctx.fillStyle = '#fff3b0';
           ctx.beginPath();
-          ctx.ellipse(ex, eyeY, radius * 0.07, radius * 0.07 * open, side * -0.18, 0, Math.PI * 2);
+          ctx.ellipse(
+            ex,
+            ey,
+            radius * 0.07 * size,
+            radius * 0.07 * size * open,
+            side * -0.18,
+            0,
+            Math.PI * 2,
+          );
           ctx.fill();
         }
       }

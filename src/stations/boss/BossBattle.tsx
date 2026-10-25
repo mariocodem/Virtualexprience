@@ -19,8 +19,9 @@ import { cx } from '@/ui/cx';
 import { BrujulaBubble, type BrujulaMessage } from '../BrujulaBubble';
 import { useMastery } from '../useMastery';
 import { BrumaCreature, type BrumaPulse } from './BrumaCreature';
+import { Embate } from './Embate';
+import { EMBATE_KEYS } from './keys';
 
-const KEYS = ['1', '2', '3', '4', '5'];
 const HINTS = 2;
 
 interface Line {
@@ -205,7 +206,7 @@ export function BossBattle({
   // Atajos 1–5 para responder durante el embate.
   const onKey = useEffectEvent((event: KeyboardEvent) => {
     if (!current || feedback || event.altKey || event.ctrlKey || event.metaKey) return;
-    const index = KEYS.indexOf(event.key);
+    const index = EMBATE_KEYS.indexOf(event.key);
     const visible = current.options.filter((o) => !hidden.includes(o.id));
     const option = visible[index];
     if (option) {
@@ -292,13 +293,23 @@ export function BossBattle({
           ) : shown ? (
             <Embate
               key={`${String(battle.answers.length)}-${shown.id}`}
-              battle={battle}
+              number={battle.answers.length + (feedback ? 0 : 1)}
               item={shown}
-              feedback={feedback}
+              feedback={
+                feedback && {
+                  correct: feedback.correct,
+                  optionId: feedback.optionId,
+                  outcome: feedback.outcome,
+                  note:
+                    feedback.phaseChanged && feedback.outcome === 'en-curso'
+                      ? `La Bruma cambia de forma: entra en la fase ${String(feedback.phaseChanged)}.`
+                      : null,
+                }
+              }
               hidden={hidden}
               offerHint={offerHint}
               hints={hints}
-              fragmentName={island.fragmentName}
+              victoryLabel={`Reclamar el ${island.fragmentName}`}
               onHint={takeHint}
               onAnswer={respond}
               onProceed={proceed}
@@ -495,139 +506,6 @@ function Stat({ label, value }: { label: string; value: string }) {
     <div>
       <dt className="text-sm text-ink-soft">{label}</dt>
       <dd className="font-display text-xl font-extrabold tabular-nums">{value}</dd>
-    </div>
-  );
-}
-
-function Embate({
-  battle,
-  item,
-  feedback,
-  hidden,
-  offerHint,
-  hints,
-  fragmentName,
-  onHint,
-  onAnswer,
-  onProceed,
-}: {
-  battle: BattleState;
-  item: BossContent['items'][number];
-  feedback: BattleEvent | null;
-  hidden: string[];
-  offerHint: boolean;
-  hints: number;
-  fragmentName: string;
-  onHint: () => void;
-  onAnswer: (optionId: string) => void;
-  onProceed: () => void;
-}) {
-  const heading = useRef<HTMLHeadingElement>(null);
-  const proceed = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (feedback) proceed.current?.focus();
-    else heading.current?.focus();
-  }, [feedback]);
-
-  const visible = item.options.filter((o) => !hidden.includes(o.id));
-  const chosen = feedback ? item.options.find((o) => o.id === feedback.optionId) : undefined;
-  const number = battle.answers.length + (feedback ? 0 : 1);
-
-  return (
-    <div>
-      <p className="text-sm text-ink-soft tabular-nums">Embate {number}</p>
-      <h2
-        ref={heading}
-        tabIndex={-1}
-        className="mt-1 font-display text-xl font-extrabold outline-none lg:text-2xl"
-      >
-        {item.prompt}
-      </h2>
-      {item.context && (
-        <blockquote className="mt-3 bg-plate-sunk px-4 py-3 font-display text-lg plate-rule">
-          {item.context}
-        </blockquote>
-      )}
-
-      <ul className="mt-4 grid gap-2">
-        {visible.map((option, i) => {
-          const isChosen = feedback?.optionId === option.id;
-          return (
-            <li key={option.id}>
-              <button
-                type="button"
-                disabled={Boolean(feedback)}
-                aria-keyshortcuts={KEYS[i]}
-                onClick={() => {
-                  onAnswer(option.id);
-                }}
-                className={cx(
-                  'flex min-h-12 w-full items-center gap-3 border-[1.5px] px-4 py-2 text-left',
-                  feedback && option.correct && 'border-isle-latidosocial bg-land-low/15',
-                  feedback && isChosen && !option.correct && 'border-route bg-route/10',
-                  !feedback && 'border-plate-edge hover:border-ink hover:bg-plate-sunk',
-                  feedback && !option.correct && !isChosen && 'border-plate-edge opacity-70',
-                )}
-              >
-                <kbd
-                  aria-hidden="true"
-                  className="inline-flex size-7 shrink-0 items-center justify-center border-[1.5px] border-ink font-display text-sm font-bold"
-                >
-                  {i + 1}
-                </kbd>
-                <span>{option.text}</span>
-                {feedback && option.correct && (
-                  <span className="ml-auto text-sm font-semibold">Correcta</span>
-                )}
-                {feedback && isChosen && !option.correct && (
-                  <span className="ml-auto text-sm font-semibold">Tu elección</span>
-                )}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-
-      <div role="status" aria-live="polite" className="mt-4 min-h-6">
-        {feedback && (
-          <p
-            className={cx(
-              'font-semibold',
-              feedback.correct ? 'text-isle-latidosocial' : 'text-route',
-            )}
-          >
-            {feedback.correct
-              ? 'Tu linterna atraviesa la Bruma.'
-              : feedback.optionId
-                ? 'La Bruma se espesa y apaga una de tus luces.'
-                : 'Se agotó el tiempo: la Bruma apaga una de tus luces.'}{' '}
-            <span className="font-normal text-ink">{chosen?.feedback ?? item.explanation}</span>
-          </p>
-        )}
-        {feedback?.phaseChanged && feedback.outcome === 'en-curso' && (
-          <p className="mt-2 font-semibold">
-            La Bruma cambia de forma: entra en la fase {feedback.phaseChanged}.
-          </p>
-        )}
-      </div>
-
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        {feedback ? (
-          <Button ref={proceed} size="lg" onClick={onProceed}>
-            {feedback.outcome === 'victoria'
-              ? `Reclamar el ${fragmentName}`
-              : feedback.outcome === 'retirada'
-                ? 'Retirarse a recuperar la luz'
-                : 'Siguiente embate'}
-          </Button>
-        ) : (
-          offerHint && (
-            <Button variant="secondary" onClick={onHint}>
-              Pedir pista a Brújula ({hints})
-            </Button>
-          )
-        )}
-      </div>
     </div>
   );
 }

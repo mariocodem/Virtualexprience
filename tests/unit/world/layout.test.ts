@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { stationsOf, world } from '@/data';
-import { BAND_SCALES, bandsForIsland, TERRACE_HEIGHT, type Point } from '@/world/geography';
+import { BAND_SCALES, bandsForIsland, terraceTop, type Point } from '@/world/geography';
 import { stationLayout } from '@/world/layout';
 
 function inside([x, z]: Point, polygon: readonly Point[]): boolean {
@@ -33,7 +33,7 @@ describe('sendero de estaciones', () => {
     it(`${island.name}: cada parada se apoya sobre su terraza, sin caer al borde de la de arriba`, () => {
       for (const spot of spots) {
         const point: Point = [spot.position[0], spot.position[2]];
-        expect(spot.position[1]).toBeCloseTo((spot.level + 1) * TERRACE_HEIGHT);
+        expect(spot.position[1]).toBeCloseTo(terraceTop(island, spot.level));
         expect(inside(point, bands[spot.level]?.outline ?? [])).toBe(true);
         if (spot.level < TOP)
           expect(inside(point, bands[spot.level + 1]?.outline ?? [])).toBe(false);

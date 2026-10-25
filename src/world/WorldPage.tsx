@@ -21,7 +21,7 @@ import type { IslandId } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
 import { ArchipelagoPlate2D } from './ArchipelagoPlate2D';
 import { FaroPanel } from './FaroPanel';
-import { summitHeight } from './geography';
+import { islandSummit, summitHeight } from './geography';
 import { stationLayout } from './layout';
 import { MapFallback2D } from './MapFallback2D';
 import { Minimap } from './Minimap';
@@ -46,7 +46,7 @@ const subscribeDesktop = (callback: () => void) => {
 const PLACE_ANCHORS: LabelAnchor[] = [
   ...world.islands.map((i) => ({
     id: i.id,
-    position: [i.position.x, summitHeight() + 0.4, i.position.z] as const,
+    position: [i.position.x, islandSummit(i) + 0.4, i.position.z] as const,
   })),
   { id: 'faro', position: [0, summitHeight(3) + 2.6, 0] as const },
 ];

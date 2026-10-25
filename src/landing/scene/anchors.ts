@@ -1,12 +1,12 @@
 import { world } from '@/data';
-import { summitHeight } from '@/world/geography';
+import { islandSummit, summitHeight } from '@/world/geography';
 import type { LabelAnchor } from '@/world/scene/LabelProjector';
 
 /** Dónde se ancla el rótulo de cada isla y del faro: sobre su cumbre. */
 export const ISLAND_ANCHORS: LabelAnchor[] = [
   ...world.islands.map((i) => ({
     id: i.id,
-    position: [i.position.x, summitHeight() + 0.4, i.position.z] as const,
+    position: [i.position.x, islandSummit(i) + 0.4, i.position.z] as const,
   })),
   { id: 'faro', position: [0, summitHeight(3) + 2.6, 0] as const },
 ];

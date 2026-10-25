@@ -9,6 +9,8 @@ import {
   islandSeed,
   LIGHTHOUSE_ISLAND,
   plateBounds,
+  reliefOf,
+  type ReliefProfile,
   type Point,
 } from './geography';
 import { ATLAS } from './palette';
@@ -40,14 +42,19 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
   focus,
 }: ArchipelagoPlate2DProps) {
   const geometry = useMemo(() => {
-    const shelf = (center: Island['position'], radius: number, seed: number) =>
+    const shelf = (
+      center: Island['position'],
+      radius: number,
+      seed: number,
+      profile?: ReliefProfile,
+    ) =>
       BATHYMETRY.map((factor) =>
-        toPath(islandBands(center, radius * factor, seed, 1)[0]?.outline ?? []),
+        toPath(islandBands(center, radius * factor, seed, 1, profile)[0]?.outline ?? []),
       );
     return {
       islands: world.islands.map((island) => ({
         island,
-        shelf: shelf(island.position, island.radius, islandSeed(island.id)),
+        shelf: shelf(island.position, island.radius, islandSeed(island.id), reliefOf(island.id)),
         bands: bandsForIsland(island).map((band) => toPath(band.outline)),
       })),
       lighthouse: {

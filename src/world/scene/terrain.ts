@@ -11,7 +11,11 @@ const cache = new Map<string, BufferGeometry[]>();
  * Geometrías de las terrazas de una isla, compartidas entre vistas.
  * El contorno (x, z) se extruye hacia arriba con caras planas: relieve low-poly.
  */
-export function terraceGeometries(key: string, bands: Band[]): BufferGeometry[] {
+export function terraceGeometries(
+  key: string,
+  bands: Band[],
+  height: number = TERRACE_HEIGHT,
+): BufferGeometry[] {
   const cached = cache.get(key);
   if (cached) return cached;
 
@@ -19,12 +23,12 @@ export function terraceGeometries(key: string, bands: Band[]): BufferGeometry[] 
     const shape = new Shape(band.outline.map(([x, z]) => ({ x, y: -z }) as never));
     const base = band.level === 0;
     const geometry = new ExtrudeGeometry(shape, {
-      depth: TERRACE_HEIGHT + (base ? UNDERWATER : 0),
+      depth: height + (base ? UNDERWATER : 0),
       bevelEnabled: false,
       curveSegments: 1,
     });
     geometry.rotateX(-Math.PI / 2);
-    geometry.translate(0, base ? -UNDERWATER : band.level * TERRACE_HEIGHT, 0);
+    geometry.translate(0, base ? -UNDERWATER : band.level * height, 0);
     geometry.computeVertexNormals();
     return geometry;
   });

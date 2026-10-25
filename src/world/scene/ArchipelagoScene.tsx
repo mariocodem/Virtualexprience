@@ -3,7 +3,7 @@ import { useFrame, type ThreeEvent } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import { world } from '@/data';
 import type { IslandId } from '@/types/domain';
-import { bandsForIsland, bandsForLighthouse } from '../geography';
+import { bandsForIsland, bandsForLighthouse, reliefOf } from '../geography';
 import { ATLAS } from '../palette';
 import { IslandRelief } from './IslandRelief';
 import { Lighthouse } from './Lighthouse';
@@ -115,7 +115,12 @@ export function ArchipelagoScene({
 
       {islands.map(({ island, bands }) => (
         <group key={island.id} {...interactive(island.id)}>
-          <IslandRelief id={island.id} bands={bands} lit={litIslands.includes(island.id) ? 1 : 0} />
+          <IslandRelief
+            id={island.id}
+            bands={bands}
+            height={reliefOf(island.id).height}
+            lit={litIslands.includes(island.id) ? 1 : 0}
+          />
         </group>
       ))}
       <group {...interactive('faro')}>

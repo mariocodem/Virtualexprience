@@ -150,6 +150,18 @@
     }
   },
   {
+    "id": "iterar-con-evidencia",
+    "name": "Iterar con evidencia",
+    "description": "En el Banco de pruebas, cada cambio que construiste respondió a algo que se repetía entre quienes tienen el problema.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "banco-de-pruebas",
+      "metric": "criteria",
+      "min": 1
+    }
+  },
+  {
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",

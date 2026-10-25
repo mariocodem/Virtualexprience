@@ -1,0 +1,383 @@
+{
+  "kind": "reto",
+  "minigame": "banco-de-pruebas",
+  "intro": "En el taller de ActivaTuIdea, tu equipo convirtió un problema real en un prototipo. Ahora viene lo difícil: ponerlo en manos de quienes lo usan, escuchar lo que dicen y decidir qué cambiar con materiales que no alcanzan para todo.",
+  "problem": "Quienes viajan en lancha a la sede universitaria llegan con los cuadernos y el portátil mojados por las salpicaduras.",
+  "idea": "Un bolso impermeable plegable, hecho con la lona de velas viejas del astillero.",
+  "budget": 100,
+  "goal": 70,
+  "users": [
+    {
+      "id": "ana",
+      "name": "Ana",
+      "profile": "Estudiante de enfermería. Viaja todos los días en lancha con su portátil.",
+      "start": 40
+    },
+    {
+      "id": "beto",
+      "name": "Beto",
+      "profile": "Pescador y estudiante nocturno. Carga cuadernos y herramientas.",
+      "start": 45
+    },
+    {
+      "id": "carla",
+      "name": "Carla",
+      "profile": "Docente de la sede. Viaja dos veces por semana con evaluaciones impresas.",
+      "start": 50
+    },
+    {
+      "id": "dario",
+      "name": "Darío",
+      "profile": "Turista de paso. Compra recuerdos; no viaja con útiles de estudio.",
+      "start": 50,
+      "target": false
+    }
+  ],
+  "rounds": [
+    {
+      "id": "primera-prueba",
+      "tier": 1,
+      "title": "Primera prueba en el muelle",
+      "feedback": [
+        {
+          "id": "f1",
+          "userId": "ana",
+          "quote": "Cuando salpica la ola, el agua se mete por la cremallera.",
+          "kind": "patron",
+          "why": "Ana y Beto describen el mismo problema: el cierre deja pasar agua."
+        },
+        {
+          "id": "f2",
+          "userId": "beto",
+          "quote": "Llegué con los cuadernos húmedos: la cremallera no sella.",
+          "kind": "patron",
+          "why": "Es el mismo problema que señala Ana, con otras palabras."
+        },
+        {
+          "id": "f3",
+          "userId": "dario",
+          "quote": "Me gustaría que viniera en colores fosforescentes, para las fotos.",
+          "kind": "fuera",
+          "why": "Darío no tiene el problema que el bolso resuelve: es turista y no carga útiles."
+        },
+        {
+          "id": "f4",
+          "userId": "carla",
+          "quote": "La correa me lastima un poco el hombro.",
+          "kind": "aislado",
+          "why": "Solo Carla lo menciona; vale anotarlo y observar si se repite en la siguiente prueba."
+        }
+      ],
+      "changes": [
+        {
+          "id": "c1",
+          "label": "Cierre enrollable con hebilla en lugar de cremallera",
+          "part": "Cierre enrollable",
+          "cost": 25,
+          "addresses": ["f1", "f2"],
+          "effects": { "ana": 20, "beto": 20, "carla": 8 }
+        },
+        {
+          "id": "c2",
+          "label": "Tela en colores fosforescentes",
+          "part": "Tela fosforescente",
+          "cost": 20,
+          "addresses": ["f3"],
+          "effects": { "dario": 10 }
+        },
+        {
+          "id": "c3",
+          "label": "Correa acolchada",
+          "part": "Correa acolchada",
+          "cost": 15,
+          "addresses": ["f4"],
+          "effects": { "carla": 8, "ana": 3, "beto": 3 }
+        },
+        {
+          "id": "c4",
+          "label": "Bolsillo con candado",
+          "part": "Candado",
+          "cost": 30,
+          "addresses": [],
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "id": "temporada-lluvias",
+      "tier": 2,
+      "title": "Prueba en temporada de lluvias",
+      "feedback": [
+        {
+          "id": "f5",
+          "userId": "ana",
+          "quote": "El portátil cabe, pero el cargador ya no.",
+          "kind": "patron",
+          "why": "Ana y Carla piden más espacio, por razones distintas: es el mismo patrón de capacidad."
+        },
+        {
+          "id": "f6",
+          "userId": "carla",
+          "quote": "Las carpetas de evaluaciones quedan dobladas; necesito más fondo.",
+          "kind": "patron",
+          "why": "Coincide con Ana: al bolso le falta capacidad."
+        },
+        {
+          "id": "f7",
+          "userId": "beto",
+          "quote": "De noche no encuentro el bolso en la lancha oscura.",
+          "kind": "aislado",
+          "why": "Por ahora solo lo dice Beto, que viaja de noche. Es real; conviene ver si se repite."
+        },
+        {
+          "id": "f8",
+          "userId": "dario",
+          "quote": "Le haría falta un portavasos.",
+          "kind": "fuera",
+          "why": "Un portavasos no tiene que ver con llegar con los útiles secos."
+        }
+      ],
+      "changes": [
+        {
+          "id": "c5",
+          "label": "Ampliar el compartimento con un fuelle",
+          "part": "Fuelle de capacidad",
+          "cost": 25,
+          "addresses": ["f5", "f6"],
+          "effects": { "ana": 15, "carla": 15, "beto": 5 }
+        },
+        {
+          "id": "c6",
+          "label": "Cinta reflectiva en la tapa",
+          "part": "Cinta reflectiva",
+          "cost": 5,
+          "addresses": ["f7"],
+          "effects": { "beto": 8 }
+        },
+        {
+          "id": "c7",
+          "label": "Portavasos lateral",
+          "part": "Portavasos",
+          "cost": 10,
+          "addresses": ["f8"],
+          "effects": { "dario": 6, "ana": -2 }
+        },
+        {
+          "id": "c8",
+          "label": "Panel solar para cargar el celular",
+          "part": "Panel solar",
+          "cost": 40,
+          "addresses": [],
+          "effects": { "ana": 2 }
+        }
+      ]
+    },
+    {
+      "id": "semana-de-uso",
+      "tier": 2,
+      "title": "Una semana de uso diario",
+      "feedback": [
+        {
+          "id": "f9",
+          "userId": "beto",
+          "quote": "Lleno pesa mucho y se me resbala del hombro.",
+          "kind": "patron",
+          "why": "Beto y Carla describen el mismo problema de carga."
+        },
+        {
+          "id": "f10",
+          "userId": "carla",
+          "quote": "Cuando lo cargo lleno, la correa se me va resbalando.",
+          "kind": "patron",
+          "why": "Coincide con Beto: la correa no sostiene el peso."
+        },
+        {
+          "id": "f11",
+          "userId": "ana",
+          "quote": "Me encantaría que tuviera el logo de mi programa.",
+          "kind": "aislado",
+          "why": "Es un gusto de una sola persona; no afecta el problema."
+        },
+        {
+          "id": "f12",
+          "userId": "dario",
+          "quote": "Si fuera más barato, lo usaría para ir a la playa.",
+          "kind": "fuera",
+          "why": "Ir a la playa es otro uso, de alguien que no tiene el problema."
+        }
+      ],
+      "changes": [
+        {
+          "id": "c9",
+          "label": "Correa antideslizante con cinta de pecho",
+          "part": "Cinta de pecho",
+          "cost": 15,
+          "addresses": ["f9", "f10"],
+          "effects": { "beto": 15, "carla": 12, "ana": 6 }
+        },
+        {
+          "id": "c10",
+          "label": "Logo del programa bordado",
+          "part": "Logo bordado",
+          "cost": 10,
+          "addresses": ["f11"],
+          "effects": { "ana": 4 }
+        },
+        {
+          "id": "c11",
+          "label": "Versión de playa más barata",
+          "part": "Versión de playa",
+          "cost": 30,
+          "addresses": ["f12"],
+          "effects": { "dario": 12, "ana": -4, "beto": -4 }
+        },
+        {
+          "id": "c12",
+          "label": "Rediseñar todo desde cero",
+          "part": "Rediseño completo",
+          "cost": 45,
+          "addresses": [],
+          "effects": { "ana": -5, "beto": -5, "carla": -5 }
+        }
+      ]
+    },
+    {
+      "id": "prueba-humedad",
+      "tier": 3,
+      "title": "Prueba de humedad",
+      "feedback": [
+        {
+          "id": "f13",
+          "userId": "ana",
+          "quote": "Ya no se moja nada, pero la lona huele a humedad después de dos días.",
+          "kind": "patron",
+          "why": "Ana y Carla describen lo mismo con palabras distintas: el interior no ventila."
+        },
+        {
+          "id": "f14",
+          "userId": "carla",
+          "quote": "Tengo que dejarlo abierto toda la noche para que se seque por dentro.",
+          "kind": "patron",
+          "why": "Es el mismo problema que Ana: la humedad queda atrapada."
+        },
+        {
+          "id": "f15",
+          "userId": "beto",
+          "quote": "Lo usé para cargar carnada y quedó oliendo a pescado.",
+          "kind": "fuera",
+          "why": "Cargar carnada es un uso distinto del problema que el bolso resuelve."
+        },
+        {
+          "id": "f16",
+          "userId": "dario",
+          "quote": "¡Me encanta! Compraría diez para regalar.",
+          "kind": "fuera",
+          "why": "El entusiasmo no es evidencia si viene de alguien que no tiene el problema."
+        }
+      ],
+      "changes": [
+        {
+          "id": "c13",
+          "label": "Forro interior transpirable y desmontable",
+          "part": "Forro transpirable",
+          "cost": 20,
+          "addresses": ["f13", "f14"],
+          "effects": { "ana": 12, "carla": 12, "beto": 4 }
+        },
+        {
+          "id": "c14",
+          "label": "Producir diez unidades para Darío",
+          "part": "Lote de regalo",
+          "cost": 35,
+          "addresses": ["f16"],
+          "effects": { "dario": 10 }
+        },
+        {
+          "id": "c15",
+          "label": "Compartimento sellado para carnada",
+          "part": "Bolsa de carnada",
+          "cost": 15,
+          "addresses": ["f15"],
+          "effects": { "beto": 6, "ana": -3 }
+        },
+        {
+          "id": "c16",
+          "label": "Aromatizante en la tela",
+          "part": "Aromatizante",
+          "cost": 10,
+          "addresses": ["f13"],
+          "effects": { "ana": 3, "carla": 1 }
+        }
+      ]
+    },
+    {
+      "id": "antes-del-pitch",
+      "tier": 3,
+      "title": "Última prueba antes del pitch",
+      "feedback": [
+        {
+          "id": "f17",
+          "userId": "beto",
+          "quote": "Sigo sin encontrar el bolso cuando oscurece en la lancha.",
+          "kind": "patron",
+          "why": "Lo que antes era un caso aislado ahora lo dicen Beto y Carla: los patrones aparecen con más pruebas."
+        },
+        {
+          "id": "f18",
+          "userId": "carla",
+          "quote": "Al salir de la sede ya está oscuro y en el muelle no lo distingo entre los otros bolsos.",
+          "kind": "patron",
+          "why": "Coincide con Beto: el bolso no se ve de noche."
+        },
+        {
+          "id": "f19",
+          "userId": "ana",
+          "quote": "Si costara menos de 60 000 pesos, mis compañeros lo comprarían.",
+          "kind": "aislado",
+          "why": "Es una hipótesis de precio de una sola persona: hay que probarla con más compradores antes de decidir."
+        },
+        {
+          "id": "f20",
+          "userId": "dario",
+          "quote": "Debería tener ruedas, como una maleta.",
+          "kind": "fuera",
+          "why": "Unas ruedas no ayudan a cruzar en lancha con los útiles secos."
+        }
+      ],
+      "changes": [
+        {
+          "id": "c17",
+          "label": "Cinta reflectiva y tirador de color visible",
+          "part": "Detalles reflectivos",
+          "cost": 5,
+          "addresses": ["f17", "f18"],
+          "effects": { "beto": 10, "carla": 10, "ana": 4 }
+        },
+        {
+          "id": "c18",
+          "label": "Abaratar con una lona más delgada",
+          "part": "Lona delgada",
+          "cost": 0,
+          "addresses": ["f19"],
+          "effects": { "ana": -6, "beto": -6, "carla": -6 }
+        },
+        {
+          "id": "c19",
+          "label": "Ruedas y manija extensible",
+          "part": "Ruedas",
+          "cost": 35,
+          "addresses": ["f20"],
+          "effects": { "dario": 8, "beto": -6 }
+        },
+        {
+          "id": "c20",
+          "label": "Forro interior de colores",
+          "part": "Forro de colores",
+          "cost": 10,
+          "addresses": [],
+          "effects": { "ana": 1 }
+        }
+      ]
+    }
+  ]
+}

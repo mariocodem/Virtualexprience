@@ -252,12 +252,13 @@
     "islandId": "activatuidea",
     "title": "Banco de pruebas",
     "type": "reto",
-    "summary": "Simulación: mejora un prototipo con la retroalimentación de quienes lo usan.",
+    "summary": "Simulación: pon un prototipo en manos de quienes lo usan e itéralo con lo que se repite en sus comentarios.",
     "xp": 80,
     "minutes": 12,
     "requires": ["activatuidea-prototipo"],
-    "availability": "en-preparacion",
-    "formats": ["interactivo"]
+    "availability": "disponible",
+    "formats": ["interactivo"],
+    "minigame": "banco-de-pruebas"
   },
   {
     "id": "activatuidea-cierre",

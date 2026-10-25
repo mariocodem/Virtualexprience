@@ -254,6 +254,8 @@ export const bancoContentSchema = z.strictObject({
         name: text,
         profile: text,
         start: z.number().int().min(0).max(100),
+        /** ¿Tiene el problema que la idea resuelve? Solo su satisfacción cuenta para la meta. */
+        target: z.boolean().default(true),
       }),
     )
     .min(3)

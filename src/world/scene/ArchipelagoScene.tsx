@@ -5,6 +5,7 @@ import { world } from '@/data';
 import type { IslandId } from '@/types/domain';
 import { bandsForIsland, bandsForLighthouse, reliefOf } from '../geography';
 import { ATLAS } from '../palette';
+import { IslandLandmarks } from './IslandLandmarks';
 import { IslandRelief } from './IslandRelief';
 import { Lighthouse } from './Lighthouse';
 import { Ocean } from './Ocean';
@@ -120,6 +121,11 @@ export function ArchipelagoScene({
             bands={bands}
             height={reliefOf(island.id).height}
             lit={litIslands.includes(island.id) ? 1 : 0}
+          />
+          <IslandLandmarks
+            island={island}
+            lit={litIslands.includes(island.id) ? 1 : 0}
+            still={still}
           />
         </group>
       ))}

@@ -13,6 +13,8 @@ import {
   type ReliefProfile,
   type Point,
 } from './geography';
+import { islandLandmarks } from './landmarks';
+import { LandmarkSigns } from './LandmarkSigns';
 import { ATLAS } from './palette';
 
 const toPath = (outline: readonly Point[]) =>
@@ -56,6 +58,7 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
         island,
         shelf: shelf(island.position, island.radius, islandSeed(island.id), reliefOf(island.id)),
         bands: bandsForIsland(island).map((band) => toPath(band.outline)),
+        landmarks: islandLandmarks(island),
       })),
       lighthouse: {
         shelf: shelf(LIGHTHOUSE_ISLAND.position, LIGHTHOUSE_ISLAND.radius, LIGHTHOUSE_ISLAND.seed),
@@ -108,13 +111,14 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
         })}
       </g>
 
-      {geometry.islands.map(({ island, bands }) => {
+      {geometry.islands.map(({ island, bands, landmarks }) => {
         const lit = litIslands.includes(island.id);
         return (
           <g key={island.id}>
             {bands.map((d, level) => (
               <path key={level} d={d} fill={ATLAS.land[level]} />
             ))}
+            <LandmarkSigns landmarks={landmarks} />
             {!lit && <path d={bands[0]} fill={ATLAS.haze} fillOpacity={0.32} />}
           </g>
         );

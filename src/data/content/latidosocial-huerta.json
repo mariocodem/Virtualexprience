@@ -1,0 +1,419 @@
+{
+  "kind": "reto",
+  "minigame": "huerta-comunitaria",
+  "intro": "La junta del barrio prestó un lote junto al bosque comunitario para sembrar una huerta. Cuatro grupos se ofrecieron a trabajarla, cada uno con su saber y su energía. Coordínalos durante una temporada para que la huerta alimente a las familias del barrio sin agotar a nadie.",
+  "goal": 70,
+  "groups": [
+    {
+      "id": "abuelas",
+      "name": "Las abuelas del barrio",
+      "strength": "Conocen las semillas nativas, cuándo sembrar y qué plantas espantan las plagas.",
+      "energy": 1
+    },
+    {
+      "id": "jovenes",
+      "name": "El colectivo juvenil",
+      "strength": "Tienen fuerza para cargar y construir, y saben convocar a la gente por redes.",
+      "energy": 3
+    },
+    {
+      "id": "pescadores",
+      "name": "Las familias pescadoras",
+      "strength": "Saben manejar el agua, cocinar para muchos y convertir los residuos del pescado en abono.",
+      "energy": 2
+    },
+    {
+      "id": "estudiantes",
+      "name": "Estudiantes de la sede",
+      "strength": "Saben medir, llevar registros y organizar turnos y reuniones.",
+      "energy": 2
+    }
+  ],
+  "moons": [
+    {
+      "id": "preparar-tierra",
+      "tier": 1,
+      "title": "Luna de preparar la tierra",
+      "situation": "El lote está lleno de escombros y la tierra, compacta. Hay que dejarlo listo y poner las primeras semillas antes de que lleguen las lluvias.",
+      "tasks": [
+        {
+          "id": "escombros",
+          "label": "Retirar escombros y armar las eras",
+          "detail": "Trabajo pesado: cargar, cavar y levantar los bordes de las camas de cultivo.",
+          "fits": ["jovenes"],
+          "effects": { "suelo": 6, "comunidad": 2 }
+        },
+        {
+          "id": "primeras-semillas",
+          "label": "Sembrar las primeras semillas nativas",
+          "detail": "Elegir qué sembrar primero y en qué orden, según el clima de la isla.",
+          "fits": ["abuelas"],
+          "effects": { "familias": 5 }
+        },
+        {
+          "id": "abono-pescado",
+          "label": "Preparar abono con residuos del muelle",
+          "detail": "Mezclar los restos del pescado con hojas secas para alimentar la tierra.",
+          "fits": ["pescadores"],
+          "effects": { "suelo": 7 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "Un comerciante ofrece semillas híbridas gratis si la huerta pone su logo en la entrada. Las nativas rinden un poco menos, pero se adaptan al clima y se pueden volver a sembrar.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Aceptar el trato: más semillas, más comida",
+            "quality": 0,
+            "feedback": "Rinde más ahora, pero nadie lo consultó y la huerta queda atada a una marca que volverá a cobrar el favor cada temporada.",
+            "effects": { "familias": 4, "comunidad": -8 }
+          },
+          {
+            "id": "b",
+            "text": "Llevarlo a la asamblea con la propuesta de sembrar las nativas y guardar semilla para la próxima temporada",
+            "quality": 1,
+            "feedback": "Bien: decidir en común y conservar las semillas propias protege la autonomía de la huerta.",
+            "effects": { "comunidad": 8, "suelo": 3 }
+          },
+          {
+            "id": "c",
+            "text": "Rechazarlo sin más: la huerta es de la comunidad",
+            "quality": 0.5,
+            "feedback": "La intención es buena, pero decidir por todos sin consultar también deja a la comunidad por fuera.",
+            "effects": { "comunidad": 2 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "siembra",
+      "tier": 1,
+      "title": "Luna de siembra",
+      "situation": "Llegó la temporada de siembra. Hay más vecinos interesados de los que caben en una jornada, y nadie sabe bien quién hace qué.",
+      "tasks": [
+        {
+          "id": "turnos",
+          "label": "Organizar turnos y un tablero de tareas",
+          "detail": "Que cada quien sepa cuándo viene y qué le toca, sin que nadie cargue con todo.",
+          "fits": ["estudiantes"],
+          "effects": { "comunidad": 7 }
+        },
+        {
+          "id": "sembrar-calendario",
+          "label": "Sembrar las eras según el calendario",
+          "detail": "Maíz, fríjol y ahuyama juntos, como se ha sembrado siempre en la región.",
+          "fits": ["abuelas"],
+          "effects": { "familias": 6 }
+        },
+        {
+          "id": "riego-goteo",
+          "label": "Instalar riego por goteo con mangueras recicladas",
+          "detail": "Llevar el agua del tanque a cada era sin desperdiciarla.",
+          "fits": ["pescadores"],
+          "effects": { "familias": 3, "suelo": 3 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "Dos familias discuten: una quiere sembrar solo maíz para vender y la otra, un poco de todo para comer.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Que decida la familia que más horas trabaja en la huerta",
+            "quality": 0,
+            "feedback": "Premiar a unas familias sobre otras rompe el sentido comunitario del proyecto.",
+            "effects": { "comunidad": -10 }
+          },
+          {
+            "id": "b",
+            "text": "Que cada familia siembre en su propia era, sin compartir",
+            "quality": 0.5,
+            "feedback": "Evita el choque, pero la huerta deja de ser un proyecto común.",
+            "effects": { "comunidad": -2, "familias": 2 }
+          },
+          {
+            "id": "c",
+            "text": "Facilitar un acuerdo: una parte para la olla comunitaria y otra para vender y pagar insumos",
+            "quality": 1,
+            "feedback": "Bien: el acuerdo reconoce las dos necesidades y las pone al servicio de todos.",
+            "effects": { "comunidad": 6, "familias": 3 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "lluvias",
+      "tier": 2,
+      "title": "Luna de lluvias",
+      "situation": "Las lluvias llegaron fuertes: el agua se empoza en las eras y arrastra la tierra hacia el muelle.",
+      "tasks": [
+        {
+          "id": "drenaje",
+          "label": "Abrir canales de drenaje y recoger agua lluvia",
+          "detail": "Sacar el agua que sobra y guardarla en el tanque para la temporada seca.",
+          "fits": ["pescadores"],
+          "effects": { "suelo": 6, "familias": 2 }
+        },
+        {
+          "id": "techo-semillero",
+          "label": "Construir un techo de guadua para el semillero",
+          "detail": "Cortar, cargar y amarrar la guadua antes de que el aguacero dañe las plántulas.",
+          "fits": ["jovenes"],
+          "effects": { "familias": 4 }
+        },
+        {
+          "id": "registro-inundacion",
+          "label": "Registrar qué eras se inundan para replanificar",
+          "detail": "Medir y anotar dónde se empoza el agua para no volver a sembrar ahí.",
+          "fits": ["estudiantes"],
+          "effects": { "suelo": 3, "comunidad": 3 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "La lluvia dañó parte de la cosecha. Algunos proponen repartir lo que queda solo entre quienes más trabajaron.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Repartirlo en partes iguales entre todas las familias inscritas",
+            "quality": 0.5,
+            "feedback": "Parece justo, pero no atiende a las familias que más lo necesitan esta semana.",
+            "effects": { "comunidad": 3 }
+          },
+          {
+            "id": "b",
+            "text": "Priorizar a las familias con más necesidad y explicar el criterio en la asamblea",
+            "quality": 1,
+            "feedback": "Bien: un criterio claro y conversado hace que la decisión se entienda como justa.",
+            "effects": { "comunidad": 6, "familias": 2 }
+          },
+          {
+            "id": "c",
+            "text": "Repartirlo solo entre quienes más horas trabajaron",
+            "quality": 0,
+            "feedback": "Convierte la huerta en un pago por trabajo y deja por fuera a quien no puede venir.",
+            "effects": { "comunidad": -8 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "plagas",
+      "tier": 2,
+      "title": "Luna de plagas",
+      "situation": "Aparecieron babosas y pulgones en las hortalizas. Un vecino trajo un veneno fuerte que, según él, «mata todo en un día».",
+      "tasks": [
+        {
+          "id": "plantas-aliadas",
+          "label": "Sembrar plantas que espantan las plagas",
+          "detail": "Albahaca, caléndula y ajo entre las hortalizas, como se hacía en las fincas.",
+          "fits": ["abuelas"],
+          "effects": { "familias": 4, "suelo": 3 }
+        },
+        {
+          "id": "revisar-hojas",
+          "label": "Revisar hoja por hoja y retirar las plagas a mano",
+          "detail": "Recorrer todas las eras al atardecer, agachados, varias veces por semana.",
+          "fits": ["jovenes"],
+          "effects": { "familias": 4 }
+        },
+        {
+          "id": "conteo-plagas",
+          "label": "Contar las plagas cada semana para ver si el control funciona",
+          "detail": "Una planilla sencilla por era: cuántas hojas dañadas y cuántas plagas.",
+          "fits": ["estudiantes"],
+          "effects": { "familias": 2, "comunidad": 3 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "¿Qué hacer con el veneno que trajo el vecino?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Usarlo: hay que salvar la cosecha",
+            "quality": 0,
+            "feedback": "Salva las hojas esta luna, pero envenena el suelo y el agua que baja hasta el muelle.",
+            "effects": { "familias": 4, "suelo": -15, "comunidad": -4 }
+          },
+          {
+            "id": "b",
+            "text": "Rechazarlo sin darle explicaciones",
+            "quality": 0.5,
+            "feedback": "Protege el suelo, pero se pierde la oportunidad de sumar a un vecino que quería ayudar.",
+            "effects": { "comunidad": -3 }
+          },
+          {
+            "id": "c",
+            "text": "Agradecerle e invitarlo al control natural, explicando el riesgo para el agua y la pesca",
+            "quality": 1,
+            "feedback": "Bien: se cuida el territorio y se suma una persona más al proyecto.",
+            "effects": { "comunidad": 6, "suelo": 2 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "pocas-manos",
+      "tier": 2,
+      "title": "Luna de pocas manos",
+      "situation": "Es temporada de exámenes en la sede y muchas familias tienen turnos extra. La maleza avanza y la olla comunitaria necesita comida.",
+      "tasks": [
+        {
+          "id": "desyerbar",
+          "label": "Desyerbar y cubrir el suelo con hojarasca",
+          "detail": "Arrancar la maleza y cargar costales de hojas desde el bosque.",
+          "fits": ["jovenes"],
+          "effects": { "suelo": 5, "familias": 2 }
+        },
+        {
+          "id": "olla-comunitaria",
+          "label": "Cosechar y cocinar la olla comunitaria",
+          "detail": "Recoger lo que ya está listo y cocinar para las familias del barrio.",
+          "fits": ["pescadores"],
+          "effects": { "familias": 6, "comunidad": 2 }
+        },
+        {
+          "id": "proyecto-herramientas",
+          "label": "Escribir un proyecto para conseguir herramientas",
+          "detail": "Redactar la propuesta con un presupuesto claro y presentarla a la junta.",
+          "fits": ["estudiantes"],
+          "effects": { "comunidad": 4, "suelo": 2 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "Una integrante del colectivo juvenil viene todos los días desde hace semanas. Se ve agotada, pero dice que puede seguir.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dejarla seguir: ella sabe lo que aguanta",
+            "quality": 0,
+            "feedback": "El entusiasmo no evita el agotamiento. Cuidar a quien cuida también es parte del proyecto.",
+            "effects": { "comunidad": -6 }
+          },
+          {
+            "id": "b",
+            "text": "Hablar con ella, repartir sus tareas y acordar turnos de descanso para todo el equipo",
+            "quality": 1,
+            "feedback": "Bien: el descanso acordado protege a las personas y hace que el proyecto dure.",
+            "effects": { "comunidad": 7 }
+          },
+          {
+            "id": "c",
+            "text": "Pedirle que no vuelva hasta el próximo mes",
+            "quality": 0.5,
+            "feedback": "La protege, pero la aparta sin acordarlo con ella.",
+            "effects": { "comunidad": -2 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sequia",
+      "tier": 3,
+      "title": "Luna seca",
+      "situation": "No llueve hace tres semanas. El tanque está casi vacío y el agua del acueducto llega a ratos.",
+      "tasks": [
+        {
+          "id": "riego-amanecer",
+          "label": "Regar al amanecer con el agua lluvia guardada",
+          "detail": "Repartir lo que queda en el tanque, era por era, antes de que el sol evapore el agua.",
+          "fits": ["pescadores"],
+          "effects": { "familias": 5 }
+        },
+        {
+          "id": "hojarasca",
+          "label": "Cubrir las eras con hojarasca, como se hacía antes",
+          "detail": "Una capa de hojas que guarda la humedad y protege las raíces del sol.",
+          "fits": ["abuelas"],
+          "effects": { "suelo": 6, "familias": 2 }
+        },
+        {
+          "id": "medir-agua",
+          "label": "Medir cuánta agua usa cada era y ajustar el riego",
+          "detail": "Anotar los litros por era y decidir con datos dónde rinde más el agua.",
+          "fits": ["estudiantes"],
+          "effects": { "familias": 3, "suelo": 2 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "Un vecino propone conectar una manguera al tubo del acueducto, sin permiso, para regar toda la huerta.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Regar solo las eras de las familias que más lo necesitan, sin consultar",
+            "quality": 0.5,
+            "feedback": "La prioridad tiene sentido, pero decidirla a solas genera desconfianza.",
+            "effects": { "familias": 2, "comunidad": -3 }
+          },
+          {
+            "id": "b",
+            "text": "Hacerlo: es por una buena causa",
+            "quality": 0,
+            "feedback": "Le quita agua a otras casas del barrio. Una buena causa no justifica perjudicar a otros.",
+            "effects": { "familias": 4, "comunidad": -10 }
+          },
+          {
+            "id": "c",
+            "text": "Priorizar los cultivos que alimentan a más familias y gestionar con la junta un turno de agua",
+            "quality": 1,
+            "feedback": "Bien: se decide con un criterio claro y por los canales que respetan a todo el barrio.",
+            "effects": { "comunidad": 5, "familias": 2 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cosecha",
+      "tier": 3,
+      "title": "Luna de cosecha",
+      "situation": "Las eras están cargadas. Hay que cosechar, repartir y decidir qué hacer con lo que sobra, sin descuidar la próxima temporada.",
+      "tasks": [
+        {
+          "id": "cosechar-repartir",
+          "label": "Cosechar y cocinar para la olla comunitaria",
+          "detail": "Recoger, lavar y cocinar para que la comida llegue a todas las casas.",
+          "fits": ["pescadores"],
+          "effects": { "familias": 6 }
+        },
+        {
+          "id": "guardar-semillas",
+          "label": "Seleccionar y guardar semillas para la próxima temporada",
+          "detail": "Escoger las mejores plantas y secar sus semillas para volver a sembrar.",
+          "fits": ["abuelas"],
+          "effects": { "familias": 3, "suelo": 3 }
+        },
+        {
+          "id": "trueque",
+          "label": "Convocar un mercado de trueque con el barrio",
+          "detail": "Invitar a los vecinos a intercambiar lo que sobra por lo que la huerta necesita.",
+          "fits": ["jovenes"],
+          "effects": { "comunidad": 6, "familias": 2 }
+        }
+      ],
+      "dilemma": {
+        "prompt": "Un restaurante del puerto quiere comprar toda la cosecha a buen precio.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Vender solo el excedente, después de asegurar la olla comunitaria, y usar el dinero en insumos acordados",
+            "quality": 1,
+            "feedback": "Bien: la huerta cumple su propósito y consigue recursos para seguir.",
+            "effects": { "familias": 2, "comunidad": 5 }
+          },
+          {
+            "id": "b",
+            "text": "No vender nada: la comida del barrio no se vende",
+            "quality": 0.5,
+            "feedback": "Protege la olla, pero renuncia a recursos que la huerta necesita para la próxima temporada.",
+            "effects": { "comunidad": 1 }
+          },
+          {
+            "id": "c",
+            "text": "Vender todo: con ese dinero se compran herramientas",
+            "quality": 0,
+            "feedback": "La huerta existe para alimentar al barrio; venderlo todo deja la olla vacía.",
+            "effects": { "familias": -8, "comunidad": -6 }
+          }
+        ]
+      }
+    }
+  ]
+}

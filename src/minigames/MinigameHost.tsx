@@ -23,6 +23,10 @@ const BancoDePruebas = lazy(async () => ({
   default: (await import('./banco-de-pruebas/BancoDePruebas')).BancoDePruebas,
 }));
 
+const HuertaComunitaria = lazy(async () => ({
+  default: (await import('./huerta-comunitaria/HuertaComunitaria')).HuertaComunitaria,
+}));
+
 /** Elige el minijuego de la estación según su contenido. */
 export function MinigameHost({ content, ...props }: MinigameProps<RetoContent>) {
   switch (content.minigame) {
@@ -36,6 +40,8 @@ export function MinigameHost({ content, ...props }: MinigameProps<RetoContent>) 
       return <DiaDeMercado content={content} {...props} />;
     case 'banco-de-pruebas':
       return <BancoDePruebas content={content} {...props} />;
+    case 'huerta-comunitaria':
+      return <HuertaComunitaria content={content} {...props} />;
     default:
       return null;
   }

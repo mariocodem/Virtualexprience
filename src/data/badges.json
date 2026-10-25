@@ -162,6 +162,18 @@
     }
   },
   {
+    "id": "manos-que-se-cuidan",
+    "name": "Manos que se cuidan",
+    "description": "En La huerta comunitaria, los cuatro grupos aportaron su trabajo sin que ninguno se agotara.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "minigame",
+      "minigame": "huerta-comunitaria",
+      "metric": "tools-used",
+      "min": 4
+    }
+  },
+  {
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",

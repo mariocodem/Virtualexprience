@@ -302,12 +302,13 @@
     "islandId": "latidosocial",
     "title": "La huerta comunitaria",
     "type": "reto",
-    "summary": "Simulación: coordina con la comunidad un proyecto que dé frutos.",
+    "summary": "Simulación: coordina a cuatro grupos del barrio para que la huerta alimente a las familias sin agotar a nadie.",
     "xp": 80,
     "minutes": 12,
     "requires": ["latidosocial-bienestar"],
-    "availability": "en-preparacion",
-    "formats": ["interactivo"]
+    "availability": "disponible",
+    "formats": ["interactivo"],
+    "minigame": "huerta-comunitaria"
   },
   {
     "id": "latidosocial-cierre",

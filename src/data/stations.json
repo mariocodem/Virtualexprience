@@ -233,7 +233,7 @@
     "minutes": 6,
     "requires": [],
     "availability": "disponible",
-    "formats": ["texto", "audio", "infografia"]
+    "formats": ["texto", "audio", "video", "infografia", "interactivo"]
   },
   {
     "id": "activatuidea-prototipo",
@@ -265,12 +265,12 @@
     "islandId": "activatuidea",
     "title": "Pitch del taller",
     "type": "desafio",
-    "summary": "El desafío de la isla: presenta tu idea en un minuto, con evidencia de que resuelve algo real.",
+    "summary": "El desafío de la isla: enfrenta a la Bruma de la idea perfecta, que prefiere guardar las ideas en un cajón antes que probarlas.",
     "xp": 120,
     "minutes": 15,
     "requires": ["activatuidea-taller"],
-    "availability": "en-preparacion",
-    "formats": ["texto", "audio"]
+    "availability": "disponible",
+    "formats": ["interactivo"]
   },
 
   {

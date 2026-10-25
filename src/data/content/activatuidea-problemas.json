@@ -1,0 +1,169 @@
+{
+  "kind": "explorar",
+  "intro": "En el taller de ActivaTuIdea hay herramientas para construir casi cualquier cosa. Pero antes de encender una máquina, aquí se aprende a mirar: las ideas que funcionan empiezan por un problema que alguien vive de verdad.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "Primero el problema, después la solución",
+          "body": "Es tentador enamorarse de una solución: una aplicación, un aparato, un servicio. Pero una solución solo vale si resuelve algo que a alguien le importa. Quien emprende empieza preguntando quién tiene el problema, cuándo le pasa y qué le cuesta, antes de imaginar cómo resolverlo."
+        },
+        {
+          "heading": "Observar lo que la gente hace",
+          "body": "Lo que las personas dicen y lo que hacen no siempre coincide. Observar a alguien en su rutina —en el muelle, en la biblioteca, en la cocina— revela los rodeos que inventa para salir del paso: bolsas plásticas sobre el portátil, notas pegadas en la nevera. Esos rodeos son pistas de un problema real."
+        },
+        {
+          "heading": "Preguntar sin empujar la respuesta",
+          "body": "Una buena entrevista pregunta por hechos del pasado, no por opiniones sobre el futuro. «¿Cuándo fue la última vez que te pasó?, ¿qué hiciste?» dice más que «¿comprarías esto?». Las preguntas que ya traen la respuesta —«¿no te parece que sería útil…?»— solo confirman lo que uno quería oír."
+        },
+        {
+          "heading": "Escuchar lo que se repite",
+          "body": "Una sola persona puede tener un caso particular. Cuando varias, sin conocerse, describen la misma molestia con palabras distintas, aparece un patrón. Un problema que vale la pena es frecuente, duele lo suficiente como para que la gente ya intente resolverlo, y le pasa a un grupo que se puede alcanzar."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida al taller de ActivaTuIdea. Antes de construir, aquí se aprende a mirar.",
+        "Una idea vale si resuelve un problema que alguien vive de verdad. Por eso se empieza por el problema, no por la solución.",
+        "Observa lo que la gente hace: los rodeos que inventa para salir del paso son pistas de un problema real.",
+        "Al entrevistar, pregunta por hechos del pasado: ¿cuándo te pasó?, ¿qué hiciste? Evita las preguntas que ya traen la respuesta.",
+        "Y escucha lo que se repite: cuando varias personas describen la misma molestia, has encontrado un patrón."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "Problema antes que solución",
+          "caption": "Una solución solo vale si resuelve algo que a alguien le importa."
+        },
+        {
+          "title": "Observar",
+          "caption": "Los rodeos que la gente inventa para salir del paso son pistas de un problema real."
+        },
+        {
+          "title": "Preguntar",
+          "caption": "«¿Cuándo te pasó y qué hiciste?» dice más que «¿comprarías esto?»."
+        },
+        {
+          "title": "Escuchar el patrón",
+          "caption": "Cuando varias personas describen la misma molestia, el problema es real."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "La caza de un problema",
+      "nodes": [
+        {
+          "label": "¿Quién?",
+          "detail": "El grupo concreto de personas que vive el problema."
+        },
+        {
+          "label": "¿Cuándo?",
+          "detail": "La situación en la que aparece y con qué frecuencia."
+        },
+        {
+          "label": "¿Qué hace hoy?",
+          "detail": "Los rodeos que ya inventa: señal de que el problema le duele."
+        },
+        {
+          "label": "¿Se repite?",
+          "detail": "Varias personas lo describen sin ponerse de acuerdo."
+        }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Vas a entrevistar a quienes cruzan en lancha a la sede. Clasifica cada pregunta: ¿ayuda a descubrir el problema o empuja la respuesta?",
+      "categories": [
+        {
+          "id": "descubre",
+          "label": "Ayuda a descubrir"
+        },
+        {
+          "id": "empuja",
+          "label": "Empuja la respuesta"
+        }
+      ],
+      "items": [
+        {
+          "text": "¿Qué llevaste en la lancha la última vez que cruzaste?",
+          "category": "descubre"
+        },
+        {
+          "text": "¿No te parece que un bolso impermeable sería muy útil?",
+          "category": "empuja"
+        },
+        {
+          "text": "¿Qué haces hoy para que no se te moje nada?",
+          "category": "descubre"
+        },
+        {
+          "text": "¿Comprarías mi producto si lo vendiera barato?",
+          "category": "empuja"
+        },
+        {
+          "text": "Cuéntame qué pasó la última vez que se te mojó algo.",
+          "category": "descubre"
+        },
+        {
+          "text": "¿Verdad que es horrible llegar con los cuadernos mojados?",
+          "category": "empuja"
+        }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "problemas-c1",
+      "tier": 1,
+      "prompt": "Antes de diseñar una solución, ¿qué conviene entender primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Qué tecnología está de moda",
+          "correct": false,
+          "feedback": "La tecnología es un medio; no dice si hay un problema que resolver."
+        },
+        {
+          "id": "b",
+          "text": "Quién tiene el problema, cuándo le pasa y qué le cuesta",
+          "correct": true,
+          "feedback": "Exacto: sin un problema claro, cualquier solución es una apuesta."
+        },
+        {
+          "id": "c",
+          "text": "Cuánto cobrar por el producto",
+          "correct": false,
+          "feedback": "El precio viene después de saber si el problema existe y a quién le duele."
+        }
+      ],
+      "explanation": "Las ideas que funcionan parten de un problema real y bien entendido: quién lo vive, en qué situación y qué le cuesta."
+    },
+    {
+      "id": "problemas-c2",
+      "tier": 2,
+      "prompt": "En una entrevista, ¿cuál de estas preguntas da información más confiable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "«¿Usarías una aplicación para organizar tus turnos?»",
+          "correct": false,
+          "feedback": "Pregunta por un futuro imaginario: es fácil decir que sí sin comprometerse."
+        },
+        {
+          "id": "b",
+          "text": "«¿No sería genial no perder nunca un turno?»",
+          "correct": false,
+          "feedback": "Es una pregunta que empuja la respuesta: casi nadie dirá que no."
+        },
+        {
+          "id": "c",
+          "text": "«¿Cómo organizaste tus turnos la semana pasada?»",
+          "correct": true,
+          "feedback": "Bien: los hechos del pasado muestran lo que la persona realmente hace."
+        }
+      ],
+      "explanation": "Preguntar por hechos concretos del pasado revela comportamientos reales; las preguntas hipotéticas o sugestivas producen respuestas amables pero poco útiles."
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "kind": "practicar",
+  "intro": "En la mesa del taller hay cartón, cinta, marcadores y una tarde por delante. Para cada idea, elige la forma más barata y rápida de averiguar si funciona antes de construirla en serio.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "prototipo-1",
+      "tier": 1,
+      "prompt": "Un equipo quiere crear una aplicación para reservar puesto en las lanchas de la mañana. ¿Cuál es la primera prueba más sensata?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Programar la aplicación completa durante tres meses",
+          "correct": false,
+          "feedback": "Es la forma más cara de descubrir si alguien la quiere."
+        },
+        {
+          "id": "b",
+          "text": "Dibujar las pantallas en papel y pedir a cinco pasajeros que intenten reservar con ellas",
+          "correct": true,
+          "feedback": "Bien: en una tarde se ve si entienden el flujo y si les sirve."
+        },
+        {
+          "id": "c",
+          "text": "Comprar publicidad para anunciarla",
+          "correct": false,
+          "feedback": "Anunciar algo que aún no se ha probado gasta dinero sin aprender nada."
+        }
+      ],
+      "explanation": "Un prototipo de papel permite probar la idea con personas reales en horas, no en meses, y cambiarla sin costo."
+    },
+    {
+      "id": "prototipo-2",
+      "tier": 1,
+      "prompt": "¿Para qué sirve, ante todo, un prototipo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para mostrar lo bien que quedó el producto",
+          "correct": false,
+          "feedback": "Un prototipo no es una vitrina: es una pregunta hecha objeto."
+        },
+        {
+          "id": "b",
+          "text": "Para venderlo de una vez",
+          "correct": false,
+          "feedback": "Puede pasar, pero su propósito es aprender antes de invertir."
+        },
+        {
+          "id": "c",
+          "text": "Para aprender algo concreto sobre la idea, con el menor esfuerzo posible",
+          "correct": true,
+          "feedback": "Exacto: cada prototipo responde una pregunta."
+        }
+      ],
+      "explanation": "Un prototipo es una herramienta de aprendizaje: se construye para responder una pregunta, no para ser perfecto."
+    },
+    {
+      "id": "prototipo-3",
+      "tier": 2,
+      "prompt": "Se quiere saber si los vecinos pagarían por recibir verduras de la huerta a domicilio. ¿Qué prueba responde mejor esa pregunta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ofrecer durante dos semanas el servicio a mano, en bicicleta, a quienes encarguen y paguen por adelantado",
+          "correct": true,
+          "feedback": "Bien: se mide lo que la gente hace con su dinero, sin montar toda la operación."
+        },
+        {
+          "id": "b",
+          "text": "Una encuesta que pregunte «¿pagarías por este servicio?»",
+          "correct": false,
+          "feedback": "Decir que sí en una encuesta no cuesta nada; pagar, sí."
+        },
+        {
+          "id": "c",
+          "text": "Diseñar el logotipo y las bolsas de entrega",
+          "correct": false,
+          "feedback": "La imagen puede esperar: primero hay que saber si alguien paga."
+        }
+      ],
+      "explanation": "Prestar el servicio a mano, a pequeña escala, prueba la disposición real a pagar antes de invertir en la operación completa."
+    },
+    {
+      "id": "prototipo-4",
+      "tier": 2,
+      "prompt": "Antes de probar un prototipo, el equipo escribe: «Creemos que quienes viajan de noche usarán una linterna en el bolso». ¿Qué le falta a esa hipótesis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cómo se sabrá si se cumple: por ejemplo, «al menos 6 de 10 la encienden durante la semana»",
+          "correct": true,
+          "feedback": "Exacto: sin un criterio medible, cualquier resultado parece un éxito."
+        },
+        {
+          "id": "b",
+          "text": "Más adjetivos sobre lo útil que será",
+          "correct": false,
+          "feedback": "Los adjetivos no se pueden comprobar."
+        },
+        {
+          "id": "c",
+          "text": "Nada: ya está completa",
+          "correct": false,
+          "feedback": "Le falta decir qué resultado la confirmaría o la descartaría."
+        }
+      ],
+      "explanation": "Una hipótesis útil dice qué se espera y cómo se medirá; así la prueba puede darle la razón o quitársela."
+    },
+    {
+      "id": "prototipo-5",
+      "tier": 3,
+      "prompt": "Tras probar un prototipo, 9 de 10 amigos del equipo dicen que les encanta, pero ninguno de los 5 pasajeros desconocidos lo volvió a usar. ¿Qué se concluye?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la idea funciona: a casi todos les encantó",
+          "correct": false,
+          "feedback": "Los amigos quieren apoyar; su opinión no muestra uso real."
+        },
+        {
+          "id": "b",
+          "text": "Que la evidencia más fuerte es el comportamiento de quienes tienen el problema, y no es buena: hay que revisar la idea",
+          "correct": true,
+          "feedback": "Bien: lo que hacen los usuarios reales pesa más que los elogios de quienes nos aprecian."
+        },
+        {
+          "id": "c",
+          "text": "Que los pasajeros no entienden el producto",
+          "correct": false,
+          "feedback": "Culpar al usuario evita aprender de la prueba."
+        }
+      ],
+      "explanation": "Los elogios de personas cercanas son un falso positivo frecuente; el uso real de quienes tienen el problema es la evidencia que cuenta."
+    },
+    {
+      "id": "prototipo-6",
+      "tier": 3,
+      "prompt": "Tres rondas de pruebas muestran que nadie usa el servicio de reservas, pero varios pasajeros preguntan por avisos cuando la lancha se retrasa. ¿Qué conviene hacer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Insistir con las reservas: ya se invirtió mucho tiempo",
+          "correct": false,
+          "feedback": "Lo invertido no cambia lo que muestran las pruebas."
+        },
+        {
+          "id": "b",
+          "text": "Abandonar todo: la idea fracasó",
+          "correct": false,
+          "feedback": "Las pruebas descubrieron una necesidad nueva; sería desperdiciarla."
+        },
+        {
+          "id": "c",
+          "text": "Reorientar la idea hacia los avisos de retraso y probarla con un prototipo rápido",
+          "correct": true,
+          "feedback": "Exacto: reorientar con evidencia no es rendirse, es aprender."
+        }
+      ],
+      "explanation": "Cuando las pruebas descartan una hipótesis pero revelan otra necesidad, se reorienta la idea (se pivota) y se vuelve a probar en pequeño."
+    }
+  ]
+}

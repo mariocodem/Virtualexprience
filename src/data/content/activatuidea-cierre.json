@@ -1,0 +1,348 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma de la idea perfecta",
+    "nature": "Convence de guardar la idea hasta que sea perfecta, de no mostrarla por miedo a fallar y de construir sin preguntarle a nadie. Se disipa cuando alguien prueba en pequeño, escucha a quien tiene el problema y aprende de cada intento.",
+    "intro": "¿Mostrar tu idea a medio hacer? ¿Y si se ríen? Mejor guárdala en el cajón hasta que sea perfecta… o para siempre.",
+    "victory": "Tu idea vuelve al cajón. Allí está a salvo… y no le sirve a nadie.",
+    "defeat": "Me deshago… Una idea probada a medias enseña más que una idea perfecta que nunca sale del taller.",
+    "taunts": {
+      "phase1": [
+        "Empecemos fácil: ¿para qué preguntar, si tú ya sabes lo que la gente necesita?",
+        "Construye primero; pregunta después."
+      ],
+      "phase2": [
+        "Ahora hablo con la voz de tus amigos: «¡Me encanta!».",
+        "Ya invertiste tanto en esa idea… cambiarla sería admitir que fallaste."
+      ],
+      "phase3": [
+        "Última forma: cifras que suenan a éxito y no prueban nada.",
+        "Las palabras grandes convencen más que la evidencia, ¿no?"
+      ],
+      "hit": [
+        "¡Lo probaste en pequeño! Qué molestia.",
+        "Escuchaste a quien tiene el problema… me debilito.",
+        "Aprendiste de un fallo: pierdo fuerza."
+      ],
+      "miss": [
+        "¿Ves? Mejor no mostrar nada todavía.",
+        "Otra idea guardada en el cajón.",
+        "Así: construir sin preguntarle a nadie."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "idea-1",
+      "tier": 1,
+      "prompt": "¿Cuál es la mejor señal de que un problema vale la pena resolverse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que a ti te parece un problema interesante",
+          "correct": false,
+          "feedback": "Tu interés ayuda, pero no prueba que otros lo vivan."
+        },
+        {
+          "id": "b",
+          "text": "Que las personas que lo viven ya inventan rodeos para resolverlo",
+          "correct": true,
+          "feedback": "Exacto: si ya buscan salidas, el problema les duele de verdad."
+        },
+        {
+          "id": "c",
+          "text": "Que nadie lo ha resuelto todavía",
+          "correct": false,
+          "feedback": "A veces nadie lo resolvió porque a nadie le importa."
+        }
+      ],
+      "explanation": "Los rodeos que la gente ya usa —bolsas plásticas, notas, favores— muestran que el problema es frecuente y molesto."
+    },
+    {
+      "id": "idea-2",
+      "tier": 1,
+      "prompt": "Un prototipo de cartón falló en la primera prueba: nadie entendió cómo abrirlo. ¿Cómo leer ese resultado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Como un fracaso: hay que abandonar la idea",
+          "correct": false,
+          "feedback": "Una prueba fallida dice qué cambiar, no que todo esté perdido."
+        },
+        {
+          "id": "b",
+          "text": "Como un aprendizaje barato: se descubrió un problema antes de invertir en serio",
+          "correct": true,
+          "feedback": "Bien: para eso se prueba en cartón."
+        },
+        {
+          "id": "c",
+          "text": "Como una señal de que los usuarios no saben usarlo",
+          "correct": false,
+          "feedback": "Si nadie lo entiende, el problema está en el diseño."
+        }
+      ],
+      "explanation": "Fallar pronto y en pequeño es la forma más económica de aprender: cada error corregido en cartón es uno que no llega al producto."
+    },
+    {
+      "id": "idea-3",
+      "tier": 1,
+      "prompt": "¿Qué significa innovar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Inventar algo que nunca nadie había visto",
+          "correct": false,
+          "feedback": "Lo nuevo no basta: tiene que servirle a alguien."
+        },
+        {
+          "id": "b",
+          "text": "Usar la tecnología más reciente",
+          "correct": false,
+          "feedback": "La tecnología es un medio; se puede innovar con lona y cinta."
+        },
+        {
+          "id": "c",
+          "text": "Crear o mejorar algo que genera valor real para quienes tienen un problema",
+          "correct": true,
+          "feedback": "Exacto: la innovación se mide por el valor que crea."
+        }
+      ],
+      "explanation": "Innovar es generar valor nuevo para alguien, sea con un invento, una mejora pequeña o una forma distinta de hacer las cosas."
+    },
+    {
+      "id": "idea-4",
+      "tier": 1,
+      "prompt": "En un pitch de un minuto, ¿qué no puede faltar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El problema, para quién es, la solución y la evidencia de que funciona",
+          "correct": true,
+          "feedback": "Bien: en un minuto se cuenta lo esencial con pruebas."
+        },
+        {
+          "id": "b",
+          "text": "La historia completa de cómo se le ocurrió la idea al equipo",
+          "correct": false,
+          "feedback": "Puede ser simpática, pero se come el minuto."
+        },
+        {
+          "id": "c",
+          "text": "Todas las funciones que tendrá el producto en el futuro",
+          "correct": false,
+          "feedback": "Lo que hará algún día convence menos que lo que ya se probó."
+        }
+      ],
+      "explanation": "Un pitch breve muestra el problema, a quién afecta, la solución y la evidencia reunida en las pruebas."
+    },
+    {
+      "id": "idea-5",
+      "tier": 2,
+      "prompt": "Tu familia dice que tu idea es genial y que todos la van a comprar. ¿Cuánto pesa esa opinión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mucho: nadie te conoce mejor",
+          "correct": false,
+          "feedback": "Te conocen a ti, no necesariamente el problema."
+        },
+        {
+          "id": "b",
+          "text": "Poco: quieren apoyarte; la evidencia está en quienes tienen el problema",
+          "correct": true,
+          "feedback": "Exacto: el cariño no es un dato sobre el mercado."
+        },
+        {
+          "id": "c",
+          "text": "Nada: hay que ignorar a la familia",
+          "correct": false,
+          "feedback": "Su apoyo vale; solo no sirve como prueba de la idea."
+        }
+      ],
+      "explanation": "Las personas cercanas tienden a elogiar para no herir; su opinión es un falso positivo si no tienen el problema."
+    },
+    {
+      "id": "idea-6",
+      "tier": 2,
+      "prompt": "Tienes diez funciones pensadas para tu producto. ¿Qué debería tener la primera versión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Las diez, para que nadie diga que le falta algo",
+          "correct": false,
+          "feedback": "Construir todo tarda meses y no dice qué función importa."
+        },
+        {
+          "id": "b",
+          "text": "Las más fáciles de construir",
+          "correct": false,
+          "feedback": "Fácil no significa importante."
+        },
+        {
+          "id": "c",
+          "text": "Lo mínimo que resuelve el problema central, para probarlo cuanto antes",
+          "correct": true,
+          "feedback": "Bien: es un producto mínimo viable."
+        }
+      ],
+      "explanation": "Un producto mínimo viable resuelve lo esencial y permite aprender con usuarios reales antes de añadir más."
+    },
+    {
+      "id": "idea-7",
+      "tier": 2,
+      "prompt": "En una entrevista preguntas: «¿Te gustaría un bolso que no se moje nunca?». ¿Qué problema tiene la pregunta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sugiere la respuesta: casi nadie dirá que no",
+          "correct": true,
+          "feedback": "Exacto: mejor preguntar qué pasó la última vez que se le mojó algo."
+        },
+        {
+          "id": "b",
+          "text": "Es demasiado corta",
+          "correct": false,
+          "feedback": "El largo no es el problema; lo es que empuja la respuesta."
+        },
+        {
+          "id": "c",
+          "text": "Ninguno: va directo al punto",
+          "correct": false,
+          "feedback": "Va directo a la respuesta que querías oír."
+        }
+      ],
+      "explanation": "Las preguntas sugestivas confirman lo que ya creíamos; las preguntas por hechos pasados revelan lo que la gente hace."
+    },
+    {
+      "id": "idea-8",
+      "tier": 2,
+      "prompt": "Descubres que alguien en el puerto ya vende algo parecido a tu idea. ¿Qué haces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Abandonar: ya existe",
+          "correct": false,
+          "feedback": "Que exista confirma que hay un problema; no que esté bien resuelto."
+        },
+        {
+          "id": "b",
+          "text": "Averiguar qué no resuelve bien para quienes tienen el problema y si ahí hay espacio para tu idea",
+          "correct": true,
+          "feedback": "Bien: la competencia también es una fuente de aprendizaje."
+        },
+        {
+          "id": "c",
+          "text": "Copiarlo tal cual y venderlo más barato",
+          "correct": false,
+          "feedback": "Copiar sin aportar valor nuevo no es innovar."
+        }
+      ],
+      "explanation": "Estudiar lo que ya existe ayuda a encontrar lo que falta: allí está el valor que una nueva idea puede aportar."
+    },
+    {
+      "id": "idea-9",
+      "tier": 3,
+      "prompt": "El 85 % de los encuestados dice que compraría tu producto, pero en la preventa solo pagaron 3 de cada 100. ¿Qué dato orienta mejor la decisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La encuesta, porque tiene más respuestas",
+          "correct": false,
+          "feedback": "Decir que sí no cuesta nada; pagar sí."
+        },
+        {
+          "id": "b",
+          "text": "El promedio de ambos datos",
+          "correct": false,
+          "feedback": "Promediar una intención con un comportamiento mezcla cosas distintas."
+        },
+        {
+          "id": "c",
+          "text": "La preventa, porque muestra lo que la gente hace con su dinero",
+          "correct": true,
+          "feedback": "Exacto: el comportamiento pesa más que la intención."
+        }
+      ],
+      "explanation": "Lo que la gente dice que hará suele sobrestimar lo que hace; las pruebas con compromiso real, como pagar, son evidencia más fuerte."
+    },
+    {
+      "id": "idea-10",
+      "tier": 3,
+      "prompt": "Un pitch afirma: «Nuestro producto es revolucionario, innovador y todo el mundo lo necesita». ¿Qué le falta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Evidencia concreta: quién lo probó, qué cambió y con qué resultados",
+          "correct": true,
+          "feedback": "Bien: los adjetivos no reemplazan los datos de las pruebas."
+        },
+        {
+          "id": "b",
+          "text": "Más entusiasmo al decirlo",
+          "correct": false,
+          "feedback": "El entusiasmo ayuda, pero no prueba nada."
+        },
+        {
+          "id": "c",
+          "text": "Nada: suena convincente",
+          "correct": false,
+          "feedback": "Suena bien, pero un jurado preguntará por la evidencia."
+        }
+      ],
+      "explanation": "«Todo el mundo» no es un público y «revolucionario» no es un dato: un pitch sólido muestra a quién sirve y lo que se aprendió al probarlo."
+    },
+    {
+      "id": "idea-11",
+      "tier": 3,
+      "prompt": "Tu bolso resuelve el problema, pero producirlo genera recortes de plástico que terminan en el mar del archipiélago. ¿Qué hace un emprendimiento responsable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Seguir igual: el bolso ya resuelve el problema",
+          "correct": false,
+          "feedback": "Resuelve un problema creando otro para la comunidad."
+        },
+        {
+          "id": "b",
+          "text": "Buscar materiales o procesos alternativos y medir su impacto, porque el valor incluye los efectos en la comunidad y el ambiente",
+          "correct": true,
+          "feedback": "Exacto: innovar con responsabilidad es mirar todo lo que la idea provoca."
+        },
+        {
+          "id": "c",
+          "text": "Dejar de producirlo de inmediato",
+          "correct": false,
+          "feedback": "Antes de abandonar, se puede rediseñar el proceso."
+        }
+      ],
+      "explanation": "Un emprendimiento crea valor cuando su balance es positivo para quienes lo usan, para la comunidad y para el entorno."
+    },
+    {
+      "id": "idea-12",
+      "tier": 3,
+      "prompt": "Las ventas crecen despacio, pero quienes compran vuelven cada semana y se lo recomiendan a otros. Un socio quiere cambiar de idea. ¿Qué indican los datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que hay que cambiar de idea: las ventas son bajas",
+          "correct": false,
+          "feedback": "Las ventas totales esconden una señal fuerte de valor."
+        },
+        {
+          "id": "b",
+          "text": "Que hay que bajar el precio a la mitad",
+          "correct": false,
+          "feedback": "Nada en los datos dice que el precio sea el problema."
+        },
+        {
+          "id": "c",
+          "text": "Que la idea crea valor para quienes la usan: conviene perseverar y buscar cómo llegar a más personas como ellas",
+          "correct": true,
+          "feedback": "Bien: el regreso y la recomendación son evidencia de valor."
+        }
+      ],
+      "explanation": "Decidir entre perseverar o reorientar exige leer todos los datos: el uso repetido y la recomendación pesan más que el volumen inicial."
+    }
+  ]
+}

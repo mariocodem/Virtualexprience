@@ -1,0 +1,625 @@
+{
+  "kind": "gran-reto",
+  "bruma": {
+    "name": "La Gran Bruma",
+    "nature": "Es la niebla que apagó el Faro Minuto, y lleva dentro a las seis Brumas del archipiélago. Esta noche, cuando todas las islas navegan juntas hacia el faro para encenderlo, se alimenta de rumores, cálculos a ciegas, voces que dividen, rumbos perdidos, ideas guardadas y gente sola. Solo la disipa quien combina todo lo aprendido.",
+    "intro": "¿Seis fragmentos? Yo apagué este faro una vez y lo apagaré de nuevo. Cada Bruma que venciste vive en mí.",
+    "victory": "El canal vuelve a oscurecerse. Tus fragmentos siguen ahí: vuelve cuando los hayas pulido.",
+    "defeat": "No… la luz ya no es de una isla sola: es de todas a la vez. Me deshago en el amanecer.",
+    "taunts": {
+      "hit": [
+        "Esa luz viene de muy lejos… de todas las islas a la vez.",
+        "¿Cómo combinas tanto en una sola respuesta?",
+        "Me deshilacho por los bordes."
+      ],
+      "miss": [
+        "Por ahí no: esa sombra es mía.",
+        "Un fragmento menos. ¿Ves cómo me crezco?",
+        "La niebla recuerda cada error."
+      ]
+    }
+  },
+  "forms": [
+    {
+      "island": "comunicarte",
+      "name": "El eco de los rumores",
+      "taunt": "Empecemos por lo fácil: un audio que nadie sabe de dónde salió.",
+      "release": "El eco se apaga: en la Noche del Faro, cada mensaje se verifica antes de salir al aire.",
+      "items": [
+        {
+          "id": "gran-palabra-1",
+          "tier": 1,
+          "prompt": "Mientras las lanchas se preparan, circula un audio: «Cancelaron la regata por tormenta». ¿Qué haces antes de reenviarlo?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Reenviarlo: más vale prevenir",
+              "correct": false,
+              "feedback": "Un aviso falso también pone en riesgo: puede dejar a islas enteras por fuera."
+            },
+            {
+              "id": "b",
+              "text": "Verificarlo con el comité de la regata y revisar de cuándo es el audio",
+              "correct": true,
+              "feedback": "Bien: la fuente oficial y la fecha deciden si el aviso es real."
+            },
+            {
+              "id": "c",
+              "text": "Preguntar en el grupo si alguien más lo recibió",
+              "correct": false,
+              "feedback": "Que muchos lo hayan recibido no lo hace cierto."
+            }
+          ],
+          "explanation": "Antes de difundir un aviso que afecta a todos, se confirma con la fuente responsable y se revisa la fecha."
+        },
+        {
+          "id": "gran-palabra-2",
+          "tier": 2,
+          "prompt": "El comité cambió la hora de salida y debe avisar a las seis islas. ¿Qué mensaje comunica mejor?",
+          "options": [
+            {
+              "id": "a",
+              "text": "«¡Atención! ¡Cambios importantes en la regata! ¡Estén pendientes!»",
+              "correct": false,
+              "feedback": "Alarma, pero no dice qué cambió ni qué hacer."
+            },
+            {
+              "id": "b",
+              "text": "Un audio largo que explica todas las razones del cambio",
+              "correct": false,
+              "feedback": "Las razones ayudan, pero lo esencial queda enterrado."
+            },
+            {
+              "id": "c",
+              "text": "«La regata sale a las 7:40 p. m. desde el muelle de cada isla. Confirma en el puesto del comité. Firma: Comité de la Noche del Faro.»",
+              "correct": true,
+              "feedback": "Exacto: qué, cuándo, dónde, quién lo firma y cómo confirmarlo."
+            }
+          ],
+          "explanation": "Un buen aviso dice lo esencial primero, identifica quién lo emite y ofrece cómo verificarlo."
+        },
+        {
+          "id": "gran-palabra-3",
+          "tier": 3,
+          "prompt": "Una foto de olas gigantes en el canal se comparte con el texto «así está hoy». La imagen es real, pero es de hace dos años. ¿Qué pista lo habría revelado?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Que la compartió alguien conocido",
+              "correct": false,
+              "feedback": "Una persona confiable también puede compartir algo descontextualizado."
+            },
+            {
+              "id": "b",
+              "text": "Buscar el origen de la imagen y la fecha en que se publicó por primera vez",
+              "correct": true,
+              "feedback": "Bien: una foto real fuera de su fecha también desinforma."
+            },
+            {
+              "id": "c",
+              "text": "Que tiene muchas reacciones",
+              "correct": false,
+              "feedback": "La popularidad no dice nada de cuándo se tomó la foto."
+            }
+          ],
+          "explanation": "Las imágenes reales usadas fuera de su contexto son una forma frecuente de desinformación: se verifican su origen y su fecha."
+        }
+      ]
+    },
+    {
+      "island": "neuromath",
+      "name": "La marea mal contada",
+      "taunt": "Ahora calculemos a ojo. ¿Qué tanto puede fallar una suma?",
+      "release": "La marea se lee con cuentas claras: las lanchas saldrán a tiempo y nadie quedará en tierra.",
+      "items": [
+        {
+          "id": "gran-patron-1",
+          "tier": 1,
+          "prompt": "La regata sale a las 7:40 p. m. y el recorrido hasta el faro toma 35 minutos. ¿A qué hora llegan las lanchas?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A las 8:15 p. m.",
+              "correct": true,
+              "feedback": "Correcto: 7:40 más 20 minutos son las 8:00, y 15 más dan las 8:15."
+            },
+            {
+              "id": "b",
+              "text": "A las 8:75 p. m.",
+              "correct": false,
+              "feedback": "Una hora tiene 60 minutos: 40 + 35 = 75 minutos, es decir, 1 hora y 15 minutos."
+            },
+            {
+              "id": "c",
+              "text": "A las 7:75 p. m.",
+              "correct": false,
+              "feedback": "Los minutos no pasan de 59: hay que convertir el exceso en horas."
+            }
+          ],
+          "explanation": "Al sumar tiempos, cada 60 minutos forman una hora: 7:40 + 0:35 = 8:15."
+        },
+        {
+          "id": "gran-patron-2",
+          "tier": 2,
+          "prompt": "Se inscribieron 150 personas y cada lancha lleva como máximo 12. ¿Cuántas lanchas hacen falta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "12 lanchas",
+              "correct": false,
+              "feedback": "12 lanchas llevan 144 personas: seis se quedarían en el muelle."
+            },
+            {
+              "id": "b",
+              "text": "12,5 lanchas",
+              "correct": false,
+              "feedback": "No existe media lancha: el resultado debe ser un número entero."
+            },
+            {
+              "id": "c",
+              "text": "13 lanchas",
+              "correct": true,
+              "feedback": "Bien: 150 ÷ 12 = 12,5, y se redondea hacia arriba para que nadie quede en tierra."
+            }
+          ],
+          "explanation": "En problemas de capacidad, el cociente se redondea hacia arriba: la parte decimal también son personas."
+        },
+        {
+          "id": "gran-patron-3",
+          "tier": 3,
+          "prompt": "A las 6:00 p. m. la marea está a 1,1 m y sube 20 cm por hora. El muelle del faro necesita al menos 1,8 m para atracar. ¿Desde qué hora se puede llegar?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Desde las 9:30 p. m.",
+              "correct": true,
+              "feedback": "Correcto: faltan 0,7 m; a 0,2 m por hora son 3,5 horas después de las 6:00."
+            },
+            {
+              "id": "b",
+              "text": "Desde las 7:00 p. m.",
+              "correct": false,
+              "feedback": "En una hora la marea solo llega a 1,3 m."
+            },
+            {
+              "id": "c",
+              "text": "Desde las 9:00 p. m.",
+              "correct": false,
+              "feedback": "A las 9:00 la marea va en 1,7 m: le faltan 10 cm."
+            }
+          ],
+          "explanation": "Se plantea 1,1 + 0,2·h ≥ 1,8, de donde h ≥ 3,5 horas: desde las 9:30 p. m."
+        }
+      ]
+    },
+    {
+      "island": "voxcivitas",
+      "name": "La voz que divide",
+      "taunt": "Que cada isla jale para su lado. Al final, gana el que grita más fuerte.",
+      "release": "Las voces se escuchan unas a otras: el acuerdo es de todas las islas.",
+      "items": [
+        {
+          "id": "gran-voz-1",
+          "tier": 1,
+          "prompt": "Dos islas quieren ser las primeras en encender el faro. ¿Cómo decidirlo?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Que decida la isla más grande",
+              "correct": false,
+              "feedback": "El tamaño no da más derechos en un acuerdo común."
+            },
+            {
+              "id": "b",
+              "text": "Acordar entre todas un criterio justo, como encenderlo juntas o hacer un sorteo aceptado por todos",
+              "correct": true,
+              "feedback": "Bien: un criterio acordado hace que la decisión sea legítima."
+            },
+            {
+              "id": "c",
+              "text": "Que lo encienda la que llegue primero",
+              "correct": false,
+              "feedback": "Convierte la regata en una carrera y deja a otras islas en desventaja."
+            }
+          ],
+          "explanation": "Las decisiones comunes se sostienen cuando el criterio se acuerda entre todos antes de aplicarlo."
+        },
+        {
+          "id": "gran-voz-2",
+          "tier": 2,
+          "prompt": "En la asamblea, alguien dice: «Quien no apoya mi propuesta no quiere al archipiélago». ¿Qué está pasando?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Es una falacia: convierte un desacuerdo en un ataque y deja solo dos salidas",
+              "correct": true,
+              "feedback": "Exacto: se puede querer al archipiélago y preferir otra propuesta."
+            },
+            {
+              "id": "b",
+              "text": "Es un argumento fuerte, porque apela al amor por el archipiélago",
+              "correct": false,
+              "feedback": "Apelar a la emoción no reemplaza las razones."
+            },
+            {
+              "id": "c",
+              "text": "Nada: así se discute en las asambleas",
+              "correct": false,
+              "feedback": "Discutir es sano; descalificar al que piensa distinto, no."
+            }
+          ],
+          "explanation": "El falso dilema y el ataque personal desvían la discusión: se responde pidiendo razones sobre la propuesta."
+        },
+        {
+          "id": "gran-voz-3",
+          "tier": 3,
+          "prompt": "La mayoría vota por hacer la regata a medianoche, pero las familias con niños no podrán asistir. ¿Qué hace un buen acuerdo?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Respetar la votación tal cual: la mayoría decidió",
+              "correct": false,
+              "feedback": "La mayoría decide, pero un buen acuerdo no deja por fuera a quienes perdieron."
+            },
+            {
+              "id": "b",
+              "text": "Repetir la votación hasta que salga otro resultado",
+              "correct": false,
+              "feedback": "Desconoce la decisión y desgasta la confianza."
+            },
+            {
+              "id": "c",
+              "text": "Mantener lo votado y buscar con las familias una forma de incluirlas, como una lancha que salga más temprano",
+              "correct": true,
+              "feedback": "Bien: se respeta la mayoría sin abandonar a la minoría."
+            }
+          ],
+          "explanation": "En democracia, decidir por mayoría va de la mano con proteger la participación de quienes quedaron en minoría."
+        }
+      ]
+    },
+    {
+      "island": "gerencia",
+      "name": "El timón sin rumbo",
+      "taunt": "Gasta sin plan y que el equipo aguante. ¿Qué podría salir mal?",
+      "release": "El timón vuelve a tener rumbo: prioridades claras y un equipo que llega entero.",
+      "items": [
+        {
+          "id": "gran-rumbo-1",
+          "tier": 1,
+          "prompt": "El presupuesto alcanza para tres de cinco compras: chalecos salvavidas, luces de navegación, pancartas, camisetas y un tarimón. ¿Qué compras primero?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Las camisetas y las pancartas, para que el evento se vea bonito",
+              "correct": false,
+              "feedback": "Lucen, pero no son imprescindibles para navegar de noche."
+            },
+            {
+              "id": "b",
+              "text": "Los chalecos y las luces de navegación, y luego lo que más aporte al encuentro",
+              "correct": true,
+              "feedback": "Exacto: primero lo que protege a las personas, luego lo demás."
+            },
+            {
+              "id": "c",
+              "text": "Lo que esté más barato",
+              "correct": false,
+              "feedback": "El precio no es el criterio principal cuando hay riesgos."
+            }
+          ],
+          "explanation": "Priorizar es ordenar por importancia: la seguridad va antes que la imagen."
+        },
+        {
+          "id": "gran-rumbo-2",
+          "tier": 2,
+          "prompt": "La Noche del Faro necesita 40 voluntarios y solo hay 28. ¿Cuál es la mejor decisión?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Pedir a los 28 que hagan doble turno",
+              "correct": false,
+              "feedback": "Un equipo agotado de noche, en el agua, aumenta los riesgos."
+            },
+            {
+              "id": "b",
+              "text": "Cancelar el evento",
+              "correct": false,
+              "feedback": "Hay otras salidas antes de cancelar."
+            },
+            {
+              "id": "c",
+              "text": "Pedir apoyo a otras islas, reducir lo que no es esencial y repartir las tareas sin sobrecargar a nadie",
+              "correct": true,
+              "feedback": "Bien: se ajusta el plan a los recursos reales y se cuida al equipo."
+            }
+          ],
+          "explanation": "Cuando faltan personas, se replanea: se buscan apoyos, se recorta lo accesorio y se protege al equipo."
+        },
+        {
+          "id": "gran-rumbo-3",
+          "tier": 3,
+          "prompt": "Un proveedor ofrece las linternas con 20 % de descuento si se paga todo hoy, pero el año pasado entregó tarde. ¿Qué conviene considerar?",
+          "options": [
+            {
+              "id": "a",
+              "text": "El costo total con el riesgo de que no lleguen a tiempo, y pedir garantías o pagar por partes",
+              "correct": true,
+              "feedback": "Exacto: un ahorro no compensa quedarse sin linternas la noche del evento."
+            },
+            {
+              "id": "b",
+              "text": "Solo el descuento: es una buena oportunidad",
+              "correct": false,
+              "feedback": "El precio ignora el riesgo de incumplimiento."
+            },
+            {
+              "id": "c",
+              "text": "Nada: todos los proveedores fallan alguna vez",
+              "correct": false,
+              "feedback": "El historial es un dato que sí debe pesar en la decisión."
+            }
+          ],
+          "explanation": "Decidir con datos incluye el historial y los riesgos, no solo el precio."
+        }
+      ]
+    },
+    {
+      "island": "activatuidea",
+      "name": "La idea guardada",
+      "taunt": "Construye cien de una vez. Probar en pequeño es de cobardes.",
+      "release": "La idea sale del cajón: se probó, se mejoró y ahora guía a las lanchas.",
+      "items": [
+        {
+          "id": "gran-idea-1",
+          "tier": 1,
+          "prompt": "Alguien propone boyas con luz para marcar la ruta de las lanchas. ¿Cómo empezar?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Fabricar cien boyas de una vez, para no perder tiempo",
+              "correct": false,
+              "feedback": "Si el diseño falla, se pierden cien boyas."
+            },
+            {
+              "id": "b",
+              "text": "Probar unas pocas en el canal, de noche, antes de fabricar todas",
+              "correct": true,
+              "feedback": "Bien: un prototipo en las condiciones reales muestra lo que falta."
+            },
+            {
+              "id": "c",
+              "text": "Esperar a tener el diseño perfecto",
+              "correct": false,
+              "feedback": "La perfección llega probando, no esperando."
+            }
+          ],
+          "explanation": "Un prototipo pequeño, probado en el lugar real, permite aprender barato antes de invertir en grande."
+        },
+        {
+          "id": "gran-idea-2",
+          "tier": 2,
+          "prompt": "En la prueba, las boyas se ven bien, pero el oleaje las voltea. ¿Qué haces?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Abandonar la idea: no funcionó",
+              "correct": false,
+              "feedback": "La prueba no descartó la idea: mostró qué mejorar."
+            },
+            {
+              "id": "b",
+              "text": "Fabricarlas igual: el día del evento puede estar calmado",
+              "correct": false,
+              "feedback": "Ignorar lo que mostró la prueba es apostar la seguridad."
+            },
+            {
+              "id": "c",
+              "text": "Cambiar el diseño, por ejemplo con más peso en la base, y volver a probar",
+              "correct": true,
+              "feedback": "Exacto: iterar es mejorar con lo que enseñó la prueba."
+            }
+          ],
+          "explanation": "Iterar es ajustar el prototipo a partir de lo que falló y volver a probarlo."
+        },
+        {
+          "id": "gran-idea-3",
+          "tier": 3,
+          "prompt": "El 90 % del comité dice que las boyas nuevas son geniales, pero los pilotos de las lanchas no las distinguen a 50 metros. ¿A quién escuchas?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A los pilotos: son quienes usan las boyas y su evidencia viene del uso real",
+              "correct": true,
+              "feedback": "Bien: la opinión de quien usa la solución pesa más que el entusiasmo de quien la diseñó."
+            },
+            {
+              "id": "b",
+              "text": "Al comité: es la mayoría",
+              "correct": false,
+              "feedback": "Una mayoría que no usa la solución no es evidencia de que funciona."
+            },
+            {
+              "id": "c",
+              "text": "A ninguno: hay que decidir por intuición",
+              "correct": false,
+              "feedback": "Hay evidencia disponible: la de los pilotos."
+            }
+          ],
+          "explanation": "La validación se hace con quienes usan la solución; el entusiasmo del equipo es un falso positivo frecuente."
+        }
+      ]
+    },
+    {
+      "island": "latidosocial",
+      "name": "La raíz suelta",
+      "taunt": "Mi última forma de isla: que cada quien se salve como pueda.",
+      "release": "Las raíces se entrelazan: la Noche del Faro es de todas las comunidades.",
+      "items": [
+        {
+          "id": "gran-raiz-1",
+          "tier": 1,
+          "prompt": "¿Cómo lograr que todas las comunidades sientan suya la Noche del Faro?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Invitarlas a planearla desde el inicio, con sus saberes: música, comida, oficios",
+              "correct": true,
+              "feedback": "Exacto: lo que se construye juntos se siente propio."
+            },
+            {
+              "id": "b",
+              "text": "Organizar todo y enviarles la invitación al final",
+              "correct": false,
+              "feedback": "Invitar a asistir no es lo mismo que invitar a participar."
+            },
+            {
+              "id": "c",
+              "text": "Pagar a un organizador externo para que lo haga todo",
+              "correct": false,
+              "feedback": "Quita trabajo, pero también quita el sentido comunitario."
+            }
+          ],
+          "explanation": "La participación desde el diseño convierte a la comunidad en protagonista, no en público."
+        },
+        {
+          "id": "gran-raiz-2",
+          "tier": 2,
+          "prompt": "La coordinadora de la regata no ha dormido en tres días por organizar todo. ¿Qué hace el equipo?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Agradecerle su entrega: ya descansará después del evento",
+              "correct": false,
+              "feedback": "El agradecimiento no le quita carga, y el cansancio pone en riesgo a todos."
+            },
+            {
+              "id": "b",
+              "text": "Repartir sus tareas y asegurarse de que descanse antes de la noche",
+              "correct": true,
+              "feedback": "Bien: cuidar a quien cuida es parte del proyecto."
+            },
+            {
+              "id": "c",
+              "text": "Dejarla seguir: ella sabe lo que aguanta",
+              "correct": false,
+              "feedback": "El agotamiento no se mide con fuerza de voluntad."
+            }
+          ],
+          "explanation": "En los proyectos comunitarios, el bienestar de quienes los sostienen es tan importante como el resultado."
+        },
+        {
+          "id": "gran-raiz-3",
+          "tier": 3,
+          "prompt": "¿Cómo saber, meses después, si la Noche del Faro fortaleció a la comunidad del archipiélago?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Contando cuántas personas asistieron esa noche",
+              "correct": false,
+              "feedback": "La asistencia muestra convocatoria, no cambios duraderos."
+            },
+            {
+              "id": "b",
+              "text": "Revisando cuántas fotos se compartieron",
+              "correct": false,
+              "feedback": "La difusión no dice si cambió algo en las islas."
+            },
+            {
+              "id": "c",
+              "text": "Observando si surgieron proyectos entre islas, nuevas redes y más participación en los encuentros siguientes",
+              "correct": true,
+              "feedback": "Exacto: el impacto se ve en lo que perdura."
+            }
+          ],
+          "explanation": "Los indicadores de impacto miden cambios sostenidos, no solo la actividad de un día."
+        }
+      ]
+    }
+  ],
+  "heart": {
+    "name": "El corazón de la Gran Bruma",
+    "taunt": "Ya no tengo forma de isla. Ahora pienso con todas a la vez. ¿Y tú?",
+    "items": [
+      {
+        "id": "gran-corazon-1",
+        "tier": 3,
+        "prompt": "Una hora antes de zarpar, un rumor dice que el faro está dañado y que acercarse es peligroso. ¿Qué hace el comité?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cancelar todo de inmediato: más vale prevenir",
+            "correct": false,
+            "feedback": "Decidir por un rumor sin verificar también tiene costos para todas las islas."
+          },
+          {
+            "id": "b",
+            "text": "Ignorar el rumor y seguir con el plan",
+            "correct": false,
+            "feedback": "Si fuera cierto, la seguridad de todos estaría en riesgo."
+          },
+          {
+            "id": "c",
+            "text": "Verificar con quien revisó el faro, estimar el riesgo con datos, decidir con las islas y comunicar un plan claro",
+            "correct": true,
+            "feedback": "Exacto: verificar, calcular, deliberar, decidir y cuidar a las personas, en ese orden."
+          }
+        ],
+        "explanation": "Los problemas reales piden varias competencias a la vez: la verificación, el cálculo, la deliberación, la gestión y el cuidado."
+      },
+      {
+        "id": "gran-corazon-2",
+        "tier": 3,
+        "prompt": "El faro se enciende, pero la niebla no deja que su luz llegue a dos de las seis islas. ¿Qué propuesta combina mejor lo aprendido?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Probar en pequeño luces de relevo en la ruta, medir qué islas reciben la señal y acordar con ellas el orden de las mejoras",
+            "correct": true,
+            "feedback": "Bien: prototipo, datos, acuerdo y nadie por fuera."
+          },
+          {
+            "id": "b",
+            "text": "Celebrar: cuatro de seis es la mayoría",
+            "correct": false,
+            "feedback": "Dos islas siguen a oscuras: el faro es de todas."
+          },
+          {
+            "id": "c",
+            "text": "Construir de inmediato un faro nuevo más alto",
+            "correct": false,
+            "feedback": "Es la solución más cara y no se ha probado si resuelve el problema."
+          }
+        ],
+        "explanation": "Integrar competencias es combinar probar, medir y acordar, sin dejar a nadie atrás."
+      },
+      {
+        "id": "gran-corazon-3",
+        "tier": 3,
+        "prompt": "¿Qué tienen en común las seis Brumas que disipaste en el archipiélago?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Que aparecían de noche",
+            "correct": false,
+            "feedback": "La hora no era lo que las hacía fuertes."
+          },
+          {
+            "id": "b",
+            "text": "Que se alimentaban de decidir sin evidencia, sin los demás y sin cuidado; se disipaban con criterio, escucha y trabajo en común",
+            "correct": true,
+            "feedback": "Exacto: esa es la luz que el Faro Minuto devuelve al archipiélago."
+          },
+          {
+            "id": "c",
+            "text": "Que eran imposibles de vencer sin suerte",
+            "correct": false,
+            "feedback": "Las venciste con lo que aprendiste, no con suerte."
+          }
+        ],
+        "explanation": "Las seis competencias se sostienen entre sí: pensar con criterio, escuchar a los demás y actuar en común."
+      }
+    ]
+  },
+  "epilogue": "El Faro Minuto vuelve a girar. Su haz cruza el canal y, en cada isla, alguien levanta la vista: la ruta está encendida para todas."
+}

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { world } from '@/data';
+import type { FinaleRecord } from '@/progress/types';
+import { ButtonLink } from '@/ui/ButtonLink';
 import { IconClose } from '@/ui/icons';
 import { StationSymbol } from '@/ui/StationSymbol';
 import type { IslandId } from '@/types/domain';
@@ -7,9 +9,11 @@ import type { IslandId } from '@/types/domain';
 /** El Faro Minuto: cuánta luz tiene y qué abre al encenderse (el Gran Reto Integrador). */
 export function FaroPanel({
   fragments,
+  finale,
   onClose,
 }: {
   fragments: readonly IslandId[];
+  finale: FinaleRecord | null;
   onClose: () => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
@@ -58,10 +62,17 @@ export function FaroPanel({
       </ul>
       <h3 className="mt-5 font-display text-lg font-extrabold">Gran Reto Integrador</h3>
       <p className="mt-1 text-sm">
-        {lit
-          ? 'El Gran Reto Integrador está abierto: un desafío que combina las seis competencias del archipiélago.'
-          : 'Cuando el faro reúna los seis fragmentos se abrirá el Gran Reto Integrador: un desafío que combina las seis competencias del archipiélago.'}
+        {finale?.completedAt
+          ? 'Disipaste a la Gran Bruma: el faro guía de nuevo a todas las islas. Puedes volver a enfrentarla para afinar tu dominio.'
+          : lit
+            ? 'La Gran Bruma espera en el canal: toma la forma de cada isla y solo la disipa quien combina las seis competencias.'
+            : 'Cuando el faro reúna los seis fragmentos se abrirá el Gran Reto Integrador: la Gran Bruma, que combina las seis competencias del archipiélago.'}
       </p>
+      {lit && (
+        <ButtonLink to="/mundo/faro/gran-reto" className="mt-4">
+          {finale?.completedAt ? 'Volver a enfrentar a la Gran Bruma' : 'Enfrentar a la Gran Bruma'}
+        </ButtonLink>
+      )}
     </section>
   );
 }

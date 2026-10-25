@@ -20,6 +20,12 @@ export const routes: RouteObject[] = [
         lazy: async () => ({ Component: (await import('@/world/WorldPage')).default }),
       },
       {
+        // Gran Reto Integrador en el Faro Minuto: el jefe final del archipiélago.
+        path: 'mundo/faro/gran-reto',
+        handle: { immersive: true, bare: true },
+        lazy: async () => ({ Component: (await import('@/finale/FinaleStage')).default }),
+      },
+      {
         // Escenario de estación a pantalla completa: sin encabezado ni pie institucionales.
         path: 'mundo/:isla/:estacion',
         handle: { immersive: true, bare: true },

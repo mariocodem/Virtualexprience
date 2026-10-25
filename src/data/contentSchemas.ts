@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { islandIdSchema } from './schemas';
 
 /**
  * Contenido de cada estación, uno por archivo en src/data/content/<id>.json.
@@ -373,6 +374,51 @@ export const bossContentSchema = z.strictObject({
   items: z.array(quizItemSchema).min(9),
 });
 
+/**
+ * Gran Reto Integrador (Faro Minuto): la Gran Bruma toma, una tras otra, la
+ * forma de cada Bruma del archipiélago y termina en su corazón, donde los
+ * embates combinan las seis competencias.
+ */
+export const finaleContentSchema = z.strictObject({
+  kind: z.literal('gran-reto'),
+  bruma: z.strictObject({
+    name: text,
+    nature: text,
+    intro: text,
+    /** Lo que dice si el explorador se retira. */
+    victory: text,
+    /** Lo que dice al disiparse. */
+    defeat: text,
+    taunts: z.strictObject({
+      hit: z.array(text).min(1),
+      miss: z.array(text).min(1),
+    }),
+  }),
+  forms: z
+    .array(
+      z.strictObject({
+        island: islandIdSchema,
+        name: text,
+        /** Lo que dice al tomar esta forma. */
+        taunt: text,
+        /** Lo que queda cuando esta forma se disipa. */
+        release: text,
+        items: z.array(quizItemSchema).min(3),
+      }),
+    )
+    .length(6)
+    .refine((forms) => new Set(forms.map((f) => f.island)).size === 6, {
+      message: 'La Gran Bruma toma una forma por isla, sin repetir.',
+    }),
+  heart: z.strictObject({
+    name: text,
+    taunt: text,
+    items: z.array(quizItemSchema).min(2),
+  }),
+  /** El faro al encenderse. */
+  epilogue: text,
+});
+
 export const stationContentSchema = z.discriminatedUnion('kind', [
   explorarContentSchema,
   practicarContentSchema,
@@ -400,3 +446,5 @@ export type NewsItem = z.infer<typeof newsItemSchema>;
 export type Signal = z.infer<typeof signalSchema>;
 export type BossContent = z.infer<typeof bossContentSchema>;
 export type StationContent = z.infer<typeof stationContentSchema>;
+export type FinaleContent = z.infer<typeof finaleContentSchema>;
+export type FinaleForm = FinaleContent['forms'][number];

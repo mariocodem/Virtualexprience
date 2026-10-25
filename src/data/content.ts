@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { stationContentSchema, type StationContent } from './contentSchemas';
+import {
+  finaleContentSchema,
+  stationContentSchema,
+  type FinaleContent,
+  type StationContent,
+} from './contentSchemas';
 
 // Cada estación descarga su contenido solo cuando se abre (un fragmento por archivo).
 const loaders = import.meta.glob<{ default: unknown }>('./content/*.json');
@@ -39,4 +44,23 @@ export function loadStationContent(stationId: string): Promise<StationContent> {
 /** Adelanta la descarga del contenido (p. ej. al abrir la ficha de la estación). */
 export function preloadStationContent(stationId: string): void {
   if (hasStationContent(stationId)) void loadStationContent(stationId).catch(() => undefined);
+}
+
+let finale: Promise<FinaleContent> | null = null;
+
+/** Contenido del Gran Reto Integrador del Faro: se descarga solo al abrirlo. */
+export function loadFinaleContent(): Promise<FinaleContent> {
+  finale ??= import('./content/faro-gran-reto.json').then((module) => {
+    const result = finaleContentSchema.safeParse(module.default);
+    if (!result.success) {
+      throw new Error(
+        `Contenido inválido en content/faro-gran-reto.json:\n${z.prettifyError(result.error)}`,
+      );
+    }
+    return result.data;
+  });
+  finale.catch(() => {
+    finale = null;
+  });
+  return finale;
 }

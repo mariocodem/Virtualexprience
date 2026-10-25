@@ -274,7 +274,7 @@ export default function WorldPage() {
 
         <div
           data-map-obstacle
-          className="order-1 flex flex-col items-stretch gap-3 lg:pointer-events-auto lg:absolute lg:top-6 lg:right-6 lg:w-[min(24rem,30%)] lg:items-end"
+          className="order-1 flex flex-col items-stretch gap-3 lg:pointer-events-auto lg:absolute lg:top-6 lg:right-6 lg:z-[3] lg:w-[min(24rem,30%)] lg:items-end"
         >
           <ModeToggle webgl={webgl} />
           {openStation && (
@@ -285,7 +285,11 @@ export default function WorldPage() {
             />
           )}
           {faroOpen && !openStation && (
-            <FaroPanel fragments={progress.fragments} onClose={closePanel} />
+            <FaroPanel
+              fragments={progress.fragments}
+              finale={progress.finale}
+              onClose={closePanel}
+            />
           )}
         </div>
       </div>

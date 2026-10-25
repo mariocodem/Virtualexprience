@@ -1,0 +1,348 @@
+{
+  "kind": "desafio",
+  "bruma": {
+    "name": "Bruma del sálvese quien pueda",
+    "nature": "Convence a cada quien de que está solo: que ayudar es decidir por los demás, que pedir ayuda es debilidad y que cuidarse es egoísmo. Se disipa cuando alguien escucha a su comunidad, comparte el trabajo y cuida de sí y de los otros.",
+    "intro": "¿Comunidad? Aquí cada uno carga lo suyo. Si quieres ayudar, decide tú por todos… y no descanses nunca.",
+    "victory": "Cada raíz vuelve a crecer sola. Así ninguna sostiene a otra.",
+    "defeat": "Me deshago… Las raíces que se entrelazan aguantan cualquier tormenta.",
+    "taunts": {
+      "phase1": [
+        "Empecemos fácil: ¿para qué preguntarle a la gente lo que necesita, si tú ya lo sabes?",
+        "Pedir ayuda es de débiles."
+      ],
+      "phase2": [
+        "Ahora te ofrezco ayudas que no cambian nada.",
+        "Mide lo que se vea bonito en las fotos."
+      ],
+      "phase3": [
+        "Última forma: proyectos que brillan mientras estás tú… y se apagan cuando te vas.",
+        "Una líder que lo hace todo sola es una heroína, ¿no?"
+      ],
+      "hit": [
+        "¡Escuchaste a la comunidad! Qué molestia.",
+        "Compartiste la carga… me debilito.",
+        "Te cuidaste y cuidaste a otros: pierdo fuerza."
+      ],
+      "miss": [
+        "¿Ves? Mejor decidir por todos.",
+        "Otra raíz que crece sola.",
+        "Así: que cada quien se salve como pueda."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "raiz-1",
+      "tier": 1,
+      "prompt": "Antes de iniciar una acción social en un barrio, ¿qué conviene hacer primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reconocer con la comunidad sus necesidades, sus recursos y sus actores",
+          "correct": true,
+          "feedback": "Exacto: el diagnóstico participativo es el primer paso."
+        },
+        {
+          "id": "b",
+          "text": "Comprar los materiales para no perder tiempo",
+          "correct": false,
+          "feedback": "Sin saber qué se necesita, los materiales pueden no servir."
+        },
+        {
+          "id": "c",
+          "text": "Copiar un proyecto que funcionó en otra ciudad",
+          "correct": false,
+          "feedback": "Cada territorio es distinto: lo que sirvió allá puede no servir aquí."
+        }
+      ],
+      "explanation": "Conocer el territorio con quienes lo habitan permite que la acción responda a lo que la comunidad vive."
+    },
+    {
+      "id": "raiz-2",
+      "tier": 1,
+      "prompt": "Pedir ayuda cuando el semestre te desborda es…",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una señal de que no estás a la altura",
+          "correct": false,
+          "feedback": "Todas las personas necesitan apoyo en algún momento."
+        },
+        {
+          "id": "b",
+          "text": "Una forma de cuidarte y de seguir adelante",
+          "correct": true,
+          "feedback": "Bien: reconocer el límite a tiempo evita males mayores."
+        },
+        {
+          "id": "c",
+          "text": "Algo que solo se hace en casos graves",
+          "correct": false,
+          "feedback": "Pedir ayuda a tiempo evita que la situación se vuelva grave."
+        }
+      ],
+      "explanation": "Buscar apoyo —en compañeros, docentes o el área de bienestar— es parte del autocuidado, no una debilidad."
+    },
+    {
+      "id": "raiz-3",
+      "tier": 1,
+      "prompt": "¿Qué diferencia una acción con la comunidad de una acción para la comunidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El número de personas que asisten",
+          "correct": false,
+          "feedback": "Asistir no es lo mismo que participar en las decisiones."
+        },
+        {
+          "id": "b",
+          "text": "Quién la financia",
+          "correct": false,
+          "feedback": "El origen del dinero no define quién participa."
+        },
+        {
+          "id": "c",
+          "text": "Que la comunidad participa en decidir, hacer y evaluar lo que se hace",
+          "correct": true,
+          "feedback": "Exacto: con la comunidad, no solo para ella."
+        }
+      ],
+      "explanation": "Una acción con la comunidad la reconoce como protagonista: decide, actúa y evalúa junto a quienes acompañan."
+    },
+    {
+      "id": "raiz-4",
+      "tier": 1,
+      "prompt": "Un compañero lleva semanas aislado y dice que nada le importa. ¿Qué haces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Acercarte, escucharlo sin juzgar y animarlo a buscar apoyo profesional",
+          "correct": true,
+          "feedback": "Bien: escuchar y acercar al apoyo es una forma de cuidar."
+        },
+        {
+          "id": "b",
+          "text": "Darle espacio: ya se le pasará",
+          "correct": false,
+          "feedback": "El aislamiento prolongado merece atención, no solo espera."
+        },
+        {
+          "id": "c",
+          "text": "Contárselo a todo el grupo para que lo animen",
+          "correct": false,
+          "feedback": "Exponer lo que vive puede hacerlo sentir peor; la confianza importa."
+        }
+      ],
+      "explanation": "Ante señales de malestar, escuchar con respeto y orientar hacia ayuda profesional es lo más útil. Si hay riesgo, se busca ayuda de inmediato."
+    },
+    {
+      "id": "raiz-5",
+      "tier": 2,
+      "prompt": "Una jornada de reciclaje quiere medir su impacto. ¿Qué indicador dice más?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cuántas fotos se publicaron de la jornada",
+          "correct": false,
+          "feedback": "Muestra difusión, no cambios en el barrio."
+        },
+        {
+          "id": "b",
+          "text": "Cuántos kilos de residuos se separan cada mes en las casas participantes, comparados con antes",
+          "correct": true,
+          "feedback": "Exacto: mide un cambio real y sostenido."
+        },
+        {
+          "id": "c",
+          "text": "Cuántas personas asistieron a la inauguración",
+          "correct": false,
+          "feedback": "Asistir un día no dice si cambió algún hábito."
+        }
+      ],
+      "explanation": "Un buen indicador de impacto mide el cambio que se buscaba, comparando el antes y el después."
+    },
+    {
+      "id": "raiz-6",
+      "tier": 2,
+      "prompt": "Un grupo reparte mercados cada mes en un barrio, pero la situación de las familias no cambia. ¿Qué podría hacer distinto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Repartir el doble de mercados",
+          "correct": false,
+          "feedback": "Más ayuda del mismo tipo alivia, pero tampoco transforma."
+        },
+        {
+          "id": "b",
+          "text": "Dejar de ayudar: la gente se acostumbra",
+          "correct": false,
+          "feedback": "La ayuda urgente es necesaria; el reto es no quedarse solo en ella."
+        },
+        {
+          "id": "c",
+          "text": "Mantener la ayuda urgente y, con las familias, impulsar procesos que fortalezcan sus propias capacidades",
+          "correct": true,
+          "feedback": "Bien: se atiende lo urgente sin renunciar a transformar."
+        }
+      ],
+      "explanation": "El asistencialismo alivia pero no transforma; las acciones sostenibles combinan apoyo inmediato con procesos que la comunidad lidera."
+    },
+    {
+      "id": "raiz-7",
+      "tier": 2,
+      "prompt": "En el diagnóstico de un barrio solo se anotaron las carencias. ¿Qué falta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Los recursos que la comunidad ya tiene: saberes, líderes, espacios y organizaciones",
+          "correct": true,
+          "feedback": "Exacto: sin ellos, el barrio aparece como si no pudiera hacer nada por sí mismo."
+        },
+        {
+          "id": "b",
+          "text": "Más carencias, para justificar mejor el proyecto",
+          "correct": false,
+          "feedback": "Una lista más larga de problemas no muestra por dónde empezar."
+        },
+        {
+          "id": "c",
+          "text": "Nada: el diagnóstico es para encontrar problemas",
+          "correct": false,
+          "feedback": "También sirve para encontrar en qué apoyarse."
+        }
+      ],
+      "explanation": "Reconocer los recursos de la comunidad permite construir sobre lo que ya funciona y fortalece su autonomía."
+    },
+    {
+      "id": "raiz-8",
+      "tier": 2,
+      "prompt": "En semana de parciales, un compañero propone dormir cuatro horas para estudiar más. ¿Qué es lo más probable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que rinda más, porque tiene más horas de estudio",
+          "correct": false,
+          "feedback": "Más horas despierto no significan más aprendizaje."
+        },
+        {
+          "id": "b",
+          "text": "Que le afecte la memoria y la concentración: rinde más un plan que incluya dormir",
+          "correct": true,
+          "feedback": "Bien: el sueño ayuda a fijar lo que se estudió."
+        },
+        {
+          "id": "c",
+          "text": "Que no haya ninguna diferencia",
+          "correct": false,
+          "feedback": "Dormir poco sí afecta la atención y la memoria."
+        }
+      ],
+      "explanation": "Dormir lo suficiente es parte del estudio: durante el sueño se consolida lo aprendido."
+    },
+    {
+      "id": "raiz-9",
+      "tier": 3,
+      "prompt": "Un proyecto funciona muy bien mientras están los estudiantes que lo impulsaron, pero se cae cuando ellos se van. ¿Qué faltó?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Más estudiantes en el equipo",
+          "correct": false,
+          "feedback": "Con más estudiantes, igual se caería al irse todos."
+        },
+        {
+          "id": "b",
+          "text": "Más dinero para el proyecto",
+          "correct": false,
+          "feedback": "El dinero ayuda, pero no reemplaza a quien lo sostiene."
+        },
+        {
+          "id": "c",
+          "text": "Que la comunidad se apropiara: liderazgos locales, capacidades y acuerdos para seguir sin ellos",
+          "correct": true,
+          "feedback": "Exacto: lo sostenible es lo que la comunidad puede continuar."
+        }
+      ],
+      "explanation": "Un proyecto es sostenible cuando la comunidad lo hace propio y cuenta con las capacidades para continuarlo."
+    },
+    {
+      "id": "raiz-10",
+      "tier": 3,
+      "prompt": "Para mostrar el impacto de un taller, el equipo quiere publicar fotos de los niños del barrio. ¿Qué es lo correcto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Publicarlas: es por una buena causa",
+          "correct": false,
+          "feedback": "La buena intención no reemplaza el permiso de las familias."
+        },
+        {
+          "id": "b",
+          "text": "Pedir autorización a las familias, explicar el uso y proteger la identidad de los menores",
+          "correct": true,
+          "feedback": "Bien: el respeto por la comunidad incluye cómo se la muestra."
+        },
+        {
+          "id": "c",
+          "text": "Publicarlas con las caras borrosas, sin preguntar",
+          "correct": false,
+          "feedback": "Proteger la identidad ayuda, pero las familias igual deben decidir."
+        }
+      ],
+      "explanation": "Mostrar el trabajo comunitario exige consentimiento informado y cuidado especial con niñas y niños."
+    },
+    {
+      "id": "raiz-11",
+      "tier": 3,
+      "prompt": "Una líder comunitaria sostiene sola tres proyectos y casi no duerme. ¿Cómo ayuda mejor el equipo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reconocer públicamente su esfuerzo para que siga motivada",
+          "correct": false,
+          "feedback": "El reconocimiento es valioso, pero no le quita carga."
+        },
+        {
+          "id": "b",
+          "text": "Repartir responsabilidades y formar a otras personas para que el liderazgo sea compartido",
+          "correct": true,
+          "feedback": "Exacto: un liderazgo compartido cuida a las personas y a los proyectos."
+        },
+        {
+          "id": "c",
+          "text": "Cerrar dos de los proyectos de inmediato",
+          "correct": false,
+          "feedback": "Podría hacer falta, pero decidirlo sin ella y sin la comunidad no es cuidarla."
+        }
+      ],
+      "explanation": "Cuando todo depende de una sola persona, se agota ella y se arriesga el proyecto; distribuir el liderazgo protege a ambos."
+    },
+    {
+      "id": "raiz-12",
+      "tier": 3,
+      "prompt": "Tras un taller de convivencia, el 95 % de quienes asistieron dijo que le gustó. ¿Qué se puede concluir sobre su impacto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que mejoró la convivencia del barrio",
+          "correct": false,
+          "feedback": "Que guste no significa que haya cambiado algo."
+        },
+        {
+          "id": "b",
+          "text": "Que hay que repetirlo igual cada mes",
+          "correct": false,
+          "feedback": "Sin saber si tuvo efecto, repetirlo igual es una apuesta."
+        },
+        {
+          "id": "c",
+          "text": "Solo que gustó: para saber si cambió algo, hay que observar la convivencia con el tiempo",
+          "correct": true,
+          "feedback": "Bien: la satisfacción no es lo mismo que el impacto."
+        }
+      ],
+      "explanation": "Medir satisfacción es útil, pero el impacto se ve en los cambios que se sostienen, como conflictos que se resuelven mejor."
+    }
+  ]
+}

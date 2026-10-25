@@ -283,7 +283,7 @@
     "minutes": 6,
     "requires": [],
     "availability": "disponible",
-    "formats": ["texto", "audio", "infografia"]
+    "formats": ["texto", "audio", "video", "infografia", "interactivo"]
   },
   {
     "id": "latidosocial-bienestar",
@@ -315,11 +315,11 @@
     "islandId": "latidosocial",
     "title": "Raíces compartidas",
     "type": "desafio",
-    "summary": "El desafío de la isla: diseña una acción de proyección social con indicadores de impacto.",
+    "summary": "El desafío de la isla: enfrenta a la Bruma del sálvese quien pueda, que convence a cada quien de que está solo.",
     "xp": 120,
     "minutes": 15,
     "requires": ["latidosocial-huerta"],
-    "availability": "en-preparacion",
-    "formats": ["texto"]
+    "availability": "disponible",
+    "formats": ["interactivo"]
   }
 ]

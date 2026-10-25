@@ -1,0 +1,151 @@
+{
+  "kind": "explorar",
+  "intro": "En el bosque comunitario de LatidoSocial, cada raíz sostiene a otra. Antes de proponer cualquier acción, aquí se aprende a reconocer el territorio: quiénes lo habitan, qué necesitan y qué saben hacer.",
+  "formats": {
+    "texto": {
+      "sections": [
+        {
+          "heading": "El territorio es más que un lugar",
+          "body": "Un barrio no es solo calles y casas: son las personas que lo habitan, sus relaciones, sus historias y la forma en que se organizan. Conocer un territorio es entender cómo vive su gente, no solo dónde queda."
+        },
+        {
+          "heading": "¿Quiénes están? Los actores",
+          "body": "En todo territorio hay actores: la junta de acción comunal, los colectivos juveniles, las escuelas, las iglesias, los comercios, los líderes que todos conocen. Vale la pena preguntarse quién decide, quién participa y quién suele quedarse por fuera."
+        },
+        {
+          "heading": "Necesidades, pero también recursos",
+          "body": "Un diagnóstico que solo enumera carencias deja ver un barrio sin salida. Todo territorio tiene también recursos: saberes, oficios, espacios, redes de vecinos y organizaciones que ya trabajan. Las acciones más duraderas se apoyan en lo que la comunidad ya tiene."
+        },
+        {
+          "heading": "Con la comunidad, no para ella",
+          "body": "Llegar con la solución lista suele fallar: puede no responder a lo que la gente vive, y nadie la siente propia. El diagnóstico participativo —recorridos, conversaciones, mapas dibujados entre todos— permite decidir juntos qué hacer y cómo."
+        }
+      ]
+    },
+    "audio": {
+      "script": [
+        "Bienvenida al bosque comunitario de LatidoSocial, donde cada raíz sostiene a otra.",
+        "Un territorio es más que un lugar: son las personas, sus relaciones y sus historias.",
+        "Para conocerlo, pregunta quiénes están: qué organizaciones y líderes hay, quién decide y quién se queda por fuera.",
+        "No mires solo las carencias. Busca también los recursos: saberes, oficios, espacios y redes que ya existen.",
+        "Y recuerda: las acciones que perduran se hacen con la comunidad, no para ella."
+      ]
+    },
+    "video": {
+      "scenes": [
+        {
+          "title": "Más que un lugar",
+          "caption": "Un territorio son personas, relaciones e historias, no solo calles."
+        },
+        {
+          "title": "Los actores",
+          "caption": "¿Quién decide, quién participa y quién se queda por fuera?"
+        },
+        {
+          "title": "Necesidades y recursos",
+          "caption": "Todo barrio tiene carencias, pero también saberes, espacios y redes."
+        },
+        {
+          "title": "Con la comunidad",
+          "caption": "Lo que se decide entre todos es lo que la gente siente propio."
+        }
+      ]
+    },
+    "infografia": {
+      "title": "El mapa de un territorio",
+      "nodes": [
+        {
+          "label": "Actores",
+          "detail": "Organizaciones, líderes e instituciones que viven o actúan en el barrio."
+        },
+        {
+          "label": "Necesidades",
+          "detail": "Lo que falta o duele, contado por quienes lo viven."
+        },
+        {
+          "label": "Recursos",
+          "detail": "Saberes, oficios, espacios y redes con los que ya se cuenta."
+        },
+        {
+          "label": "Relaciones",
+          "detail": "Quién trabaja con quién, dónde hay confianza y dónde hay tensiones."
+        }
+      ]
+    },
+    "interactivo": {
+      "prompt": "Hiciste un recorrido por el barrio junto al bosque. Clasifica cada hallazgo: ¿es una necesidad o un recurso de la comunidad?",
+      "categories": [
+        { "id": "necesidad", "label": "Necesidad" },
+        { "id": "recurso", "label": "Recurso" }
+      ],
+      "items": [
+        { "text": "Las abuelas que saben de plantas medicinales", "category": "recurso" },
+        { "text": "El parque sin iluminación por la noche", "category": "necesidad" },
+        { "text": "El salón comunal que se presta los sábados", "category": "recurso" },
+        { "text": "Jóvenes sin un lugar para hacer deporte", "category": "necesidad" },
+        {
+          "text": "Un colectivo que ya organiza jornadas de limpieza",
+          "category": "recurso"
+        },
+        {
+          "text": "Familias a las que no les alcanza la comida del mes",
+          "category": "necesidad"
+        }
+      ]
+    }
+  },
+  "check": [
+    {
+      "id": "territorio-c1",
+      "tier": 1,
+      "prompt": "¿Qué debería incluir un buen mapa del territorio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo los problemas del barrio, para saber qué arreglar",
+          "correct": false,
+          "feedback": "Un mapa solo de carencias esconde lo que la comunidad ya sabe hacer."
+        },
+        {
+          "id": "b",
+          "text": "Los actores, las necesidades y también los recursos de la comunidad",
+          "correct": true,
+          "feedback": "Exacto: las acciones se apoyan en lo que ya existe."
+        },
+        {
+          "id": "c",
+          "text": "Las calles y los nombres de los negocios",
+          "correct": false,
+          "feedback": "La geografía ayuda, pero un territorio es sobre todo su gente."
+        }
+      ],
+      "explanation": "Reconocer actores, necesidades y recursos permite diseñar acciones que respondan a lo que la comunidad vive y que se apoyen en sus capacidades."
+    },
+    {
+      "id": "territorio-c2",
+      "tier": 2,
+      "prompt": "Un equipo llega al barrio con un proyecto ya diseñado y solo pide a los vecinos que asistan. ¿Qué riesgo corre?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ninguno: el equipo sabe lo que hace",
+          "correct": false,
+          "feedback": "Saber técnico no reemplaza lo que la comunidad conoce de su propio territorio."
+        },
+        {
+          "id": "b",
+          "text": "Que el proyecto salga más caro",
+          "correct": false,
+          "feedback": "El costo no es el riesgo principal."
+        },
+        {
+          "id": "c",
+          "text": "Que no responda a lo que la gente necesita y que nadie lo sienta propio",
+          "correct": true,
+          "feedback": "Bien: sin participación, el proyecto se cae cuando el equipo se va."
+        }
+      ],
+      "explanation": "Cuando la comunidad participa desde el diagnóstico, el proyecto responde a sus necesidades reales y se sostiene en el tiempo."
+    }
+  ]
+}

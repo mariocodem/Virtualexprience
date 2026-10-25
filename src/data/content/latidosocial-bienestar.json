@@ -1,0 +1,163 @@
+{
+  "kind": "practicar",
+  "intro": "Cuidar a la comunidad empieza por cuidarse. En tu bitácora de bienestar, elige en cada situación el hábito que mejor protege tu energía durante el semestre, y aprende a ponerlo a prueba.",
+  "passing": 0.6,
+  "items": [
+    {
+      "id": "bienestar-1",
+      "tier": 1,
+      "prompt": "Llevas tres horas estudiando sin parar y ya no entiendes lo que lees. ¿Qué te ayuda más?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Seguir hasta terminar, aunque no entiendas",
+          "correct": false,
+          "feedback": "Leer sin entender gasta tiempo y energía sin dejar aprendizaje."
+        },
+        {
+          "id": "b",
+          "text": "Hacer una pausa breve: moverte, tomar agua y volver",
+          "correct": true,
+          "feedback": "Bien: una pausa activa ayuda a recuperar la atención."
+        },
+        {
+          "id": "c",
+          "text": "Abrir las redes sociales un rato largo",
+          "correct": false,
+          "feedback": "Parece descanso, pero suele cansar la atención y alargar la jornada."
+        }
+      ],
+      "explanation": "La atención se agota con el tiempo: pausas breves y activas ayudan a recuperarla mejor que seguir de largo."
+    },
+    {
+      "id": "bienestar-2",
+      "tier": 1,
+      "prompt": "¿Cuál de estos hábitos cuida mejor tu energía durante el semestre?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tomar bebidas energizantes para trasnochar cuando haga falta",
+          "correct": false,
+          "feedback": "Dan un empujón corto, pero alteran el sueño de las noches siguientes."
+        },
+        {
+          "id": "b",
+          "text": "Dormir poco entre semana y reponer todo el fin de semana",
+          "correct": false,
+          "feedback": "El cansancio acumulado no se recupera del todo en dos días."
+        },
+        {
+          "id": "c",
+          "text": "Acostarte y levantarte a horas parecidas casi todos los días",
+          "correct": true,
+          "feedback": "Exacto: la regularidad del sueño es uno de los hábitos que más protegen la energía."
+        }
+      ],
+      "explanation": "Dormir lo suficiente y con horarios regulares mejora la concentración, la memoria y el ánimo."
+    },
+    {
+      "id": "bienestar-3",
+      "tier": 2,
+      "prompt": "Quieres saber si caminar veinte minutos antes de clase te ayuda a concentrarte. ¿Cómo lo pones a prueba?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hacerlo durante dos semanas y anotar cada día cómo te concentraste, comparándolo con días sin caminar",
+          "correct": true,
+          "feedback": "Bien: registrar y comparar convierte una impresión en evidencia."
+        },
+        {
+          "id": "b",
+          "text": "Probar un día y decidir según cómo te fue",
+          "correct": false,
+          "feedback": "Un solo día puede salir bien o mal por muchas razones."
+        },
+        {
+          "id": "c",
+          "text": "Preguntarle a una amiga si a ella le funciona",
+          "correct": false,
+          "feedback": "Lo que le sirve a otra persona puede no servirte a ti."
+        }
+      ],
+      "explanation": "Probar un hábito por un tiempo y llevar registro permite saber si de verdad te sirve."
+    },
+    {
+      "id": "bienestar-4",
+      "tier": 2,
+      "prompt": "Te invitan a un semillero, a dos colectivos y a un trabajo de medio tiempo. Ya estás al límite con tus clases. ¿Qué haces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aceptar todo: son buenas oportunidades",
+          "correct": false,
+          "feedback": "Aceptarlo todo suele terminar en no cumplir bien con nada."
+        },
+        {
+          "id": "b",
+          "text": "Priorizar lo que más te importa y decir que no al resto, con respeto",
+          "correct": true,
+          "feedback": "Exacto: poner límites también es una forma de cuidarte."
+        },
+        {
+          "id": "c",
+          "text": "Rechazar todo para no complicarte",
+          "correct": false,
+          "feedback": "Cerrarse a todo también te quita oportunidades que sí te importan."
+        }
+      ],
+      "explanation": "Elegir según tus prioridades y tu energía disponible, y decir que no cuando hace falta, protege tu bienestar y tus compromisos."
+    },
+    {
+      "id": "bienestar-5",
+      "tier": 3,
+      "prompt": "Una amiga te cuenta que hace semanas se siente agotada todo el tiempo, duerme mal y ya no disfruta lo que antes le gustaba. ¿Qué le sugieres?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que se esfuerce más: es solo una mala racha del semestre",
+          "correct": false,
+          "feedback": "Minimizar lo que siente puede hacer que no busque ayuda a tiempo."
+        },
+        {
+          "id": "b",
+          "text": "Que tome más café para rendir mientras pasa",
+          "correct": false,
+          "feedback": "Tapa el cansancio, pero no atiende lo que le pasa."
+        },
+        {
+          "id": "c",
+          "text": "Que busque apoyo profesional, por ejemplo en el área de bienestar de su sede, y acompañarla si lo necesita",
+          "correct": true,
+          "feedback": "Bien: escuchar sin juzgar y acercarla a apoyo profesional es la mejor ayuda."
+        }
+      ],
+      "explanation": "Cuando el malestar dura semanas y afecta el sueño y el disfrute, conviene buscar apoyo profesional. Acompañar a alguien a pedir ayuda también es cuidar a la comunidad."
+    },
+    {
+      "id": "bienestar-6",
+      "tier": 3,
+      "prompt": "Tu bitácora muestra que los días que haces ejercicio duermes mejor, pero también son los días en que no tienes turno en el trabajo. ¿Qué concluyes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el ejercicio es lo que te hace dormir mejor",
+          "correct": false,
+          "feedback": "Puede ser, pero también podría ser el descanso del trabajo."
+        },
+        {
+          "id": "b",
+          "text": "Que no puedes saber cuál de los dos influye: para averiguarlo, prueba hacer ejercicio también algún día de turno",
+          "correct": true,
+          "feedback": "Exacto: cuando dos cosas cambian juntas, hay que separarlas para saber cuál pesa."
+        },
+        {
+          "id": "c",
+          "text": "Que la bitácora no sirve para nada",
+          "correct": false,
+          "feedback": "Sirve, y justo te mostró qué falta probar."
+        }
+      ],
+      "explanation": "Si dos factores cambian al mismo tiempo, no se puede atribuir el efecto a uno solo: hay que probarlos por separado."
+    }
+  ]
+}

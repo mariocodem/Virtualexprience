@@ -206,6 +206,34 @@ export function recordMinigame(
   return draft.finish();
 }
 
+/** XP por disipar a la Gran Bruma por primera vez. */
+export const FINALE_XP = 250;
+
+/**
+ * Intento del Gran Reto Integrador. Solo cuenta con los seis fragmentos; la
+ * primera victoria da su XP, queda en la bitácora y puede otorgar insignias.
+ */
+export function recordFinale(
+  progress: Progress,
+  world: World,
+  score: number,
+  won: boolean,
+  now: Date,
+): TransitionResult {
+  if (progress.fragments.length < world.islands.length) return unchanged(progress);
+  const draft = new Draft(progress, world, now);
+  const record = (draft.progress.finale ??= { attempts: 0, bestScore: 0 });
+  record.attempts += 1;
+  record.bestScore = Math.max(record.bestScore, clamp01(score));
+  if (won && !record.completedAt) {
+    record.completedAt = draft.iso;
+    draft.progress.xp += FINALE_XP;
+    draft.events.push({ type: 'finale' }, { type: 'xp', amount: FINALE_XP });
+    draft.log('gran-reto', 'faro');
+  }
+  return draft.finish();
+}
+
 export function setMastery(
   progress: Progress,
   world: World,

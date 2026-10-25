@@ -29,6 +29,8 @@ export function meetsCriterion(
       return progress.reflections >= criterion.count;
     case 'active-days':
       return progress.activeDays.length >= criterion.count;
+    case 'finale':
+      return Boolean(progress.finale?.completedAt);
     case 'minigame': {
       const best = progress.minigames[criterion.minigame];
       if (!best) return false;

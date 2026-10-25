@@ -43,8 +43,29 @@ describe('store de progreso', () => {
   it('reiniciar deja el progreso como el primer día', () => {
     const store = createProgressStore(world, () => DAY_1);
     store.getState().completeStation('comunicarte-imprenta', 1);
+    store.getState().replace({
+      ...store.getState(),
+      fragments: world.islands.map((i) => i.id),
+    });
+    store.getState().recordFinale(1, true);
     store.getState().reset();
     expect(store.getState().xp).toBe(0);
     expect(store.getState().journal).toEqual([]);
+    expect(store.getState().finale).toBeNull();
+  });
+
+  it('lee el progreso guardado antes del Gran Reto, que no traía ese registro', () => {
+    const before = Object.fromEntries(
+      Object.entries(createProgressStore(world, () => DAY_1).getState()).filter(
+        ([key]) => key !== 'finale',
+      ),
+    );
+    localStorage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({ state: { ...before, xp: 40 }, version: 1 }),
+    );
+    const store = createProgressStore(world, () => DAY_1);
+    expect(store.getState().xp).toBe(40);
+    expect(store.getState().finale).toBeNull();
   });
 });

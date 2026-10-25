@@ -17,6 +17,8 @@ export interface ProgressActions {
   recordReflection: (stationId: string) => ProgressEvent[];
   recordMinigame: (minigameId: MinigameId, run: t.MinigameRun) => ProgressEvent[];
   setMastery: (islandId: IslandId, value: number) => void;
+  /** Intento del Gran Reto Integrador: `won` si se disipó la Gran Bruma. */
+  recordFinale: (score: number, won: boolean) => ProgressEvent[];
   /** Sustituye todo el progreso (modo demo). */
   replace: (progress: Progress) => void;
   reset: () => void;
@@ -38,6 +40,7 @@ export function pickProgress(state: Progress): Progress {
     minigames: state.minigames,
     mastery: state.mastery,
     journal: state.journal,
+    finale: state.finale,
   };
 }
 
@@ -69,6 +72,7 @@ export function createProgressStore(source: World = world, clock: () => Date = (
           setMastery: (islandId, value) => {
             apply((p, w, now) => t.setMastery(p, w, islandId, value, now));
           },
+          recordFinale: (score, won) => apply((p, w, now) => t.recordFinale(p, w, score, won, now)),
           replace: (progress) => {
             set(pickProgress(progress));
           },

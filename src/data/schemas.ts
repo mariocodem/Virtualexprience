@@ -80,6 +80,8 @@ const badgeCriterionSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('formats-tried'), count: z.number().int().min(2).max(5) }),
   z.strictObject({ kind: z.literal('reflections'), count: z.number().int().positive() }),
   z.strictObject({ kind: z.literal('active-days'), count: z.number().int().positive() }),
+  /** Disipar a la Gran Bruma en el Gran Reto Integrador del Faro. */
+  z.strictObject({ kind: z.literal('finale') }),
   z.strictObject({
     kind: z.literal('minigame'),
     minigame: minigameIdSchema,

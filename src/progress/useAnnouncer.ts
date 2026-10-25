@@ -20,6 +20,12 @@ export function useAnnouncer() {
         } else if (event.type === 'level-up') {
           const level = world.levels.explorer.find((l) => l.id === event.levelId);
           if (level) notify({ title: `Nuevo nivel: ${level.name}`, tone: 'success' });
+        } else if (event.type === 'finale') {
+          notify({
+            title: 'El Faro Minuto vuelve a brillar',
+            description: 'Disipaste a la Gran Bruma: la ruta está encendida para todas las islas.',
+            tone: 'success',
+          });
         } else if (event.type === 'fragment') {
           const island = world.islands.find((i) => i.id === event.islandId);
           if (island) {

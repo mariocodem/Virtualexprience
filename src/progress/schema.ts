@@ -46,8 +46,18 @@ export const progressSchema: z.ZodType<Progress> = z.object({
         'nivel',
         'formato',
         'reflexion',
+        'gran-reto',
       ]),
       ref: z.string(),
     }),
   ),
+  // Los progresos guardados antes del Gran Reto no traen este campo.
+  finale: z
+    .object({
+      attempts: z.number().int().nonnegative(),
+      bestScore: unit,
+      completedAt: z.string().optional(),
+    })
+    .nullable()
+    .default(null),
 });

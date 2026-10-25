@@ -224,6 +224,15 @@
     }
   },
   {
+    "id": "luz-del-archipielago",
+    "name": "Luz del archipiélago",
+    "description": "Disipaste a la Gran Bruma en el Gran Reto Integrador: el Faro Minuto vuelve a guiar a todas las islas.",
+    "category": "competencia",
+    "criterion": {
+      "kind": "finale"
+    }
+  },
+  {
     "id": "guardian-del-faro",
     "name": "Guardián del Faro",
     "description": "Reuniste los seis fragmentos y encendiste el Faro Minuto.",

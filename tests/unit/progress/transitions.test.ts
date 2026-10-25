@@ -180,3 +180,33 @@ describe('minijuegos y dominio', () => {
     expect(progress.xp).toBe(0);
   });
 });
+
+describe('Gran Reto Integrador', () => {
+  const allLit = { ...initialProgress(), fragments: world.islands.map((i) => i.id) };
+
+  it('solo cuenta con los seis fragmentos de luz', () => {
+    const progress = { ...initialProgress(), fragments: ['comunicarte' as const] };
+    expect(t.recordFinale(progress, world, 1, true, DAY_1).progress).toBe(progress);
+  });
+
+  it('la primera victoria da su XP, queda en la bitácora y otorga Luz del archipiélago', () => {
+    const { progress, events } = t.recordFinale(allLit, world, 0.9, true, DAY_1);
+    expect(progress.finale).toMatchObject({ attempts: 1, bestScore: 0.9 });
+    expect(progress.finale?.completedAt).toBeDefined();
+    expect(progress.xp).toBe(t.FINALE_XP);
+    expect(events).toContainEqual({ type: 'finale' });
+    expect(events).toContainEqual({ type: 'badge', badgeId: 'luz-del-archipielago' });
+    expect(progress.journal.map((e) => e.kind)).toContain('gran-reto');
+  });
+
+  it('una retirada cuenta como intento; repetir la victoria no duplica la XP', () => {
+    const lost = t.recordFinale(allLit, world, 0.4, false, DAY_1).progress;
+    expect(lost.finale).toEqual({ attempts: 1, bestScore: 0.4 });
+    expect(lost.xp).toBe(0);
+    const won = t.recordFinale(lost, world, 0.8, true, DAY_2).progress;
+    const again = t.recordFinale(won, world, 1, true, DAY_3);
+    expect(again.progress.xp).toBe(t.FINALE_XP);
+    expect(again.progress.finale).toMatchObject({ attempts: 3, bestScore: 1 });
+    expect(again.events).not.toContainEqual({ type: 'finale' });
+  });
+});

@@ -29,7 +29,8 @@ export type JournalKind =
   | 'insignia'
   | 'nivel'
   | 'formato'
-  | 'reflexion';
+  | 'reflexion'
+  | 'gran-reto';
 
 /** Entrada de la bitácora: datos estructurados; el texto se compone en la interfaz. */
 export interface JournalEntry {
@@ -37,6 +38,15 @@ export interface JournalEntry {
   at: string;
   kind: JournalKind;
   ref: string;
+}
+
+/** El Gran Reto Integrador del Faro Minuto. */
+export interface FinaleRecord {
+  attempts: number;
+  /** Mejor resultado de 0 a 1. */
+  bestScore: number;
+  /** Cuándo se disipó la Gran Bruma por primera vez. */
+  completedAt?: string;
 }
 
 export interface Progress {
@@ -55,6 +65,8 @@ export interface Progress {
   /** Dominio estimado por competencia (0–1); lo actualiza el motor adaptativo. */
   mastery: Partial<Record<IslandId, number>>;
   journal: JournalEntry[];
+  /** Nulo hasta el primer intento del Gran Reto. */
+  finale: FinaleRecord | null;
 }
 
 /** Lo que una acción provocó, para que la interfaz lo celebre o lo anuncie. */
@@ -63,7 +75,8 @@ export type ProgressEvent =
   | { type: 'station-completed'; stationId: string }
   | { type: 'fragment'; islandId: IslandId }
   | { type: 'badge'; badgeId: string }
-  | { type: 'level-up'; levelId: string };
+  | { type: 'level-up'; levelId: string }
+  | { type: 'finale' };
 
 export interface TransitionResult {
   progress: Progress;
@@ -84,5 +97,6 @@ export function initialProgress(): Progress {
     minigames: {},
     mastery: {},
     journal: [],
+    finale: null,
   };
 }

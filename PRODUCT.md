@@ -57,7 +57,7 @@ En otros productos las rutas de aprendizaje son listas. Aquí son lugares:
 ## Capabilities and Constraints
 
 El alcance completo está en CLAUDE.md §6–§12. Lo que no se negocia:
-- **ComunicArte 100 % jugable.** Las demás islas son navegables, con estaciones de muestra y marcadas "Expedición en preparación", sin pantallas vacías. NeuroMath tendrá un segundo minijuego solo si alcanza el tiempo.
+- **Las seis islas son jugables.** Cada una tiene su sendero de estaciones, un minijuego propio y su Bruma como desafío final. ComunicArte fue la primera y es la referencia de calidad. El estado "Expedición en preparación" se conserva para rutas futuras, nunca como pantalla vacía.
 - **Funciona 100 % offline.** El LLM es opcional y pasa por un proxy; la API key nunca va en el frontend ni en el ejecutable.
 - **El contenido pedagógico vive en `src/data/*.json` validado con Zod**, nunca en componentes.
 - **La UI habla el idioma del mundo:** fragmentos, bitácora, pasaporte, mareas. Nada de jerga web como "Página 2".

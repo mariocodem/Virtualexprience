@@ -12,6 +12,10 @@ export interface Preferences {
   motion: 'sistema' | 'reducido';
   /** Cómo se ve el mundo: relieve 3D o carta 2D equivalente. */
   mapMode: '3d' | '2d';
+  /** Cómo se juegan los retos y las Brumas: en 3D o en su versión accesible equivalente. */
+  gameMode: '3d' | 'accesible';
+  /** Ritmo tranquilo en los juegos 3D: ataques más lentos y puntería asistida. */
+  calmPace: boolean;
 }
 
 interface PreferencesActions {
@@ -19,6 +23,8 @@ interface PreferencesActions {
   setContrast: (contrast: Preferences['contrast']) => void;
   setMotion: (motion: Preferences['motion']) => void;
   setMapMode: (mapMode: Preferences['mapMode']) => void;
+  setGameMode: (gameMode: Preferences['gameMode']) => void;
+  setCalmPace: (calmPace: boolean) => void;
 }
 
 export const PREFERENCES_STORAGE_KEY = 'virtux:preferencias';
@@ -30,6 +36,8 @@ export const usePreferences = create<Preferences & PreferencesActions>()(
       contrast: 'normal',
       motion: 'sistema',
       mapMode: '3d',
+      gameMode: '3d',
+      calmPace: false,
       setTextStep: (textStep) => {
         set({ textStep });
       },
@@ -42,16 +50,24 @@ export const usePreferences = create<Preferences & PreferencesActions>()(
       setMapMode: (mapMode) => {
         set({ mapMode });
       },
+      setGameMode: (gameMode) => {
+        set({ gameMode });
+      },
+      setCalmPace: (calmPace) => {
+        set({ calmPace });
+      },
     }),
     {
       name: PREFERENCES_STORAGE_KEY,
       version: 1,
       storage: createJSONStorage(() => localStorage),
-      partialize: ({ textStep, contrast, motion, mapMode }) => ({
+      partialize: ({ textStep, contrast, motion, mapMode, gameMode, calmPace }) => ({
         textStep,
         contrast,
         motion,
         mapMode,
+        gameMode,
+        calmPace,
       }),
     },
   ),

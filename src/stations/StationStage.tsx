@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { findIsland, getStation, stationsOf, world } from '@/data';
 import { loadStationContent } from '@/data/content';
 import type { StationContent } from '@/data/contentSchemas';
+import { ArenaHost } from '@/games/ArenaHost';
 import { MinigameHost } from '@/minigames/MinigameHost';
 import { nextStation, stationStatus } from '@/progress/selectors';
 import { pickProgress, useProgress } from '@/progress/store';
@@ -14,7 +15,6 @@ import { cx } from '@/ui/cx';
 import { IconArrowRight } from '@/ui/icons';
 import { STATION_TYPE_LABEL } from '@/world/stationText';
 import { AiBadge } from './AiBadge';
-import { BossBattle } from './boss/BossBattle';
 import { BrujulaBubble, type BrujulaMessage } from './BrujulaBubble';
 import { CompletionCard } from './CompletionCard';
 import { ExplorarStation } from './ExplorarStation';
@@ -193,7 +193,7 @@ function StationBody({
 
   if (content.kind === 'desafio') {
     return (
-      <BossBattle
+      <ArenaHost
         island={island}
         station={station}
         content={content}

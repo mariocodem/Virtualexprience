@@ -1,0 +1,206 @@
+{
+  "sabers": [
+    { "id": "semillas", "label": "semillas y plantas" },
+    { "id": "agua", "label": "agua y cocina" },
+    { "id": "fuerza", "label": "fuerza y convocatoria" },
+    { "id": "registros", "label": "medir y organizar" }
+  ],
+  "groups": [
+    {
+      "id": "abuelas",
+      "name": "Las abuelas del barrio",
+      "short": "Abuelas",
+      "saber": "semillas",
+      "stamina": 1
+    },
+    {
+      "id": "jovenes",
+      "name": "El colectivo juvenil",
+      "short": "Colectivo juvenil",
+      "saber": "fuerza",
+      "stamina": 3
+    },
+    {
+      "id": "pescadores",
+      "name": "Las familias pescadoras",
+      "short": "Familias pescadoras",
+      "saber": "agua",
+      "stamina": 2
+    },
+    {
+      "id": "estudiantes",
+      "name": "Estudiantes de la sede",
+      "short": "Estudiantes",
+      "saber": "registros",
+      "stamina": 2
+    }
+  ],
+  "faroles": [
+    { "id": "manantial", "name": "Farol del manantial", "short": "Manantial", "angle": -90 },
+    { "id": "semillero", "name": "Farol del semillero", "short": "Semillero", "angle": 0 },
+    { "id": "muelle", "name": "Farol del muelle", "short": "Muelle", "angle": 90 },
+    { "id": "lindero", "name": "Farol del lindero", "short": "Lindero", "angle": 180 }
+  ],
+  "needs": [
+    {
+      "id": "barrera-nativa",
+      "tier": 1,
+      "saber": "semillas",
+      "text": "Sembrar una barrera de plantas nativas que frene la niebla en este sendero.",
+      "fits": ["abuelas"],
+      "why": "las abuelas conocen las semillas nativas y cuándo sembrarlas."
+    },
+    {
+      "id": "semillas-humedad",
+      "tier": 1,
+      "saber": "semillas",
+      "text": "Escoger qué semillas aguantan la humedad que deja la niebla.",
+      "fits": ["abuelas"],
+      "why": "saber qué semilla resiste cada clima es el saber de las abuelas."
+    },
+    {
+      "id": "pulgones",
+      "tier": 2,
+      "saber": "semillas",
+      "text": "La niebla trajo pulgones a las hortalizas del borde: hay que espantarlos sin veneno.",
+      "fits": ["abuelas"],
+      "why": "las abuelas saben qué plantas espantan las plagas, como se hacía en las fincas."
+    },
+    {
+      "id": "resembrar",
+      "tier": 2,
+      "saber": "semillas",
+      "text": "Decidir en qué luna conviene resembrar lo que la niebla quemó.",
+      "fits": ["abuelas"],
+      "why": "el calendario de siembra lo llevan las abuelas en la memoria."
+    },
+    {
+      "id": "senales-bosque",
+      "tier": 3,
+      "saber": "semillas",
+      "text": "Leer en las flores y los pájaros del bosque cuándo vuelve la niebla, como se hacía antes.",
+      "fits": ["abuelas"],
+      "why": "ese saber tradicional del territorio lo guardan las abuelas."
+    },
+    {
+      "id": "canal",
+      "tier": 1,
+      "saber": "agua",
+      "text": "Abrir un canal para que el agua empozada no ahogue las raíces del sendero.",
+      "fits": ["pescadores"],
+      "why": "las familias pescadoras saben manejar el agua."
+    },
+    {
+      "id": "olla-guardia",
+      "tier": 1,
+      "saber": "agua",
+      "text": "Cocinar para quienes llevan horas defendiendo el bosque.",
+      "fits": ["pescadores"],
+      "why": "las familias pescadoras saben cocinar para muchos."
+    },
+    {
+      "id": "abono-muelle",
+      "tier": 2,
+      "saber": "agua",
+      "text": "Convertir los restos del muelle en abono para las plantas que la niebla debilitó.",
+      "fits": ["pescadores"],
+      "why": "las familias pescadoras convierten los residuos del pescado en abono."
+    },
+    {
+      "id": "tanque",
+      "tier": 2,
+      "saber": "agua",
+      "text": "Repartir lo que queda en el tanque, era por era, sin desperdiciar una gota.",
+      "fits": ["pescadores"],
+      "why": "el manejo del agua es el saber de las familias pescadoras."
+    },
+    {
+      "id": "nadie-hambre",
+      "tier": 3,
+      "saber": "agua",
+      "text": "Que nadie pase la noche con hambre mientras dura la defensa.",
+      "fits": ["pescadores"],
+      "why": "alimentar a muchos a la vez lo saben hacer las familias pescadoras."
+    },
+    {
+      "id": "troncos",
+      "tier": 1,
+      "saber": "fuerza",
+      "text": "Cargar troncos caídos para cerrar el paso de la niebla.",
+      "fits": ["jovenes"],
+      "why": "el colectivo juvenil tiene la fuerza para cargar y construir."
+    },
+    {
+      "id": "cerco-guadua",
+      "tier": 1,
+      "saber": "fuerza",
+      "text": "Levantar un cerco de guadua en este sendero antes del amanecer.",
+      "fits": ["jovenes"],
+      "why": "cortar, cargar y amarrar la guadua es trabajo para el colectivo juvenil."
+    },
+    {
+      "id": "avisar-redes",
+      "tier": 2,
+      "saber": "fuerza",
+      "text": "Avisar por redes a los vecinos para que vengan a ayudar.",
+      "fits": ["jovenes"],
+      "why": "el colectivo juvenil sabe convocar a la gente por redes."
+    },
+    {
+      "id": "recorrer",
+      "tier": 2,
+      "saber": "fuerza",
+      "text": "Recorrer el sendero de punta a punta, varias veces, cargando faroles de repuesto.",
+      "fits": ["jovenes"],
+      "why": "el trabajo pesado y de resistencia le toca al colectivo juvenil."
+    },
+    {
+      "id": "barrio-entero",
+      "tier": 3,
+      "saber": "fuerza",
+      "text": "Que el barrio entero se entere y se sume esta misma noche.",
+      "fits": ["jovenes"],
+      "why": "convocar rápido a mucha gente es lo que mejor hace el colectivo juvenil."
+    },
+    {
+      "id": "medir-niebla",
+      "tier": 1,
+      "saber": "registros",
+      "text": "Medir cuánta niebla entra por este sendero cada noche.",
+      "fits": ["estudiantes"],
+      "why": "los estudiantes saben medir y llevar registros."
+    },
+    {
+      "id": "turnos",
+      "tier": 1,
+      "saber": "registros",
+      "text": "Organizar los turnos para que nadie haga guardia dos noches seguidas.",
+      "fits": ["estudiantes"],
+      "why": "los estudiantes saben organizar turnos."
+    },
+    {
+      "id": "mapa-senderos",
+      "tier": 2,
+      "saber": "registros",
+      "text": "Anotar qué sendero se cubrió y cuál no, para planear la próxima noche.",
+      "fits": ["estudiantes"],
+      "why": "llevar registros para decidir con datos es el saber de los estudiantes."
+    },
+    {
+      "id": "orden-del-dia",
+      "tier": 2,
+      "saber": "registros",
+      "text": "Preparar el orden del día de la reunión en la que se acuerdan los relevos.",
+      "fits": ["estudiantes"],
+      "why": "los estudiantes saben organizar reuniones."
+    },
+    {
+      "id": "cerco-sirvio",
+      "tier": 3,
+      "saber": "registros",
+      "text": "Saber si el cerco de la semana pasada de verdad sirvió.",
+      "fits": ["estudiantes"],
+      "why": "comparar el antes y el después con registros es el saber de los estudiantes."
+    }
+  ]
+}

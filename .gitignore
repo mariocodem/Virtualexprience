@@ -16,3 +16,6 @@ blob-report
 .impeccable/mocks/
 .impeccable/review/
 .impeccable/config.local.json
+
+# Worktrees de agentes de Claude Code
+.claude/worktrees/

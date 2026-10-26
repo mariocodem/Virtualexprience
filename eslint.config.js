@@ -15,6 +15,8 @@ export default defineConfig([
     'playwright-report',
     'test-results',
     '.impeccable',
+    // Worktrees de agentes y configuración local de Claude Code.
+    '.claude',
   ]),
   {
     files: ['**/*.{ts,tsx}'],

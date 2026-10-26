@@ -1,0 +1,58 @@
+{
+  "parts": {
+    "c1": "cierre-enrollable",
+    "c2": "tela-fosforescente",
+    "c3": "correa-acolchada",
+    "c4": "candado",
+    "c5": "fuelle",
+    "c6": "cinta-reflectiva",
+    "c7": "portavasos",
+    "c8": "panel-solar",
+    "c9": "cinta-pecho",
+    "c10": "logo",
+    "c11": "version-playa",
+    "c12": "rediseno",
+    "c13": "forro-transpirable",
+    "c14": "lote-regalo",
+    "c15": "bolsa-carnada",
+    "c16": "aromatizante",
+    "c17": "detalles-reflectivos",
+    "c18": "lona-delgada",
+    "c19": "ruedas",
+    "c20": "forro-colores"
+  },
+  "people": {
+    "ana": {
+      "name": "Ana",
+      "coat": "#4fa6a2",
+      "trim": "#f3f6f8",
+      "skin": "#c68e64",
+      "hair": "#2b1d14",
+      "prop": "portatil"
+    },
+    "beto": {
+      "name": "Beto",
+      "coat": "#e3b32a",
+      "trim": "#173f75",
+      "skin": "#8d5a3b",
+      "hair": "#1b1410",
+      "prop": "sombrero"
+    },
+    "carla": {
+      "name": "Carla",
+      "coat": "#7d5aa6",
+      "trim": "#f1ebdd",
+      "skin": "#e0b08a",
+      "hair": "#5e3d26",
+      "prop": "carpeta"
+    },
+    "dario": {
+      "name": "Darío",
+      "coat": "#e0703c",
+      "trim": "#fed300",
+      "skin": "#f1c7a5",
+      "hair": "#a87a4f",
+      "prop": "camara"
+    }
+  }
+}

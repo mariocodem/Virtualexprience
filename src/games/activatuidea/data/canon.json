@@ -1,0 +1,250 @@
+{
+  "prototype": "el cañón de luz",
+  "rounds": [
+    {
+      "id": "canon-encendido",
+      "tier": 1,
+      "title": "Primer encendido en la playa",
+      "feedback": [
+        {
+          "id": "k1",
+          "userId": "ana",
+          "quote": "El haz se abre tanto que a diez metros ya no alumbra nada.",
+          "kind": "patron",
+          "why": "Ana y Beto describen lo mismo: el haz se dispersa antes de llegar lejos."
+        },
+        {
+          "id": "k2",
+          "userId": "beto",
+          "quote": "La luz se desparrama y no alcanza a la boya del canal.",
+          "kind": "patron",
+          "why": "Es el mismo problema que señala Ana, con otras palabras: falta enfocar el haz."
+        },
+        {
+          "id": "k3",
+          "userId": "dario",
+          "quote": "¿Y si le ponemos luces de colores para las fiestas?",
+          "kind": "fuera",
+          "why": "Darío no navega en la bruma; las luces de fiesta no ayudan a abrir paso."
+        },
+        {
+          "id": "k4",
+          "userId": "carla",
+          "quote": "El interruptor queda muy abajo y me toca agacharme.",
+          "kind": "aislado",
+          "why": "Solo Carla lo menciona: vale anotarlo y ver si se repite."
+        }
+      ]
+    },
+    {
+      "id": "canon-aguacero",
+      "tier": 1,
+      "title": "Prueba bajo el aguacero",
+      "feedback": [
+        {
+          "id": "k5",
+          "userId": "carla",
+          "quote": "Con el aguacero, el agua se mete por la tapa y la luz parpadea.",
+          "kind": "patron",
+          "why": "Carla y Beto coinciden: la lluvia entra por arriba y la luz falla."
+        },
+        {
+          "id": "k6",
+          "userId": "beto",
+          "quote": "Se mojó por encima y empezó a titilar en plena travesía.",
+          "kind": "patron",
+          "why": "Coincide con Carla: la tapa no protege de la lluvia."
+        },
+        {
+          "id": "k7",
+          "userId": "ana",
+          "quote": "Me gustaría que pitara cuando se enciende.",
+          "kind": "aislado",
+          "why": "Es una preferencia de Ana; nadie más lo pidió."
+        },
+        {
+          "id": "k8",
+          "userId": "dario",
+          "quote": "Le haría falta un parlante para poner música en la lancha.",
+          "kind": "fuera",
+          "why": "La música no tiene que ver con atravesar la bruma."
+        }
+      ]
+    },
+    {
+      "id": "canon-madrugada",
+      "tier": 1,
+      "title": "Turno de la madrugada",
+      "feedback": [
+        {
+          "id": "k9",
+          "userId": "beto",
+          "quote": "A las cuatro de la mañana la batería no alcanza para el regreso.",
+          "kind": "patron",
+          "why": "Beto y Ana dicen lo mismo: la carga no dura toda la travesía."
+        },
+        {
+          "id": "k10",
+          "userId": "ana",
+          "quote": "Cuando vuelvo de la práctica, el cañón ya está descargado.",
+          "kind": "patron",
+          "why": "Coincide con Beto: la batería se agota antes de terminar el viaje."
+        },
+        {
+          "id": "k11",
+          "userId": "dario",
+          "quote": "Lo quiero dorado, que combine con el yate del hotel.",
+          "kind": "fuera",
+          "why": "El color del yate de un turista no es el problema que resuelve el cañón."
+        },
+        {
+          "id": "k12",
+          "userId": "carla",
+          "quote": "La manija se calienta un poco después de un rato.",
+          "kind": "aislado",
+          "why": "Por ahora solo lo dice Carla; conviene observar si se repite."
+        }
+      ]
+    },
+    {
+      "id": "canon-canal",
+      "tier": 2,
+      "title": "Prueba en el canal angosto",
+      "feedback": [
+        {
+          "id": "k13",
+          "userId": "ana",
+          "quote": "Para apuntar al canal tengo que soltar la baranda y usar las dos manos.",
+          "kind": "patron",
+          "why": "Ana y Carla describen lo mismo: sostener el cañón ocupa las dos manos."
+        },
+        {
+          "id": "k14",
+          "userId": "carla",
+          "quote": "Mientras lo sostengo no me puedo agarrar de nada cuando la lancha brinca.",
+          "kind": "patron",
+          "why": "Es el mismo problema que señala Ana, contado desde otro momento del viaje."
+        },
+        {
+          "id": "k15",
+          "userId": "beto",
+          "quote": "El gris se confunde con la lancha; a veces no lo encuentro.",
+          "kind": "aislado",
+          "why": "Solo Beto lo menciona en esta prueba; es real, pero aún no es un patrón."
+        },
+        {
+          "id": "k16",
+          "userId": "dario",
+          "quote": "Con un trípode me serviría para tomar fotos de noche.",
+          "kind": "fuera",
+          "why": "Las fotos de un turista son otro uso, no el problema de la bruma."
+        }
+      ]
+    },
+    {
+      "id": "canon-semana",
+      "tier": 2,
+      "title": "Una semana a bordo",
+      "feedback": [
+        {
+          "id": "k17",
+          "userId": "beto",
+          "quote": "Pesa tanto que lo dejo en el muelle y salgo sin él.",
+          "kind": "patron",
+          "why": "Beto y Carla dejan de usarlo por lo mismo: pesa demasiado para llevarlo."
+        },
+        {
+          "id": "k18",
+          "userId": "carla",
+          "quote": "Llevarlo hasta la sede me cansa el brazo; prefiero no cargarlo.",
+          "kind": "patron",
+          "why": "Coincide con Beto aunque lo diga distinto: el peso hace que no lo lleven."
+        },
+        {
+          "id": "k19",
+          "userId": "ana",
+          "quote": "Si brillara el doble, se vería desde la sede.",
+          "kind": "aislado",
+          "why": "Es una hipótesis de Ana sola; antes de construirla, hay que ver si alguien más lo necesita."
+        },
+        {
+          "id": "k20",
+          "userId": "dario",
+          "quote": "¡Es lo más bonito del archipiélago! Me llevo uno de recuerdo.",
+          "kind": "fuera",
+          "why": "El entusiasmo de quien no tiene el problema no es evidencia."
+        }
+      ]
+    },
+    {
+      "id": "canon-cooperativa",
+      "tier": 3,
+      "title": "Prueba con la cooperativa de lancheros",
+      "feedback": [
+        {
+          "id": "k21",
+          "userId": "ana",
+          "quote": "Cuando la bruma está espesa, el haz rebota y me encandila.",
+          "kind": "patron",
+          "why": "Ana y Beto describen el mismo efecto con palabras distintas: la luz se devuelve en la niebla."
+        },
+        {
+          "id": "k22",
+          "userId": "beto",
+          "quote": "Con niebla cerrada, la luz me devuelve el reflejo a los ojos.",
+          "kind": "patron",
+          "why": "Es lo mismo que dice Ana: el reflejo en la bruma deslumbra."
+        },
+        {
+          "id": "k23",
+          "userId": "carla",
+          "quote": "Si costara la mitad, la cooperativa compraría veinte.",
+          "kind": "aislado",
+          "why": "Es una hipótesis de precio de una sola persona: hay que probarla con más compradores."
+        },
+        {
+          "id": "k24",
+          "userId": "dario",
+          "quote": "Mis amigos dicen que es la mejor idea que han visto.",
+          "kind": "fuera",
+          "why": "Ni Darío ni sus amigos navegan en la bruma: su opinión no prueba nada."
+        }
+      ]
+    },
+    {
+      "id": "canon-temporada",
+      "tier": 3,
+      "title": "Última prueba antes de la temporada",
+      "feedback": [
+        {
+          "id": "k25",
+          "userId": "carla",
+          "quote": "En la lancha de las seis nadie sabe cómo encenderlo; todos me preguntan a mí.",
+          "kind": "patron",
+          "why": "Carla y Beto ven lo mismo: quien lo usa por primera vez no sabe encenderlo."
+        },
+        {
+          "id": "k26",
+          "userId": "beto",
+          "quote": "Los pasajeros nuevos le dan vueltas y no encuentran por dónde se prende.",
+          "kind": "patron",
+          "why": "Coincide con Carla: el encendido no se entiende a primera vista."
+        },
+        {
+          "id": "k27",
+          "userId": "ana",
+          "quote": "Yo lo prendo sin problema; quizá le pondría un segundo modo de luz.",
+          "kind": "aislado",
+          "why": "Es una idea de Ana sola, y ella no tiene la dificultad que otros sí."
+        },
+        {
+          "id": "k28",
+          "userId": "dario",
+          "quote": "Debería conectarse al celular con una aplicación.",
+          "kind": "fuera",
+          "why": "Una aplicación no ayuda a abrir paso en la bruma, y Darío no tiene el problema."
+        }
+      ]
+    }
+  ]
+}

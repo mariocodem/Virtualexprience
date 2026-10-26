@@ -18,34 +18,54 @@ const ISLANDS = [
 ];
 
 /** Progreso con los seis fragmentos: el faro encendido y el Gran Reto abierto. */
-async function withAllFragments(page: Page) {
-  await page.addInitScript((islands) => {
-    if (sessionStorage.getItem('sembrado')) return;
-    sessionStorage.setItem('sembrado', '1');
-    localStorage.setItem(
-      'virtux:progreso',
-      JSON.stringify({
-        state: {
+async function withAllFragments(page: Page, gameMode: '3d' | 'accesible') {
+  await page.addInitScript(
+    ([islands, mode]) => {
+      if (sessionStorage.getItem('sembrado')) return;
+      sessionStorage.setItem('sembrado', '1');
+      localStorage.setItem(
+        'virtux:preferencias',
+        JSON.stringify({
+          state: {
+            textStep: 0,
+            contrast: 'normal',
+            motion: 'sistema',
+            mapMode: '3d',
+            gameMode: mode,
+            calmPace: false,
+          },
           version: 1,
-          xp: 1200,
-          stations: {},
-          visitedIslands: islands,
-          fragments: islands,
-          badges: {},
-          formatsTried: [],
-          reflections: 0,
-          activeDays: [],
-          minigames: {},
-          mastery: {},
-          journal: [],
-        },
-        version: 1,
-      }),
-    );
-  }, ISLANDS);
+        }),
+      );
+      localStorage.setItem(
+        'virtux:progreso',
+        JSON.stringify({
+          state: {
+            version: 1,
+            xp: 1200,
+            stations: {},
+            visitedIslands: islands,
+            fragments: islands,
+            badges: {},
+            formatsTried: [],
+            reflections: 0,
+            activeDays: [],
+            minigames: {},
+            mastery: {},
+            journal: [],
+          },
+          version: 1,
+        }),
+      );
+    },
+    [ISLANDS, gameMode] as const,
+  );
 }
 
 test.describe('Gran Reto Integrador', () => {
+  // Escenas 3D y axe en WebGL por software: más margen que el predeterminado.
+  test.describe.configure({ timeout: 60_000 });
+
   test('sin los seis fragmentos, el faro explica qué falta', async ({ page }) => {
     await page.goto('/mundo/faro/gran-reto');
     await expect(
@@ -56,8 +76,10 @@ test.describe('Gran Reto Integrador', () => {
     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
   });
 
-  test('con teclado: del faro a la Gran Bruma y su primer embate', async ({ page }) => {
-    await withAllFragments(page);
+  test('con teclado: del faro a la Gran Bruma y su primer embate (versión accesible)', async ({
+    page,
+  }) => {
+    await withAllFragments(page, 'accesible');
     await page.goto('/mundo?faro=1');
     const enter = page.getByRole('link', { name: 'Enfrentar a la Gran Bruma' });
     await enter.focus();
@@ -79,5 +101,18 @@ test.describe('Gran Reto Integrador', () => {
 
     await page.keyboard.press('Escape');
     await expect(page).toHaveURL(/\/mundo\?faro=1$/);
+  });
+
+  test('en 3D: la Gran Bruma toma su primera forma en una arena jugable', async ({ page }) => {
+    await withAllFragments(page, '3d');
+    await page.goto('/mundo/faro/gran-reto');
+    await page.getByRole('button', { name: 'Enfrentar a la Gran Bruma' }).click();
+    const arena = page.getByRole('application');
+    await expect(arena).toBeVisible({ timeout: 20_000 });
+    await expect(arena).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog', { name: 'En pausa' })).toBeVisible();
+    const serious = await seriousViolations(page);
+    expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
   });
 });

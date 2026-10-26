@@ -64,7 +64,11 @@ export function QuizArena({
   onDecision,
   onEnd,
   onAccessible,
-}: ArenaProps) {
+  theme,
+}: ArenaProps & {
+  /** Colores propios cuando la arena no es de una isla (el corazón de la Gran Bruma). */
+  theme?: { tint: string; rim: string };
+}) {
   const [controls] = useState(() => new Controls());
   const config = useMemo<ArenaConfig>(
     () => ({ radius: RADIUS, level, goal, lights, calm }),
@@ -81,7 +85,7 @@ export function QuizArena({
   const nextAt = useRef(1.5);
   const ended = useRef(false);
   const random = useRef(Math.random).current;
-  const tint = brumaTint(island.id);
+  const tint = theme?.tint ?? brumaTint(island.id);
 
   const sync = useCallback(() => {
     setHud({ ...state.player, ...state.bruma, charge: state.charge });
@@ -197,7 +201,7 @@ export function QuizArena({
       }
     >
       <ArenaLights />
-      <ArenaPlatform radius={RADIUS} rim={ISLE[island.id]} />
+      <ArenaPlatform radius={RADIUS} rim={theme?.rim ?? ISLE[island.id]} />
       <ArenaRig
         state={state}
         config={config}

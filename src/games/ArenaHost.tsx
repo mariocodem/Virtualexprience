@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { usePreferences } from '@/a11y/preferences';
 import { useReducedMotion } from '@/a11y/useReducedMotion';
 import { bossConfig, bossLevel } from '@/ai/adaptiveEngine';
@@ -13,19 +13,9 @@ import type { Island, Station } from '@/types/domain';
 import { Button } from '@/ui/Button';
 import { ButtonLink } from '@/ui/ButtonLink';
 import { ModeSwitch } from './ModeSwitch';
-import { GAMES } from './registry';
+import { arenaFor } from './arenas';
 import { ARENA_HELP } from './shared/stage';
 import type { ArenaEntry, ArenaResult } from './types';
-
-/** Arena de respaldo mientras una isla no tenga la suya. */
-const FAROS: ArenaEntry = {
-  Component: lazy(async () => ({ default: (await import('./shared/QuizArena')).QuizArena })),
-  verb: 'Responder en los faros',
-  howTo: [
-    'Cada embate levanta un faro por respuesta: llega al de la correcta y pulsa E, o pulsa su número.',
-    'Acertar carga tu linterna; fallar hace más fuerte a la Bruma.',
-  ],
-};
 
 interface Props {
   island: Island;
@@ -44,7 +34,7 @@ interface Props {
 export function ArenaHost(props: Props) {
   const mode = usePreferences((s) => s.gameMode);
   const [webgl] = useState(hasWebGL2);
-  const entry = GAMES[props.island.id].arena ?? FAROS;
+  const entry = arenaFor(props.island.id);
 
   if (!webgl || mode === 'accesible') {
     return (

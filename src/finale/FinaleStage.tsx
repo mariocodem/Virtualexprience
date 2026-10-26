@@ -1,7 +1,10 @@
 import { Suspense, use, useEffect, useState } from 'react';
+import { usePreferences } from '@/a11y/preferences';
 import { Link, useNavigate } from 'react-router';
 import { world } from '@/data';
 import { loadFinaleContent } from '@/data/content';
+import { ModeSwitch } from '@/games/ModeSwitch';
+import { hasWebGL2 } from '@/landing/webgl';
 import { useAnnouncer } from '@/progress/useAnnouncer';
 import { useProgress } from '@/progress/store';
 import { AiBadge } from '@/stations/AiBadge';
@@ -9,6 +12,7 @@ import { ButtonLink } from '@/ui/ButtonLink';
 import { IconArrowRight } from '@/ui/icons';
 import { StationSymbol } from '@/ui/StationSymbol';
 import { ArchipelagoPlate2D } from '@/world/ArchipelagoPlate2D';
+import { FinaleArena3D } from './FinaleArena3D';
 import { FinaleBattle } from './FinaleBattle';
 
 const BACK = '/mundo?faro=1';
@@ -94,7 +98,22 @@ function FinaleBody({
   onEvents: ReturnType<typeof useAnnouncer>;
 }) {
   const content = use(promise);
-  return <FinaleBattle content={content} onEvents={onEvents} />;
+  const mode = usePreferences((s) => s.gameMode);
+  const [webgl] = useState(hasWebGL2);
+  return (
+    <div className="grid gap-4">
+      <ModeSwitch
+        onSea
+        available={webgl}
+        reason="Este navegador no puede mostrar 3D: se juega la versión accesible."
+      />
+      {webgl && mode === '3d' ? (
+        <FinaleArena3D content={content} onEvents={onEvents} />
+      ) : (
+        <FinaleBattle content={content} onEvents={onEvents} />
+      )}
+    </div>
+  );
 }
 
 function Gate({ fragments }: { fragments: readonly string[] }) {

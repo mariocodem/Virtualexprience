@@ -1,0 +1,21 @@
+{
+  "groups": {
+    "pescadores": { "short": "Pescadores", "member": "Una pescadora" },
+    "jovenes": { "short": "Jóvenes", "member": "Un joven del colectivo" },
+    "comerciantes": { "short": "Comercio", "member": "Una comerciante de la plaza" },
+    "mayores": { "short": "Mayores", "member": "Un mayor del consejo" }
+  },
+  "passersby": [
+    "Una vecina",
+    "Un vecino",
+    "Una estudiante",
+    "Un maestro de obra",
+    "Una abuela del barrio",
+    "Un tendero"
+  ],
+  "giveUp": [
+    "Nadie respondió a tiempo: {who} vuelve a casa en silencio.",
+    "{who} esperó una respuesta que no llegó, y la indiferencia ganó terreno.",
+    "Sin quien escuche, {who} deja de participar."
+  ]
+}

@@ -375,7 +375,7 @@ export function DefenderBosque({
       onAccessible={onAccessible}
       hud={
         <div ref={rootRef} className="absolute inset-0">
-          <div className="absolute top-3 left-3 grid w-44 gap-2 sm:w-64">
+          <div className="absolute top-3 left-3 grid w-44 gap-2 max-sm:top-14 sm:w-64">
             <HudPanel className="grid gap-2">
               <HudMeter
                 label={content.bruma.name}
@@ -425,9 +425,11 @@ export function DefenderBosque({
             </HudPanel>
           </div>
 
-          <div className="absolute inset-x-3 bottom-44 sm:inset-x-auto sm:top-16 sm:right-3 sm:bottom-auto sm:w-72">
-            <HudPanel className="grid gap-1.5">
-              <p className="toponym text-[0.625rem] text-sea-100">Faroles</p>
+          <div className="absolute inset-x-3 bottom-14 sm:inset-x-auto sm:top-16 sm:right-3 sm:bottom-auto sm:w-72">
+            <HudPanel className="grid grid-cols-2 gap-1.5 sm:grid-cols-1">
+              <p className="col-span-2 toponym text-[0.625rem] text-sea-100 sm:col-span-1">
+                Faroles
+              </p>
               {hud.faroles.map((f, i) => (
                 <button
                   key={f.id}

@@ -152,7 +152,15 @@ export function GameStage({
         {children}
       </Canvas>
 
-      <div className="pointer-events-none absolute inset-0">{hud}</div>
+      <div
+        className={cx(
+          'pointer-events-none absolute inset-0',
+          // Con la cruceta táctil a la vista, lo anclado abajo queda por encima de ella.
+          touch && !paused && 'pointer-coarse:bottom-42',
+        )}
+      >
+        {hud}
+      </div>
       {touch && !paused && <TouchPad controls={controls} />}
 
       <div className="absolute top-3 right-3 flex gap-2">

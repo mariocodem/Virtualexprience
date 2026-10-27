@@ -399,7 +399,7 @@ function Season({
       className="min-h-[560px]"
       hud={
         <div ref={rootRef} className="absolute inset-0">
-          <div className="absolute top-3 left-3 grid w-44 gap-2 sm:w-64">
+          <div className="absolute top-3 left-3 grid w-44 gap-2 max-sm:top-14 sm:w-64">
             <HudPanel className="grid gap-2">
               <p className="toponym text-[0.625rem] text-sea-100">
                 Luna {state.index + 1} de {queue.length}

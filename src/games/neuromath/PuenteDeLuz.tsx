@@ -418,7 +418,7 @@ export function PuenteDeLuz({
               </HudPanel>
             </div>
             {banner && <Banner text={banner.text} at={banner.at} />}
-            <div className="absolute inset-x-3 bottom-3 flex flex-col items-start gap-2 sm:bottom-4 sm:left-4 pointer-coarse:bottom-40">
+            <div className="absolute inset-x-3 bottom-3 flex flex-col items-start gap-2 sm:bottom-4 sm:left-4">
               {challenge && (building || build.phase === 'testing') && (
                 <HudPanel className="pointer-events-auto w-full max-w-xl">
                   <p className="toponym text-[0.625rem] text-sea-100">

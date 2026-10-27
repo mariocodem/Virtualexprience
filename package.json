@@ -30,7 +30,8 @@
     "electron:start": "pnpm build && electron .",
     "dist:win": "pnpm build && electron-builder --win --publish never",
     "dist:linux": "pnpm build && electron-builder --linux --publish never",
-    "test:electron": "playwright test -c playwright.electron.config.ts"
+    "test:electron": "playwright test -c playwright.electron.config.ts",
+    "evidencias": "playwright test -c playwright.evidencias.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ReadAloud } from '@/a11y/ReadAloud';
 import { world } from '@/data';
 import type { FinaleRecord } from '@/progress/types';
 import { ButtonLink } from '@/ui/ButtonLink';
@@ -17,6 +18,7 @@ export function FaroPanel({
   onClose: () => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
+  const panel = useRef<HTMLElement>(null);
   useEffect(() => {
     heading.current?.focus();
   }, []);
@@ -24,7 +26,7 @@ export function FaroPanel({
   const lit = fragments.length === total;
 
   return (
-    <section aria-labelledby="faro-titulo" className="relative bg-plate p-6 plate-rule">
+    <section ref={panel} aria-labelledby="faro-titulo" className="relative bg-plate p-6 plate-rule">
       <button
         type="button"
         onClick={onClose}
@@ -46,6 +48,7 @@ export function FaroPanel({
           ? 'El faro está encendido.'
           : `Brilla con ${String(fragments.length)} de ${String(total)} fragmentos de luz.`}
       </p>
+      <ReadAloud target={panel} />
       <ul className="mt-4 space-y-2 border-t-[1.5px] border-ink pt-3 text-sm">
         {world.islands.map((island) => {
           const has = fragments.includes(island.id);

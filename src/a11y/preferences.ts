@@ -16,7 +16,22 @@ export interface Preferences {
   gameMode: '3d' | 'accesible';
   /** Ritmo tranquilo en los juegos 3D: ataques más lentos y puntería asistida. */
   calmPace: boolean;
+  /** Letra de lectura: la del atlas, Atkinson Hyperlegible u OpenDyslexic. */
+  font: 'estandar' | 'legible' | 'dislexia';
+  /** Interlineado y espaciado entre letras y palabras ampliados. */
+  spacing: 'normal' | 'amplio';
 }
+
+export const DEFAULT_PREFERENCES: Preferences = {
+  textStep: 0,
+  contrast: 'normal',
+  motion: 'sistema',
+  mapMode: '3d',
+  gameMode: '3d',
+  calmPace: false,
+  font: 'estandar',
+  spacing: 'normal',
+};
 
 interface PreferencesActions {
   setTextStep: (step: TextStep) => void;
@@ -25,6 +40,10 @@ interface PreferencesActions {
   setMapMode: (mapMode: Preferences['mapMode']) => void;
   setGameMode: (gameMode: Preferences['gameMode']) => void;
   setCalmPace: (calmPace: boolean) => void;
+  setFont: (font: Preferences['font']) => void;
+  setSpacing: (spacing: Preferences['spacing']) => void;
+  /** Vuelve a los ajustes de fábrica. */
+  resetPreferences: () => void;
 }
 
 export const PREFERENCES_STORAGE_KEY = 'virtux:preferencias';
@@ -32,12 +51,7 @@ export const PREFERENCES_STORAGE_KEY = 'virtux:preferencias';
 export const usePreferences = create<Preferences & PreferencesActions>()(
   persist(
     (set) => ({
-      textStep: 0,
-      contrast: 'normal',
-      motion: 'sistema',
-      mapMode: '3d',
-      gameMode: '3d',
-      calmPace: false,
+      ...DEFAULT_PREFERENCES,
       setTextStep: (textStep) => {
         set({ textStep });
       },
@@ -56,18 +70,29 @@ export const usePreferences = create<Preferences & PreferencesActions>()(
       setCalmPace: (calmPace) => {
         set({ calmPace });
       },
+      setFont: (font) => {
+        set({ font });
+      },
+      setSpacing: (spacing) => {
+        set({ spacing });
+      },
+      resetPreferences: () => {
+        set(DEFAULT_PREFERENCES);
+      },
     }),
     {
       name: PREFERENCES_STORAGE_KEY,
       version: 1,
       storage: createJSONStorage(() => localStorage),
-      partialize: ({ textStep, contrast, motion, mapMode, gameMode, calmPace }) => ({
+      partialize: ({ textStep, contrast, motion, mapMode, gameMode, calmPace, font, spacing }) => ({
         textStep,
         contrast,
         motion,
         mapMode,
         gameMode,
         calmPace,
+        font,
+        spacing,
       }),
     },
   ),

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Link } from 'react-router';
+import { ReadAloud } from '@/a11y/ReadAloud';
 import { stationsOf, world } from '@/data';
 import { islandProgress } from '@/progress/selectors';
 import { STATUS_LABEL } from '@/progress/statusLabel';
@@ -31,6 +32,7 @@ export function WorldPanel({
   selectedStation: string | null;
 }) {
   const list = useRef<HTMLOListElement>(null);
+  const panel = useRef<HTMLElement>(null);
   // La lista cambia al entrar o salir de una isla: el atajo se vuelve a enganchar.
   useArrowKeys(list, island?.id ?? 'carta');
   const setHighlight = useWorldUi((s) => s.setHighlight);
@@ -115,8 +117,9 @@ export function WorldPanel({
   const stations = stationsOf(island.id);
   const p = islandProgress(progress, world, island.id);
   return (
-    <section aria-labelledby="isla-titulo" className="flex flex-col">
+    <section ref={panel} aria-labelledby="isla-titulo" className="flex flex-col">
       <Link
+        data-no-read
         to="/mundo"
         className="inline-flex min-h-10 items-center gap-2 self-start text-sm font-semibold text-ink-soft no-underline hover:text-ink"
       >
@@ -137,6 +140,7 @@ export function WorldPanel({
         {String(p.completed)} de {String(p.playable)} estaciones abiertas completadas ·{' '}
         {p.hasFragment ? `${island.fragmentName} recuperado` : `${island.fragmentName} pendiente`}
       </p>
+      <ReadAloud target={panel} className="self-start" />
 
       <h2 className="mt-5 toponym text-[0.6875rem]">Sendero</h2>
       <ol ref={list} className="mt-2 divide-y divide-plate-edge border-y-[1.5px] border-ink">

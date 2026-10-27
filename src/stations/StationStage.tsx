@@ -1,3 +1,4 @@
+import { A11yTrigger } from '@/a11y/A11yPanel';
 import { Suspense, use, useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { findIsland, getStation, stationsOf, world } from '@/data';
@@ -116,7 +117,10 @@ function Stage({ island, station }: { island: Island; station: Station }) {
             Estación {order} de {own.length}
           </span>
         </p>
-        <AiBadge />
+        <div className="flex items-center gap-x-6">
+          <AiBadge />
+          <A11yTrigger tone="sea" />
+        </div>
       </header>
 
       <div

@@ -2,6 +2,11 @@
 @import '@fontsource-variable/archivo/wdth.css';
 @import '@fontsource-variable/archivo/wdth-italic.css';
 @import '@fontsource-variable/inter/wght.css';
+/* Letras del panel de accesibilidad: el navegador solo las descarga si se eligen. */
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/700.css';
+@import '@fontsource/opendyslexic/400.css';
+@import '@fontsource/opendyslexic/700.css';
 @import './tokens.css';
 
 /* Solo existen los colores del mundo: nada de la paleta por defecto de Tailwind. */
@@ -196,4 +201,30 @@
 /* El pasaporte se imprime o se guarda en PDF sin el cromo institucional. */
 @page {
   margin: 14mm;
+}
+
+/*
+ * Letra hiperlegible o para dislexia (panel de accesibilidad): cambia el texto
+ * de lectura; titulares y rótulos siguen en Archivo para no romper la plancha.
+ */
+:root[data-font='legible'] {
+  --type-body: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root[data-font='dislexia'] {
+  --type-body: 'OpenDyslexic', ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Espaciado amplio (WCAG 1.4.12): fuera de capas para ganarle a las utilidades
+ * de interlineado; la toponimia conserva su propio espaciado.
+ */
+:root[data-spacing='wide'] :is(p, li, dd, dt, label, blockquote, td, th):not(.toponym, .placename) {
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  word-spacing: 0.16em;
+}
+
+:root[data-spacing='wide'] :is(p, ul, ol, dl) + :is(p, ul, ol, dl) {
+  margin-top: 1em;
 }

@@ -1,3 +1,4 @@
+import { A11yTrigger } from '@/a11y/A11yPanel';
 import { Suspense, use, useEffect, useState } from 'react';
 import { usePreferences } from '@/a11y/preferences';
 import { Link, useNavigate } from 'react-router';
@@ -68,7 +69,10 @@ export default function FinaleStage() {
         <p className="placename text-sm text-sea-100">
           Faro Minuto <span className="text-sea-300">·</span> Gran Reto Integrador
         </p>
-        <AiBadge />
+        <div className="flex items-center gap-x-6">
+          <AiBadge />
+          <A11yTrigger tone="sea" />
+        </div>
       </header>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 lg:px-8">

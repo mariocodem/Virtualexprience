@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ReadAloud } from '@/a11y/ReadAloud';
 import { getStation } from '@/data';
 import { preloadStationContent } from '@/data/content';
 import { STATUS_LABEL } from '@/progress/statusLabel';
@@ -20,6 +21,7 @@ export function StationPanel({
   onClose: () => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
+  const panel = useRef<HTMLElement>(null);
   useEffect(() => {
     heading.current?.focus();
   }, [station.id]);
@@ -38,7 +40,11 @@ export function StationPanel({
     .filter((s): s is Station => s !== undefined);
 
   return (
-    <section aria-labelledby="estacion-titulo" className="relative bg-plate p-6 plate-rule">
+    <section
+      ref={panel}
+      aria-labelledby="estacion-titulo"
+      className="relative bg-plate p-6 plate-rule"
+    >
       <button
         type="button"
         onClick={onClose}
@@ -114,6 +120,7 @@ export function StationPanel({
           </p>
         )}
       </div>
+      <ReadAloud target={panel} className="mt-3" />
     </section>
   );
 }

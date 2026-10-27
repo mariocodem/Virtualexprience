@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '@/assets/brand/header/uniminuto-header.png';
+import { A11yTrigger } from '@/a11y/A11yPanel';
 import { cx } from '@/ui/cx';
 import {
   IconArrowRight,
@@ -361,26 +362,29 @@ export function SiteHeader() {
           >
             Archipiélago VirtuX
           </Link>
-          <nav aria-label="Archipiélago VirtuX">
-            <ul className="flex flex-wrap items-center gap-x-6">
-              {APP_LINKS.map((entry) => (
-                <li key={entry.to}>
-                  <NavLink
-                    to={entry.to}
-                    className={({ isActive }) =>
-                      cx(
-                        'inline-flex min-h-10 items-center font-display text-sm font-semibold no-underline',
-                        'decoration-[1.5px] underline-offset-[0.4em] hover:underline',
-                        isActive && 'underline decoration-route',
-                      )
-                    }
-                  >
-                    {entry.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="flex items-center gap-x-6">
+            <nav aria-label="Archipiélago VirtuX">
+              <ul className="flex flex-wrap items-center gap-x-6">
+                {APP_LINKS.map((entry) => (
+                  <li key={entry.to}>
+                    <NavLink
+                      to={entry.to}
+                      className={({ isActive }) =>
+                        cx(
+                          'inline-flex min-h-10 items-center font-display text-sm font-semibold no-underline',
+                          'decoration-[1.5px] underline-offset-[0.4em] hover:underline',
+                          isActive && 'underline decoration-route',
+                        )
+                      }
+                    >
+                      {entry.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <A11yTrigger anchor className="min-h-10 border-l-[1.5px] border-ink pl-6" />
+          </div>
         </div>
       </div>
     </header>

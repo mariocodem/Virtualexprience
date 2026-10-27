@@ -1,4 +1,5 @@
 import { Outlet, ScrollRestoration, useMatches } from 'react-router';
+import { A11yPanel, FloatingA11yTrigger } from '@/a11y/A11yPanel';
 import { DemoLoader } from '@/progress/DemoLoader';
 import { SkipLink } from '@/ui/SkipLink';
 import { SiteFooter } from './SiteFooter';
@@ -24,6 +25,8 @@ export function RootLayout() {
       {!immersive && <SiteFooter />}
       <ScrollRestoration />
       <DemoLoader />
+      <A11yPanel />
+      {!immersive && <FloatingA11yTrigger />}
     </>
   );
 }

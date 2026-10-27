@@ -1,6 +1,5 @@
-import { useId } from 'react';
+import { Segmented, Switch, TextSizeLabel } from '@/a11y/controls';
 import { TEXT_SCALES, usePreferences, type TextStep } from '@/a11y/preferences';
-import { cx } from '@/ui/cx';
 
 const PRINCIPLES = [
   {
@@ -20,7 +19,6 @@ const PRINCIPLES = [
 /** Diseñado para todos: los tres principios del DUA y controles que cambian esta misma página. */
 export function DuaSection() {
   const { textStep, contrast, motion, setTextStep, setContrast, setMotion } = usePreferences();
-  const sizeLegend = useId();
 
   return (
     <section
@@ -66,37 +64,17 @@ export function DuaSection() {
             Pruébalo en esta página
           </h3>
 
-          <fieldset className="mt-5">
-            <legend id={sizeLegend} className="text-sm font-semibold">
-              Tamaño del texto
-            </legend>
-            <div className="mt-2 grid grid-cols-4 border-[1.5px] border-ink">
-              {TEXT_SCALES.map((scale, step) => (
-                <label
-                  key={scale}
-                  className={cx(
-                    'relative flex min-h-12 cursor-pointer items-center justify-center font-display font-bold not-last:border-r-[1.5px] not-last:border-ink',
-                    'has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-[-6px] has-[:focus-visible]:outline-(--focus)',
-                    textStep === step ? 'bg-ink text-land-sun' : 'hover:bg-plate',
-                  )}
-                >
-                  <input
-                    type="radio"
-                    name="tamano-texto"
-                    className="sr-only"
-                    checked={textStep === step}
-                    onChange={() => {
-                      setTextStep(step as TextStep);
-                    }}
-                  />
-                  <span aria-hidden="true" style={{ fontSize: `${String(0.85 + step * 0.22)}rem` }}>
-                    A
-                  </span>
-                  <span className="sr-only">{`${String(Math.round(scale * 100))} %`}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <Segmented
+            legend="Tamaño del texto"
+            name="tamano-texto"
+            className="mt-5"
+            value={textStep}
+            options={TEXT_SCALES.map((scale, step) => ({
+              value: step as TextStep,
+              label: <TextSizeLabel scale={scale} step={step} />,
+            }))}
+            onChange={setTextStep}
+          />
 
           <div className="mt-5 space-y-3">
             <Switch
@@ -120,43 +98,5 @@ export function DuaSection() {
         </form>
       </div>
     </section>
-  );
-}
-
-function Switch({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      onClick={() => {
-        onChange(!checked);
-      }}
-      className="flex min-h-11 w-full items-center justify-between gap-4 text-left font-semibold"
-    >
-      {label}
-      <span
-        aria-hidden="true"
-        className={cx(
-          'relative h-7 w-12 shrink-0 border-[1.5px] border-ink transition-colors duration-(--dur-fast)',
-          checked ? 'bg-ink' : 'bg-plate',
-        )}
-      >
-        <span
-          className={cx(
-            'absolute top-1/2 size-4 -translate-y-1/2 transition-[left,background-color] duration-(--dur-fast) ease-out',
-            checked ? 'left-[calc(100%-1.25rem)] bg-land-sun' : 'left-1 bg-ink',
-          )}
-        />
-      </span>
-    </button>
   );
 }

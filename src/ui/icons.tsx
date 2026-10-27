@@ -115,6 +115,25 @@ export function IconLighthouse(props: IconProps) {
   );
 }
 
+/** Altavoz: lectura en voz alta. */
+export function IconSpeaker(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4zM15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" />
+    </Svg>
+  );
+}
+
+/** Persona con los brazos abiertos: el símbolo universal de accesibilidad. */
+export function IconAccessibility(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="4.5" r="1.75" />
+      <path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M12 14.5l-3 6M12 14.5l3 6" />
+    </Svg>
+  );
+}
+
 /** Aguja que gira: indicador de carga en el idioma del mundo. */
 export function IconSpinner(props: IconProps) {
   return (

@@ -70,7 +70,7 @@ export function rumorPlan(level: number, calm: boolean): RumorPlan {
   const l = Math.min(5, Math.max(1, Math.round(level)));
   return {
     speed: (0.7 + 0.12 * l) * (calm ? 0.62 : 1),
-    every: Math.max(3.2, 7.4 - 0.75 * l) * (calm ? 1.55 : 1),
+    every: Math.max(2.1, 4.4 - 0.5 * l) * (calm ? 1.45 : 1),
     max: calm ? 1 : l < 3 ? 2 : 3,
   };
 }

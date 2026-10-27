@@ -44,7 +44,7 @@ const linkClass =
  */
 export function SiteFooter() {
   return (
-    <footer className="on-sea relative z-[1] bg-sea-950 text-plate">
+    <footer className="on-sea relative z-[1] bg-sea-950 text-plate print:hidden">
       <div className="mx-auto max-w-[90rem] px-4 pt-14 pb-10 sm:px-8">
         <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 xl:grid-cols-[1.15fr_1fr_1.15fr_1fr]">
           <section aria-labelledby="pie-notificaciones">

@@ -38,7 +38,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       <div
         role="status"
         aria-live="polite"
-        className="pointer-events-none fixed bottom-4 left-4 z-50 flex w-[min(92vw,24rem)] flex-col gap-2"
+        className="pointer-events-none fixed bottom-4 left-4 z-50 flex w-[min(92vw,24rem)] flex-col gap-2 print:hidden"
       >
         {toasts.map((toast) => (
           <ToastItem key={toast.id} toast={toast} onDismiss={dismiss} />

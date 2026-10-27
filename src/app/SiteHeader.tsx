@@ -239,7 +239,7 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header ref={header} className="on-sea relative z-20 bg-uni-navy text-plate">
+    <header ref={header} className="on-sea relative z-20 bg-uni-navy text-plate print:hidden">
       <div className="mx-auto flex max-w-[120rem] items-center justify-between gap-6 px-4 py-2 lg:px-10">
         <Link to="/" className="inline-flex min-h-11 items-center">
           <img

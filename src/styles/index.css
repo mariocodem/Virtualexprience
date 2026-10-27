@@ -192,3 +192,8 @@
     }
   }
 }
+
+/* El pasaporte se imprime o se guarda en PDF sin el cromo institucional. */
+@page {
+  margin: 14mm;
+}

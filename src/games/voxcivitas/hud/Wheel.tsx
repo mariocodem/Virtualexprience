@@ -84,7 +84,7 @@ export function Wheel({
     <section
       aria-labelledby="rueda-titulo"
       className={cx(
-        'pointer-events-auto max-h-full w-full max-w-3xl overflow-y-auto bg-plate p-4 text-ink [--focus:var(--route)] plate-rule sm:p-5',
+        'pointer-events-auto max-h-full w-full max-w-3xl overflow-y-auto bg-plate p-3 text-ink [--focus:var(--route)] plate-rule sm:p-4',
         className,
       )}
     >
@@ -93,7 +93,7 @@ export function Wheel({
         id="rueda-titulo"
         ref={heading}
         tabIndex={-1}
-        className="mt-1 border-l-[3px] border-route bg-plate-sunk px-3 py-2 font-display text-base font-extrabold outline-none sm:text-lg"
+        className="mt-1 border-l-[3px] border-route bg-plate-sunk px-3 py-2 font-display text-sm font-extrabold outline-none sm:text-base"
       >
         «{quote}»
       </h2>
@@ -103,12 +103,13 @@ export function Wheel({
       <ul
         className={cx(
           'mt-2 grid gap-2',
-          options.length === 2 && 'sm:grid-cols-2',
-          options.length >= 3 && 'sm:grid-cols-3',
+          !feedback && options.length === 2 && 'sm:grid-cols-2',
+          !feedback && options.length >= 3 && 'sm:grid-cols-3',
         )}
       >
         {options.map((option, i) => {
           const chosen = feedback?.optionId === option.id;
+          if (feedback && !chosen) return null;
           return (
             <li key={option.id} className="flex">
               <button
@@ -138,7 +139,7 @@ export function Wheel({
           );
         })}
       </ul>
-      <div role="status" aria-live="polite" className="mt-3 min-h-5 text-sm">
+      <div role="status" aria-live="polite" className="mt-2 text-sm">
         {feedback && (
           <>
             <p>

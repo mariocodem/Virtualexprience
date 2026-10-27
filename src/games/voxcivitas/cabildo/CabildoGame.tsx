@@ -319,7 +319,6 @@ function Session({
           effectSummary(decided.option.effects, names) &&
             `Confianza: ${effectSummary(decided.option.effects, names)}`,
           decided.option.agreement ? `Queda en el acta: ${decided.option.agreement}` : '',
-          content.tips[decided.option.move],
         ].filter(Boolean),
       }
     : null;
@@ -350,8 +349,8 @@ function Session({
           setMode('accesible');
         }}
         hud={
-          <>
-            <div className="absolute top-3 left-3 grid w-[min(15rem,calc(100%-9rem))] gap-2 sm:w-64">
+          <div className="absolute inset-0 z-20">
+            <div className="absolute top-16 left-3 grid w-[min(15rem,calc(100%-1.5rem))] gap-2 sm:top-3 sm:w-52">
               <HudPanel className="grid gap-2">
                 <p className="text-xs font-semibold">{content.matter}</p>
                 <div className="hidden gap-2 sm:grid">
@@ -364,9 +363,6 @@ function Session({
                       tone={(trustNow[f.id] ?? 0) >= content.threshold ? 'route' : 'fog'}
                     />
                   ))}
-                  <p className="text-[0.6875rem] text-sea-100">
-                    Respaldan desde el {content.threshold} % (marca fina en el aura).
-                  </p>
                 </div>
                 <p className="text-[0.6875rem] text-sea-100 sm:hidden">
                   {content.factions
@@ -415,7 +411,7 @@ function Session({
                 />
               ) : null}
             </div>
-          </>
+          </div>
         }
       >
         <ArenaLights />

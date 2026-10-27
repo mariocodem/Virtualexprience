@@ -55,6 +55,15 @@ describe('voces de la plaza', () => {
     }
   });
 
+  it('con el Gran Reto (solo 3 embates) la plaza sigue teniendo voces de sobra', () => {
+    const short = { ...boss, items: boss.items.slice(0, 3) };
+    const small = voicesFrom(short, cabildo);
+    expect(small).toHaveLength(cabildo.rounds.length + 3);
+    const used: string[] = [];
+    for (let i = 0; i < 3; i++) used.push(pickVoice(small, 3, used, null, seeded(i + 1)).key);
+    expect(new Set(used).size).toBe(3);
+  });
+
   it('cuando se agotan, vuelve a empezar en vez de quedarse sin voces', () => {
     const used = pool.map((v) => v.key);
     expect(() => pickVoice(pool, 3, used, null, seeded(1))).not.toThrow();

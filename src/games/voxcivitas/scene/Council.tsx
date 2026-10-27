@@ -267,15 +267,17 @@ export function SpeakerLight({ get }: { get: () => Spot | null }) {
  */
 export function CouncilCamera({ still }: { still: boolean }) {
   const size = useThree((s) => s.size);
-  const aim = useMemo(() => new Vector3(0, 0.6, 0.2), []);
+  const aim = useMemo(() => new Vector3(0, 0.3, 1.9), []);
   useFrame(({ camera, clock }, dt) => {
     const aspect = size.width / Math.max(1, size.height);
-    const distance = frameDistance(aspect, 42, 4.4, 8.2);
+    const portrait = aspect < 1;
+    const distance = frameDistance(aspect, 42, portrait ? 4.4 : 5.9, 9.6);
+    aim.set(0, 0.3, portrait ? 5 : 3.4);
     const sway = still ? 0 : Math.sin(clock.elapsedTime * 0.16) * 0.7;
     const s = Math.min(1, dt * 3);
     camera.position.x += (sway - camera.position.x) * s;
-    camera.position.y += (distance * 0.62 - camera.position.y) * s;
-    camera.position.z += (distance * 0.88 - camera.position.z) * s;
+    camera.position.y += (distance * 0.8 - camera.position.y) * s;
+    camera.position.z += (distance * 0.9 - camera.position.z) * s;
     camera.lookAt(aim);
   });
   return null;

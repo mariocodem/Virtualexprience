@@ -121,6 +121,7 @@ export function PlazaArena({
   const [open, setOpen] = useState<Open | null>(null);
   const [announce, setAnnounce] = useState('');
   const [banner, setBanner] = useState<{ text: string; at: number } | null>(null);
+  const wrap = useRef<HTMLDivElement>(null);
   const pending = useRef<{ voice: Voice; index: number; label: string } | null>(null);
   const used = useRef<string[]>([]);
   const last = useRef<Source | null>(null);
@@ -229,6 +230,10 @@ export function PlazaArena({
   const close = () => {
     setOpen(null);
     onBrujula(null);
+    // El botón de la rueda desaparece: el foco vuelve al escenario para seguir jugando con teclado.
+    window.setTimeout(() => {
+      wrap.current?.querySelector<HTMLElement>('[role="application"]')?.focus();
+    }, 0);
   };
 
   const timeScale = () => (open && !open.feedback ? (calm ? 0.2 : 0.4) : open ? 0 : 1);
@@ -280,109 +285,116 @@ export function PlazaArena({
   const speakerWhere = call?.where ?? '';
 
   return (
-    <GameStage
-      label={`Arena de la ${content.bruma.name}: moderar la plaza`}
-      controls={controls}
-      paused={paused}
-      onPause={setPaused}
-      help={HELP}
-      announce={announce}
-      onAccessible={onAccessible}
-      hud={
-        <>
-          <div className="absolute top-3 left-3 grid w-[min(16rem,calc(100%-9rem))] gap-2 sm:w-64">
-            <HudPanel className="grid gap-2">
-              <HudMeter
-                label={content.bruma.name}
-                value={density}
-                text={`Fase ${String(hud.phase)} de 3`}
-                tone="fog"
-              />
-              <HudMeter
-                label="Carga de la linterna"
-                value={Math.min(1, hud.charge)}
-                text={hud.charge >= 1 ? `${String(Math.floor(hud.charge))} disparo` : 'Sin carga'}
-              />
-              <HudMeter
-                label="Ánimo de la plaza"
-                value={view.mood}
-                text={`${String(view.lit)} ${view.lit === 1 ? 'farol' : 'faroles'}`}
-                tone="route"
-              />
-              <LightsHud lights={hud.lights} max={lights} />
-            </HudPanel>
-            {call && (
-              <HudPanel className="grid gap-1">
-                <p className="text-xs font-semibold">Alza la voz: {call.label}</p>
-                <p className="text-[0.6875rem] text-sea-100">{speakerWhere}</p>
-                <HudMeter
-                  label="Su paciencia"
-                  value={call.patience}
-                  text={call.patience <= 0.3 ? 'Se agota' : 'Espera'}
-                  tone={call.patience <= 0.3 ? 'low' : 'sun'}
-                />
-              </HudPanel>
-            )}
-          </div>
-          {banner && <Banner text={banner.text} at={banner.at} />}
-          <div className="absolute inset-x-3 bottom-3 flex max-h-[68%] flex-col items-start justify-end gap-2 sm:bottom-4 sm:left-4">
-            {open ? (
-              <Wheel
-                kicker={`Escuchas a ${open.label}`}
-                quote={open.voice.prompt}
-                {...(open.voice.context ? { context: open.voice.context } : {})}
-                options={open.voice.options}
-                feedback={open.feedback}
-                onChoose={choose}
-                onContinue={close}
-                continueLabel="Volver a la plaza"
-                className="max-w-2xl"
-              />
-            ) : call?.near ? (
-              <div className="pointer-events-auto flex flex-wrap items-center gap-2">
-                <KeyHint keys="E">Escuchar a {call.label}</KeyHint>
-                <button type="button" className={STAGE_BUTTON} onClick={listenNow}>
-                  Escuchar
-                </button>
-              </div>
-            ) : call ? (
-              <KeyHint keys="WASD">Acércate al aro dorado de {call.label}</KeyHint>
-            ) : hud.charge >= 1 ? (
-              <KeyHint keys="Espacio">Disparar el haz hacia la Bruma</KeyHint>
-            ) : (
-              <KeyHint keys="Mayús">Esquiva la niebla mientras alguien alza la voz</KeyHint>
-            )}
-          </div>
-        </>
-      }
-    >
-      <ArenaLights />
-      <ArenaPlatform radius={13.4} ground={BUILD.paving} rim={ISLE.voxcivitas} />
-      <mesh position-y={0.04} rotation-x={-Math.PI / 2}>
-        <ringGeometry args={[RADIUS - 0.08, RADIUS, 48]} />
-        <meshBasicMaterial color={ISLE.voxcivitas} transparent opacity={0.45} depthWrite={false} />
-      </mesh>
-      <PlazaBackdrop radius={10.4} />
-      <ArenaRig
-        state={state}
-        config={config}
+    <div ref={wrap}>
+      <GameStage
+        label={`Arena de la ${content.bruma.name}: moderar la plaza`}
         controls={controls}
-        tint={tint}
-        still={still}
-        timeScale={timeScale}
-        onEvents={onEvents}
-      />
-      <Crowd count={plaza.neighbors.length} read={readCrowd} still={still} />
-      <VoiceMarker
-        plaza={plaza}
-        reach={reach}
-        maxPatience={timing.patience}
-        label={call?.label ?? open?.label ?? null}
-        still={still}
-      />
-      <LightTrails plaza={plaza} player={state.player} />
-      <Tick run={tick} />
-    </GameStage>
+        paused={paused}
+        onPause={setPaused}
+        help={HELP}
+        announce={announce}
+        onAccessible={onAccessible}
+        hud={
+          <div className="absolute inset-0 z-20">
+            <div className="absolute top-16 left-3 grid w-[min(16rem,calc(100%-1.5rem))] gap-2 sm:top-3 sm:w-64">
+              <HudPanel className="grid gap-2">
+                <HudMeter
+                  label={content.bruma.name}
+                  value={density}
+                  text={`Fase ${String(hud.phase)} de 3`}
+                  tone="fog"
+                />
+                <HudMeter
+                  label="Carga de la linterna"
+                  value={Math.min(1, hud.charge)}
+                  text={hud.charge >= 1 ? `${String(Math.floor(hud.charge))} disparo` : 'Sin carga'}
+                />
+                <HudMeter
+                  label="Ánimo de la plaza"
+                  value={view.mood}
+                  text={`${String(view.lit)} ${view.lit === 1 ? 'farol' : 'faroles'}`}
+                  tone="route"
+                />
+                <LightsHud lights={hud.lights} max={lights} />
+              </HudPanel>
+              {call && (
+                <HudPanel className="grid gap-1">
+                  <p className="text-xs font-semibold">Alza la voz: {call.label}</p>
+                  <p className="text-[0.6875rem] text-sea-100">{speakerWhere}</p>
+                  <HudMeter
+                    label="Su paciencia"
+                    value={call.patience}
+                    text={call.patience <= 0.3 ? 'Se agota' : 'Espera'}
+                    tone={call.patience <= 0.3 ? 'low' : 'sun'}
+                  />
+                </HudPanel>
+              )}
+            </div>
+            {banner && <Banner text={banner.text} at={banner.at} />}
+            <div className="absolute inset-x-3 bottom-3 flex max-h-[68%] flex-col items-start justify-end gap-2 sm:bottom-4 sm:left-4">
+              {open ? (
+                <Wheel
+                  kicker={`Escuchas a ${open.label}`}
+                  quote={open.voice.prompt}
+                  {...(open.voice.context ? { context: open.voice.context } : {})}
+                  options={open.voice.options}
+                  feedback={open.feedback}
+                  onChoose={choose}
+                  onContinue={close}
+                  continueLabel="Volver a la plaza"
+                  className="max-w-2xl"
+                />
+              ) : call?.near ? (
+                <div className="pointer-events-auto flex flex-wrap items-center gap-2">
+                  <KeyHint keys="E">Escuchar a {call.label}</KeyHint>
+                  <button type="button" className={STAGE_BUTTON} onClick={listenNow}>
+                    Escuchar
+                  </button>
+                </div>
+              ) : call ? (
+                <KeyHint keys="WASD">Acércate al aro dorado de {call.label}</KeyHint>
+              ) : hud.charge >= 1 ? (
+                <KeyHint keys="Espacio">Disparar el haz hacia la Bruma</KeyHint>
+              ) : (
+                <KeyHint keys="Mayús">Esquiva la niebla mientras alguien alza la voz</KeyHint>
+              )}
+            </div>
+          </div>
+        }
+      >
+        <ArenaLights />
+        <ArenaPlatform radius={13.4} ground={BUILD.paving} rim={ISLE.voxcivitas} />
+        <mesh position-y={0.04} rotation-x={-Math.PI / 2}>
+          <ringGeometry args={[RADIUS - 0.08, RADIUS, 48]} />
+          <meshBasicMaterial
+            color={ISLE.voxcivitas}
+            transparent
+            opacity={0.45}
+            depthWrite={false}
+          />
+        </mesh>
+        <PlazaBackdrop radius={10.4} />
+        <ArenaRig
+          state={state}
+          config={config}
+          controls={controls}
+          tint={tint}
+          still={still}
+          timeScale={timeScale}
+          onEvents={onEvents}
+        />
+        <Crowd count={plaza.neighbors.length} read={readCrowd} still={still} />
+        <VoiceMarker
+          plaza={plaza}
+          reach={reach}
+          maxPatience={timing.patience}
+          label={call?.label ?? open?.label ?? null}
+          still={still}
+        />
+        <LightTrails plaza={plaza} player={state.player} />
+        <Tick run={tick} />
+      </GameStage>
+    </div>
   );
 }
 

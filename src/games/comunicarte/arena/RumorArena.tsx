@@ -216,9 +216,12 @@ export function RumorArena({
       help={HELP}
       announce={announce}
       onAccessible={onAccessible}
+      touch={card === null}
       hud={
         <>
-          <div className="absolute top-14 left-3 grid w-56 gap-2 sm:top-3 sm:w-64">
+          <div
+            className={`absolute top-14 left-3 grid w-56 gap-2 sm:top-3 sm:w-64 ${card ? 'max-sm:hidden' : ''}`}
+          >
             <HudPanel className="grid gap-2">
               <HudMeter
                 label={content.bruma.name}
@@ -229,7 +232,13 @@ export function RumorArena({
               <HudMeter
                 label="Carga de la linterna"
                 value={Math.min(1, hud.charge)}
-                text={hud.charge >= 1 ? `${String(Math.floor(hud.charge))} disparo` : 'Sin carga'}
+                text={
+                  hud.charge >= 1
+                    ? `${String(Math.floor(hud.charge))} disparo`
+                    : hud.charge > 0
+                      ? 'Carga parcial'
+                      : 'Sin carga'
+                }
               />
               <LightsHud lights={hud.lights} max={lights} />
             </HudPanel>

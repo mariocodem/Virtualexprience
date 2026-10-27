@@ -37,10 +37,10 @@ export function parseRumors(data: unknown): RumorItem[] {
 export const RUMORS: RumorItem[] = parseRumors(raw);
 
 /** La torre de radio, en el borde norte de la plataforma. */
-export const TOWER = { x: 0, z: -7.7 } as const;
+export const TOWER = { x: 0, z: -7.0 } as const;
 const ARRIVE_AT = 0.9;
 /** Distancia a la que el explorador puede interceptar un rumor. */
-export const INTERCEPT_REACH = 1.8;
+export const INTERCEPT_REACH = 2.1;
 
 export type RumorStatus = 'flying' | 'held' | 'cleared' | 'gone';
 
@@ -69,7 +69,7 @@ export interface RumorPlan {
 export function rumorPlan(level: number, calm: boolean): RumorPlan {
   const l = Math.min(5, Math.max(1, Math.round(level)));
   return {
-    speed: (1.25 + 0.17 * l) * (calm ? 0.62 : 1),
+    speed: (0.7 + 0.12 * l) * (calm ? 0.62 : 1),
     every: Math.max(3.2, 7.4 - 0.75 * l) * (calm ? 1.55 : 1),
     max: calm ? 1 : l < 3 ? 2 : 3,
   };
@@ -151,11 +151,12 @@ export function stepRumors(
     const dx = TOWER.x - origin.x;
     const dz = TOWER.z - origin.z;
     const len = Math.max(0.001, Math.hypot(dx, dz));
+    // Sale un poco adelante de la Bruma para no esconderse en su niebla.
     const rumor: LiveRumor = {
       id: field.nextId++,
       item,
-      x: origin.x,
-      z: origin.z,
+      x: origin.x + (dx / len) * 1.4,
+      z: origin.z + (dz / len) * 1.4,
       vx: (dx / len) * plan.speed,
       vz: (dz / len) * plan.speed,
       status: 'flying',

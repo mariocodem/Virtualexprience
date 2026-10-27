@@ -24,7 +24,7 @@ import {
   type Tier,
 } from './rumors';
 
-const FLOAT_Y = 1.15;
+const FLOAT_Y = 1.5;
 const COLOR = { flying: '#e3ebf1', held: ATLAS.sun, cleared: '#9fe0ad' } as const;
 
 /** La torre de radio del borde de la plataforma: a donde vuelan los rumores. */
@@ -61,7 +61,7 @@ export function RadioTower({
     });
   });
   return (
-    <group position={[TOWER.x, 0, TOWER.z]}>
+    <group position={[TOWER.x, 0, TOWER.z]} scale={0.8}>
       {/* Zona de llegada, marcada en el suelo. */}
       <mesh position-y={0.03} rotation-x={-Math.PI / 2}>
         <ringGeometry args={[1.0, 1.25, 28]} />
@@ -175,7 +175,7 @@ function RumorOrb({
       <Label
         text={headline}
         position={[0, 1.2, 0]}
-        height={0.62}
+        height={1.0}
         size={26}
         maxWidth={300}
         fg={ATLAS.ink}

@@ -1,0 +1,316 @@
+{
+  "rumors": [
+    {
+      "id": "sin-lanchas",
+      "tier": 1,
+      "truth": "falso",
+      "headline": "¡URGENTE! Mañana no habrá lanchas en todo el archipiélago: compártelo",
+      "source": "Cadena de mensajes sin autor",
+      "date": "Circula desde anoche",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "Nadie firma el mensaje y la Capitanía del Puerto no ha publicado ningún aviso."
+        },
+        {
+          "signal": "cita",
+          "text": "Pide reenviarlo «a todos tus contactos»: la urgencia sustituye a la prueba."
+        }
+      ],
+      "explanation": "Un mensaje sin autor que exige reenviarse se verifica en la autoridad antes de difundirlo."
+    },
+    {
+      "id": "muelle-sabado",
+      "tier": 1,
+      "truth": "verdadero",
+      "headline": "Capitanía: el muelle norte cierra el sábado de 8 a. m. a 2 p. m.",
+      "source": "Comunicado de la Capitanía del Puerto",
+      "date": "Publicado ayer",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El comunicado está en el sitio y las redes verificadas de la Capitanía, que decide los cierres."
+        },
+        { "signal": "fecha", "text": "Es de ayer y habla de este sábado: está vigente." }
+      ],
+      "explanation": "La autoridad responsable lo anunció por su canal oficial y las fechas cuadran."
+    },
+    {
+      "id": "tiburon-garzas",
+      "tier": 1,
+      "truth": "falso",
+      "headline": "Tiburón gigante en la playa de las Garzas: prohíben bañarse",
+      "source": "Página de memes «Isla Viral»",
+      "date": "Hace dos horas",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "Es una página de humor: no cita a salvavidas ni a ninguna autoridad de playas."
+        },
+        {
+          "signal": "imagen",
+          "text": "La búsqueda inversa muestra un montaje que circula desde 2015 con otras playas."
+        }
+      ],
+      "explanation": "Una foto vieja en una página de memes no es una alerta sanitaria."
+    },
+    {
+      "id": "vacunacion-hospital",
+      "tier": 1,
+      "truth": "verdadero",
+      "headline": "El Hospital del Faro amplía su horario de vacunación hasta las 7 p. m.",
+      "source": "Cuenta oficial del Hospital del Faro",
+      "date": "Hoy, 9:15 a. m.",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "La publicación sale de la cuenta verificada del propio hospital."
+        },
+        { "signal": "fecha", "text": "Es de esta mañana y el horario rige desde hoy." }
+      ],
+      "explanation": "La institución que define el horario es la fuente que lo confirma."
+    },
+    {
+      "id": "premio-gratis",
+      "tier": 1,
+      "truth": "falso",
+      "headline": "Ganaste un viaje a la costa: entra al enlace con tu cédula",
+      "source": "Mensaje de un número desconocido",
+      "date": "Hace una hora",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "Ninguna agencia ni sorteo registrado aparece detrás del mensaje."
+        },
+        { "signal": "cita", "text": "Pide la cédula y una clave: así se roban los datos." }
+      ],
+      "explanation": "Un premio que no pediste y que te pide datos es una estafa clásica."
+    },
+    {
+      "id": "biblioteca-horario",
+      "tier": 1,
+      "truth": "verdadero",
+      "headline": "La biblioteca del puerto atenderá hasta las 8 p. m. en época de exámenes",
+      "source": "Cartelera y página oficial de la Biblioteca del Puerto",
+      "date": "Publicado esta semana",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El aviso está en la página de la biblioteca y lo firma su dirección."
+        },
+        { "signal": "imagen", "text": "La foto de la cartelera la tomó una bibliotecaria hoy." }
+      ],
+      "explanation": "El horario lo anuncia la propia biblioteca por sus canales."
+    },
+    {
+      "id": "escuelas-mes",
+      "tier": 2,
+      "truth": "falso",
+      "headline": "Cerrarán todas las escuelas del archipiélago un mes, dice un funcionario",
+      "source": "Mensaje reenviado, «fuente cercana al ministerio»",
+      "date": "Circula desde hace tres días",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "La Secretaría de Educación no tiene ningún comunicado en sus canales oficiales."
+        },
+        {
+          "signal": "cita",
+          "text": "El «funcionario» no tiene nombre ni cargo: no se puede contrastar."
+        }
+      ],
+      "explanation": "Una cita anónima y sin confirmación oficial no basta para difundir algo que alarma a miles de familias."
+    },
+    {
+      "id": "inundacion-ensenada",
+      "tier": 2,
+      "truth": "falso",
+      "headline": "Inundaciones dejan incomunicado el barrio La Ensenada",
+      "source": "Video reenviado, sin medio ni autor",
+      "date": "Compartido hoy en redes",
+      "signals": [
+        {
+          "signal": "imagen",
+          "text": "El video es de una tormenta de hace dos años en otra isla: se ve el letrero de otro puerto."
+        },
+        {
+          "signal": "fecha",
+          "text": "Se grabó en 2023; hoy no hay alerta de lluvias en La Ensenada."
+        }
+      ],
+      "explanation": "Una imagen real fuera de contexto puede engañar tanto como una inventada."
+    },
+    {
+      "id": "alerta-amarilla",
+      "tier": 2,
+      "truth": "verdadero",
+      "headline": "Alerta amarilla: lluvias fuertes esta noche en el archipiélago",
+      "source": "Boletín del Instituto de Meteorología (IMA)",
+      "date": "Hoy, 2:00 p. m.",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El IMA es la entidad que emite las alertas y el boletín está en su sitio oficial."
+        },
+        { "signal": "fecha", "text": "Es de esta tarde y habla de esta noche." }
+      ],
+      "explanation": "Fuente oficial y fecha vigente: es información útil para decidir hoy."
+    },
+    {
+      "id": "rectora-lectura",
+      "tier": 2,
+      "truth": "falso",
+      "headline": "Rectora del Colegio del Faro: «La mitad de los estudiantes no sabe leer»",
+      "source": "Diario del Muelle, nota firmada",
+      "date": "Hoy",
+      "signals": [
+        {
+          "signal": "cita",
+          "text": "En la entrevista completa habló de una prueba piloto con 40 niños de primer grado, no de todo el colegio."
+        },
+        {
+          "signal": "fuente",
+          "text": "El medio es serio y la nota está firmada, pero el titular recorta la frase."
+        }
+      ],
+      "explanation": "Una cita recortada cambia el sentido: se corrige con el contexto completo."
+    },
+    {
+      "id": "malecon-nuevo",
+      "tier": 2,
+      "truth": "verdadero",
+      "headline": "La Alcaldía inaugura el nuevo malecón este domingo a las 10 a. m.",
+      "source": "Boletín de la Alcaldía del puerto",
+      "date": "Publicado ayer",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El boletín está en la página oficial de la Alcaldía, con vocero y contacto."
+        },
+        {
+          "signal": "imagen",
+          "text": "Las fotos las tomó la oficina de prensa en la obra terminada."
+        }
+      ],
+      "explanation": "La Alcaldía anuncia su propia obra por su canal oficial, con fecha futura y concreta."
+    },
+    {
+      "id": "cura-coco",
+      "tier": 2,
+      "truth": "falso",
+      "headline": "Estudio revela que el agua de coco cura la gripa en 24 horas",
+      "source": "Portal «SaludNatural Hoy»",
+      "date": "Hace cinco días",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "Cita a una «Universidad Internacional de Ciencias Naturales» que no figura en ningún registro."
+        },
+        { "signal": "cita", "text": "No enlaza el estudio ni dice quiénes lo hicieron." }
+      ],
+      "explanation": "Una afirmación médica sin estudio verificable no sale al aire."
+    },
+    {
+      "id": "pesca-record",
+      "tier": 3,
+      "truth": "verdadero",
+      "headline": "Pescadores reportan 40 % más de captura que el año pasado",
+      "source": "Informe anual de la Asociación de Pescadores de la Bahía",
+      "date": "Informe publicado esta semana",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "Es la propia asociación, que lleva los registros de descarga: puede tener interés, pero publica sus cifras."
+        },
+        { "signal": "fecha", "text": "Compara temporadas completas, no semanas sueltas." }
+      ],
+      "explanation": "Dato de una parte interesada, pero con método y fechas claras: se publica atribuido a la asociación."
+    },
+    {
+      "id": "puente-colapso",
+      "tier": 3,
+      "truth": "falso",
+      "headline": "Colapsa el puente de la Pasarela: hay cientos de heridos",
+      "source": "Cuenta con el nombre y los colores de un noticiero local",
+      "date": "Hace veinte minutos",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El nombre de usuario tiene una letra cambiada respecto al del noticiero real: es una suplantación."
+        },
+        {
+          "signal": "imagen",
+          "text": "La foto muestra un puente de otro país, con carros de otras placas."
+        }
+      ],
+      "explanation": "Los engaños sutiles imitan fuentes reales: hay que mirar el detalle del perfil y la imagen."
+    },
+    {
+      "id": "beca-unica",
+      "tier": 3,
+      "truth": "falso",
+      "headline": "La Gobernación entregará 500 becas completas: inscríbete antes de la medianoche",
+      "source": "Página con el escudo de la Gobernación y un dominio parecido",
+      "date": "Publicado hoy",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "La dirección termina en «-oficial.net» y no en el dominio de la Gobernación."
+        },
+        {
+          "signal": "fecha",
+          "text": "La convocatoria real cierra en dos semanas, no a la medianoche."
+        }
+      ],
+      "explanation": "Un dominio parecido y una prisa inventada son señales de suplantación."
+    },
+    {
+      "id": "agua-corte",
+      "tier": 3,
+      "truth": "verdadero",
+      "headline": "Aguas del Faro cortará el servicio el martes de 9 a. m. a 1 p. m. en Marea Alta",
+      "source": "Aviso de la empresa de acueducto, en su sitio y su línea de atención",
+      "date": "Publicado hoy",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "El aviso está en el sitio de la empresa y la línea de atención lo confirma."
+        },
+        { "signal": "fecha", "text": "Es de hoy, para el martes, con horario y barrio precisos." }
+      ],
+      "explanation": "Datos precisos, canal oficial y confirmación por un segundo canal: se publica."
+    },
+    {
+      "id": "desempleo-doble",
+      "tier": 3,
+      "truth": "falso",
+      "headline": "El desempleo juvenil se duplicó en un solo mes, según un informe",
+      "source": "Infografía compartida sin enlace al informe",
+      "date": "Compartida hoy",
+      "signals": [
+        {
+          "signal": "cita",
+          "text": "El informe real compara muestras distintas: la cifra pasa de 6 a 7 %, no se duplica."
+        },
+        { "signal": "fuente", "text": "La infografía no enlaza el informe ni dice quién lo hizo." }
+      ],
+      "explanation": "Una verdad recortada es la mentira más fina: hay que ir al documento original."
+    },
+    {
+      "id": "faro-visitas",
+      "tier": 3,
+      "truth": "verdadero",
+      "headline": "El Faro recibió 12.000 visitantes en septiembre, su mayor registro del año",
+      "source": "Informe mensual de la Oficina de Turismo",
+      "date": "Publicado el lunes",
+      "signals": [
+        {
+          "signal": "fuente",
+          "text": "La Oficina de Turismo lleva el conteo en la entrada y publica la metodología."
+        },
+        { "signal": "imagen", "text": "El gráfico coincide con la tabla del informe." }
+      ],
+      "explanation": "Cifras de la entidad que las mide, con metodología pública: se publican atribuidas."
+    }
+  ]
+}

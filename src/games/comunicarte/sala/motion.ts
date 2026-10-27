@@ -33,7 +33,8 @@ export interface Framing {
   fov: number;
 }
 
-const HALF_WIDTH = 6.6;
+const HALF_WIDTH = 7.4;
+const SCENE_HEIGHT = 6.5;
 export const WIDE_FROM = 768;
 
 /** Encuadre de la mesa en el espacio que dejan libre los paneles del HUD. */
@@ -44,6 +45,11 @@ export function deskFraming(width: number, height: number): Framing {
   const visibleW = Math.max(1, width - panelX);
   const visibleH = Math.max(1, height - panelY);
   const fov = 40;
-  const dist = HALF_WIDTH / (Math.tan((fov / 2) * (Math.PI / 180)) * (visibleW / visibleH));
-  return { panelX, panelY, dist: Math.min(32, Math.max(9, dist)), fov };
+  // El encuadre llena todo el lienzo, pero la mesa solo ocupa el espacio libre
+  // de los paneles: debe caber en ancho y en alto dentro de esa región.
+  const t = Math.tan((fov / 2) * (Math.PI / 180));
+  const forWidth = (2 * HALF_WIDTH * height) / (2 * t * visibleW);
+  const forHeight = (SCENE_HEIGHT * height) / (2 * t * visibleH);
+  const dist = Math.max(forWidth, forHeight);
+  return { panelX, panelY, dist: Math.min(60, Math.max(9, dist)), fov };
 }

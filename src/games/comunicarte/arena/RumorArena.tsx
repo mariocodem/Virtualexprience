@@ -193,7 +193,10 @@ export function RumorArena({
 
   const close = () => {
     cardId.current = null;
+    // El foco vuelve al escenario: sin él, el teclado deja de mover al explorador.
+    const host = document.activeElement?.closest<HTMLElement>('[role="application"]');
     setCard(null);
+    host?.focus();
     onBrujula(null);
   };
 

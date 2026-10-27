@@ -28,6 +28,6 @@ describe('motion', () => {
     expect(narrow.panelX).toBe(0);
     expect(narrow.panelY).toBeGreaterThan(300);
     expect(narrow.dist).toBeGreaterThan(9);
-    expect(narrow.dist).toBeLessThanOrEqual(32);
+    expect(narrow.dist).toBeLessThanOrEqual(60);
   });
 });

@@ -331,64 +331,66 @@ function Desk({
             <aside
               aria-label="Nota en la mesa"
               className={cx(
-                'pointer-events-auto absolute inset-x-0 bottom-0 max-h-[52%] overflow-y-auto bg-plate/95 p-4 text-ink [--focus:var(--route)] plate-rule',
+                'pointer-events-auto absolute inset-x-0 bottom-0 flex max-h-[52%] flex-col overflow-hidden bg-plate/95 text-ink [--focus:var(--route)] plate-rule',
                 'sm:inset-x-auto sm:top-[6.5rem] sm:bottom-3 sm:left-3 sm:max-h-none sm:w-[min(26rem,36%)]',
               )}
             >
-              <p className="toponym text-[0.625rem] text-ink-soft">
-                Mesa de edición · Nota {String(state.index + 1)} de {String(total)}
-              </p>
-              <h2
-                ref={heading}
-                tabIndex={-1}
-                className="mt-1 font-display text-lg leading-snug font-extrabold outline-none"
-              >
-                {news.headline}
-              </h2>
-              <dl className="mt-3 grid gap-2">
-                {fields.map((field) => {
-                  const seen = revealed.includes(field.signal);
-                  const n = SIGNALS.indexOf(field.signal) + 1;
-                  return (
-                    <div key={field.signal} className="border-t border-plate-edge pt-2">
-                      <dt className="flex items-baseline justify-between gap-2 text-xs font-semibold text-ink-soft">
-                        {field.label}
-                        {!seen && (
-                          <button
-                            type="button"
-                            disabled={held !== null}
-                            aria-keyshortcuts={held ? undefined : String(n)}
-                            onClick={() => {
-                              investigate(field.signal);
-                            }}
-                            className="inline-flex min-h-8 items-center gap-1 border-[1.5px] border-ink px-2 font-display text-xs font-bold hover:bg-plate-sunk disabled:opacity-40"
-                          >
-                            <kbd className="font-display">{n}</kbd> {TOOL_OF[field.signal]} ·{' '}
-                            {String(INVESTIGATE_COST)} min
-                          </button>
-                        )}
-                      </dt>
-                      <dd
-                        className={cx(
-                          'text-sm',
-                          field.signal === 'imagen' && 'italic',
-                          field.signal === 'cita' && 'font-display',
-                        )}
-                      >
-                        {field.value}
-                      </dd>
-                      {seen && (
-                        <dd className="mt-1 border-l-[3px] border-sea-700 bg-plate-sunk px-2 py-1 text-sm">
-                          <span className="font-semibold">Verificación: </span>
-                          {news.clues[field.signal]}
+              <div className="min-h-0 flex-1 overflow-y-auto p-4 pb-2">
+                <p className="toponym text-[0.625rem] text-ink-soft">
+                  Mesa de edición · Nota {String(state.index + 1)} de {String(total)}
+                </p>
+                <h2
+                  ref={heading}
+                  tabIndex={-1}
+                  className="mt-1 font-display text-lg leading-snug font-extrabold outline-none"
+                >
+                  {news.headline}
+                </h2>
+                <dl className="mt-3 grid gap-2">
+                  {fields.map((field) => {
+                    const seen = revealed.includes(field.signal);
+                    const n = SIGNALS.indexOf(field.signal) + 1;
+                    return (
+                      <div key={field.signal} className="border-t border-plate-edge pt-2">
+                        <dt className="flex items-baseline justify-between gap-2 text-xs font-semibold text-ink-soft">
+                          {field.label}
+                          {!seen && (
+                            <button
+                              type="button"
+                              disabled={held !== null}
+                              aria-keyshortcuts={held ? undefined : String(n)}
+                              onClick={() => {
+                                investigate(field.signal);
+                              }}
+                              className="inline-flex min-h-8 items-center gap-1 border-[1.5px] border-ink px-2 font-display text-xs font-bold hover:bg-plate-sunk disabled:opacity-40"
+                            >
+                              <kbd className="font-display">{n}</kbd> {TOOL_OF[field.signal]} ·{' '}
+                              {String(INVESTIGATE_COST)} min
+                            </button>
+                          )}
+                        </dt>
+                        <dd
+                          className={cx(
+                            'text-sm',
+                            field.signal === 'imagen' && 'italic',
+                            field.signal === 'cita' && 'font-display',
+                          )}
+                        >
+                          {field.value}
                         </dd>
-                      )}
-                    </div>
-                  );
-                })}
-              </dl>
+                        {seen && (
+                          <dd className="mt-1 border-l-[3px] border-sea-700 bg-plate-sunk px-2 py-1 text-sm">
+                            <span className="font-semibold">Verificación: </span>
+                            {news.clues[field.signal]}
+                          </dd>
+                        )}
+                      </div>
+                    );
+                  })}
+                </dl>
+              </div>
 
-              <div className="mt-4 border-t-[1.5px] border-ink pt-3">
+              <div className="shrink-0 border-t-[1.5px] border-ink px-4 pt-3 pb-4">
                 <p className="text-sm font-semibold">
                   {held ? '¿Qué señal decide tu decisión?' : '¿Qué hace la radio con esta nota?'}
                 </p>

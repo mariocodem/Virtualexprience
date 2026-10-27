@@ -318,3 +318,8 @@ export function applyBurden(at: Vec2, last: Vec2, burden: number, maxStep = 1.5)
   at.x = last.x + dx * burden;
   at.z = last.z + dz * burden;
 }
+
+/** Un cañón atascado pierde un disparo cargado (si lo tenía). */
+export function spendCharge(target: { charge: number }, shots = 1): void {
+  target.charge = Math.max(0, target.charge - shots);
+}

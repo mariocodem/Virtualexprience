@@ -234,6 +234,8 @@ function Season({
   const [paused, setPaused] = useState(false);
   const [state, setState] = useState<HuertaState>(() => startHuerta(content, queue, plan));
   const [reparto, setReparto] = useState<Reparto>(() => initialReparto([]));
+  // Copia síncrona: dos teclas seguidas no deben leer un reparto viejo.
+  const repartoRef = useRef(reparto);
   const [pick, setPick] = useState<{ id: string; feedback: DecisionFeedback } | null>(null);
   const [announce, setAnnounce] = useState('');
   const rootRef = useRef<HTMLDivElement>(null);
@@ -253,13 +255,16 @@ function Season({
   const done = state.phase === 'reparto' ? undefined : state.log.at(-1);
 
   const apply = useCallback((step: { reparto: Reparto; note: string | null }) => {
+    repartoRef.current = step.reparto;
     setReparto(step.reparto);
     if (step.note) setAnnounce(step.note);
   }, []);
 
   const submit = () => {
-    if (!moon || !ready || !validAssignment(state, content, moon, reparto.choices)) return;
-    const next = assign(state, content, moon, reparto.choices);
+    const choices = repartoRef.current.choices;
+    if (!moon || state.phase !== 'reparto' || !isReady(repartoRef.current, ctx)) return;
+    if (!validAssignment(state, content, moon, choices)) return;
+    const next = assign(state, content, moon, choices);
     const result = next.log.at(-1);
     if (result && result.chances.length > 0)
       record(moon.tier, usedChances(result).length / result.chances.length);
@@ -309,9 +314,19 @@ function Season({
       return;
     }
     setState(next);
-    setReparto(initialReparto(next.resting));
+    const fresh = initialReparto(next.resting);
+    repartoRef.current = fresh;
+    setReparto(fresh);
     setAnnounce(`Nueva luna: ${queue.find((m) => m.id === currentMoonId(next))?.title ?? ''}`);
   };
+
+  // Al cambiar de fase se desmonta la tarjeta enfocada: el foco vuelve al escenario.
+  useEffect(() => {
+    if (state.phase === 'reparto') {
+      const host = rootRef.current?.closest<HTMLElement>('[role="application"]');
+      if (host && !host.contains(document.activeElement)) host.focus();
+    }
+  }, [state.phase, state.index]);
 
   // Teclado del reparto y de las demás fases, con una sola escucha.
   useEffect(() => {
@@ -323,7 +338,7 @@ function Season({
       if (state.phase !== 'reparto') return;
       if (!/^[0-9rR]$/.test(event.key) && event.key !== 'Backspace') return;
       event.preventDefault();
-      apply(pressKey(reparto, ctx, event.key));
+      apply(pressKey(repartoRef.current, ctx, event.key));
     };
     document.addEventListener('keydown', onKey);
     return () => {
@@ -355,16 +370,16 @@ function Season({
   );
   const pickGroup = useCallback(
     (group: string) => {
-      apply(selectGroup(reparto, ctx, group));
+      apply(selectGroup(repartoRef.current, ctx, group));
     },
-    [apply, reparto, ctx],
+    [apply, ctx],
   );
   const pickTask = useCallback(
     (task: string) => {
-      if (!reparto.selected) setAnnounce('Primero elige un grupo.');
-      else apply(assignSelected(reparto, ctx, task));
+      if (!repartoRef.current.selected) setAnnounce('Primero elige un grupo.');
+      else apply(assignSelected(repartoRef.current, ctx, task));
     },
-    [apply, reparto, ctx],
+    [apply, ctx],
   );
   if (!moon || !view) return null;
 
@@ -372,7 +387,7 @@ function Season({
     <GameStage
       label="La huerta comunitaria de LatidoSocial"
       controls={controls}
-      camera={{ fov: 44, position: [0, 10.5, 15.5], near: 0.5, far: 220 }}
+      camera={{ fov: 44, position: [0, 13, 19.5], near: 0.5, far: 220 }}
       paused={paused}
       onPause={(next) => {
         pausedRef.current = next;
@@ -380,6 +395,7 @@ function Season({
       }}
       help={HELP}
       announce={announce}
+      touch={false}
       className="min-h-[560px]"
       hud={
         <div ref={rootRef} className="absolute inset-0">
@@ -410,7 +426,7 @@ function Season({
           </div>
 
           {state.phase === 'reparto' && (
-            <div className="absolute inset-x-3 bottom-3 max-h-[58%] overflow-auto sm:inset-x-auto sm:top-16 sm:right-3 sm:bottom-auto sm:max-h-[calc(100%-5rem)] sm:w-80">
+            <div className="absolute inset-x-3 bottom-3 max-h-[46%] overflow-auto sm:inset-x-auto sm:top-16 sm:right-3 sm:bottom-auto sm:max-h-[calc(100%-5rem)] sm:w-80">
               <HudPanel className="grid gap-2">
                 <h2 className="font-display text-sm font-extrabold">¿Quién hace qué?</h2>
                 <p className="text-xs text-sea-100">{moon.situation}</p>

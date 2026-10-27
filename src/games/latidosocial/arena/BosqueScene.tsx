@@ -1,4 +1,3 @@
-import { Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { memo, useLayoutEffect, useMemo, useRef } from 'react';
 import { Color, Object3D, type InstancedMesh, type Mesh, type MeshStandardMaterial } from 'three';
@@ -7,6 +6,7 @@ import { Bruma3D } from '@/games/shared/scene/Bruma3D';
 import { Explorer } from '@/games/shared/scene/Explorer';
 import { LightBeam } from '@/games/shared/scene/Hazards';
 import { ATLAS, BUILD, ISLE } from '@/world/palette';
+import { Tag } from '../Tag';
 import { Folk, type FolkPose } from '../Folk';
 import { groupColor, hash01 } from '../groups';
 import { BOSQUE } from './data';
@@ -34,7 +34,7 @@ const TREES = (() => {
     trees.push({
       x: Math.cos(a) * r,
       z: Math.sin(a) * r,
-      s: 0.8 + hash01(i, 3) * 0.7,
+      s: 0.5 + hash01(i, 3) * 0.45,
       h: hash01(i, 4),
     });
   }
@@ -221,14 +221,7 @@ function Farol({
         <ringGeometry args={[REACH - 0.18, REACH, 28]} />
         <meshStandardMaterial color={ATLAS.sun} transparent depthWrite={false} />
       </mesh>
-      <Html center position={[0, 3.2, 0]} zIndexRange={[5, 0]}>
-        <span
-          aria-hidden="true"
-          className="grid size-7 place-items-center border-[1.5px] border-ink bg-plate font-display text-sm font-extrabold text-ink"
-        >
-          {index + 1}
-        </span>
-      </Html>
+      <Tag text={String(index + 1)} position={[0, 3.5, 0]} />
     </group>
   );
 }
@@ -401,8 +394,8 @@ export const BosqueScene = memo(function BosqueScene({
       <ArenaCamera
         follow={() => state.player}
         still={still}
-        height={portrait ? 24 : 19}
-        distance={portrait ? 17 : 15}
+        height={portrait ? 28 : 23}
+        distance={portrait ? 20 : 17}
         lead={portrait ? 0.55 : 0.2}
       />
     </>

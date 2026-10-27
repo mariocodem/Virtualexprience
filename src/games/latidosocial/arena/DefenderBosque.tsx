@@ -279,6 +279,14 @@ export function DefenderBosque({
     openFarolRef.current(index);
   }, []);
 
+  // Al cerrar una tarjeta se desmonta el botón enfocado: el foco vuelve al escenario.
+  useEffect(() => {
+    if (card === null) {
+      const host = rootRef.current?.closest<HTMLElement>('[role="application"]');
+      if (host && !host.contains(document.activeElement)) host.focus();
+    }
+  }, [card]);
+
   // Digitos: abrir el farol N y, ya abierto, elegir el grupo. Una sola escucha para todo.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -389,7 +397,7 @@ export function DefenderBosque({
                 label="Participación"
                 value={hud.participation}
                 text={pct(hud.participation)}
-                tone={hud.participation < 0.6 ? 'low' : 'route'}
+                tone={hud.participation < 0.6 ? 'route' : 'low'}
               />
               <LightsHud lights={hud.lights} max={lights} />
             </HudPanel>

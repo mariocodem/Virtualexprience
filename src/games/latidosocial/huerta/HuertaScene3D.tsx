@@ -1,4 +1,3 @@
-import { Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { memo, useLayoutEffect, useMemo, useRef } from 'react';
 import { Color, Object3D, type InstancedMesh, type Mesh, type MeshStandardMaterial } from 'three';
@@ -12,6 +11,7 @@ import {
 import type { HuertaContent } from '@/data/contentSchemas';
 import { ATLAS, BUILD, ISLE } from '@/world/palette';
 import { Ceiba, Forest, type Tree } from '../arena/BosqueScene';
+import { Tag } from '../Tag';
 import { Folk, type FolkPose } from '../Folk';
 import { groupColor, hash01 } from '../groups';
 import { ASSEMBLY_AT, bedSpot, bedWork, CEIBA_AT, crewSpot, growthOf, moonSky } from './flow';
@@ -22,7 +22,7 @@ const SKY = ['#0d1b3a', '#122448', '#17305a', '#1b3a66', '#1f4470'];
 const WOODS: Tree[] = Array.from({ length: 46 }, (_, i) => {
   const x = (i / 45 - 0.5) * 34 + (hash01(i, 1) - 0.5) * 1.5;
   const z = -8.5 - hash01(i, 2) * 4.5 - Math.abs(x) * 0.12;
-  return { x, z, s: 0.8 + hash01(i, 3) * 0.8, h: hash01(i, 4) };
+  return { x, z, s: 0.5 + hash01(i, 3) * 0.5, h: hash01(i, 4) };
 }).filter((t) => Math.hypot(t.x - CEIBA_AT.x, t.z - CEIBA_AT.z) > 3.2);
 
 const STARS = (() => {
@@ -55,7 +55,6 @@ export interface HuertaView {
 function Bed({
   index,
   count,
-  label,
   growth,
   work,
   soil,
@@ -65,7 +64,6 @@ function Bed({
 }: {
   index: number;
   count: number;
-  label: string;
   growth: number;
   work: number;
   soil: number;
@@ -138,14 +136,7 @@ function Bed({
         <coneGeometry args={[0.3, 1, 5]} />
         <meshStandardMaterial flatShading />
       </instancedMesh>
-      <Html center position={[0, 0.1, 1.45]} zIndexRange={[5, 0]}>
-        <span
-          aria-hidden="true"
-          className="border-[1.5px] border-ink bg-plate px-2 py-0.5 font-display text-xs font-bold whitespace-nowrap text-ink"
-        >
-          {index + 1} · {label}
-        </span>
-      </Html>
+      <Tag text={String(index + 1)} position={[0, 1.0, 1.7]} height={0.75} />
     </group>
   );
 }
@@ -308,8 +299,9 @@ function SelectionRing({
 
 function Look({ portrait }: { portrait: boolean }) {
   useFrame(({ camera }) => {
-    camera.position.set(0, portrait ? 19 : 10.5, portrait ? 25 : 15.5);
-    camera.lookAt(portrait ? -1 : 0, 0.4, portrait ? 1.5 : 1.8);
+    const dx = portrait ? 0 : 3.2;
+    camera.position.set(dx, portrait ? 21 : 13, portrait ? 28 : 19.5);
+    camera.lookAt(portrait ? -1 : dx, 0.4, portrait ? 1.5 : 1.8);
   });
   return null;
 }
@@ -376,7 +368,6 @@ export const HuertaScene3D = memo(function HuertaScene3D({
           key={task.id}
           index={i}
           count={moon.tasks.length}
-          label={task.label}
           growth={growth}
           work={work[i] ?? 0}
           soil={state.suelo}

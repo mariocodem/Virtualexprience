@@ -237,3 +237,40 @@ describe('la ceiba', () => {
     expect(Math.hypot(state.player.x, state.player.z)).toBeLessThanOrEqual(9.8);
   });
 });
+
+describe('equilibrio', () => {
+  function play(cfg: DefenseConfig, reaction: number, seed: number) {
+    const state = createDefense(cfg, BOSQUE);
+    const random = seeded(seed);
+    let next = 0;
+    for (let t = 0; t < 600 && state.outcome === 'en-curso'; t += 0.05) {
+      stepDefense(state, cfg, BOSQUE, still, 0.05, random);
+      if (state.dilemma) answerDilemma(state, true);
+      if (state.charge >= 1) fireCeiba(state, cfg);
+      if (t < next) continue;
+      next = t + reaction;
+      for (const farol of state.faroles) {
+        const fit = farol.need?.fits[0];
+        const group = state.groups.find((g) => g.id === fit);
+        if (!farol.need || !group || group.resting || farol.group === fit) continue;
+        assignGroup(state, farol.id, fit ?? null);
+      }
+      for (const farol of state.faroles) {
+        const g = state.groups.find((x) => x.id === farol.group);
+        if (g && g.energy < 0.2) assignGroup(state, farol.id, null);
+      }
+    }
+    return state;
+  }
+
+  it('un jugador atento gana con luces de sobra, también en ritmo tranquilo', () => {
+    for (const calm of [false, true]) {
+      const cfg = { ...config, goal: 5, lights: 5, calm };
+      for (const seed of [1, 2, 3]) {
+        const state = play(cfg, 2, seed);
+        expect(state.outcome).toBe('victoria');
+        expect(state.lights).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+});

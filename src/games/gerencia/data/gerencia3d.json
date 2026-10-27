@@ -1,0 +1,30 @@
+{
+  "team": [
+    { "id": "ayudante", "name": "Tomás", "role": "ayudante", "shirt": "#d7262e" },
+    { "id": "cocinera", "name": "Doña Rosa", "role": "cocinera", "shirt": "#4a5bb8" }
+  ],
+  "stations": {
+    "velas": {
+      "label": "Velas",
+      "key": "V",
+      "hint": "Sin nadie en las velas el barco no avanza; con dos, rinde más."
+    },
+    "bomba": {
+      "label": "Bomba",
+      "key": "B",
+      "hint": "Achica el agua de la bodega. Sin nadie, el casco pesa y el barco se hace lento."
+    },
+    "linterna": {
+      "label": "Linterna",
+      "key": "L",
+      "hint": "Sin nadie en la linterna no se puede disparar el haz; con dos, apunta con más margen."
+    }
+  },
+  "tips": {
+    "waterHigh": "El agua sube en la bodega: manda a alguien a la bomba.",
+    "noLantern": "Nadie atiende la linterna: reparte a la tripulación para poder disparar.",
+    "noSails": "Sin nadie en las velas el barco está parado.",
+    "aimed": "Rumbo a la Bruma: dispara el haz.",
+    "foreman": "El contramaestre trae un parte con datos: decide con ellos."
+  }
+}

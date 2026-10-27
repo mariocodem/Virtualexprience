@@ -1,4 +1,4 @@
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { BUILD } from '@/world/palette';
 import type { ArenaProps } from '../types';
@@ -418,7 +418,7 @@ export function PuenteDeLuz({
               </HudPanel>
             </div>
             {banner && <Banner text={banner.text} at={banner.at} />}
-            <div className="absolute inset-x-3 bottom-3 flex flex-col items-start gap-2 sm:bottom-4 sm:left-4">
+            <div className="absolute inset-x-3 bottom-3 flex flex-col items-start gap-2 sm:bottom-4 sm:left-4 pointer-coarse:bottom-40">
               {challenge && (building || build.phase === 'testing') && (
                 <HudPanel className="pointer-events-auto w-full max-w-xl">
                   <p className="toponym text-[0.625rem] text-sea-100">
@@ -528,11 +528,18 @@ export function PuenteDeLuz({
         <FogOrbs get={() => state.orbs} tint={tint} />
         <DangerZones get={() => state.zones} />
         <LightBeam get={() => state.beam} />
-        <ArenaCamera follow={() => state.player} still={still} />
+        <FitCamera follow={() => state.player} still={still} />
         <PointerAim controls={controls} />
       </GameStage>
     </div>
   );
+}
+
+/** Cámara de arena que se aleja en pantallas angostas para que quepa el anillo entero. */
+function FitCamera({ follow, still }: { follow: () => { x: number; z: number }; still: boolean }) {
+  const aspect = useThree((s) => s.size.width / s.size.height);
+  const k = Math.min(2.1, Math.max(1, 1.15 / aspect));
+  return <ArenaCamera follow={follow} still={still} height={13 * k} distance={12.5 * k} />;
 }
 
 /** Pone el reloj del juego: avanza el combate y el constructor en cada cuadro. */

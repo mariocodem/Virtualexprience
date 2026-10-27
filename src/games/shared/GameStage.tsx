@@ -69,7 +69,13 @@ export function GameStage({
       )
         return;
       if (event.key === 'Escape' || event.code === 'KeyP') {
-        if (event.code === 'KeyP' && document.activeElement instanceof HTMLInputElement) return;
+        // La P se escribe en los campos de texto (la bitácora), no pausa.
+        const field = document.activeElement;
+        if (
+          event.code === 'KeyP' &&
+          (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)
+        )
+          return;
         event.preventDefault();
         onPause(!paused);
       }

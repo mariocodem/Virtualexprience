@@ -18,13 +18,19 @@ export function IslandLandmarks({
   island,
   lit,
   still,
+  landmarks: custom,
+  kitKey,
 }: {
   island: Island;
   lit: number;
   still: boolean;
+  /** Otra disposición (el lugar de una estación en 3D); `kitKey` la distingue en la caché. */
+  landmarks?: Landmark[];
+  kitKey?: string;
 }) {
-  const landmarks = islandLandmarks(island);
-  const geometry = useMemo(() => islandKit(island.id, landmarks), [island.id, landmarks]);
+  const landmarks = custom ?? islandLandmarks(island);
+  const key = kitKey ?? island.id;
+  const geometry = useMemo(() => islandKit(key, landmarks), [key, landmarks]);
 
   return (
     <group>

@@ -50,7 +50,16 @@ test.describe('el mundo', () => {
     await expect(
       page.getByRole('heading', { level: 1, name: 'La imprenta del puerto' }),
     ).toBeVisible({ timeout: 30_000 });
+    // La estación se juega en 3D: Esc pausa y desde la pausa se vuelve al sendero.
+    await expect(page.getByRole('application', { name: /Explorar en 3D/ })).toBeFocused({
+      timeout: 30_000,
+    });
     await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog', { name: 'En pausa' })).toBeVisible();
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await expect(page.getByRole('button', { name: 'Salir' })).toBeFocused();
+    await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/mundo\/comunicarte\?estacion=comunicarte-imprenta$/);
     await expect(
       page.getByText('Estación en curso: tu bitácora registró el inicio.'),

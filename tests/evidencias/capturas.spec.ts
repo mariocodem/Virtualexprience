@@ -157,6 +157,28 @@ test.describe('recorrido', () => {
   });
 });
 
+test('estaciones en la plaza 3D', async ({ browser }) => {
+  const shots: [string, string, string[]][] = [
+    ['22-plaza-explorar-comunicarte', '/mundo/comunicarte/comunicarte-imprenta', []],
+    ['23-plaza-explorar-latidosocial', '/mundo/latidosocial/latidosocial-territorio', []],
+    [
+      '24-plaza-practicar-neuromath',
+      '/mundo/neuromath/neuromath-proporciones',
+      ['neuromath-patrones'],
+    ],
+  ];
+  for (const [name, url, done] of shots) {
+    const context = await browser.newContext();
+    await seed(context, done, []);
+    const page = await context.newPage();
+    await page.goto(url);
+    await expect(page.locator('[role="application"]')).toBeVisible({ timeout: 90_000 });
+    await page.waitForTimeout(6000);
+    await shot(page, name);
+    await context.close();
+  }
+});
+
 for (const [index, island] of ISLANDS.entries()) {
   const n = String(10 + index * 2);
   test(`${island.id}: reto y arena en 3D`, async ({ browser }) => {

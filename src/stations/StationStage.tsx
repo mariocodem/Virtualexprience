@@ -1,10 +1,13 @@
 import { A11yTrigger } from '@/a11y/A11yPanel';
-import { Suspense, use, useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, use, useCallback, useEffect, useState } from 'react';
+import { usePreferences } from '@/a11y/preferences';
 import { Link, useNavigate, useParams } from 'react-router';
 import { findIsland, getStation, stationsOf, world } from '@/data';
 import { loadStationContent } from '@/data/content';
 import type { StationContent } from '@/data/contentSchemas';
 import { ArenaHost } from '@/games/ArenaHost';
+import { GameHost } from '@/games/GameHost';
+import { hasWebGL2 } from '@/landing/webgl';
 import { MinigameHost } from '@/minigames/MinigameHost';
 import { nextStation, stationStatus } from '@/progress/selectors';
 import { pickProgress, useProgress } from '@/progress/store';
@@ -22,6 +25,11 @@ import { ExplorarStation } from './ExplorarStation';
 import { PracticarStation } from './PracticarStation';
 import { ReflexionarStation } from './ReflexionarStation';
 import { StageBackdrop } from './StageBackdrop';
+
+// Las estaciones se juegan en la plaza 3D de su isla; la versión accesible queda al lado.
+const Explorar3D = lazy(() => import('@/games/stations/Explorar3D'));
+const Practicar3D = lazy(() => import('@/games/stations/Practicar3D'));
+const Reflexionar3D = lazy(() => import('@/games/stations/Reflexionar3D'));
 
 /**
  * Escenario de una estación, a pantalla completa sobre la isla. La ruta
@@ -93,7 +101,10 @@ function Stage({ island, station }: { island: Island; station: Station }) {
   const playable = entry !== 'bloqueada' && entry !== 'en-preparacion';
   const boss = station.type === 'desafio';
   // Los minijuegos y la Bruma necesitan la mesa ancha.
-  const wide = boss || station.type === 'reto';
+  const gameMode = usePreferences((s) => s.gameMode);
+  const [webgl] = useState(hasWebGL2);
+  // En 3D toda estación usa el ancho de un escenario de juego.
+  const wide = boss || station.type === 'reto' || (webgl && gameMode === '3d');
 
   return (
     <div className="on-sea relative isolate min-h-svh overflow-hidden bg-sea-950 text-plate">
@@ -194,6 +205,13 @@ function StationBody({
   onFail: (score: number) => void;
 }) {
   const content = use(promise);
+  const retry = (score: number) => {
+    onFail(score);
+    onBrujula({
+      text: `Lograste ${String(Math.round(score * 100))} %. Repasa las explicaciones y vuelve a intentarlo: cada ronda afina tu dominio.`,
+      source: 'local',
+    });
+  };
 
   if (content.kind === 'desafio') {
     return (
@@ -216,35 +234,68 @@ function StationBody({
       <p className="mt-3 max-w-[60ch] text-ink-soft">{station.summary}</p>
       <div className="mt-8 border-t-[1.5px] border-ink pt-6">
         {content.kind === 'explorar' && (
-          <ExplorarStation
-            content={content}
-            island={island}
-            onBrujula={onBrujula}
-            onEvents={onEvents}
-            onComplete={onComplete}
+          <GameHost
+            accessible={
+              <ExplorarStation
+                content={content}
+                island={island}
+                onBrujula={onBrujula}
+                onEvents={onEvents}
+                onComplete={onComplete}
+              />
+            }
+            immersive={
+              <Explorar3D
+                content={content}
+                island={island}
+                onBrujula={onBrujula}
+                onEvents={onEvents}
+                onComplete={onComplete}
+              />
+            }
           />
         )}
         {content.kind === 'practicar' && (
-          <PracticarStation
-            content={content}
-            island={island}
-            onBrujula={onBrujula}
-            onComplete={onComplete}
-            onFail={(score) => {
-              onFail(score);
-              onBrujula({
-                text: `Lograste ${String(Math.round(score * 100))} %. Repasa las explicaciones y vuelve a intentarlo: cada ronda afina tu dominio.`,
-                source: 'local',
-              });
-            }}
+          <GameHost
+            accessible={
+              <PracticarStation
+                content={content}
+                island={island}
+                onBrujula={onBrujula}
+                onComplete={onComplete}
+                onFail={retry}
+              />
+            }
+            immersive={
+              <Practicar3D
+                content={content}
+                island={island}
+                onBrujula={onBrujula}
+                onComplete={onComplete}
+                onFail={retry}
+              />
+            }
           />
         )}
         {content.kind === 'reflexionar' && (
-          <ReflexionarStation
-            stationId={station.id}
-            content={content}
-            onEvents={onEvents}
-            onComplete={onComplete}
+          <GameHost
+            accessible={
+              <ReflexionarStation
+                stationId={station.id}
+                content={content}
+                onEvents={onEvents}
+                onComplete={onComplete}
+              />
+            }
+            immersive={
+              <Reflexionar3D
+                stationId={station.id}
+                content={content}
+                island={island}
+                onEvents={onEvents}
+                onComplete={onComplete}
+              />
+            }
           />
         )}
         {content.kind === 'reto' && (

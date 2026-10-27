@@ -62,7 +62,7 @@ Una arena puede usar el núcleo tal cual, extenderlo con sus propias entidades o
 
 ## Dirección de cada isla
 
-Cada isla tiene una dinámica distinta; la arena retoma la competencia de su reto.
+Cada isla tiene una dinámica distinta; la arena retoma la competencia de su reto. Las seis ya tienen su reto y su arena en 3D, y el Gran Reto encadena sus arenas. Cómo se juega cada una, sus controles, sus decisiones de diseño y cómo probarla: [ComunicArte](juegos-3d/comunicarte.md), [NeuroMath](juegos-3d/neuromath.md), [Voxcivitas](juegos-3d/voxcivitas.md), [Gerencia+](juegos-3d/gerencia.md), [ActivaTuIdea](juegos-3d/activatuidea.md) y [LatidoSocial](juegos-3d/latidosocial.md).
 
 | Isla         | Reto 3D                                                                                                                                                                                                                                                   | Arena contra la Bruma                                                                                                                                                                                                           |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

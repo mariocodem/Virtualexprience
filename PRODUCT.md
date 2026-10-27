@@ -14,10 +14,9 @@ Decidido en CLAUDE.md §3: Vite + React 19 + TypeScript strict; three.js + @reac
 
 Mario confirmó React 19 (en lugar de 18) y Node 24 (en lugar de 20) el 2026-10-16.
 
-Decisiones abiertas (registrar como ADR cuando se tomen):
-- Modo de rutas compatible con `file://` en Electron y con el hosting web (HashRouter o protocolo propio).
-- Herramienta de build de `electron/main.ts`.
-- Versión de Tailwind.
+Decisiones tomadas después:
+- Rutas en Electron con un protocolo propio `app://` y build de `electron/` con `tsc` (ADR 0005).
+- Tailwind CSS 4.
 
 ## Users
 

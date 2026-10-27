@@ -79,6 +79,8 @@ test.describe('Gran Reto Integrador', () => {
   test('con teclado: del faro a la Gran Bruma y su primer embate (versión accesible)', async ({
     page,
   }) => {
+    // Recorre el faro hasta la Gran Bruma: con WebGL por software y pruebas en paralelo tarda.
+    test.slow();
     await withAllFragments(page, 'accesible');
     await page.goto('/mundo?faro=1');
     const enter = page.getByRole('link', { name: 'Enfrentar a la Gran Bruma' });
@@ -104,6 +106,8 @@ test.describe('Gran Reto Integrador', () => {
   });
 
   test('en 3D: la Gran Bruma toma su primera forma en una arena jugable', async ({ page }) => {
+    // Recorre el faro y una arena 3D: con WebGL por software y pruebas en paralelo tarda.
+    test.slow();
     await withAllFragments(page, '3d');
     await page.goto('/mundo/faro/gran-reto');
     await page.getByRole('button', { name: 'Enfrentar a la Gran Bruma' }).click();

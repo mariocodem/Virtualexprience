@@ -1,6 +1,6 @@
 # Juegos 3D del Archipiélago
 
-Cada isla se juega como un videojuego 3D con su propia dinámica: un **reto** (el minijuego de la isla) y una **arena** contra su Bruma, de acción y conocimiento. La carta del mundo sigue igual (ADR 0003); lo que cambia es cómo se juegan las estaciones de tipo `reto` y `desafio`.
+Cada isla se juega como un videojuego 3D con su propia dinámica: un **reto** (el minijuego de la isla) y una **arena** contra su Bruma, de acción y conocimiento. Las demás estaciones (explorar, practicar y reflexionar) se juegan en la **plaza 3D** de la isla. La carta del mundo sigue igual (ADR 0003); desde ella, cada estación abre en 3D.
 
 La versión accesible de siempre (formularios, lectura, lector de pantalla) **no se elimina**: es la alternativa equivalente que exige WCAG 2.2 y el modo sin WebGL. Ambas versiones llegan al mismo resultado con el mismo motor.
 
@@ -8,6 +8,8 @@ La versión accesible de siempre (formularios, lectura, lector de pantalla) **no
 
 ```
 StationStage
+├─ explorar · practicar · reflexionar → GameHost ─┬─ 3D: plaza de la isla (src/games/stations/)
+│                                                 └─ accesible: src/stations/
 ├─ reto     → MinigameHost → GameHost ─┬─ 3D: GAMES[isla].Minigame   (src/games/<isla>/)
 │                                     └─ accesible: src/minigames/<juego>/
 └─ desafio  → ArenaHost ───────────────┬─ 3D: GAMES[isla].arena      (src/games/<isla>/)
@@ -18,6 +20,18 @@ StationStage
 - La preferencia `gameMode` (`'3d' | 'accesible'`) se recuerda; `ModeSwitch` permite cambiarla en todo momento. Sin WebGL 2 se juega la accesible.
 - `calmPace` (ritmo tranquilo) hace los ataques más lentos y espaciados y ayuda a apuntar.
 - Cada isla declara sus juegos en `src/games/<isla>/index.ts` (`IslandGames`): mientras uno sea `null`, se juega su versión accesible.
+
+## Estaciones en la plaza 3D (`src/games/stations/`)
+
+El explorador camina por un claro de la isla rodeado del **lugar** que se ve en la carta, con sus mismas construcciones a escala de caminante (`islandSet`). ComunicArte tiene su radio y su imprenta; NeuroMath, el observatorio y sus sólidos; Voxcivitas, el cabildo y el campanario; Gerencia+, la grúa, las bodegas y los puestos; ActivaTuIdea, el taller, el domo y la bombilla; y LatidoSocial, la ceiba, la maloca y la huerta.
+
+| Estación    | En la plaza                                                                                                                                                                                                                                                      |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Explorar    | Cada formato es un objeto: el atril (texto), la radio (audio), la pantalla (video), el mural (infografía) y la mesa (interactivo). Se camina hasta uno y se abre con E. Tras consultar uno, el farol de la estación se enciende y allí se comprueba lo aprendido |
+| Practicar   | Cada pregunta levanta sus faroles de respuesta numerados. Se responde caminando hasta el farol y pulsando E, con las teclas 1 a 4 o con un clic en la tarjeta. Mismo umbral de aprobación                                                                        |
+| Reflexionar | La bitácora espera al fondo de la plaza, bajo su lámpara; allí se escribe la reflexión que Brújula lee con la rúbrica                                                                                                                                            |
+
+`PlazaStage` reúne lo común: caminata (`plaza.ts`, puro y probado), punto a mano con anillo rojo de foco, paneles que congelan la escena y devuelven el foco al cerrarse, Esc que cierra el panel antes de pausar y una pausa con salida al sendero. La evaluación es la misma de la versión accesible: `useQuiz` repite la lógica de `QuizRunner`, y Reflexionar usa el mismo formulario.
 
 ## Contratos (`src/games/types.ts`)
 

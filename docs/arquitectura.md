@@ -42,23 +42,23 @@ flowchart TB
 
 ## Módulos
 
-| Carpeta           | Responsabilidad                                                                                                            |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `src/app/`        | Rutas (carga diferida por ruta), layout, encabezado y pie institucionales                                                  |
-| `src/data/`       | Contenido tipado: islas, estaciones, insignias, niveles y el contenido de cada estación; `validateWorld` cruza referencias |
-| `src/landing/`    | Landing cinematográfica: hero 3D, manifiesto, islas, cómo funciona, Brújula, DUA, pasaporte, CTA                           |
-| `src/world/`      | La carta: escena 3D (océano, islas, faro, rutas, marcadores, cámara), carta 2D equivalente, paneles y minimapa             |
-| `src/stations/`   | Escenario de estación a pantalla completa y los cinco tipos: explorar, practicar, reto, reflexionar, desafío               |
-| `src/minigames/`  | Versión accesible de los seis minijuegos y sus motores puros                                                               |
-| `src/games/`      | Versión 3D de cada reto y cada arena por isla, más las piezas comunes (`shared/`); ver [juegos-3d.md](juegos-3d.md)        |
-| `src/finale/`     | Gran Reto Integrador en el Faro Minuto: encadena las seis arenas                                                           |
-| `src/progress/`   | Store persistente, transiciones, insignias, niveles, modo demo                                                             |
-| `src/passport/`   | Pasaporte: sellos, fragmentos, bitácora, exportación PNG/PDF                                                               |
-| `src/ai/`         | Motor adaptativo, Brújula, cliente del proxy y prompts versionados; ver [ia.md](ia.md)                                     |
-| `src/a11y/`       | Preferencias, panel (Alt + A), lectura en voz alta; ver [accesibilidad.md](accesibilidad.md)                               |
-| `src/ui/`         | Sistema de diseño: Button, Panel, Dialog, Toast, iconos, símbolos de estación                                              |
-| `server/`, `api/` | Proxy de IA (desarrollo y Vercel); la API key solo vive aquí                                                               |
-| `electron/`       | Proceso principal y preload del ejecutable; ver [ADR 0005](adr/0005-ejecutable-electron.md)                                |
+| Carpeta           | Responsabilidad                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/app/`        | Rutas (carga diferida por ruta), layout, encabezado y pie institucionales                                                                                           |
+| `src/data/`       | Contenido tipado: islas, estaciones, insignias, niveles y el contenido de cada estación; `validateWorld` cruza referencias                                          |
+| `src/landing/`    | Landing cinematográfica: hero 3D, manifiesto, islas, cómo funciona, Brújula, DUA, pasaporte, CTA                                                                    |
+| `src/world/`      | La carta: escena 3D (océano, islas, faro, rutas, marcadores, cámara), carta 2D equivalente, paneles y minimapa                                                      |
+| `src/stations/`   | Escenario de estación a pantalla completa y los cinco tipos: explorar, practicar, reto, reflexionar, desafío                                                        |
+| `src/minigames/`  | Versión accesible de los seis minijuegos y sus motores puros                                                                                                        |
+| `src/games/`      | Versión 3D de cada reto y cada arena por isla, la plaza 3D de las demás estaciones (`stations/`) y las piezas comunes (`shared/`); ver [juegos-3d.md](juegos-3d.md) |
+| `src/finale/`     | Gran Reto Integrador en el Faro Minuto: encadena las seis arenas                                                                                                    |
+| `src/progress/`   | Store persistente, transiciones, insignias, niveles, modo demo                                                                                                      |
+| `src/passport/`   | Pasaporte: sellos, fragmentos, bitácora, exportación PNG/PDF                                                                                                        |
+| `src/ai/`         | Motor adaptativo, Brújula, cliente del proxy y prompts versionados; ver [ia.md](ia.md)                                                                              |
+| `src/a11y/`       | Preferencias, panel (Alt + A), lectura en voz alta; ver [accesibilidad.md](accesibilidad.md)                                                                        |
+| `src/ui/`         | Sistema de diseño: Button, Panel, Dialog, Toast, iconos, símbolos de estación                                                                                       |
+| `server/`, `api/` | Proxy de IA (desarrollo y Vercel); la API key solo vive aquí                                                                                                        |
+| `electron/`       | Proceso principal y preload del ejecutable; ver [ADR 0005](adr/0005-ejecutable-electron.md)                                                                         |
 
 ## Rutas
 

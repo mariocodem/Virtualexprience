@@ -35,16 +35,16 @@ El estudiante llega como Explorador/a a un archipiélago donde el **Faro Minuto*
 
 ## Cómo responde a los ocho requerimientos
 
-| Requerimiento             | Implementación                                                                                                                                       | Dónde                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| 1. Mundo inmersivo        | Archipiélago 3D low-poly con océano, relieve en terrazas, faro y rutas; vuelo de cámara entre islas; carta 2D equivalente                            | `src/world/`, `src/landing/`                                           |
-| 2. Arquitectura narrativa | Faro Minuto, fragmentos de luz, Brújula, una Bruma por isla y el Gran Reto; vocabulario del mundo en toda la interfaz                                | [docs/narrativa.md](docs/narrativa.md), `src/data/`                    |
-| 3. Rutas de aprendizaje   | 6 islas = 6 líneas VirtuXperience, 26 estaciones en senderos con orden sugerido; contenido en JSON validado con Zod                                  | [docs/pedagogia.md](docs/pedagogia.md), `src/data/`                    |
-| 4. Interacción            | Paradas 3D con estado, teclado completo, táctil, minimapa, cinco formatos por estación, lectura en voz alta                                          | `src/world/`, `src/stations/`                                          |
-| 5. Reto / simulación      | Seis retos y seis arenas en 3D, cada uno con su propia mecánica, y versión accesible equivalente; Gran Reto que encadena las seis arenas             | `src/games/`, `src/minigames/`, [docs/juegos-3d.md](docs/juegos-3d.md) |
-| 6. IA                     | Motor adaptativo local (Elo con paso decreciente) para dificultad, pistas y formatos; Brújula con LLM opcional vía proxy                             | `src/ai/`, `server/`, [docs/ia.md](docs/ia.md)                         |
-| 7. Progreso               | XP, 4 niveles de explorador, 3 de competencia, fragmentos, 23 insignias, bitácora y pasaporte exportable; modo demo                                  | `src/progress/`, `src/passport/`                                       |
-| 8. Accesibilidad / DUA    | Panel con Alt + A, alto contraste, letra para dislexia, espaciado, movimiento reducido, voz, carta 2D, juegos accesibles; axe sin violaciones graves | `src/a11y/`, [docs/accesibilidad.md](docs/accesibilidad.md)            |
+| Requerimiento             | Implementación                                                                                                                                                                                                    | Dónde                                                                  |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 1. Mundo inmersivo        | Archipiélago 3D low-poly con océano, relieve en terrazas, faro y rutas; vuelo de cámara entre islas; carta 2D equivalente                                                                                         | `src/world/`, `src/landing/`                                           |
+| 2. Arquitectura narrativa | Faro Minuto, fragmentos de luz, Brújula, una Bruma por isla y el Gran Reto; vocabulario del mundo en toda la interfaz                                                                                             | [docs/narrativa.md](docs/narrativa.md), `src/data/`                    |
+| 3. Rutas de aprendizaje   | 6 islas = 6 líneas VirtuXperience, 26 estaciones en senderos con orden sugerido; contenido en JSON validado con Zod                                                                                               | [docs/pedagogia.md](docs/pedagogia.md), `src/data/`                    |
+| 4. Interacción            | Paradas 3D con estado y las 26 estaciones jugables en 3D: se camina por la plaza de cada isla hasta los formatos, los faroles de respuesta y la bitácora; teclado completo, táctil, minimapa, lectura en voz alta | `src/world/`, `src/games/stations/`, `src/stations/`                   |
+| 5. Reto / simulación      | Seis retos y seis arenas en 3D, cada uno con su propia mecánica, y versión accesible equivalente; Gran Reto que encadena las seis arenas                                                                          | `src/games/`, `src/minigames/`, [docs/juegos-3d.md](docs/juegos-3d.md) |
+| 6. IA                     | Motor adaptativo local (Elo con paso decreciente) para dificultad, pistas y formatos; Brújula con LLM opcional vía proxy                                                                                          | `src/ai/`, `server/`, [docs/ia.md](docs/ia.md)                         |
+| 7. Progreso               | XP, 4 niveles de explorador, 3 de competencia, fragmentos, 23 insignias, bitácora y pasaporte exportable; modo demo                                                                                               | `src/progress/`, `src/passport/`                                       |
+| 8. Accesibilidad / DUA    | Panel con Alt + A, alto contraste, letra para dislexia, espaciado, movimiento reducido, voz, carta 2D, juegos accesibles; axe sin violaciones graves                                                              | `src/a11y/`, [docs/accesibilidad.md](docs/accesibilidad.md)            |
 
 ## Funcionalidades
 
@@ -55,6 +55,12 @@ El estudiante llega como Explorador/a a un archipiélago donde el **Faro Minuto*
 **La carta y cada isla**: la cámara vuela a la isla y su sendero muestra el estado de cada estación (bloqueada, disponible, en curso, completada). Brújula marca la siguiente.
 
 ![Isla ComunicArte con el panel de la Sala de Redacción](docs/evidencias/03-isla-comunicarte.jpg)
+
+**Todas las estaciones en 3D**: en Explorar, Practicar y Reflexionar se camina por la plaza de la isla, rodeada de su lugar (la radio y la imprenta de ComunicArte, la ceiba de LatidoSocial…). Los formatos son objetos a los que se camina y las respuestas son faroles.
+
+| Explorar en ComunicArte                                                    | Practicar en NeuroMath                                                    |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| ![Plaza de ComunicArte](docs/evidencias/22-plaza-explorar-comunicarte.jpg) | ![Faroles de respuesta](docs/evidencias/24-plaza-practicar-neuromath.jpg) |
 
 **Doce juegos 3D**: cada isla tiene un reto con su propia dinámica y una arena de acción y conocimiento contra su Bruma, donde la linterna solo se carga usando bien la competencia de la isla.
 
@@ -163,23 +169,24 @@ Lista de verificación WCAG 2.2 AA en [docs/accesibilidad.md](docs/accesibilidad
 
 ```bash
 pnpm lint && pnpm typecheck
-pnpm test             # Vitest: 44 archivos, 429 pruebas
+pnpm test             # Vitest: 45 archivos, 434 pruebas
 pnpm test:e2e         # Playwright + axe en escritorio (1440 × 900) y móvil (Pixel 7)
 pnpm test:electron    # el ejecutable empaquetado
 pnpm evidencias       # capturas en docs/evidencias/
 ```
 
 - **axe-core** (WCAG 2.0, 2.1 y 2.2 A/AA) en la landing, la carta, una isla, una estación, el faro, el pasaporte, la declaración y el panel abierto: **0 violaciones graves o críticas** en escritorio y móvil.
-- **e2e**: recorrido solo con teclado, modo demo, pasaporte (exportación y reinicio), panel de accesibilidad, Gran Reto en 3D y accesible.
+- **e2e**: recorrido solo con teclado, Explorar en 3D jugado de punta a punta con teclado, la primera estación de cada isla en 3D, modo demo, pasaporte (exportación y reinicio), panel de accesibilidad, Gran Reto en 3D y accesible.
 - **Lighthouse**: las metas son Performance ≥ 85, Accesibilidad ≥ 95 y Best Practices ≥ 95 (CLAUDE.md §11). La medición está pendiente para la versión desplegada.
 
 ## Evidencias
 
-[`docs/evidencias/`](docs/evidencias/) tiene 21 capturas generadas con Playwright:
+[`docs/evidencias/`](docs/evidencias/) tiene 24 capturas generadas con Playwright:
 
 - landing, carta 3D, isla con panel de estación, pasaporte, panel de accesibilidad y carta 2D en alto contraste;
 - la vista móvil;
-- los doce juegos 3D.
+- los doce juegos 3D;
+- las plazas 3D de Explorar y Practicar.
 
 Se regeneran con `pnpm evidencias`.
 

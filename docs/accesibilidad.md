@@ -51,7 +51,7 @@ Los ajustes se guardan en el equipo (`virtux:preferencias`) y se aplican en todo
 ## Cómo se verifica
 
 - `pnpm test:e2e` ejecuta axe-core (WCAG 2.0, 2.1 y 2.2 A y AA) en `/`, `/mundo`, `/pasaporte` y `/accesibilidad`, con el pasaporte lleno y con el panel abierto, en escritorio (1440 × 900) y en móvil (Pixel 7). Exige 0 violaciones graves o críticas.
-- La prueba «solo con teclado» recorre la carta, entra a una isla, abre una estación y vuelve con Esc.
+- La prueba «solo con teclado» recorre la carta, entra a una isla, abre una estación en 3D y vuelve al sendero desde la pausa. Otra juega Explorar en 3D de punta a punta con el teclado: camina, abre un formato, enciende el farol, responde y completa la estación.
 - Las preferencias se prueban de punta a punta: se aplican al instante y sobreviven a una recarga.
 
 ## Limitaciones conocidas

@@ -17,13 +17,13 @@ En negrita, el reto (minijuego) de cada isla. La última estación es el desafí
 
 ## Tipos de estación
 
-| Tipo           | Propósito                               | Cómo se juega                                                                                       | XP  |
-| -------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- | --- |
-| 📖 Explorar    | Presentar el concepto                   | Recurso breve en texto, audio, video, infografía o interactivo; el estudiante elige y puede cambiar | 30  |
-| 🧩 Practicar   | Aplicar con retroalimentación inmediata | Micro-ejercicios con explicación del porqué                                                         | 40  |
-| 🎮 Reto        | Usar la competencia en una situación    | Minijuego en 3D o en versión accesible, con dificultad adaptativa                                   | 80  |
-| 💬 Reflexionar | Metacognición                           | Pregunta abierta; Brújula la lee con una rúbrica de criterios                                       | 40  |
-| 🏆 Desafío     | Demostrar la competencia bajo presión   | Combate contra la Bruma: la linterna solo se carga respondiendo bien con la competencia de la isla  | 120 |
+| Tipo           | Propósito                               | Cómo se juega                                                                                                                                             | XP  |
+| -------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| 📖 Explorar    | Presentar el concepto                   | En la plaza 3D de la isla, cada formato (texto, audio, video, infografía, interactivo) es un objeto al que se camina; el estudiante elige y puede cambiar | 30  |
+| 🧩 Practicar   | Aplicar con retroalimentación inmediata | Micro-ejercicios: las respuestas son faroles en la plaza; explicación del porqué                                                                          | 40  |
+| 🎮 Reto        | Usar la competencia en una situación    | Minijuego en 3D o en versión accesible, con dificultad adaptativa                                                                                         | 80  |
+| 💬 Reflexionar | Metacognición                           | Pregunta abierta escrita en la bitácora de la plaza; Brújula la lee con una rúbrica                                                                       | 40  |
+| 🏆 Desafío     | Demostrar la competencia bajo presión   | Combate contra la Bruma: la linterna solo se carga respondiendo bien con la competencia de la isla                                                        | 120 |
 
 ## Evaluación por criterios
 

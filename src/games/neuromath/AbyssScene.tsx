@@ -1,4 +1,3 @@
-import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useLayoutEffect, useMemo, useRef, type RefObject } from 'react';
 import {
@@ -15,6 +14,8 @@ import type { ArenaState } from '../shared/arena/core';
 import { ABYSS, DECK, deckSegments, tileSpot } from './abyss';
 import { TIMES, type Build } from './buildFlow';
 import { ACCENT } from './colors';
+import { Label } from './Label';
+import { useCompact } from './useCompact';
 import { Plank, type PlankLook } from './parts';
 
 const STONE = '#9fa9b6';
@@ -149,6 +150,7 @@ function TileMesh({
   highlight: boolean;
 }) {
   const spot = tileSpot(index, count);
+  const compact = useCompact();
   const mat = useRef<MeshStandardMaterial>(null);
   useFrame(({ clock }) => {
     if (mat.current)
@@ -172,17 +174,13 @@ function TileMesh({
         <boxGeometry args={[1.3, 0.02, 0.18]} />
         <meshStandardMaterial color={ACCENT} flatShading />
       </mesh>
-      <Html center position={[0, 1.15, 0]} zIndexRange={[5, 0]}>
-        <span
-          aria-hidden="true"
-          className="pointer-events-none flex items-center gap-1.5 border-[1.5px] border-ink bg-plate px-1.5 py-1 font-display text-xs leading-tight font-bold whitespace-nowrap text-ink"
-        >
-          <span className="grid size-5 shrink-0 place-items-center bg-ink text-land-sun">
-            {index + 1}
-          </span>
-          <span>{label}</span>
-        </span>
-      </Html>
+      <Label
+        text={label}
+        badge={String(index + 1)}
+        position={[0, 1.2, 0]}
+        height={0.5}
+        compact={compact}
+      />
     </group>
   );
 }
@@ -346,14 +344,7 @@ export function BridgeDeck({
               look={lookFor(i, segments.length)}
               tone={BUILD.wood}
             />
-            <Html center position={[0, 0.9, (s.z0 + s.z1) / 2]} zIndexRange={[4, 0]}>
-              <span
-                aria-hidden="true"
-                className="pointer-events-none border-[1.5px] border-ink bg-plate px-1.5 py-0.5 font-display text-[0.6875rem] font-bold whitespace-nowrap text-ink"
-              >
-                {s.label}
-              </span>
-            </Html>
+            <Label text={s.label} position={[0, 0.8, (s.z0 + s.z1) / 2]} height={0.42} />
           </group>
         );
       })}
@@ -402,15 +393,8 @@ export function CarriedTile({
         emissiveIntensity={0.9}
         flatShading
       />
-      {label && (
-        <Html center position={[0, 0.45, 0]} zIndexRange={[6, 0]}>
-          <span
-            aria-hidden="true"
-            className="pointer-events-none border-[1.5px] border-ink bg-land-sun px-1.5 py-0.5 font-display text-[0.6875rem] font-bold whitespace-nowrap text-ink"
-          >
-            {label}
-          </span>
-        </Html>
+      {label !== null && (
+        <Label text={label} fill="#fed300" position={[0, 0.55, 0]} height={0.42} />
       )}
     </mesh>
   );

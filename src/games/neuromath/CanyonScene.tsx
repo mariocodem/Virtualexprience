@@ -1,4 +1,3 @@
-import { Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import { Vector3, type Group } from 'three';
@@ -17,6 +16,8 @@ import {
   type TestScript,
 } from './canyon';
 import { launch } from './debris';
+import { Label } from './Label';
+import { useCompact } from './useCompact';
 import { DebrisField, Plank, type Falling, type PlankLook } from './parts';
 import { plankSpots } from './workbench';
 
@@ -154,7 +155,7 @@ function CanyonCamera() {
   useFrame(({ camera }) => {
     const aspect = size.width / size.height;
     const k = Math.min(2.7, Math.max(1, 1.5 / aspect));
-    camera.position.set(0, 4.8 * k + 1.2, 14.4 * k);
+    camera.position.set(0, 4.2 * k + 1, 12.2 * k);
     camera.lookAt(look);
   });
   return null;
@@ -207,6 +208,7 @@ function ShelfPiece({
   clickable: boolean;
   onPiece: () => void;
 }) {
+  const compact = useCompact();
   const spacing = Math.min(2.5, 17 / count);
   const x = (index - (count - 1) / 2) * spacing;
   const used = placedAt >= 0;
@@ -236,18 +238,13 @@ function ShelfPiece({
         <boxGeometry args={[Math.min(1.7, spacing - 0.5), 0.03, 0.2]} />
         <meshStandardMaterial color={ISLE.neuromath} flatShading />
       </mesh>
-      <Html center position={[0, 1.0, 0]} zIndexRange={[5, 0]}>
-        <span
-          aria-hidden="true"
-          className="pointer-events-none flex items-center gap-1 border-[1.5px] border-ink bg-plate px-1 py-0.5 font-display text-xs font-bold whitespace-nowrap text-ink"
-        >
-          <span className="grid size-5 shrink-0 place-items-center bg-ink text-land-sun">
-            {index + 1}
-          </span>
-          <span className="hidden sm:inline">{label}</span>
-          {used && <span className="hidden text-ink-soft sm:inline">· tramo {placedAt + 1}</span>}
-        </span>
-      </Html>
+      <Label
+        text={`${label}${used ? ` · tramo ${String(placedAt + 1)}` : ''}`}
+        badge={String(index + 1)}
+        position={[0, 1.05, 0]}
+        height={0.3}
+        compact={compact}
+      />
     </group>
   );
 }
@@ -278,6 +275,7 @@ export function CanyonScene({
   onTarget: (slot: number) => void;
   onDone: (serial: number) => void;
 }) {
+  const compact = useCompact();
   const wpm = worldPerMeter(bridge.gap);
   const spots = useMemo(() => plankSpots(bridge, selected), [bridge, selected]);
   const vis = useRef<Vis>({
@@ -397,14 +395,13 @@ export function CanyonScene({
               onTarget(s.slot);
             }}
           />
-          <Html center position={[(s.x0 + s.x1) / 2, 1.1, 0]} zIndexRange={[4, 0]}>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none border-[1.5px] border-ink bg-plate px-1 py-0.5 font-display text-[0.6875rem] font-bold whitespace-nowrap text-ink"
-            >
-              {s.slot + 1} · {s.label}
-            </span>
-          </Html>
+          <Label
+            text={s.label}
+            badge={String(s.slot + 1)}
+            position={[(s.x0 + s.x1) / 2, 0.9, 0]}
+            height={0.32}
+            compact={compact}
+          />
         </group>
       ))}
       {ghostLength > 0.25 &&

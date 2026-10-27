@@ -382,7 +382,9 @@ export function PuenteDeLuz({
     if (near?.kind === 'abutment')
       return build.carried
         ? { keys: 'E', text: 'Colocar la loseta en el puente' }
-        : { keys: 'E', text: 'Quitar el último tramo' };
+        : build.placed.length > 0
+          ? { keys: 'E', text: 'Quitar el último tramo' }
+          : { keys: '1-5', text: 'Elige una loseta y vuelve aquí para tender el puente' };
     if (near?.kind === 'lever') return { keys: 'E', text: 'Probar el puente con la palanca' };
     return null;
   })();
@@ -399,7 +401,7 @@ export function PuenteDeLuz({
         onAccessible={onAccessible}
         hud={
           <>
-            <div className="absolute top-3 left-3 grid w-[min(16rem,50vw)] gap-2">
+            <div className="absolute top-14 left-3 grid w-[min(16rem,50vw)] gap-2 sm:top-3">
               <HudPanel className="grid gap-2">
                 <HudMeter
                   label={content.bruma.name}
@@ -430,7 +432,7 @@ export function PuenteDeLuz({
                       </span>
                     )}
                   </p>
-                  <ul className="mt-2 flex flex-wrap gap-1.5">
+                  <ul className="mt-2 grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap">
                     {challenge.bridge.pieces.map((piece, i) => {
                       const placedAt = build.placed.indexOf(piece.id);
                       const carrying = build.carried === piece.id;
@@ -441,8 +443,11 @@ export function PuenteDeLuz({
                             aria-keyshortcuts={String(i + 1)}
                             aria-pressed={carrying}
                             disabled={!building || placedAt >= 0}
-                            onClick={() => {
+                            onClick={(event) => {
                               act.take(piece.id);
+                              event.currentTarget
+                                .closest<HTMLElement>('[role="application"]')
+                                ?.focus();
                             }}
                             className="flex min-h-11 items-center gap-1.5 border-[1.5px] border-sea-100 px-2 py-1 text-left text-xs text-plate hover:border-land-sun disabled:opacity-45 aria-pressed:border-land-sun aria-pressed:bg-land-sun aria-pressed:text-ink"
                           >

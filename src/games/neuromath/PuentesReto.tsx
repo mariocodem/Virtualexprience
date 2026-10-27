@@ -23,7 +23,7 @@ import { Button } from '@/ui/Button';
 import { cx } from '@/ui/cx';
 import { Controls } from '../shared/controls';
 import { GameStage } from '../shared/GameStage';
-import { Banner, HudPanel, KeyHint } from '../shared/hud';
+import { Banner, HudPanel } from '../shared/hud';
 import type { ControlHelp } from '../shared/stage';
 import { CanyonScene, type CanyonRun } from './CanyonScene';
 import { ArenaLights } from '../shared/scene/ArenaScenery';
@@ -339,7 +339,7 @@ function Canyon({
         camera={{ fov: 42, position: [0, 8, 21], near: 0.5, far: 200 }}
         hud={
           <>
-            <div className="absolute top-3 left-3 grid w-[min(21rem,calc(100%-6rem))] gap-2 sm:w-[min(21rem,50%)]">
+            <div className="absolute top-14 left-3 grid w-[min(21rem,calc(100%-6rem))] gap-2 sm:top-3 sm:w-[min(21rem,50%)]">
               <HudPanel className="grid gap-1.5">
                 <p className="toponym text-[0.625rem] text-sea-100">
                   Puente {number} de {total} · {CONCEPT_LABEL[bridge.concept]}
@@ -389,7 +389,7 @@ function Canyon({
                     Tramos: {state.selected.length} de {bridge.slots} · ranura elegida:{' '}
                     {Math.min(target, bridge.slots - 1) + 1}
                   </p>
-                  <ul className="mt-1.5 flex flex-wrap gap-1.5">
+                  <ul className="mt-1.5 grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap">
                     {bridge.pieces.map((piece, i) => {
                       const on = state.selected.includes(piece.id);
                       return (
@@ -399,8 +399,11 @@ function Canyon({
                             aria-pressed={on}
                             aria-keyshortcuts={String(i + 1)}
                             disabled={locked || (!on && full)}
-                            onClick={() => {
+                            onClick={(event) => {
                               press(piece.id);
+                              event.currentTarget
+                                .closest<HTMLElement>('[role="application"]')
+                                ?.focus();
                             }}
                             className="flex min-h-11 items-center gap-1.5 border-[1.5px] border-sea-100 px-2 py-1 text-left text-xs text-plate hover:border-land-sun disabled:opacity-45 aria-pressed:border-land-sun aria-pressed:bg-land-sun aria-pressed:text-ink"
                           >
@@ -436,11 +439,6 @@ function Canyon({
                     </Button>
                   </div>
                 </HudPanel>
-              )}
-              {!state.settled && !running && (
-                <KeyHint keys="T">
-                  Probar con la vagoneta · 1 a {bridge.pieces.length} elige piezas
-                </KeyHint>
               )}
             </div>
           </>

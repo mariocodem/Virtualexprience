@@ -1,4 +1,5 @@
 import { Outlet, ScrollRestoration, useMatches } from 'react-router';
+import { DemoLoader } from '@/progress/DemoLoader';
 import { SkipLink } from '@/ui/SkipLink';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
@@ -22,6 +23,7 @@ export function RootLayout() {
       </main>
       {!immersive && <SiteFooter />}
       <ScrollRestoration />
+      <DemoLoader />
     </>
   );
 }

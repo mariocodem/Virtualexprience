@@ -19,7 +19,7 @@ export default defineConfig([
     '.claude',
   ]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,cts}'],
     extends: [
       js.configs.recommended,
       tseslint.configs.strictTypeChecked,

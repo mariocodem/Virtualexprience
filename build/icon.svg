@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Icono propio del ejecutable: el Faro Minuto sobre su isla, con la paleta de la plancha. -->
+  <rect width="1024" height="1024" fill="#0b2347"/>
+  <circle cx="512" cy="840" r="620" fill="#0f2e5c"/>
+  <circle cx="512" cy="840" r="470" fill="#173f75"/>
+  <circle cx="512" cy="840" r="330" fill="#004b93"/>
+  <path d="M548 300 L1024 150 L1024 470 Z" fill="#fff1a6" opacity="0.42"/>
+  <path d="M476 300 L0 190 L0 410 Z" fill="#fff1a6" opacity="0.24"/>
+  <ellipse cx="512" cy="842" rx="318" ry="104" fill="#5e9e4b"/>
+  <ellipse cx="512" cy="826" rx="226" ry="72" fill="#a9b94a"/>
+  <ellipse cx="512" cy="814" rx="138" ry="42" fill="#fed300"/>
+  <path d="M436 812 L470 392 H554 L588 812 Z" fill="#f3f6f8"/>
+  <path d="M452 612 L459 532 H565 L572 612 Z" fill="#d7262e"/>
+  <path d="M441 752 L447 690 H577 L583 752 Z" fill="#d7262e"/>
+  <rect x="446" y="356" width="132" height="36" fill="#f3f6f8"/>
+  <rect x="472" y="262" width="80" height="94" fill="#fed300"/>
+  <path d="M472 262 V356 M512 262 V356 M552 262 V356" stroke="#0f2e5c" stroke-width="8"/>
+  <path d="M454 262 L512 196 L570 262 Z" fill="#d7262e"/>
+  <rect x="504" y="170" width="16" height="30" fill="#d7262e"/>
+</svg>

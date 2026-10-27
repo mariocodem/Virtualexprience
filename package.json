@@ -1,11 +1,14 @@
 {
   "name": "archipielago-virtux",
+  "productName": "Virtual Experience Engineering SAS",
   "private": true,
   "version": "0.1.0",
   "description": "Archipiélago VirtuX: experiencia educativa inmersiva para el ecosistema VirtuXperience de UNIMINUTO.",
   "author": "Mario Mendoza Huertas",
   "license": "UNLICENSED",
   "type": "module",
+  "main": "dist-electron/main.js",
+  "desktopName": "archipielago-virtux.desktop",
   "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": ">=24"
@@ -22,7 +25,12 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "prepare": "husky",
-    "server": "node --env-file-if-exists=.env server/dev.ts"
+    "server": "node --env-file-if-exists=.env server/dev.ts",
+    "electron:dev": "tsc -p tsconfig.electron.json && electron . --dev",
+    "electron:start": "pnpm build && electron .",
+    "dist:win": "pnpm build && electron-builder --win --publish never",
+    "dist:linux": "pnpm build && electron-builder --linux --publish never",
+    "test:electron": "playwright test -c playwright.electron.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
@@ -58,6 +66,8 @@
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "electron": "44.8.0",
+    "electron-builder": "26.17.0",
     "eslint": "^9.39.5",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react-hooks": "^7.1.1",

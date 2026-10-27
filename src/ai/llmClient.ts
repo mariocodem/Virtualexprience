@@ -10,12 +10,18 @@ const ENDPOINT: string = import.meta.env.VITE_BRUJULA_URL ?? '/api/brujula';
 /** Tras un fallo del proxy se espera antes de volver a intentarlo: sin red, no se insiste. */
 const BACKOFF_MS = 60_000;
 let pausedUntil = 0;
+/** El ejecutable funciona sin red: ni siquiera intenta llamar al proxy. */
+const desktop = typeof window !== 'undefined' && window.virtux?.desktop === true;
 
 export async function askAi<T extends AiTask>(
   input: AiInput & { task: T },
   timeoutMs = 6000,
 ): Promise<AiOutput<T> | null> {
   const status = useAiStatus.getState();
+  if (desktop) {
+    status.setMode('sin-conexion');
+    return null;
+  }
   if (Date.now() < pausedUntil) return null;
   try {
     const response = await fetch(ENDPOINT, {

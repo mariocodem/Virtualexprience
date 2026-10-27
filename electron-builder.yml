@@ -1,0 +1,40 @@
+# Ejecutable «Virtual Experience Engineering SAS» (CLAUDE.md §12); el nombre sale de `productName` en package.json.
+appId: co.virtualexperience.archipielago
+copyright: © 2026 Mario Mendoza Huertas
+directories:
+  output: release
+  buildResources: build
+# La web ya va empaquetada por Vite: el ejecutable solo lleva el build y el proceso principal.
+files:
+  - dist/**
+  - '!dist/**/*.map'
+  - dist-electron/**
+  - build/icon.png
+  - package.json
+  - '!node_modules/**'
+asar: true
+win:
+  icon: build/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Virtual Experience Engineering SAS
+  installerLanguages: [es_ES]
+  language: '3082'
+  artifactName: Virtual-Experience-Engineering-SAS-${version}-instalador.${ext}
+portable:
+  artifactName: Virtual-Experience-Engineering-SAS-${version}-portable.${ext}
+linux:
+  icon: build/icon.png
+  category: Education
+  target: [AppImage]
+  synopsis: Experiencia educativa inmersiva del Archipiélago VirtuX
+  artifactName: Virtual-Experience-Engineering-SAS-${version}.${ext}

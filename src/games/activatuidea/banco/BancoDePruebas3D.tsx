@@ -195,9 +195,10 @@ function CameraAim() {
   const camera = useThree((s) => s.camera);
   const size = useThree((s) => s.size);
   useEffect(() => {
-    const distance = Math.min(30, Math.max(9.8, 15.6 / (size.width / size.height)));
-    camera.position.set(0, distance * 0.5, distance);
-    camera.lookAt(0, 1.2, -0.4);
+    const distance = Math.min(30, Math.max(10, 19.5 / (size.width / size.height)));
+    camera.position.set(0, distance * 0.55, distance);
+    // El banco queda en la franja libre entre la franja de arriba y el panel de abajo.
+    camera.lookAt(0, 0.5, 0.8);
     camera.updateProjectionMatrix();
   }, [camera, size.width, size.height]);
   return null;
@@ -354,46 +355,33 @@ function TallerGame({
       touch={false}
       hud={
         <>
-          <div className="absolute top-3 left-3 grid w-60 gap-2 max-sm:w-52">
-            <HudPanel className="grid gap-2">
+          <div className="absolute top-3 right-44 left-3 max-sm:top-14 max-sm:right-3 sm:right-72">
+            <HudPanel className="flex flex-wrap items-center gap-x-6 gap-y-1 py-2">
               <p className="toponym text-[0.625rem] text-sea-100">
                 Prueba {state.index + 1} de {queue.length} · {round.title}
               </p>
-              <div>
-                <p className="text-xs text-sea-100">Materiales disponibles</p>
-                <p
-                  className="font-display text-2xl font-extrabold text-land-sun tabular-nums"
-                  aria-label={`Materiales disponibles: ${String(state.budget)}`}
-                >
-                  {state.budget}
-                  {state.phase === 'iterar' && cost > 0 && (
-                    <span className="ml-2 text-sm font-bold text-plate">− {cost}</span>
-                  )}
-                </p>
-              </div>
+              <p
+                className="font-display text-lg font-extrabold text-land-sun tabular-nums"
+                aria-label={`Materiales disponibles: ${String(state.budget)}`}
+              >
+                <span className="mr-2 text-xs font-semibold text-sea-100">Materiales</span>
+                {state.budget}
+                {state.phase === 'iterar' && cost > 0 && (
+                  <span className="ml-2 text-sm font-bold text-plate">− {cost}</span>
+                )}
+              </p>
               <HudMeter
+                className="min-w-44 flex-1"
                 label="Satisfacción de quienes tienen el problema"
                 value={avg / 100}
                 text={`${String(avg)} % · meta ${String(content.goal)} %`}
               />
-              <div className="grid gap-2 max-sm:hidden">
-                {content.users.map((u) => (
-                  <HudMeter
-                    key={u.id}
-                    label={u.target ? u.name : `${u.name} (sin el problema)`}
-                    value={(state.satisfaction[u.id] ?? 0) / 100}
-                    text={`${String(Math.round(state.satisfaction[u.id] ?? 0))} %`}
-                    tone={u.target ? 'sun' : 'low'}
-                  />
-                ))}
-              </div>
             </HudPanel>
           </div>
           {banner && <Banner text={banner.text} at={banner.at} />}
           <div
             className={cx(
-              'pointer-events-auto absolute inset-x-3 bottom-3 max-h-[52%] overflow-y-auto bg-plate p-4 text-ink [--focus:var(--route)] plate-rule',
-              'sm:inset-x-auto sm:top-16 sm:right-3 sm:max-h-none sm:w-[26rem]',
+              'pointer-events-auto absolute inset-x-3 bottom-3 max-h-[46%] overflow-y-auto bg-plate p-3 text-ink [--focus:var(--route)] plate-rule',
             )}
           >
             {state.phase === 'escuchar' && (
@@ -480,7 +468,7 @@ function TallerGame({
                 text={`«${said.quote}»`}
                 bg={ATLAS.plate}
                 fg={ATLAS.ink}
-                font={22}
+                font={28}
                 wrap={330}
               />
             )}
@@ -559,7 +547,7 @@ function ListenPanel({
       <p className="mt-1 text-xs text-ink-soft">
         Elige un comentario (↑ ↓) y mándalo a una canasta con 1, 2 o 3.
       </p>
-      <ul className="mt-3 grid gap-2">
+      <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {round.feedback.map((f) => {
           const mine = answers[f.id];
           const on = f.id === selected;
@@ -615,7 +603,7 @@ function ListenPanel({
           );
         })}
       </ul>
-      <Button size="lg" className="mt-4" disabled={!done} onClick={onDone}>
+      <Button size="lg" className="mt-3" disabled={!done} onClick={onDone}>
         Guardar mis notas
       </Button>
     </section>
@@ -649,27 +637,29 @@ function BuildPanel({
       <p className="mt-1 text-sm">
         Acertaste {right} de {notes.length}.
       </p>
-      <ul className="mt-2 grid gap-1">
-        {notes.map((n) => (
-          <li
-            key={n.id}
-            className={cx(
-              'border-l-[3px] bg-plate-sunk px-3 py-1.5 text-xs',
-              n.right ? 'border-isle-latidosocial' : 'border-land-high',
-            )}
-          >
-            <span className="font-semibold">{names[n.userId]}:</span>{' '}
-            {n.right
-              ? `${KIND_LABEL[n.kind]}.`
-              : `anotaste «${n.mine ? KIND_LABEL[n.mine] : '—'}»; era «${KIND_LABEL[n.kind]}». ${n.why}`}
-          </li>
-        ))}
+      <ul className="mt-1 grid gap-1">
+        {notes
+          .filter((n) => !n.right)
+          .map((n) => (
+            <li
+              key={n.id}
+              className={cx(
+                'border-l-[3px] bg-plate-sunk px-3 py-1.5 text-xs',
+                n.right ? 'border-isle-latidosocial' : 'border-land-high',
+              )}
+            >
+              <span className="font-semibold">{names[n.userId]}:</span>{' '}
+              {`anotaste «${n.mine ? KIND_LABEL[n.mine] : '—'}»; era «${KIND_LABEL[n.kind]}». ${n.why}`}
+            </li>
+          ))}
       </ul>
-      <h3 className="mt-4 font-display text-base font-extrabold">Estante: hasta {MAX_CHANGES}</h3>
-      <p className="text-xs text-ink-soft tabular-nums">
-        Materiales: {cost} de {state.budget}.
-      </p>
-      <ul className="mt-2 grid gap-1.5">
+      <h3 className="mt-2 font-display text-base font-extrabold">
+        Estante: hasta {MAX_CHANGES}{' '}
+        <span className="text-xs font-normal text-ink-soft tabular-nums">
+          · materiales {cost} de {state.budget}
+        </span>
+      </h3>
+      <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {round.changes.map((change, i) => {
           const on = picks.includes(change.id);
           const blocked = !on && !canAdd(state, round, picks, change.id);
@@ -713,7 +703,7 @@ function BuildPanel({
           );
         })}
       </ul>
-      <Button size="lg" className="mt-4" onClick={onBuild}>
+      <Button size="lg" className="mt-3" onClick={onBuild}>
         {picks.length === 0 ? 'Probar sin cambios' : 'Construir y probar con agua'}
       </Button>
     </section>
@@ -756,7 +746,7 @@ function TestPanel({
           ))}
         </ul>
       )}
-      <Button size="lg" className="mt-4" onClick={onNext}>
+      <Button size="lg" className="mt-3" onClick={onNext}>
         {last ? 'Ver el informe del taller' : 'Siguiente prueba'}
       </Button>
     </section>

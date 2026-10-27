@@ -173,9 +173,9 @@ export function Person({
 export function Baskets({ highlight }: { highlight: FeedbackKind | null }) {
   const kinds: FeedbackKind[] = ['patron', 'aislado', 'fuera'];
   return (
-    <group position={[-5.3, 0, 1.6]} rotation-y={0.35}>
+    <group position={[-5.6, 0, -0.9]} rotation-y={0.6}>
       {kinds.map((kind, i) => (
-        <group key={kind} position={[i * 1.45, 0, 0]}>
+        <group key={kind} position={[0, 0, i * 1.5]}>
           <mesh position-y={0.28} castShadow>
             <cylinderGeometry args={[0.55, 0.42, 0.56, 8]} />
             <meshStandardMaterial color={BUILD.thatch} flatShading />
@@ -214,7 +214,7 @@ export interface ShelfItem {
 /** Estante con una pieza por cambio; las elegidas se levantan y brillan. */
 export function Shelf({ items, still }: { items: readonly ShelfItem[]; still: boolean }) {
   return (
-    <group position={[4.9, 0, 0.4]} rotation-y={-0.5}>
+    <group position={[5.2, 0, -0.6]} rotation-y={-0.6}>
       <mesh position={[0, 1.2, -0.3]} castShadow receiveShadow>
         <boxGeometry args={[3.2, 2.4, 0.16]} />
         <meshStandardMaterial color={BUILD.woodDark} flatShading />
@@ -283,7 +283,7 @@ export function Coins({
     if (node.instanceColor) node.instanceColor.needsUpdate = true;
   }, [budget, preview, count, dummy]);
   return (
-    <group position={[-5.4, 0.78, -0.6]}>
+    <group position={[-4.2, 0.78, -3.4]}>
       <mesh position-y={-0.4} castShadow receiveShadow>
         <boxGeometry args={[2.2, 0.8, 1]} />
         <meshStandardMaterial color={BUILD.wood} flatShading />

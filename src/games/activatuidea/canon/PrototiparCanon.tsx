@@ -229,7 +229,7 @@ export function PrototiparCanon({
       onAccessible={onAccessible}
       hud={
         <>
-          <div className="absolute top-3 left-3 grid w-64 gap-2">
+          <div className="absolute top-3 left-3 grid w-64 gap-2 max-sm:top-14">
             <HudPanel className="grid gap-2">
               <HudMeter
                 label={content.bruma.name}

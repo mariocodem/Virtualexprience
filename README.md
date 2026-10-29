@@ -205,8 +205,4 @@ Se regeneran con `pnpm evidencias`.
 - **Fuentes**, todas con licencia SIL Open Font License vía Fontsource: Archivo, Inter, Atkinson Hyperlegible y OpenDyslexic.
 - **3D e icono**: todo el 3D se genera con primitivas de three.js; el icono del ejecutable es propio (`build/icon.svg`).
 
-## Autor
 
-**Mario Mendoza Huertas** · [@mariocodem](https://github.com/mariocodem)
-
-Prueba técnica de selección para UNIMINUTO · VirtuXperience.

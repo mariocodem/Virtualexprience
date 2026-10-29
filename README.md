@@ -6,7 +6,7 @@
 
 **El ecosistema VirtuXperience de UNIMINUTO convertido en un mundo explorable.** Cada línea de formación es una isla con su sendero de estaciones, un reto jugable en 3D y una Bruma que vencer. Brújula, una guía con IA que funciona sin conexión, adapta la dificultad. Al reunir los seis fragmentos de luz, el Faro Minuto se enciende.
 
-- **Demo web**: se despliega en Vercel con [`vercel.json`](vercel.json) (ver [Despliegue](#despliegue-web)).
+- **Demo web**: <https://mariocodem.github.io/Virtualexprience/> (con progreso precargado: <https://mariocodem.github.io/Virtualexprience/mundo?demo=1>).
 - **Ejecutable «Virtual Experience Engineering SAS»**: instalador y portable de Windows y AppImage de Linux en la sección _Releases_ del repositorio, generados por [`release.yml`](.github/workflows/release.yml).
 - **Evidencias**: [`docs/evidencias/`](docs/evidencias/), generadas con `pnpm evidencias`.
 
@@ -144,7 +144,8 @@ Los binarios quedan en `release/`. Al crear un tag `v*`, [`release.yml`](.github
 
 ### Despliegue web
 
-[`vercel.json`](vercel.json) construye con `pnpm build`, sirve `dist/` con reescritura a `index.html` para las rutas y publica el proxy de IA en `api/brujula.ts`. Las variables `LLM_*` se configuran en el proyecto de Vercel, nunca en el repositorio.
+- **GitHub Pages** (la demo pública): [`pages.yml`](.github/workflows/pages.yml) compila con `BASE_PATH=/<repositorio>/` en cada push a `main` y publica `dist/` con un `404.html` para que los enlaces directos (`/mundo/comunicarte`) abran la app. Es un sitio estático: Brújula funciona en «Modo sin conexión».
+- **Vercel** (con IA en línea): [`vercel.json`](vercel.json) construye con `pnpm build`, sirve `dist/` con reescritura a `index.html` y publica el proxy de IA en `api/brujula.ts`. Las variables `LLM_*` se configuran en el proyecto de Vercel, nunca en el repositorio.
 
 ## IA: Brújula
 
@@ -204,5 +205,3 @@ Se regeneran con `pnpm evidencias`.
 - **Logo e imágenes institucionales**: logo oficial de UNIMINUTO, suministrado por Mario Mendoza Huertas, sin alterar; imágenes del pie institucional con su procedencia en `src/assets/brand/footer/PROCEDENCIA.md`. El sitio es una propuesta conceptual, no un sitio oficial.
 - **Fuentes**, todas con licencia SIL Open Font License vía Fontsource: Archivo, Inter, Atkinson Hyperlegible y OpenDyslexic.
 - **3D e icono**: todo el 3D se genera con primitivas de three.js; el icono del ejecutable es propio (`build/icon.svg`).
-
-

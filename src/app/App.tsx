@@ -4,7 +4,10 @@ import { PreferencesEffect } from '@/a11y/PreferencesEffect';
 import { ToastProvider } from '@/ui/ToastProvider';
 import { routes } from './routes';
 
-const router = createBrowserRouter(routes);
+// Bajo GitHub Pages la app vive en /<repositorio>/: las rutas se resuelven desde ahí.
+const router = createBrowserRouter(routes, {
+  basename: import.meta.env.BASE_URL.replace(/\/$/, '') || '/',
+});
 
 export function App() {
   return (

@@ -358,9 +358,9 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-[120rem] items-center justify-between gap-6 px-4 lg:px-10">
           <Link
             to="/"
-            className="hidden min-h-10 items-center toponym text-[0.6875rem] text-ink no-underline sm:inline-flex"
+            className="hidden min-h-10 items-center toponym text-[0.6875rem] font-extrabold text-ink no-underline sm:inline-flex"
           >
-            Archipiélago VirtuX
+            Virtual Experience
           </Link>
           <div className="flex items-center gap-x-6">
             <nav aria-label="Archipiélago VirtuX">

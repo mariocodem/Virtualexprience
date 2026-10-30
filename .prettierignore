@@ -4,6 +4,7 @@ release
 coverage
 playwright-report
 test-results
+.vercel
 pnpm-lock.yaml
 .impeccable
 .claude

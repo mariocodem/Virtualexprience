@@ -1,0 +1,8 @@
+{
+  // Vercel compila las funciones con el tsconfig más cercano a api/: mismas reglas que el
+  // servidor, pero reescribiendo los imports `.ts` a `.js` en la salida que ejecuta Node.
+  "extends": "../tsconfig.server.json",
+  "compilerOptions": {
+    "rewriteRelativeImportExtensions": true
+  }
+}

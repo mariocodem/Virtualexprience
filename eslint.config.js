@@ -14,6 +14,7 @@ export default defineConfig([
     'coverage',
     'playwright-report',
     'test-results',
+    '.vercel',
     '.impeccable',
     // Worktrees de agentes y configuración local de Claude Code.
     '.claude',

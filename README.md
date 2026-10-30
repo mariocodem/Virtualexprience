@@ -6,7 +6,7 @@
 
 **El ecosistema VirtuXperience de UNIMINUTO convertido en un mundo explorable.** Cada línea de formación es una isla con su sendero de estaciones, un reto jugable en 3D y una Bruma que vencer. Brújula, una guía con IA que funciona sin conexión, adapta la dificultad. Al reunir los seis fragmentos de luz, el Faro Minuto se enciende.
 
-- **Demo web**: <https://mariocodem.github.io/Virtualexprience/> (con progreso precargado: <https://mariocodem.github.io/Virtualexprience/mundo?demo=1>).
+- **Demo web**: <https://archipielago-virtux.vercel.app> (con progreso precargado: <https://archipielago-virtux.vercel.app/mundo?demo=1>). Espejo estático en GitHub Pages: <https://mariocodem.github.io/Virtualexprience/>.
 - **Ejecutable «Virtual Experience Engineering SAS»**: instalador y portable de Windows y AppImage de Linux en la sección _Releases_ del repositorio, generados por [`release.yml`](.github/workflows/release.yml).
 - **Evidencias**: [`docs/evidencias/`](docs/evidencias/), generadas con `pnpm evidencias`.
 
@@ -145,7 +145,7 @@ Los binarios quedan en `release/`. Al crear un tag `v*`, [`release.yml`](.github
 ### Despliegue web
 
 - **GitHub Pages** (la demo pública): [`pages.yml`](.github/workflows/pages.yml) compila con `BASE_PATH=/<repositorio>/` en cada push a `main` y publica `dist/` con un `404.html` para que los enlaces directos (`/mundo/comunicarte`) abran la app. Es un sitio estático: Brújula funciona en «Modo sin conexión».
-- **Vercel** (con IA en línea): [`vercel.json`](vercel.json) construye con `pnpm build`, sirve `dist/` con reescritura a `index.html` y publica el proxy de IA en `api/brujula.ts`. Las variables `LLM_*` se configuran en el proyecto de Vercel, nunca en el repositorio.
+- **Vercel** (con IA en línea, <https://archipielago-virtux.vercel.app>): conectado al repositorio, despliega cada push a `main`. [`vercel.json`](vercel.json) construye con `pnpm build`, sirve `dist/` con reescritura a `index.html` y publica el proxy de IA en `api/brujula.ts`; [`api/tsconfig.json`](api/tsconfig.json) hace que la función compilada importe `.js` en lugar de `.ts`. Las variables `LLM_*` se configuran en el proyecto de Vercel, nunca en el repositorio.
 
 ## IA: Brújula
 

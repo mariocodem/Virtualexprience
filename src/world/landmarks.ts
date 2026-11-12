@@ -15,7 +15,9 @@ import { stationLayout, type StationSpot } from './layout';
 /**
  * Construcciones de cada isla, según el lugar que representa (CLAUDE.md §2):
  * el puerto con imprenta y radio, el observatorio, la plaza del cabildo, el
- * astillero, el taller maker y el bosque con su huerta. Este módulo solo decide
+ * astillero, el taller maker y el bosque con su huerta. En el centro de cada
+ * isla, sobre la cumbre, se alza su monumento: una estatua colosal que la
+ * identifica desde cualquier punto del archipiélago. Este módulo solo decide
  * qué va dónde, de forma determinista y lejos de las paradas del sendero; el
  * relieve 3D y la carta 2D dibujan lo mismo.
  */
@@ -45,7 +47,28 @@ export type LandmarkKind =
   | 'arbol'
   | 'ceiba'
   | 'huerta'
-  | 'maloca';
+  | 'maloca'
+  | 'cerebro'
+  | 'libro'
+  | 'balanza'
+  | 'timon'
+  | 'cohete'
+  | 'corazon';
+
+/**
+ * Monumentos: una estatua gigante por isla, sobre el mismo pedestal de piedra
+ * con la franja de su acento. El cerebro que habla (pensar con criterio y
+ * comunicar), el libro de matemáticas, la balanza que sopesa dilemas, el timón
+ * del rumbo, el cohete que lanza la idea y el corazón sostenido por dos manos.
+ */
+export const STATUES: ReadonlySet<LandmarkKind> = new Set([
+  'cerebro',
+  'libro',
+  'balanza',
+  'timon',
+  'cohete',
+  'corazon',
+]);
 
 /** Radio de suelo que ocupa cada construcción, en unidades del mundo. */
 export const FOOTPRINT: Record<LandmarkKind, number> = {
@@ -74,6 +97,27 @@ export const FOOTPRINT: Record<LandmarkKind, number> = {
   ceiba: 0.4,
   huerta: 0.22,
   maloca: 0.28,
+  // El pedestal de los monumentos: la estatua se asoma por encima.
+  cerebro: 0.17,
+  libro: 0.17,
+  balanza: 0.17,
+  timon: 0.17,
+  cohete: 0.17,
+  corazon: 0.17,
+};
+
+/**
+ * Altura de cada monumento sobre su terraza, en unidades del kit (antes de
+ * escalar), contando lo que se mueve: el globo, la π que flota, el fiel de la
+ * balanza, los puños del timón, la punta del cohete y el corazón al latir.
+ */
+export const MONUMENT_HEIGHT: Partial<Record<LandmarkKind, number>> = {
+  cerebro: 1.1,
+  libro: 1.22,
+  balanza: 0.97,
+  timon: 1.13,
+  cohete: 1.13,
+  corazon: 1.08,
 };
 
 /** Se asoman al mar desde la costa: su base queda en el borde de la llanura. */
@@ -112,6 +156,16 @@ interface Lot {
   count?: number;
   t?: Range;
   scale?: Range;
+  /**
+   * Hacia dónde mira: fuera de la isla (por defecto) o hacia su frente, donde
+   * llega la cámara al zarpar. Los monumentos miran al frente para verse de cara.
+   */
+  face?: 'out' | 'front';
+  /**
+   * Giro extra sobre ese frente: las estatuas planas (el timón, el corazón) se
+   * abren un poco hacia la carta, que mira desde el sur, para no verse de canto.
+   */
+  turn?: number;
 }
 
 const TOP = BAND_SCALES.length - 1;
@@ -119,13 +173,26 @@ const TOP = BAND_SCALES.length - 1;
 /** Escala del kit frente a las paradas del sendero. */
 const KIT_SCALE = 1.4;
 
-/** La construcción que corona cada isla va detrás del desafío, en la cumbre. */
-const CROWN = { level: TOP, angle: Math.PI, t: 0.55 } as const;
+/**
+ * El monumento: una estatua colosal en el centro de la cumbre (apenas corrida
+ * hacia atrás, para dejar sitio al desafío, que queda a sus pies del lado del
+ * mar), de cara al frente de la isla, donde llega la cámara al zarpar. Va
+ * primero en cada lista para que nada le quite el centro.
+ */
+const MONUMENT = { level: TOP, angle: Math.PI, t: 0.85, scale: 2.85, face: 'front' } as const;
+
+/**
+ * Lo que antes coronaba la isla (la radio, el observatorio, el aerogenerador,
+ * la ceiba) baja a la terraza de debajo de la cumbre, detrás del monumento.
+ */
+const SHOULDER = { level: TOP - 1, t: 0.5 } as const;
 
 export const LOTS: Record<IslandId, readonly Lot[]> = {
-  // Ciudad-puerto: la radio corona la isla; la imprenta y el pueblo, junto al muelle.
+  // Ciudad-puerto: el cerebro parlante en lo alto; la radio, al hombro del cerro;
+  // la imprenta y el pueblo, junto al muelle.
   comunicarte: [
-    { kind: 'radio', ...CROWN },
+    { kind: 'cerebro', ...MONUMENT },
+    { kind: 'radio', ...SHOULDER, angle: Math.PI + 0.75 },
     { kind: 'imprenta', level: 0, angle: -1.0 },
     { kind: 'muelle', level: 0, angle: -0.45, t: 0.04 },
     { kind: 'casa', level: 0, angle: [-2.7, -1.75], count: 5, t: [0.3, 0.7], scale: [0.85, 1.1] },
@@ -133,38 +200,46 @@ export const LOTS: Record<IslandId, readonly Lot[]> = {
     { kind: 'casa', level: 1, angle: [-1.7, -0.3], count: 4, t: 0.5, scale: [0.85, 1] },
     { kind: 'arbol', level: 2, angle: [-1.6, 0.6], count: 3, t: 0.5, scale: [0.8, 1] },
   ],
-  // Observatorio en la cumbre, puente geométrico hacia un islote y sólidos platónicos.
+  // El libro abierto corona el cristal; el observatorio mira el cielo desde atrás,
+  // el puente geométrico cruza a un islote y los sólidos platónicos giran.
   neuromath: [
-    { kind: 'observatorio', ...CROWN, t: 0.48, scale: 0.9 },
+    { kind: 'libro', ...MONUMENT, scale: 2.7 },
+    { kind: 'observatorio', ...SHOULDER, angle: Math.PI - 0.3, scale: 0.85 },
     { kind: 'puente', level: 0, angle: -0.6, t: 0.04 },
     { kind: 'solido', level: 0, angle: [-2.7, -1.7], count: 2, t: 0.5 },
     { kind: 'solido', level: 2, angle: [-1.3, 0.3], count: 2, t: 0.5 },
     { kind: 'solido', level: 1, angle: [2.0, 3.0], count: 2, t: 0.5 },
     { kind: 'arbol', level: 0, angle: [0.6, 1.6], count: 3, t: [0.3, 0.7], scale: [0.8, 1] },
   ],
-  // Plaza del cabildo en la meseta, campanario, casonas coloniales en las laderas.
+  // La balanza preside la plaza del cabildo, en la meseta; campanario detrás y
+  // casonas coloniales en las laderas.
   voxcivitas: [
+    { kind: 'balanza', ...MONUMENT, scale: 3 },
     { kind: 'plaza', level: TOP, angle: 0, t: 1 },
-    { kind: 'cabildo', level: TOP, angle: Math.PI, t: 0.18 },
-    { kind: 'campanario', level: TOP, angle: Math.PI - 1.05, t: 0.22 },
+    { kind: 'cabildo', level: TOP, angle: Math.PI, t: 0.12 },
+    { kind: 'campanario', level: TOP, angle: Math.PI - 1.1, t: 0.16 },
     { kind: 'casona', level: 0, angle: [-2.5, -0.6], count: 6, t: [0.35, 0.65], scale: [0.85, 1] },
     { kind: 'casona', level: 1, angle: [1.7, 3.4], count: 4, t: 0.5, scale: [0.85, 1] },
     { kind: 'arbol', level: 2, angle: [-2.2, 0.6], count: 5, t: [0.35, 0.65], scale: [0.8, 1] },
   ],
-  // Astillero con grúa en la costa, bodegas y el mercado en la terraza de arriba.
+  // El timón gobierna la isla desde lo alto; astillero con grúa en la costa,
+  // bodegas y el mercado en la terraza de arriba.
   gerencia: [
+    { kind: 'timon', ...MONUMENT, turn: 0.6 },
     { kind: 'astillero', level: 0, angle: -0.6, t: 0.04 },
     { kind: 'grua', level: 0, angle: -1.45, t: 0.4 },
     { kind: 'bodega', level: 0, angle: [0.6, 1.7], count: 2, t: 0.5 },
     { kind: 'bodega', level: 0, angle: [-2.9, -2.4], count: 1, t: 0.5 },
     { kind: 'cajas', level: 0, angle: [2.1, 3.1], count: 3, t: [0.3, 0.7] },
     { kind: 'puesto', level: 1, angle: [-2.2, -0.2], count: 5, t: 0.5, scale: [0.9, 1] },
-    { kind: 'cajas', level: TOP, angle: Math.PI, t: 0.5 },
+    { kind: 'cajas', ...SHOULDER, angle: Math.PI - 0.6 },
     { kind: 'arbol', level: 2, angle: [-1.8, 0.4], count: 3, t: 0.5, scale: [0.8, 1] },
   ],
-  // El aerogenerador corona el taller maker; domo geodésico, paneles y la bombilla de la idea.
+  // El cohete despega desde la cumbre del taller maker; el aerogenerador gira
+  // detrás, con el domo geodésico, los paneles y la bombilla de la idea.
   activatuidea: [
-    { kind: 'aerogenerador', ...CROWN },
+    { kind: 'cohete', ...MONUMENT, scale: 2.7 },
+    { kind: 'aerogenerador', ...SHOULDER, angle: Math.PI + 0.7 },
     { kind: 'taller', level: 0, angle: -0.9, scale: 0.9 },
     { kind: 'domo', level: 0, angle: -2.3, scale: 0.9 },
     { kind: 'bombilla', level: 1, angle: -0.7 },
@@ -172,9 +247,11 @@ export const LOTS: Record<IslandId, readonly Lot[]> = {
     { kind: 'panel', level: 2, angle: [-1.6, -0.4], count: 2, t: 0.5, scale: 0.85 },
     { kind: 'arbol', level: 1, angle: [-2.8, -1.8], count: 2, t: 0.5, scale: [0.8, 1] },
   ],
-  // Bosque comunitario coronado por la ceiba del encuentro, con su maloca y su huerta.
+  // El corazón late en lo alto del bosque comunitario, con la ceiba del
+  // encuentro a su espalda, la maloca y la huerta.
   latidosocial: [
-    { kind: 'ceiba', level: TOP, angle: Math.PI, t: 0.5 },
+    { kind: 'corazon', ...MONUMENT, turn: -0.45 },
+    { kind: 'ceiba', ...SHOULDER, angle: Math.PI - 0.5 },
     { kind: 'maloca', level: 0, angle: -0.85 },
     { kind: 'huerta', level: 1, angle: [-1.7, -0.4], count: 3, t: 0.5 },
     { kind: 'huerta', level: 0, angle: [-2.4, -1.9], count: 1, t: 0.5 },
@@ -263,7 +340,7 @@ export function landmarksFor(island: Island, spots: readonly StationSpot[]): Lan
         placed.push({
           kind: lot.kind,
           position: [p[0], terraceTop(island, lot.level), p[1]],
-          rotation: Math.PI / 2 - angle,
+          rotation: Math.PI / 2 - ((lot.face === 'front' ? front : angle) + (lot.turn ?? 0)),
           scale,
           level: lot.level,
           variant,
@@ -285,4 +362,11 @@ export function islandLandmarks(island: Island): Landmark[] {
     cache.set(island.id, landmarks);
   }
   return landmarks;
+}
+
+/** Lo más alto de una isla: la cima de su monumento. Ahí se ancla su rótulo. */
+export function islandCrest(island: Island): number {
+  const monument = islandLandmarks(island).find((l) => STATUES.has(l.kind));
+  if (!monument) return terraceTop(island, TOP);
+  return monument.position[1] + (MONUMENT_HEIGHT[monument.kind] ?? 0) * monument.scale;
 }

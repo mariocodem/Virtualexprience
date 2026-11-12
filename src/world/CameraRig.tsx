@@ -30,19 +30,22 @@ function overviewPose(): Pose {
   };
 }
 
-/** Pose de isla: desde mar abierto, mirando hacia el faro, con la isla al frente. */
+/**
+ * Pose de isla: desde mar abierto, mirando hacia el faro, con la isla al frente
+ * y su monumento entero en el cuadro (por eso mira un poco más arriba).
+ */
 function islandPose(island: Island): Pose {
   const { x, z } = island.position;
   const azimuth = Math.atan2(x, z);
-  const radius = 8 + island.radius * 1.7;
-  const elevation = 56 * DEG;
+  const radius = 10 + island.radius * 1.9;
+  const elevation = 54 * DEG;
   return {
     position: new Vector3(
       x + Math.sin(azimuth) * Math.cos(elevation) * radius,
       Math.sin(elevation) * radius,
       z + Math.cos(azimuth) * Math.cos(elevation) * radius,
     ),
-    target: new Vector3(x, 1.2, z),
+    target: new Vector3(x, 2.7, z),
     minDistance: 7,
     maxDistance: 34,
   };

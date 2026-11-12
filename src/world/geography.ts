@@ -28,7 +28,8 @@ export const LIGHTHOUSE_ISLAND = { position: { x: 0, z: 0 }, radius: 1.9, seed: 
 
 /**
  * Carácter del relieve de una isla: todas tienen cinco terrazas, pero cada una
- * con su silueta, su pendiente y su costa, según el lugar que representa.
+ * con su silueta, su pendiente y su costa, según el lugar que representa. La
+ * cumbre es ancha: es el escenario del monumento y del desafío, a sus pies.
  */
 export interface ReliefProfile {
   /** Escala de cada franja, de la costa a la cumbre. */
@@ -61,15 +62,15 @@ export const RELIEF: Record<IslandId, ReliefProfile> = {
   // Ciudad-puerto: llanura costera amplia para el pueblo y una bahía marcada.
   comunicarte: {
     ...DEFAULT_RELIEF,
-    scales: [1, 0.68, 0.5, 0.36, 0.24],
+    scales: [1, 0.7, 0.56, 0.45, 0.36],
     height: 0.4,
     harmonics: [1, 2, 5],
     amplitude: 0.13,
   },
-  // Observatorio: cristal de siete caras que sube en espiral hasta un pico alto.
+  // Observatorio: cristal de siete caras que sube en espiral, alto y facetado.
   neuromath: {
     ...DEFAULT_RELIEF,
-    scales: [1, 0.78, 0.6, 0.44, 0.3],
+    scales: [1, 0.84, 0.69, 0.56, 0.45],
     height: 0.6,
     points: 7,
     harmonics: [3],
@@ -90,16 +91,17 @@ export const RELIEF: Record<IslandId, ReliefProfile> = {
   // Astillero y mercado: isla alargada y llana, con costa ancha para varar barcos.
   gerencia: {
     ...DEFAULT_RELIEF,
-    scales: [1, 0.64, 0.46, 0.32, 0.22],
+    scales: [1, 0.72, 0.58, 0.48, 0.4],
     height: 0.3,
     harmonics: [2, 3],
     amplitude: 0.15,
     jitter: 0.04,
   },
-  // Taller maker: costa quebrada y angulosa, de piedra cortada.
+  // Taller maker: costa quebrada y angulosa, de piedra cortada; la cumbre es la
+  // plataforma de lanzamiento.
   activatuidea: {
     ...DEFAULT_RELIEF,
-    scales: [1, 0.75, 0.57, 0.41, 0.28],
+    scales: [1, 0.84, 0.7, 0.58, 0.47],
     height: 0.5,
     points: 13,
     harmonics: [3, 5],
@@ -109,7 +111,7 @@ export const RELIEF: Record<IslandId, ReliefProfile> = {
   // Bosque comunitario: lomas suaves y lobuladas, como copas de árboles.
   latidosocial: {
     ...DEFAULT_RELIEF,
-    scales: [1, 0.79, 0.61, 0.45, 0.31],
+    scales: [1, 0.8, 0.64, 0.51, 0.4],
     height: 0.44,
     points: 36,
     harmonics: [3, 4, 7],
@@ -202,11 +204,6 @@ export function bandsForIsland(island: Island): Band[] {
 /** Altura de la superficie de una terraza de la isla. */
 export function terraceTop(island: Island, level: number): number {
   return (level + 1) * reliefOf(island.id).height;
-}
-
-/** Altura de la cumbre de la isla: dónde se ancla su rótulo. */
-export function islandSummit(island: Island): number {
-  return BAND_SCALES.length * reliefOf(island.id).height;
 }
 
 export function bandsForLighthouse(): Band[] {

@@ -15,7 +15,7 @@ import {
 } from './geography';
 import { islandLandmarks } from './landmarks';
 import { LandmarkSigns } from './LandmarkSigns';
-import { ATLAS } from './palette';
+import { ATLAS, landColor } from './palette';
 
 const toPath = (outline: readonly Point[]) =>
   `M${outline.map(([x, z]) => `${x.toFixed(2)},${z.toFixed(2)}`).join('L')}Z`;
@@ -116,7 +116,7 @@ export const ArchipelagoPlate2D = memo(function ArchipelagoPlate2D({
         return (
           <g key={island.id}>
             {bands.map((d, level) => (
-              <path key={level} d={d} fill={ATLAS.land[level]} />
+              <path key={level} d={d} fill={landColor(island.id, level)} />
             ))}
             <LandmarkSigns landmarks={landmarks} />
             {!lit && <path d={bands[0]} fill={ATLAS.haze} fillOpacity={0.32} />}

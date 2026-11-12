@@ -7,6 +7,7 @@ import {
   landmarksFor,
   LOTS,
   SEAWARD,
+  STATUES,
   STOP_CLEARANCE,
   type LandmarkKind,
 } from '@/world/landmarks';
@@ -24,12 +25,22 @@ function inside([x, z]: Point, polygon: readonly Point[]): boolean {
 
 /** La construcción que identifica a cada isla, y solo a ella. */
 const SIGNATURE: Record<IslandId, LandmarkKind[]> = {
-  comunicarte: ['imprenta', 'radio', 'muelle'],
-  neuromath: ['observatorio', 'puente', 'solido'],
-  voxcivitas: ['cabildo', 'plaza', 'campanario'],
-  gerencia: ['astillero', 'grua', 'puesto'],
-  activatuidea: ['taller', 'aerogenerador', 'domo'],
-  latidosocial: ['ceiba', 'maloca', 'huerta'],
+  comunicarte: ['imprenta', 'radio', 'muelle', 'cerebro'],
+  neuromath: ['observatorio', 'puente', 'solido', 'libro'],
+  voxcivitas: ['cabildo', 'plaza', 'campanario', 'balanza'],
+  gerencia: ['astillero', 'grua', 'puesto', 'timon'],
+  activatuidea: ['taller', 'aerogenerador', 'domo', 'cohete'],
+  latidosocial: ['ceiba', 'maloca', 'huerta', 'corazon'],
+};
+
+/** El monumento de cada isla: su estatua gigante. */
+const MONUMENT: Record<IslandId, LandmarkKind> = {
+  comunicarte: 'cerebro',
+  neuromath: 'libro',
+  voxcivitas: 'balanza',
+  gerencia: 'timon',
+  activatuidea: 'cohete',
+  latidosocial: 'corazon',
 };
 
 const TOP = BAND_SCALES.length - 1;
@@ -47,6 +58,29 @@ describe('construcciones de las islas', () => {
         if (other === island.id) continue;
         for (const kind of signature) expect(kinds, `${kind} de ${other}`).not.toContain(kind);
       }
+    });
+
+    it(`${island.name}: alza su monumento en el centro de la cumbre, de cara al mar abierto`, () => {
+      const monuments = landmarks.filter((l) => STATUES.has(l.kind));
+      expect(monuments.map((l) => l.kind)).toEqual([MONUMENT[island.id]]);
+      const [monument] = monuments;
+      if (!monument) throw new Error('sin monumento');
+      // En la cumbre y cerca de su centro: a menos de un tercio de su radio.
+      const summit = bands[TOP]?.outline ?? [];
+      const [cx, cz] = summit
+        .reduce<[number, number]>((s, [x, z]) => [s[0] + x, s[1] + z], [0, 0])
+        .map((v) => v / summit.length) as [number, number];
+      const reach = Math.min(...summit.map(([x, z]) => Math.hypot(x - cx, z - cz)));
+      expect(monument.level).toBe(TOP);
+      expect(Math.hypot(monument.position[0] - cx, monument.position[2] - cz)).toBeLessThan(
+        reach / 3,
+      );
+      // Su frente (+Z) mira hacia mar abierto, donde llega la cámara (a lo sumo 40° de giro).
+      const facing = { x: Math.sin(monument.rotation), z: Math.cos(monument.rotation) };
+      const toSea = Math.hypot(island.position.x, island.position.z);
+      expect((facing.x * island.position.x + facing.z * island.position.z) / toSea).toBeGreaterThan(
+        Math.cos((40 * Math.PI) / 180),
+      );
     });
 
     it(`${island.name}: coloca casi todo lo previsto`, () => {

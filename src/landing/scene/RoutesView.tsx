@@ -8,7 +8,7 @@ import type { IslandId } from '@/types/domain';
 import { ArchipelagoScene } from '@/world/scene/ArchipelagoScene';
 import { LabelProjector } from '@/world/scene/LabelProjector';
 import { useLanding } from '../landingStore';
-import { MAP_ANCHORS } from './anchors';
+import { TOUR_ANCHORS } from './anchors';
 
 const DEG = Math.PI / 180;
 
@@ -87,7 +87,7 @@ export default function RoutesView({ container, labels, litIslands, still }: Rou
     <View className="absolute inset-0">
       <RoutesCamera still={still} />
       <ArchipelagoScene litIslands={litIslands} activeIsland={active} still={still} />
-      <LabelProjector anchors={MAP_ANCHORS} container={container} labels={labels} />
+      <LabelProjector anchors={TOUR_ANCHORS} container={container} labels={labels} />
     </View>
   );
 }

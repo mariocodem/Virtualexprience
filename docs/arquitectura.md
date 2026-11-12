@@ -105,6 +105,7 @@ Las decisiones de arquitectura están en [`docs/adr/`](adr/):
 3. [Mundo navegable](adr/0003-mundo-navegable.md)
 4. [Juegos 3D con versión accesible](adr/0004-juegos-3d.md)
 5. [Ejecutable con Electron y protocolo propio](adr/0005-ejecutable-electron.md)
+6. [Un monumento colosal en el centro de cada isla](adr/0006-monumentos.md)
 
 ## Calidad
 

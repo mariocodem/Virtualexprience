@@ -4,7 +4,7 @@ import type { Group, Mesh, MeshStandardMaterial } from 'three';
 import type { Island } from '@/types/domain';
 import { islandLandmarks, type Landmark } from '../landmarks';
 import { ATLAS, BUILD, ISLE } from '../palette';
-import { islandKit } from './landmarkKit';
+import { islandKit, pieceGeometry, PLINTH_TOP, STATUE_MOTION, type Part } from './landmarkKit';
 
 /** Las islas sin su fragmento quedan veladas por la bruma, también sus construcciones. */
 const haze = (lit: number) => ({ emissive: ATLAS.haze, emissiveIntensity: (1 - lit) * 0.22 });
@@ -12,7 +12,8 @@ const haze = (lit: number) => ({ emissive: ATLAS.haze, emissiveIntensity: (1 - l
 /**
  * Lo construido en una isla: una sola malla para lo estático y, aparte, lo que
  * se mueve (la radio que transmite, la cúpula del observatorio, la bandera del
- * cabildo, la grúa, las aspas, la bombilla y la ceiba que late). Decorativo.
+ * cabildo, la grúa, las aspas, la bombilla, la ceiba que late y lo vivo de cada
+ * monumento). Decorativo.
  */
 export function IslandLandmarks({
   island,
@@ -59,6 +60,12 @@ const MOVES = new Set<Landmark['kind']>([
   'aerogenerador',
   'bombilla',
   'ceiba',
+  'cerebro',
+  'libro',
+  'balanza',
+  'timon',
+  'cohete',
+  'corazon',
 ]);
 
 function Moving({ landmark, lit, still }: { landmark: Landmark; lit: number; still: boolean }) {
@@ -79,6 +86,28 @@ function Moving({ landmark, lit, still }: { landmark: Landmark; lit: number; sti
       return <Bulb still={still} />;
     case 'ceiba':
       return <Canopy lit={lit} still={still} />;
+    case 'cerebro':
+      return (
+        <>
+          <ThoughtWaves still={still} />
+          <SpeechBubble lit={lit} still={still} />
+        </>
+      );
+    case 'libro':
+      return (
+        <>
+          <FloatingPi still={still} />
+          <OrbitingGlyphs still={still} />
+        </>
+      );
+    case 'balanza':
+      return <ScaleBeam lit={lit} still={still} />;
+    case 'timon':
+      return <HelmWheel lit={lit} still={still} />;
+    case 'cohete':
+      return <Rocket lit={lit} still={still} />;
+    case 'corazon':
+      return <Heart still={still} />;
     default:
       return null;
   }
@@ -283,6 +312,12 @@ function Bulb({ still }: { still: boolean }) {
   );
 }
 
+/** Latido doble (lub-dub) cada 1,6 s: lo comparten la ceiba y el corazón de LatidoSocial. */
+function heartbeat(time: number): number {
+  const t = time % 1.6;
+  return Math.exp(-((t - 0.1) ** 2) / 0.003) + 0.6 * Math.exp(-((t - 0.32) ** 2) / 0.003);
+}
+
 const CANOPY = [
   { at: [0, 0.06, 0] as const, r: 0.36, color: BUILD.leaf[0] },
   { at: [0.22, 0, 0.08] as const, r: 0.26, color: BUILD.leaf[1] },
@@ -294,10 +329,8 @@ const CANOPY = [
 function Canopy({ lit, still }: { lit: number; still: boolean }) {
   const ref = useRef<Group>(null);
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.elapsedTime % 1.6;
-    const beat = Math.exp(-((t - 0.1) ** 2) / 0.003) + 0.6 * Math.exp(-((t - 0.32) ** 2) / 0.003);
-    ref.current.scale.setScalar(still ? 1 : 1 + beat * 0.035);
+    if (ref.current)
+      ref.current.scale.setScalar(still ? 1 : 1 + heartbeat(clock.elapsedTime) * 0.035);
   });
   return (
     <group ref={ref} position-y={0.62}>
@@ -307,6 +340,279 @@ function Canopy({ lit, still }: { lit: number; still: boolean }) {
           <meshStandardMaterial color={c.color} flatShading roughness={0.9} {...haze(lit)} />
         </mesh>
       ))}
+    </group>
+  );
+}
+
+/** Pieza móvil de un monumento: varias partes fundidas en una malla con color por vértice. */
+function Piece({ name, parts, lit }: { name: string; parts: () => readonly Part[]; lit: number }) {
+  return (
+    <mesh geometry={pieceGeometry(name, parts)} castShadow>
+      <meshStandardMaterial vertexColors flatShading roughness={0.8} {...haze(lit)} />
+    </mesh>
+  );
+}
+
+const DOTS = [-0.075, 0, 0.075];
+
+/** Globo de diálogo junto al cerebro: flota y sus tres puntos escriben, como quien va a hablar. */
+function SpeechBubble({ lit, still }: { lit: number; still: boolean }) {
+  const ref = useRef<Group>(null);
+  const dots = useRef<(Mesh | null)[]>([]);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (ref.current)
+      ref.current.position.y = PLINTH_TOP + 0.74 + (still ? 0 : Math.sin(t * 1.3) * 0.025);
+    dots.current.forEach((dot, k) => {
+      dot?.scale.setScalar(still ? 1 : 1 + 0.55 * Math.max(0, Math.sin(t * 4.2 - k * 0.9)));
+    });
+  });
+  return (
+    <group ref={ref} position={[0.3, PLINTH_TOP + 0.74, 0.04]}>
+      <Piece name="bubble" parts={STATUE_MOTION.bubble} lit={lit} />
+      {DOTS.map((x, k) => (
+        <mesh
+          key={x}
+          ref={(mesh) => {
+            dots.current[k] = mesh;
+          }}
+          position-x={x}
+          rotation-x={Math.PI / 2}
+        >
+          <cylinderGeometry args={[0.026, 0.026, 0.07, 8]} />
+          <meshStandardMaterial color={ISLE.comunicarte} flatShading />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+/** Ondas de pensamiento: anillos que se abren alrededor del cerebro, como la radio del puerto. */
+function ThoughtWaves({ still }: { still: boolean }) {
+  const waves = useRef<(Mesh | null)[]>([]);
+  useFrame(({ clock }) => {
+    waves.current.forEach((wave, i) => {
+      if (!wave) return;
+      const k = (clock.elapsedTime * 0.32 + i / 3) % 1;
+      wave.scale.setScalar(1 + k * 1.25);
+      (wave.material as MeshStandardMaterial).opacity = still ? 0 : 0.5 * (1 - k) ** 1.6;
+    });
+  });
+  return (
+    <group position-y={PLINTH_TOP + 0.4}>
+      {[0, 1, 2].map((i) => (
+        <mesh
+          key={i}
+          ref={(mesh) => {
+            waves.current[i] = mesh;
+          }}
+          rotation-x={Math.PI / 2}
+        >
+          <torusGeometry args={[0.32, 0.012, 3, 40]} />
+          <meshStandardMaterial
+            color={BRAIN_WAVE}
+            emissive={BRAIN_WAVE}
+            emissiveIntensity={0.6}
+            transparent
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+const BRAIN_WAVE = '#f2a7c0';
+
+/** Signos que orbitan el libro: más, por y igual, cada uno girando sobre sí. */
+const GLYPHS = [
+  {
+    name: 'mas',
+    color: ATLAS.sun,
+    parts: [
+      [0.16, 0.045],
+      [0.045, 0.16],
+    ],
+  },
+  {
+    name: 'por',
+    color: ATLAS.plate,
+    parts: [
+      [0.16, 0.045],
+      [0.045, 0.16],
+    ],
+    tilt: Math.PI / 4,
+  },
+  {
+    name: 'igual',
+    color: ATLAS.sun,
+    parts: [
+      [0.16, 0.04, 0.035],
+      [0.16, 0.04, -0.035],
+    ],
+  },
+] as const;
+
+function OrbitingGlyphs({ still }: { still: boolean }) {
+  const ring = useRef<Group>(null);
+  const spins = useRef<(Group | null)[]>([]);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (ring.current) ring.current.rotation.y = still ? 0.6 : t * 0.35;
+    spins.current.forEach((g, i) => {
+      if (g && !still) g.rotation.y = -t * 0.35 + Math.sin(t * 1.2 + i) * 0.4;
+    });
+  });
+  return (
+    <group ref={ring} position-y={PLINTH_TOP + 0.62}>
+      {GLYPHS.map((glyph, i) => {
+        const a = (i / GLYPHS.length) * Math.PI * 2;
+        return (
+          <group
+            key={glyph.name}
+            ref={(g) => {
+              spins.current[i] = g;
+            }}
+            position={[Math.cos(a) * 0.55, Math.sin(a * 2) * 0.08, Math.sin(a) * 0.55]}
+          >
+            <group rotation-z={'tilt' in glyph ? glyph.tilt : 0}>
+              {glyph.parts.map(([w, h, y = 0], k) => (
+                <mesh key={k} position-y={y} castShadow>
+                  <boxGeometry args={[w, h, 0.045]} />
+                  <meshStandardMaterial
+                    color={glyph.color}
+                    emissive={glyph.color}
+                    emissiveIntensity={0.3}
+                    flatShading
+                  />
+                </mesh>
+              ))}
+            </group>
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
+/** La π dorada que gira y flota sobre el libro abierto. */
+function FloatingPi({ still }: { still: boolean }) {
+  const ref = useRef<Group>(null);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = clock.elapsedTime;
+    ref.current.rotation.y = still ? 0 : Math.sin(t * 0.5) * 0.9;
+    ref.current.position.y = PLINTH_TOP + 0.92 + (still ? 0 : Math.sin(t * 1.1) * 0.03);
+  });
+  return (
+    <group ref={ref} position={[0, PLINTH_TOP + 0.92, -0.1]}>
+      <mesh geometry={pieceGeometry('pi', STATUE_MOTION.pi)} castShadow>
+        <meshStandardMaterial
+          color={ATLAS.sun}
+          emissive={ATLAS.sun}
+          emissiveIntensity={0.55}
+          flatShading
+          roughness={0.5}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+/** Astil de la balanza que oscila; los platillos cuelgan siempre a plomo. */
+function ScaleBeam({ lit, still }: { lit: number; still: boolean }) {
+  const beam = useRef<Group>(null);
+  const pans = useRef<(Group | null)[]>([]);
+  useFrame(({ clock }) => {
+    const tilt = still ? 0.06 : Math.sin(clock.elapsedTime * 0.7) * 0.13;
+    if (beam.current) beam.current.rotation.z = tilt;
+    for (const pan of pans.current) if (pan) pan.rotation.z = -tilt;
+  });
+  return (
+    <group ref={beam} position={[0, PLINTH_TOP + 0.62, 0.05]}>
+      <Piece name="beam" parts={STATUE_MOTION.beam} lit={lit} />
+      {([-1, 1] as const).map((side, k) => (
+        <group
+          key={side}
+          ref={(group) => {
+            pans.current[k] = group;
+          }}
+          position-x={side * 0.4}
+        >
+          <Piece name={`pan${String(side)}`} parts={() => STATUE_MOTION.pan(side)} lit={lit} />
+        </group>
+      ))}
+    </group>
+  );
+}
+
+/** Rueda del timón: va y viene, como quien corrige el rumbo. */
+function HelmWheel({ lit, still }: { lit: number; still: boolean }) {
+  const ref = useRef<Group>(null);
+  useFrame(({ clock }) => {
+    if (ref.current)
+      ref.current.rotation.z = still ? 0.2 : Math.sin(clock.elapsedTime * 0.45) * 1.1;
+  });
+  return (
+    <group ref={ref} position={[0, PLINTH_TOP + 0.5, 0.05]}>
+      <Piece name="wheel" parts={STATUE_MOTION.wheel} lit={lit} />
+    </group>
+  );
+}
+
+/** El cohete flota sobre su engranaje con la llama encendida. */
+function Rocket({ lit, still }: { lit: number; still: boolean }) {
+  const ref = useRef<Group>(null);
+  const flame = useRef<Mesh>(null);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (ref.current)
+      ref.current.position.y = PLINTH_TOP + 0.13 + (still ? 0 : Math.sin(t * 1.5) * 0.03);
+    if (flame.current)
+      flame.current.scale.y = still
+        ? 1
+        : 0.8 + 0.35 * Math.abs(Math.sin(t * 13) * Math.sin(t * 7.3));
+  });
+  return (
+    <group ref={ref} position={[0, PLINTH_TOP + 0.13, 0]}>
+      <Piece name="rocket" parts={STATUE_MOTION.rocket} lit={lit} />
+      <group ref={flame}>
+        <mesh position-y={-0.075} rotation-x={Math.PI}>
+          <coneGeometry args={[0.055, 0.15, 6]} />
+          <meshStandardMaterial
+            color={ATLAS.sun}
+            emissive="#ff8a1f"
+            emissiveIntensity={0.9}
+            flatShading
+          />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
+/** El corazón entre las manos, que late con la ceiba de la isla. */
+function Heart({ still }: { still: boolean }) {
+  const ref = useRef<Group>(null);
+  const glow = useRef<MeshStandardMaterial>(null);
+  useFrame(({ clock }) => {
+    const beat = still ? 0 : heartbeat(clock.elapsedTime);
+    ref.current?.scale.setScalar(1 + beat * 0.09);
+    if (glow.current) glow.current.emissiveIntensity = 0.18 + beat * 0.55;
+  });
+  return (
+    <group ref={ref} position={[0, PLINTH_TOP + 0.6, 0.02]}>
+      {/* Brilla con cada latido: se ve desde cualquier punto del archipiélago. */}
+      <mesh geometry={pieceGeometry('heart', STATUE_MOTION.heart)} castShadow>
+        <meshStandardMaterial
+          ref={glow}
+          color={ATLAS.route}
+          emissive={ATLAS.route}
+          emissiveIntensity={0.18}
+          flatShading
+          roughness={0.55}
+        />
+      </mesh>
     </group>
   );
 }

@@ -5,6 +5,7 @@ import {
   CylinderGeometry,
   DodecahedronGeometry,
   Euler,
+  ExtrudeGeometry,
   Float32BufferAttribute,
   IcosahedronGeometry,
   Matrix4,
@@ -12,11 +13,14 @@ import {
   Quaternion,
   SphereGeometry,
   TetrahedronGeometry,
+  Shape as ThreeShape,
   TorusGeometry,
+  Vector2,
   Vector3,
   type BufferGeometry,
 } from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { seededRandom } from '../geography';
 import type { Landmark, LandmarkKind } from '../landmarks';
 import { ATLAS, BUILD, ISLE } from '../palette';
 
@@ -43,7 +47,9 @@ export type Shape =
   | { roof: Vec3 }
   | { solid: 'ico' | 'octa' | 'tetra' | 'dodeca'; r: number }
   /** Arco de toro: radio, grosor, ángulo. */
-  | { arc: readonly [number, number, number] };
+  | { arc: readonly [number, number, number] }
+  /** Corazón extruido y abombado, de frente hacia +Z: ancho y grosor. */
+  | { heart: readonly [number, number] };
 
 export interface Part {
   shape: Shape;
@@ -79,6 +85,163 @@ function house(ctx: KitContext, w: number, roof: string, wall: string): Part[] {
           } satisfies Part,
         ]
       : []),
+  ];
+}
+
+/** Coloca piezas dentro de un marco (posición y giro): para armar figuras inclinadas o abiertas. */
+export function nest(frame: { at?: Vec3; rot?: Vec3 }, parts: readonly Part[]): Part[] {
+  const parent = new Matrix4().compose(
+    new Vector3(...(frame.at ?? [0, 0, 0])),
+    new Quaternion().setFromEuler(new Euler(...(frame.rot ?? [0, 0, 0]))),
+    new Vector3(1, 1, 1),
+  );
+  const p = new Vector3();
+  const q = new Quaternion();
+  const s = new Vector3();
+  const e = new Euler();
+  return parts.map((part) => {
+    new Matrix4()
+      .compose(
+        p.set(...(part.at ?? [0, 0, 0])),
+        q.setFromEuler(e.set(...(part.rot ?? [0, 0, 0]))),
+        s.set(...(part.scale ?? [1, 1, 1])),
+      )
+      .premultiply(parent)
+      .decompose(p, q, s);
+    e.setFromQuaternion(q);
+    return { ...part, at: [p.x, p.y, p.z], rot: [e.x, e.y, e.z], scale: [s.x, s.y, s.z] };
+  });
+}
+
+/** Altura de la losa del pedestal: ahí se apoya cada estatua. */
+export const PLINTH_TOP = 0.18;
+
+/**
+ * Pedestal común de los monumentos: zócalo, cuerpo de piedra con la franja del
+ * acento de la isla, placa al frente y losa clara arriba. Bajo y angosto: la
+ * estatua es la que manda, y su base cabe en la cumbre junto al desafío.
+ */
+function plinth(accent: string, w = 0.26): Part[] {
+  return [
+    { shape: { box: [w + 0.08, 0.04, w + 0.08] }, color: BUILD.stoneDark, at: [0, 0.02, 0] },
+    { shape: { box: [w, 0.11, w] }, color: BUILD.stone, at: [0, 0.095, 0] },
+    { shape: { box: [w + 0.02, 0.03, w + 0.02] }, color: accent, at: [0, 0.125, 0] },
+    { shape: { box: [w * 0.5, 0.045, 0.01] }, color: ATLAS.plate, at: [0, 0.075, w / 2 + 0.005] },
+    { shape: { box: [w + 0.05, 0.03, w + 0.05] }, color: BUILD.paving, at: [0, 0.165, 0] },
+  ];
+}
+
+/** Tono del cerebro de ComunicArte: rosado de la isla, más claro en los lóbulos. */
+const BRAIN = { lobe: '#eba5b9', fold: '#c46f8c', deep: '#b35a79' } as const;
+/** Arcilla cálida de las manos que sostienen el corazón. */
+const CLAY = { light: '#d9a271', dark: '#b97c4e' } as const;
+
+const LOBE = { r: 0.22, scale: [0.8, 0.86, 1.18] as const };
+const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+
+/**
+ * Un hemisferio del cerebro: elipsoide rosado con sus circunvoluciones, arcos
+ * cortos tendidos sobre la superficie (repartidos de forma pareja con una
+ * espiral de Fibonacci y girados al azar, con semilla: siempre el mismo cerebro).
+ */
+function lobe(side: -1 | 1, y: number): Part[] {
+  const [sx, sy, sz] = LOBE.scale;
+  const center = new Vector3(side * 0.12, y, 0);
+  const random = seededRandom(side < 0 ? 211 : 307);
+  const spin = new Quaternion();
+  const facing = new Quaternion();
+  const e = new Euler();
+  const folds: Part[] = [];
+  const N = 46;
+  for (let i = 0; i < N; i++) {
+    const uy = 1 - (2 * (i + 0.5)) / N;
+    const ring = Math.sqrt(1 - uy * uy);
+    const u = new Vector3(Math.cos(i * GOLDEN_ANGLE) * ring, uy, Math.sin(i * GOLDEN_ANGLE) * ring);
+    // Ni la base (va sobre el tronco) ni la cara interna (la cisura entre hemisferios).
+    if (u.y < -0.45 || u.x * side < -0.35) continue;
+    const normal = new Vector3(u.x / sx, u.y / sy, u.z / sz).normalize();
+    const at = new Vector3(u.x * sx, u.y * sy, u.z * sz)
+      .multiplyScalar(LOBE.r)
+      .add(center)
+      .addScaledVector(normal, -0.006);
+    facing.setFromUnitVectors(new Vector3(0, 0, 1), normal);
+    spin.setFromAxisAngle(new Vector3(0, 0, 1), random() * Math.PI * 2);
+    e.setFromQuaternion(facing.multiply(spin));
+    folds.push({
+      shape: { arc: [0.05 + random() * 0.025, 0.015, Math.PI * (0.8 + random() * 0.7)] },
+      color: BRAIN.fold,
+      at: [at.x, at.y, at.z],
+      rot: [e.x, e.y, e.z],
+    });
+  }
+  return [
+    {
+      shape: { ball: [LOBE.r, 1] },
+      color: BRAIN.lobe,
+      at: [center.x, center.y, center.z],
+      scale: [sx, sy, sz],
+    },
+    ...folds,
+  ];
+}
+
+const BOOK = { w: 0.36, h: 0.6 } as const;
+
+/**
+ * Media página del libro de NeuroMath: tapa, hojas, renglones y lo que lleva
+ * escrito (en coordenadas de la página: u desde el lomo, v desde abajo).
+ */
+function bookHalf(side: -1 | 1, glyphs: readonly Part[]): Part[] {
+  const { w, h } = BOOK;
+  const lines: Part[] = [0.2, 0.15, 0.1].map((v, k) => ({
+    shape: { box: [w * (k === 2 ? 0.42 : 0.66), 0.014, 0.006] },
+    color: BUILD.stoneDark,
+    at: [side * (w / 2 - (k === 2 ? 0.06 : 0)), v, 0.043],
+  }));
+  return nest({ rot: [0, -side * 0.36, 0] }, [
+    {
+      shape: { box: [w + 0.03, h + 0.05, 0.03] },
+      color: ISLE.neuromath,
+      at: [side * (w / 2), h / 2, -0.022],
+    },
+    {
+      shape: { box: [w - 0.02, h, 0.05] },
+      color: ATLAS.plate,
+      at: [side * (w / 2 - 0.005), h / 2, 0.015],
+    },
+    ...lines,
+    ...glyphs.map((g) => ({ ...g, at: [g.at?.[0] ?? 0, g.at?.[1] ?? 0, 0.043] as const })),
+  ]);
+}
+
+/** Barra de un trazo escrito en la página, de (u0, v0) a (u1, v1). */
+function stroke(u0: number, v0: number, u1: number, v1: number, color: string, w = 0.03): Part {
+  return {
+    shape: { box: [Math.hypot(u1 - u0, v1 - v0) + w * 0.6, w, 0.008] },
+    color,
+    at: [(u0 + u1) / 2, (v0 + v1) / 2, 0],
+    rot: [0, 0, Math.atan2(v1 - v0, u1 - u0)],
+  };
+}
+
+/** Mano abierta hacia arriba, con los dedos que se curvan hacia el centro. */
+function hand(side: -1 | 1): Part[] {
+  const fingers: Part[] = [-0.055, -0.018, 0.018, 0.055].map((z, k) => ({
+    shape: { cyl: [0.018, 0.022, k === 0 || k === 3 ? 0.11 : 0.13, 5] },
+    color: CLAY.light,
+    at: [side * 0.085, 0.06, z],
+    rot: [0, 0, side * 0.32],
+  }));
+  return [
+    { shape: { box: [0.17, 0.045, 0.15] }, color: CLAY.light, at: [0, 0, 0] },
+    ...fingers,
+    // Pulgar, hacia el frente.
+    {
+      shape: { cyl: [0.018, 0.022, 0.1, 5] },
+      color: CLAY.light,
+      at: [side * 0.02, 0.03, 0.1],
+      rot: [0.9, 0, side * 0.2],
+    },
   ];
 }
 
@@ -544,7 +707,275 @@ export const KIT: Record<LandmarkKind, (ctx: KitContext) => Part[]> = {
     { shape: { cyl: [0.012, 0.012, 0.12, 4] }, color: BUILD.woodDark, at: [0, 0.52, 0] },
     { shape: { box: [0.08, 0.12, 0.01] }, color: BUILD.woodDark, at: [0, 0.06, 0.255] },
   ],
+
+  // Monumentos. Lo que se mueve (el globo de diálogo, la π, el astil de la
+  // balanza, la rueda del timón, el cohete y el corazón) está en STATUE_MOTION.
+
+  // Pensamiento crítico: un cerebro con sus dos hemisferios y sus circunvoluciones.
+  cerebro: () => {
+    const y = PLINTH_TOP + 0.4;
+    return [
+      ...plinth(ISLE.comunicarte),
+      // Tronco y cerebelo.
+      {
+        shape: { cyl: [0.05, 0.07, 0.22, 7] },
+        color: BRAIN.deep,
+        at: [0, PLINTH_TOP + 0.11, -0.08],
+      },
+      {
+        shape: { ball: [0.1, 1] },
+        color: BRAIN.fold,
+        at: [0, y - 0.13, -0.19],
+        scale: [1.5, 0.75, 0.9],
+      },
+      ...lobe(-1, y),
+      ...lobe(1, y),
+    ];
+  },
+
+  // Lógica y matemática: un libro abierto con π y el triángulo de Pitágoras.
+  libro: () => {
+    const pi: Part[] = [
+      stroke(-0.27, 0.47, -0.1, 0.47, ATLAS.ink),
+      stroke(-0.23, 0.47, -0.235, 0.31, ATLAS.ink),
+      stroke(-0.14, 0.47, -0.13, 0.32, ATLAS.ink),
+      stroke(-0.13, 0.32, -0.1, 0.31, ATLAS.ink),
+    ];
+    const triangle: Part[] = [
+      stroke(0.1, 0.3, 0.27, 0.3, ATLAS.ink),
+      stroke(0.1, 0.3, 0.1, 0.5, ATLAS.ink),
+      stroke(0.1, 0.5, 0.27, 0.3, ISLE.neuromath),
+      { shape: { box: [0.035, 0.035, 0.008] }, color: ATLAS.route, at: [0.13, 0.33, 0] },
+    ];
+    const tilt = -0.42;
+    return [
+      ...plinth(ISLE.neuromath, 0.3),
+      // Atril de piedra que sostiene el libro inclinado.
+      {
+        shape: { box: [0.16, 0.36, 0.1] },
+        color: BUILD.stoneDark,
+        at: [0, PLINTH_TOP + 0.14, -0.14],
+        rot: [tilt, 0, 0],
+      },
+      ...nest({ at: [0, PLINTH_TOP + 0.01, 0.06], rot: [tilt, 0, 0] }, [
+        ...bookHalf(-1, pi),
+        ...bookHalf(1, triangle),
+        // Lomo y cinta marcapáginas.
+        {
+          shape: { cyl: [0.03, 0.03, BOOK.h + 0.05, 6] },
+          color: ISLE.neuromath,
+          at: [0, BOOK.h / 2, -0.03],
+        },
+        { shape: { box: [0.025, 0.2, 0.006] }, color: ATLAS.route, at: [0.01, -0.06, 0.03] },
+      ]),
+    ];
+  },
+
+  // Ética y ciudadanía: la columna de la balanza que sopesa los dilemas.
+  balanza: () => [
+    ...plinth(ISLE.voxcivitas),
+    {
+      shape: { cyl: [0.06, 0.12, 0.08, 8] },
+      color: ISLE.voxcivitas,
+      at: [0, PLINTH_TOP + 0.04, 0],
+    },
+    {
+      shape: { cyl: [0.03, 0.045, 0.6, 8] },
+      color: ISLE.voxcivitas,
+      at: [0, PLINTH_TOP + 0.36, 0],
+    },
+    { shape: { ball: [0.05, 0] }, color: ATLAS.sun, at: [0, PLINTH_TOP + 0.7, 0] },
+  ],
+
+  // Liderazgo y rumbo: el poste del timón; la rueda gira aparte.
+  timon: () => [
+    ...plinth(ISLE.gerencia),
+    { shape: { box: [0.11, 0.5, 0.11] }, color: BUILD.woodDark, at: [0, PLINTH_TOP + 0.25, -0.08] },
+    { shape: { box: [0.15, 0.04, 0.15] }, color: ISLE.gerencia, at: [0, PLINTH_TOP + 0.48, -0.08] },
+    {
+      shape: { cyl: [0.03, 0.03, 0.1, 6] },
+      color: BUILD.metal,
+      at: [0, PLINTH_TOP + 0.5, -0.02],
+      rot: [Math.PI / 2, 0, 0],
+    },
+  ],
+
+  // Emprendimiento: el engranaje de lanzamiento y la nube del despegue.
+  cohete: () => {
+    const teeth: Part[] = Array.from({ length: 10 }, (_, k) => {
+      const a = (k / 10) * Math.PI * 2;
+      return {
+        shape: { box: [0.05, 0.06, 0.06] },
+        color: BUILD.metal,
+        at: [Math.sin(a) * 0.18, PLINTH_TOP + 0.03, Math.cos(a) * 0.18],
+        rot: [0, a, 0],
+      } satisfies Part;
+    });
+    const puffs: Part[] = [0, 1, 2, 3, 4, 5].map((k) => {
+      const a = k * 1.05 + 0.3;
+      return {
+        shape: { ball: [0.055 + (k % 2) * 0.025, 1] },
+        color: ATLAS.plate,
+        at: [Math.sin(a) * 0.15, PLINTH_TOP + 0.08 + (k % 3) * 0.015, Math.cos(a) * 0.15],
+      } satisfies Part;
+    });
+    return [
+      ...plinth(ISLE.activatuidea),
+      {
+        shape: { cyl: [0.165, 0.165, 0.06, 12] },
+        color: BUILD.metal,
+        at: [0, PLINTH_TOP + 0.03, 0],
+      },
+      { shape: { cyl: [0.08, 0.08, 0.065, 8] }, color: ATLAS.sun, at: [0, PLINTH_TOP + 0.03, 0] },
+      ...teeth,
+      ...puffs,
+    ];
+  },
+
+  // Impacto social: dos brazos de arcilla que levantan el corazón.
+  corazon: () =>
+    [-1, 1]
+      .flatMap((side) => {
+        const s = side as -1 | 1;
+        return [
+          {
+            shape: { cyl: [0.045, 0.06, 0.4, 6] },
+            color: CLAY.dark,
+            at: [s * 0.13, PLINTH_TOP + 0.18, 0],
+            rot: [0, 0, -s * 0.38],
+          } satisfies Part,
+          ...nest({ at: [s * 0.2, PLINTH_TOP + 0.39, 0], rot: [0, 0, s * 0.5] }, hand(s)),
+        ];
+      })
+      .concat(plinth(ISLE.latidosocial)),
 };
+
+/**
+ * Lo que se mueve de cada monumento, en coordenadas del grupo que lo anima:
+ * IslandLandmarks lo coloca, lo funde en una sola malla y lo mueve.
+ */
+export const STATUE_MOTION = {
+  /** Globo de diálogo del cerebro; los tres puntos laten aparte. */
+  bubble: (): Part[] => [
+    {
+      shape: { cyl: [0.15, 0.15, 0.05, 12] },
+      color: ATLAS.plate,
+      rot: [Math.PI / 2, 0, 0],
+      scale: [1.25, 1, 1],
+    },
+    {
+      shape: { cone: [0.06, 0.13, 4] },
+      color: ATLAS.plate,
+      at: [-0.1, -0.14, 0],
+      rot: [0, 0, 2.6],
+    },
+  ],
+  /** La π dorada que flota sobre el libro. */
+  pi: (): Part[] => [
+    { shape: { box: [0.28, 0.055, 0.055] }, color: ATLAS.sun, at: [0, 0.09, 0] },
+    {
+      shape: { box: [0.055, 0.2, 0.055] },
+      color: ATLAS.sun,
+      at: [-0.06, -0.02, 0],
+      rot: [0, 0, -0.06],
+    },
+    {
+      shape: { box: [0.055, 0.19, 0.055] },
+      color: ATLAS.sun,
+      at: [0.06, -0.02, 0],
+      rot: [0, 0, 0.08],
+    },
+    { shape: { box: [0.07, 0.045, 0.055] }, color: ATLAS.sun, at: [0.1, -0.11, 0] },
+  ],
+  /** Astil de la balanza con su fiel; los platillos cuelgan aparte. */
+  beam: (): Part[] => [
+    { shape: { box: [0.8, 0.035, 0.04] }, color: ISLE.voxcivitas, at: [0, 0, 0] },
+    { shape: { box: [0.025, 0.16, 0.025] }, color: ATLAS.sun, at: [0, 0.07, 0.03] },
+    { shape: { ball: [0.03, 0] }, color: ATLAS.sun, at: [-0.4, 0, 0] },
+    { shape: { ball: [0.03, 0] }, color: ATLAS.sun, at: [0.4, 0, 0] },
+  ],
+  /** Platillo que cuelga del astil, con lo que se pone en cada lado. */
+  pan: (side: -1 | 1): Part[] => [
+    {
+      shape: { cyl: [0.005, 0.005, 0.29, 3] },
+      color: ATLAS.ink,
+      at: [-0.06, -0.13, 0],
+      rot: [0, 0, -0.43],
+    },
+    {
+      shape: { cyl: [0.005, 0.005, 0.29, 3] },
+      color: ATLAS.ink,
+      at: [0.06, -0.13, 0],
+      rot: [0, 0, 0.43],
+    },
+    { shape: { cyl: [0.14, 0.07, 0.05, 10] }, color: ATLAS.sun, at: [0, -0.28, 0] },
+    side < 0
+      ? { shape: { ball: [0.045, 0] }, color: ISLE.voxcivitas, at: [0, -0.22, 0] }
+      : {
+          shape: { box: [0.07, 0.07, 0.07] },
+          color: ATLAS.plate,
+          at: [0, -0.22, 0],
+          rot: [0, 0.5, 0],
+        },
+  ],
+  /** Rueda del timón: aro, ocho cabillas con sus puños y el cubo dorado. */
+  wheel: (): Part[] => [
+    { shape: { arc: [0.3, 0.032, Math.PI * 2] }, color: BUILD.wood },
+    { shape: { arc: [0.12, 0.022, Math.PI * 2] }, color: ISLE.gerencia },
+    ...[0, 1, 2, 3].map(
+      (k) =>
+        ({
+          shape: { box: [0.032, 0.66, 0.032] },
+          color: BUILD.woodDark,
+          rot: [0, 0, (k * Math.PI) / 4],
+        }) satisfies Part,
+    ),
+    ...Array.from({ length: 8 }, (_, k) => {
+      const a = (k * Math.PI) / 4;
+      return {
+        shape: { cyl: [0.022, 0.032, 0.13, 6] },
+        color: BUILD.wood,
+        at: [-Math.sin(a) * 0.39, Math.cos(a) * 0.39, 0],
+        rot: [0, 0, a],
+      } satisfies Part;
+    }),
+    {
+      shape: { cyl: [0.07, 0.07, 0.08, 10] },
+      color: ATLAS.sun,
+      rot: [Math.PI / 2, 0, 0],
+    },
+  ],
+  /** El cohete, de la tobera a la punta; la llama tiembla aparte. */
+  rocket: (): Part[] => [
+    { shape: { cyl: [0.05, 0.075, 0.07, 8] }, color: BUILD.metal, at: [0, 0.035, 0] },
+    { shape: { cyl: [0.11, 0.125, 0.46, 10] }, color: ATLAS.plate, at: [0, 0.3, 0] },
+    { shape: { cyl: [0.116, 0.116, 0.04, 10] }, color: ISLE.activatuidea, at: [0, 0.48, 0] },
+    { shape: { cone: [0.11, 0.26, 10] }, color: ATLAS.route, at: [0, 0.66, 0] },
+    {
+      shape: { cyl: [0.055, 0.055, 0.02, 10] },
+      color: ISLE.activatuidea,
+      at: [0, 0.34, 0.11],
+      rot: [Math.PI / 2, 0, 0],
+    },
+    {
+      shape: { cyl: [0.04, 0.04, 0.025, 10] },
+      color: BUILD.glass,
+      at: [0, 0.34, 0.115],
+      rot: [Math.PI / 2, 0, 0],
+    },
+    ...[0, 1, 2].map((k) => {
+      const a = (k * Math.PI * 2) / 3 + Math.PI / 3;
+      return {
+        shape: { box: [0.02, 0.18, 0.12] },
+        color: ATLAS.sun,
+        at: [Math.sin(a) * 0.15, 0.13, Math.cos(a) * 0.15],
+        rot: [0, a, 0],
+      } satisfies Part;
+    }),
+  ],
+  /** El corazón, abombado y de frente. */
+  heart: (): Part[] => [{ shape: { heart: [0.5, 0.12] }, color: ATLAS.route }],
+} as const;
 
 function geometryOf(shape: Shape): BufferGeometry {
   if ('box' in shape) return new BoxGeometry(...shape.box);
@@ -593,8 +1024,33 @@ function geometryOf(shape: Shape): BufferGeometry {
     }[shape.solid];
     return new make(shape.r, 0);
   }
+  if ('heart' in shape) return heartGeometry(...shape.heart);
   const [r, tube, arc] = shape.arc;
   return new TorusGeometry(r, tube, 4, 10, arc);
+}
+
+/**
+ * Corazón low-poly: la curva clásica x = 16 sen³t, y = 13 cos t − 5 cos 2t −
+ * 2 cos 3t − cos 4t muestreada en pocos puntos, extruida y con bisel para que
+ * se vea abombado. La punta queda abajo y el centro de la caja en el origen.
+ */
+function heartGeometry(width: number, depth: number): BufferGeometry {
+  const k = width / 32;
+  const outline = Array.from({ length: 22 }, (_, i) => {
+    const t = (i / 22) * Math.PI * 2;
+    return new Vector2(
+      16 * Math.sin(t) ** 3 * k,
+      (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t) + 2.5) * k,
+    );
+  });
+  const bevel = depth * 0.45;
+  return new ExtrudeGeometry(new ThreeShape(outline), {
+    depth,
+    bevelEnabled: true,
+    bevelThickness: bevel,
+    bevelSize: bevel * 0.8,
+    bevelSegments: 2,
+  }).translate(0, 0, -depth / 2);
 }
 
 const scratch = {
@@ -638,6 +1094,13 @@ export function landmarkMatrix(landmark: Landmark): Matrix4 {
   );
 }
 
+function mergeParts(parts: BufferGeometry[]): BufferGeometry {
+  const geometry = mergeGeometries(parts);
+  for (const part of parts) part.dispose();
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
 const merged = new Map<string, BufferGeometry>();
 
 /** Todas las piezas estáticas de una isla, fundidas en una geometría. */
@@ -651,9 +1114,19 @@ export function islandKit(key: string, landmarks: readonly Landmark[]): BufferGe
     );
   });
   if (parts.length === 0) return null;
-  const geometry = mergeGeometries(parts);
-  for (const part of parts) part.dispose();
-  geometry.computeVertexNormals();
+  const geometry = mergeParts(parts);
   merged.set(key, geometry);
+  return geometry;
+}
+
+const pieces = new Map<string, BufferGeometry>();
+
+/** Una pieza móvil hecha de varias partes, fundida una vez y compartida por todas las escenas. */
+export function pieceGeometry(key: string, parts: () => readonly Part[]): BufferGeometry {
+  let geometry = pieces.get(key);
+  if (!geometry) {
+    geometry = mergeParts(parts().map((part) => partGeometry(part)));
+    pieces.set(key, geometry);
+  }
   return geometry;
 }

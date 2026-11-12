@@ -48,3 +48,28 @@ export const BUILD = {
   trunk: '#6b4a2f',
   leaf: ['#3e7d3a', '#5e9e4b', '#2f6440', '#7aa64a'],
 } as const;
+
+const channel = (hex: string, i: number) => parseInt(hex.slice(1 + i * 2, 3 + i * 2), 16);
+
+/** Mezcla dos colores `#rrggbb`: `k` = 0 da `a`; 1 da `b`. */
+export function mixHex(a: string, b: string, k: number): string {
+  return `#${[0, 1, 2]
+    .map((i) =>
+      Math.round(channel(a, i) + (channel(b, i) - channel(a, i)) * k)
+        .toString(16)
+        .padStart(2, '0'),
+    )
+    .join('')}`;
+}
+
+/**
+ * Color de cada terraza: la hipsometría del Atlas, salvo la cumbre de las
+ * islas, teñida con su acento. Es el escenario de su monumento y, desde lejos,
+ * cada isla se distingue por ella. La carta 2D y el relieve 3D usan esta misma
+ * función.
+ */
+export function landColor(place: keyof typeof ISLE | 'faro', level: number): string {
+  const base = ATLAS.land[level] ?? ATLAS.land[0];
+  const summit = level === ATLAS.land.length - 1;
+  return place !== 'faro' && summit ? mixHex(base, ISLE[place], 0.38) : base;
+}

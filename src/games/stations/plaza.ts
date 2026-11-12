@@ -94,7 +94,8 @@ type Piece = readonly [kind: LandmarkKind, angle: number, radius: number, scale:
 /**
  * El lugar de cada isla alrededor de la plaza, con las mismas construcciones
  * de la carta: el puerto con su radio, el observatorio, el cabildo, el
- * astillero, el taller y la ceiba. El frente queda libre para la cámara.
+ * astillero, el taller, la ceiba y el monumento de cada isla. El frente queda
+ * libre para la cámara.
  */
 const SETS: Record<IslandId, readonly Piece[]> = {
   comunicarte: [
@@ -102,7 +103,7 @@ const SETS: Record<IslandId, readonly Piece[]> = {
     ['imprenta', -132, 10.6, 11],
     ['casa', -160, 10.4, 9],
     ['casa', -172, 12.2, 8],
-    ['casa', -58, 10.6, 9],
+    ['cerebro', -60, 12.6, 5.5],
     ['casa', -32, 11.2, 9],
     ['arbol', -112, 12.4, 9],
     ['arbol', -14, 11.6, 8],
@@ -112,14 +113,14 @@ const SETS: Record<IslandId, readonly Piece[]> = {
     ['solido', -140, 10.2, 9],
     ['solido', -46, 10.4, 9],
     ['solido', -166, 11.4, 8],
+    ['libro', -64, 13.6, 7],
     ['arbol', -116, 12.4, 9],
-    ['arbol', -64, 12.6, 9],
   ],
   voxcivitas: [
     ['cabildo', -90, 12.6, 11],
     ['campanario', -128, 11.4, 11],
     ['casona', -160, 10.6, 9],
-    ['casona', -56, 10.8, 9],
+    ['balanza', -60, 11.4, 5.2],
     ['casona', -26, 11.4, 9],
     ['casona', -176, 12, 8],
     ['arbol', -70, 13, 9],
@@ -133,6 +134,7 @@ const SETS: Record<IslandId, readonly Piece[]> = {
     ['puesto', -172, 10.6, 9],
     ['cajas', -132, 9.8, 9],
     ['cajas', -10, 10.4, 9],
+    ['timon', -80, 13.6, 5.2],
   ],
   activatuidea: [
     ['taller', -92, 11.4, 11],
@@ -141,7 +143,7 @@ const SETS: Record<IslandId, readonly Piece[]> = {
     ['panel', -20, 10.4, 9],
     ['panel', -166, 10.4, 9],
     ['bombilla', -116, 9.8, 9],
-    ['arbol', -72, 12.4, 9],
+    ['cohete', -70, 13.8, 5.5],
   ],
   latidosocial: [
     ['ceiba', -90, 12.6, 12],
@@ -149,7 +151,7 @@ const SETS: Record<IslandId, readonly Piece[]> = {
     ['huerta', -42, 9.8, 10],
     ['huerta', -170, 9.8, 10],
     ['arbol', -116, 11.8, 9],
-    ['arbol', -62, 12.2, 9],
+    ['corazon', -62, 13.2, 5.4],
     ['arbol', -20, 11.8, 9],
     ['arbol', -156, 12.4, 9],
   ],

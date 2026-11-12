@@ -7,6 +7,7 @@ import {
   PLAZA_RADIUS,
   stepWalker,
 } from '@/games/stations/plaza';
+import { STATUES } from '@/world/landmarks';
 
 describe('plaza de las estaciones 3D', () => {
   it('camina a la misma velocidad en diagonal y se detiene en el borde del claro', () => {
@@ -59,6 +60,8 @@ describe('plaza de las estaciones 3D', () => {
     ] as const) {
       const set = islandSet(id);
       expect(set.length).toBeGreaterThan(5);
+      // Su monumento también se ve desde la plaza.
+      expect(set.filter((piece) => STATUES.has(piece.kind))).toHaveLength(1);
       for (const piece of set) {
         const [x, , z] = piece.position;
         expect(Math.hypot(x, z)).toBeGreaterThan(PLAZA_RADIUS + 2);

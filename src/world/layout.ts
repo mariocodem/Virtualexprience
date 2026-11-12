@@ -13,14 +13,20 @@ export interface StationSpot {
 const TOP_LEVEL = BAND_SCALES.length - 1;
 /** Ángulo entre paradas consecutivas: el sendero rodea la isla mientras sube. */
 const STEP = 0.95;
+/**
+ * Arco máximo que recorre el sendero antes de la cumbre: así no se mete detrás
+ * del monumento, donde la cámara de la isla no lo vería. Si hay muchas paradas,
+ * se acercan entre sí.
+ */
+const MAX_ARC = 2.2;
 
 function centroid(points: readonly Point[]): Point {
   const sum = points.reduce<[number, number]>((acc, [x, z]) => [acc[0] + x, acc[1] + z], [0, 0]);
   return [sum[0] / points.length, sum[1] / points.length];
 }
 
-/** En la cumbre, el desafío se adelanta hacia el mar: detrás queda la construcción que corona la isla. */
-const SUMMIT_LEAD = 0.45;
+/** En la cumbre, el desafío se adelanta hacia el mar: queda a los pies del monumento, que ocupa el centro. */
+const SUMMIT_LEAD = 0.86;
 
 /**
  * Coloca las estaciones de una isla en su sendero: la primera en el puerto que
@@ -32,6 +38,7 @@ export function stationLayout(island: Island, stations: Station[]): StationSpot[
   const bands = bandsForIsland(island);
   const count = stations.length;
   const toSea = Math.atan2(island.position.z, island.position.x);
+  const step = Math.min(STEP, MAX_ARC / Math.max(1, count - 2));
 
   return stations.map((station, i) => {
     const level = count === 1 ? TOP_LEVEL : Math.round((i * TOP_LEVEL) / (count - 1));
@@ -59,7 +66,7 @@ export function stationLayout(island: Island, stations: Station[]): StationSpot[
     }
 
     // Punto del contorno más cercano al ángulo de la parada, en esta terraza y en la de arriba.
-    const index = nearest(toSea + i * STEP);
+    const index = nearest(toSea + i * step);
     const outer = band[index] ?? [island.position.x, island.position.z];
     const inner = bands[level + 1]?.outline[index] ?? outer;
     const x = (outer[0] + inner[0]) / 2;

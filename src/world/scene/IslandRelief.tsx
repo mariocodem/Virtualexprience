@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import type { Band } from '../geography';
 import { terraceColor, terraceGeometries } from './terrain';
+import type { IslandId } from '@/types/domain';
 
 export interface IslandReliefProps {
-  id: string;
+  id: IslandId | 'faro';
   bands: Band[];
   /** Altura de cada terraza. */
   height?: number;
@@ -17,7 +18,7 @@ export function IslandRelief({ id, bands, height, lit }: IslandReliefProps) {
     <group>
       {geometries.map((geometry, level) => (
         <mesh key={level} geometry={geometry} castShadow receiveShadow>
-          <meshStandardMaterial color={terraceColor(level, lit)} flatShading roughness={0.92} />
+          <meshStandardMaterial color={terraceColor(id, level, lit)} flatShading roughness={0.92} />
         </mesh>
       ))}
     </group>

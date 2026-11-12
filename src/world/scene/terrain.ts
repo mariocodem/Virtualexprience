@@ -1,6 +1,7 @@
 import { Color, ExtrudeGeometry, Shape, type BufferGeometry } from 'three';
 import { TERRACE_HEIGHT, type Band } from '../geography';
-import { ATLAS } from '../palette';
+import type { IslandId } from '@/types/domain';
+import { ATLAS, landColor } from '../palette';
 
 /** Profundidad bajo el agua de la terraza costera, para que la isla no flote. */
 const UNDERWATER = 0.6;
@@ -37,7 +38,7 @@ export function terraceGeometries(
 }
 
 /** Color de una terraza: hipsométrico pleno si la isla está encendida; con bruma si no. */
-export function terraceColor(level: number, lit: number): Color {
-  const base = new Color(ATLAS.land[level] ?? ATLAS.land[0]);
+export function terraceColor(place: IslandId | 'faro', level: number, lit: number): Color {
+  const base = new Color(landColor(place, level));
   return base.lerp(new Color(ATLAS.haze), (1 - lit) * 0.3);
 }

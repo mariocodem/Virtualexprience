@@ -52,7 +52,7 @@ El estudiante llega como Explorador/a a un archipiélago donde el **Faro Minuto*
 
 ![Landing](docs/evidencias/01-landing.jpg)
 
-**La carta y cada isla**: la cámara vuela a la isla y su sendero muestra el estado de cada estación (bloqueada, disponible, en curso, completada). Brújula marca la siguiente.
+**La carta y cada isla**: la cámara vuela a la isla y su sendero muestra el estado de cada estación (bloqueada, disponible, en curso, completada). Brújula guía el sendero: flota sobre la escala que sigue, ilumina el tramo que lleva a ella y su cartela dice qué hacer, con un botón para ir; en la carta marca con un anillo la isla a la que conviene zarpar. En el centro de cada isla se alza su monumento, una estatua colosal y animada según su línea, que la distingue desde cualquier punto del archipiélago (ver [narrativa](docs/narrativa.md#los-monumentos)).
 
 ![Isla ComunicArte con el panel de la Sala de Redacción](docs/evidencias/03-isla-comunicarte.jpg)
 
@@ -72,7 +72,9 @@ El estudiante llega como Explorador/a a un archipiélago donde el **Faro Minuto*
 
 Las seis islas están en [docs/evidencias/](docs/evidencias/) y su diseño, en [docs/juegos-3d.md](docs/juegos-3d.md).
 
-**Pasaporte**: nivel, fragmentos, sellos con fecha, avance hacia las insignias por sellar y bitácora por días. Se exporta como imagen PNG o se imprime en PDF.
+**Faro Minuto**: al pulsar el faro se abre el video «VirtuXperience: conecta, aprende y transforma» de UNIMINUTO Virtual, que presenta las seis líneas que dan nombre a las islas. Funciona sin conexión (va dentro del sitio y del ejecutable), con subtítulos, transcripción y enlace a YouTube.
+
+**Pasaporte**: nivel, fragmentos, sellos con fecha, avance hacia las insignias por sellar y bitácora por días. Cada insignia abre su ficha al pulsarla: cómo se sella, qué reconoce, tu avance o tu mejor marca, y adónde ir a ganarla. Se exporta como imagen PNG o se imprime en PDF.
 
 ![Pasaporte](docs/evidencias/04-pasaporte.jpg)
 
@@ -98,7 +100,7 @@ flowchart LR
 - **Las reglas son módulos puros probados**: los componentes 3D leen el estado y emiten eventos.
 - **Rutas con carga diferida**: la landing no espera al mundo 3D.
 
-Detalle en [docs/arquitectura.md](docs/arquitectura.md). Las decisiones de diseño están en los ADR de [docs/adr/](docs/adr/): stack, enrutado, mundo navegable, juegos 3D y ejecutable.
+Detalle en [docs/arquitectura.md](docs/arquitectura.md). Las decisiones de diseño están en los ADR de [docs/adr/](docs/adr/): stack, enrutado, mundo navegable, juegos 3D, ejecutable y monumentos de las islas.
 
 ## Tecnologías
 
@@ -150,6 +152,7 @@ Los binarios quedan en `release/`. Al crear un tag `v*`, [`release.yml`](.github
 ## IA: Brújula
 
 - **Capa 1, local y obligatoria**: estima el dominio de cada competencia con un modelo tipo Elo cuyo paso se reduce con la práctica. Con esa estimación decide la dificultad de los retos (1–5), la fuerza de la Bruma, cuándo dar una pista y cuándo proponer otro formato. Es determinista y está probada.
+- **Guía del sendero**: con esas mismas reglas Brújula elige la isla a la que zarpar y la escala que sigue, y acompaña al jugador en el mapa (brújula flotante, tramo iluminado, anillo en la carta 2D) y en su cartela, que se puede ocultar.
 - **Capa 2, opcional**: un LLM redacta la retroalimentación, lee las reflexiones, comenta los informes y da voz a la Bruma. Las salidas se validan con Zod; si algo falla, queda la versión local.
 
 Para activarla, copia `.env.example` a `.env`, pon `LLM_API_KEY` (por ejemplo, de Groq) y ejecuta `pnpm server` junto a `pnpm dev`. Al modelo solo se envía el texto de la respuesta y metadatos de nivel. Detalle y fórmulas en [docs/ia.md](docs/ia.md).
@@ -203,5 +206,6 @@ Se regeneran con `pnpm evidencias`.
 ## Créditos
 
 - **Logo e imágenes institucionales**: logo oficial de UNIMINUTO, suministrado por Mario Mendoza Huertas, sin alterar; imágenes del pie institucional con su procedencia en `src/assets/brand/footer/PROCEDENCIA.md`. El sitio es una propuesta conceptual, no un sitio oficial.
+- **Video del faro**: «UNIMINUTO Virtual - VirtuXperience: Conecta, aprende y transforma», de UNIMINUTO Virtual ([YouTube](https://www.youtube.com/watch?v=2Zf7c7ChW78)). Va recomprimido para la web (H.264 720p, `public/video/`); los subtítulos WebVTT y la transcripción se transcribieron del audio y se corrigieron contra los subtítulos del propio video.
 - **Fuentes**, todas con licencia SIL Open Font License vía Fontsource: Archivo, Inter, Atkinson Hyperlegible y OpenDyslexic.
 - **3D e icono**: todo el 3D se genera con primitivas de three.js; el icono del ejecutable es propio (`build/icon.svg`).

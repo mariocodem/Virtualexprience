@@ -91,6 +91,36 @@ test.describe('el mundo', () => {
     await expect(page.getByRole('heading', { name: 'Gran Reto Integrador' })).toBeVisible();
   });
 
+  test('pulsar el faro abre el video de VirtuXperience; Esc vuelve al panel', async ({ page }) => {
+    await page.goto('/mundo');
+    await page.getByRole('link', { name: /Faro Minuto/ }).click();
+    const video = page.getByRole('dialog', { name: /VirtuXperience/ });
+    await expect(video).toBeVisible();
+    await expect(page).toHaveURL(/\/mundo\?faro=1&video=1$/);
+    const player = video.locator('video');
+    await expect(player).toHaveAttribute('poster', /virtuxperience-portada\.jpg$/);
+    await expect(player.locator('track[kind="captions"][srclang="es"]')).toHaveCount(1);
+    await expect(video.getByRole('link', { name: /Ver en YouTube/ })).toHaveAttribute(
+      'href',
+      'https://www.youtube.com/watch?v=2Zf7c7ChW78',
+    );
+    await video.getByText('Leer la transcripción').click();
+    await expect(
+      video.getByRole('heading', { name: 'Seis líneas de competencias transversales' }),
+    ).toBeVisible();
+    expect(await seriousViolations(page)).toEqual([]);
+
+    // Esc cierra el video, no el panel: el foco vuelve al faro.
+    await page.keyboard.press('Escape');
+    await expect(video).toBeHidden();
+    await expect(page).toHaveURL(/\/mundo\?faro=1$/);
+    await expect(page.getByRole('heading', { level: 2, name: 'Faro Minuto' })).toBeFocused();
+
+    // Desde el panel se vuelve a ver.
+    await page.getByRole('button', { name: /Ver el video de VirtuXperience/ }).click();
+    await expect(video).toBeVisible();
+  });
+
   test('una isla inexistente lo dice y ofrece volver', async ({ page }) => {
     await page.goto('/mundo/atlantida');
     await expect(

@@ -40,3 +40,35 @@ test('el ejecutable abre sin red, aislado y con el modo demo', async () => {
 
   await app.close();
 });
+
+test('el video del faro se reproduce y se adelanta desde el paquete', async () => {
+  const app = await electron.launch({ executablePath: EXECUTABLE, env });
+  const page = await app.firstWindow();
+
+  // El protocolo `app://` sirve rangos: así el video arranca rápido y se puede adelantar.
+  const part = await page.evaluate(async () => {
+    const response = await fetch('/video/virtuxperience.mp4', { headers: { Range: 'bytes=0-99' } });
+    return { status: response.status, range: response.headers.get('content-range') };
+  });
+  expect(part.status).toBe(206);
+  expect(part.range).toMatch(/^bytes 0-99\/\d+$/);
+
+  await page.goto('app://archipielago/mundo?faro=1&video=1');
+  const time = await page.evaluate(async () => {
+    const video = document.querySelector<HTMLVideoElement>('dialog[open] video');
+    if (!video) return -1;
+    if (video.readyState < 1) {
+      await new Promise((resolve) => {
+        video.addEventListener('loadedmetadata', resolve, { once: true });
+      });
+    }
+    video.currentTime = 150;
+    await new Promise((resolve) => {
+      video.addEventListener('seeked', resolve, { once: true });
+    });
+    return video.currentTime;
+  });
+  expect(time).toBeCloseTo(150, 0);
+
+  await app.close();
+});

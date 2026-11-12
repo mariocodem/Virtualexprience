@@ -302,7 +302,7 @@ Rótulos de lámina: Archivo 700, filete de 1.5px, sin radio, con un hundimiento
 
 ### Dialog
 
-`<dialog>` nativo de hasta 36rem, `plate` con filete, cabecera separada por filete con título en `display` a 1.875rem, cierre de 44px; fondo `veil`. Atrapa foco, cierra con Esc.
+`<dialog>` nativo de hasta 36rem, `plate` con filete, cabecera separada por filete con título en `display` a 1.875rem, cierre de 44px; fondo `veil`. Atrapa foco, cierra con Esc. La variante `wide` (hasta 62rem) es solo para medios, como el video del faro.
 
 ### Toast (Aviso)
 

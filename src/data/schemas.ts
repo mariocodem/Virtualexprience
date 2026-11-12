@@ -123,3 +123,26 @@ export const levelsSchema = z.strictObject({
 export const islandsSchema = z.array(islandSchema).length(6);
 export const stationsSchema = z.array(stationSchema).min(1);
 export const badgesSchema = z.array(badgeSchema).min(12);
+
+/** Video del Faro Minuto: se muestra al pulsar el faro (rutas relativas a `public/`). */
+export const faroVideoSchema = z.strictObject({
+  title: z.string().min(3),
+  summary: z.string().min(10),
+  credit: z.string().min(3),
+  /** Duración en segundos. */
+  seconds: z.number().int().positive(),
+  src: z.string().regex(/^video\/[\w.-]+\.mp4$/),
+  poster: z.string().regex(/^video\/[\w.-]+\.(jpg|webp)$/),
+  /** Subtítulos WebVTT en español, corregidos contra los del propio video. */
+  captions: z.string().regex(/^video\/[\w.-]+\.vtt$/),
+  youtube: z.url(),
+  /** Transcripción completa, por temas: alternativa en texto al audio. */
+  transcript: z
+    .array(
+      z.strictObject({
+        heading: z.string().min(3),
+        paragraphs: z.array(z.string().min(10)).min(1),
+      }),
+    )
+    .min(1),
+});

@@ -12,3 +12,5 @@ blob-report
 !.env.example
 .impeccable
 .claude
+# Descarga original del video del faro (la versión web vive en public/video/)
+VIdeo

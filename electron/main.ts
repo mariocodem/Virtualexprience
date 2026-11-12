@@ -1,5 +1,6 @@
-import { existsSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
+import { Readable } from 'node:stream';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   app,
@@ -12,6 +13,7 @@ import {
   shell,
   type MenuItemConstructorOptions,
 } from 'electron';
+import { byteRange } from './range.js';
 
 /**
  * Ejecutable «Virtual Experience Engineering SAS»: carga el build de Vite desde
@@ -62,11 +64,17 @@ const MIME: Record<string, string> = {
   '.mp3': 'audio/mpeg',
   '.ogg': 'audio/ogg',
   '.wav': 'audio/wav',
+  '.mp4': 'video/mp4',
+  '.vtt': 'text/vtt; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
 };
 
 protocol.registerSchemesAsPrivileged([
-  { scheme: SCHEME, privileges: { standard: true, secure: true, supportFetchAPI: true } },
+  // `stream`: el video del faro se reproduce y se adelanta por rangos desde el paquete.
+  {
+    scheme: SCHEME,
+    privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true },
+  },
 ]);
 
 const isFile = (file: string) => existsSync(file) && statSync(file).isFile();
@@ -86,12 +94,29 @@ async function serve(request: Request): Promise<Response> {
   if (pathname.startsWith('/api/')) return new Response(null, { status: 503 });
   const file = resolveAsset(pathname);
   if (!file) return new Response('No encontrado', { status: 404 });
-  const response = await net.fetch(pathToFileURL(file).toString());
   const headers = new Headers({
     'content-type': MIME[path.extname(file)] ?? 'application/octet-stream',
     'content-security-policy': CSP,
     'x-content-type-options': 'nosniff',
+    'accept-ranges': 'bytes',
   });
+  // El video pide trozos (`Range`) para empezar rápido y poder adelantar: 206 con ese tramo.
+  const range = request.headers.get('range');
+  if (range) {
+    const size = statSync(file).size;
+    const span = byteRange(range, size);
+    if (!span) {
+      return new Response(null, {
+        status: 416,
+        headers: { 'content-range': `bytes */${String(size)}` },
+      });
+    }
+    headers.set('content-range', `bytes ${String(span.start)}-${String(span.end)}/${String(size)}`);
+    headers.set('content-length', String(span.end - span.start + 1));
+    const body = Readable.toWeb(createReadStream(file, span)) as ReadableStream<Uint8Array>;
+    return new Response(body, { status: 206, headers });
+  }
+  const response = await net.fetch(pathToFileURL(file).toString());
   return new Response(response.body, { status: response.status, headers });
 }
 

@@ -6,15 +6,27 @@ import { ButtonLink } from '@/ui/ButtonLink';
 import { IconClose } from '@/ui/icons';
 import { StationSymbol } from '@/ui/StationSymbol';
 import type { IslandId } from '@/types/domain';
+import { FaroVideoCard, FaroVideoDialog } from './FaroVideo';
 
-/** El Faro Minuto: cuánta luz tiene y qué abre al encenderse (el Gran Reto Integrador). */
+/**
+ * El Faro Minuto: cuánta luz tiene, qué abre al encenderse (el Gran Reto
+ * Integrador) y el video de VirtuXperience, que se abre al pulsar el faro.
+ */
 export function FaroPanel({
   fragments,
   finale,
+  video,
+  autoPlay,
+  onVideo,
   onClose,
 }: {
   fragments: readonly IslandId[];
   finale: FinaleRecord | null;
+  /** El video está abierto (`?video=1`). */
+  video: boolean;
+  /** Arranca solo al abrirse (no con movimiento reducido). */
+  autoPlay: boolean;
+  onVideo: (open: boolean) => void;
   onClose: () => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
@@ -49,6 +61,19 @@ export function FaroPanel({
           : `Brilla con ${String(fragments.length)} de ${String(total)} fragmentos de luz.`}
       </p>
       <ReadAloud target={panel} />
+      <FaroVideoCard
+        onOpen={() => {
+          onVideo(true);
+        }}
+      />
+      <FaroVideoDialog
+        open={video}
+        autoPlay={autoPlay}
+        onClose={() => {
+          onVideo(false);
+          requestAnimationFrame(() => heading.current?.focus());
+        }}
+      />
       <ul className="mt-4 space-y-2 border-t-[1.5px] border-ink pt-3 text-sm">
         {world.islands.map((island) => {
           const has = fragments.includes(island.id);

@@ -7,13 +7,15 @@ export interface DialogProps {
   title: string;
   description?: string;
   children?: ReactNode;
+  /** `wide`: para contenido amplio, como un video. */
+  size?: 'md' | 'wide';
 }
 
 /**
  * Diálogo modal sobre `<dialog>` nativo: atrapa el foco, cierra con Esc y
  * devuelve el foco a quien lo abrió.
  */
-export function Dialog({ open, onClose, title, description, children }: DialogProps) {
+export function Dialog({ open, onClose, title, description, children, size = 'md' }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const descriptionId = useId();
@@ -36,7 +38,7 @@ export function Dialog({ open, onClose, title, description, children }: DialogPr
       aria-labelledby={titleId}
       aria-describedby={description ? descriptionId : undefined}
       onClose={onClose}
-      className="m-auto w-[min(92vw,36rem)] bg-plate p-0 text-ink plate-rule backdrop:bg-veil"
+      className={`m-auto ${size === 'wide' ? 'w-[min(94vw,62rem)]' : 'w-[min(92vw,36rem)]'} max-h-[94dvh] bg-plate p-0 text-ink plate-rule backdrop:bg-veil`}
     >
       <div className="flex items-start justify-between gap-6 border-b-[1.5px] border-ink px-6 py-5">
         <div>

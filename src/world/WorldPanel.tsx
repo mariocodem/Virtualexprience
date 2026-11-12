@@ -96,7 +96,7 @@ export function WorldPanel({
           })}
           <li>
             <Link
-              to="?faro=1"
+              to="?faro=1&video=1"
               {...highlightProps('faro')}
               className="flex min-h-14 items-center gap-3 py-2 text-ink no-underline hover:bg-plate-sunk"
             >

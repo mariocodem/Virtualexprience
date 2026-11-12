@@ -79,6 +79,8 @@ export default function WorldPage() {
   const station = stationParam ? getStation(stationParam) : undefined;
   const openStation = island && station?.islandId === island.id ? station : undefined;
   const faroOpen = params.get('faro') === '1';
+  // Pulsar el faro abre también su video (`?video=1`); el enlace directo `?faro=1`, solo el panel.
+  const faroVideoOpen = faroOpen && params.get('video') === '1';
 
   const stations = useMemo(() => (island ? stationsOf(island.id) : []), [island]);
   const spots = useMemo(() => (island ? stationLayout(island, stations) : []), [island, stations]);
@@ -98,7 +100,7 @@ export default function WorldPage() {
 
   const selectPlace = useCallback(
     (id: IslandId | 'faro') => {
-      if (id === 'faro') setParams({ faro: '1' });
+      if (id === 'faro') setParams({ faro: '1', video: '1' });
       else void navigate(`/mundo/${id}`);
     },
     [navigate, setParams],
@@ -109,8 +111,14 @@ export default function WorldPage() {
     },
     [setParams],
   );
+  const setFaroVideo = useCallback(
+    (open: boolean) => {
+      setParams(open ? { faro: '1', video: '1' } : { faro: '1' }, { replace: !open });
+    },
+    [setParams],
+  );
   const closePanel = useCallback(() => {
-    const returnTo = stationParam ? `[data-station-link="${stationParam}"]` : 'a[href$="?faro=1"]';
+    const returnTo = stationParam ? `[data-station-link="${stationParam}"]` : 'a[href*="faro=1"]';
     setParams({});
     requestAnimationFrame(() => document.querySelector<HTMLElement>(returnTo)?.focus());
   }, [setParams, stationParam]);
@@ -119,6 +127,8 @@ export default function WorldPage() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape' || event.defaultPrevented) return;
+      // Un diálogo abierto (p. ej. el video del faro) se cierra solo con su Esc.
+      if (event.target instanceof Element && event.target.closest('dialog[open]')) return;
       if (openStation || faroOpen) closePanel();
       else if (island) void navigate('/mundo');
     };
@@ -289,6 +299,9 @@ export default function WorldPage() {
             <FaroPanel
               fragments={progress.fragments}
               finale={progress.finale}
+              video={faroVideoOpen}
+              autoPlay={!reduced}
+              onVideo={setFaroVideo}
               onClose={closePanel}
             />
           )}

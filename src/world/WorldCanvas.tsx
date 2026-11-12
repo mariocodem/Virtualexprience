@@ -4,6 +4,7 @@ import { useState, type RefObject } from 'react';
 import type { StationStatus } from '@/progress/types';
 import type { Island, IslandId } from '@/types/domain';
 import { CameraRig } from './CameraRig';
+import { GuideBeacon, type GuideBeaconProps } from './scene/GuideBeacon';
 import type { StationSpot } from './layout';
 import { ArchipelagoScene } from './scene/ArchipelagoScene';
 import { LabelProjector, type LabelAnchor } from './scene/LabelProjector';
@@ -27,6 +28,10 @@ export interface WorldCanvasProps {
   onSelectStation: (id: string) => void;
   onHover: (id: string | null) => void;
   onReady: () => void;
+  /** Dónde se posa Brújula, la guía (escala siguiente o isla a la que zarpar). */
+  guide: Omit<GuideBeaconProps, 'still'> | null;
+  /** Índice de la escala a la que guía, para iluminar el tramo del sendero que lleva a ella. */
+  guideLeg: number | undefined;
 }
 
 /**
@@ -52,6 +57,8 @@ export default function WorldCanvas(props: WorldCanvasProps) {
     onSelectStation,
     onHover,
     onReady,
+    guide,
+    guideLeg,
   } = props;
 
   return (
@@ -82,7 +89,10 @@ export default function WorldCanvas(props: WorldCanvasProps) {
         onSelect={onSelectPlace}
         onHover={onHover}
       />
-      {island && <Trail spots={spots} completed={completedInIsland} />}
+      {island && (
+        <Trail spots={spots} completed={completedInIsland} next={guideLeg} still={reduced} />
+      )}
+      {guide && <GuideBeacon {...guide} still={reduced} />}
       {island &&
         spots.map((spot) => (
           <StopMarker

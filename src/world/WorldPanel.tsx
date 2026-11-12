@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { ReadAloud } from '@/a11y/ReadAloud';
 import { stationsOf, world } from '@/data';
@@ -24,12 +24,15 @@ export function WorldPanel({
   statuses,
   suggested,
   selectedStation,
+  guide,
 }: {
   island: Island | undefined;
   progress: Progress;
   statuses: Record<string, StationStatus>;
   suggested: string | undefined;
   selectedStation: string | null;
+  /** La cartela de Brújula, entre la presentación y la lista. */
+  guide?: ReactNode;
 }) {
   const list = useRef<HTMLOListElement>(null);
   const panel = useRef<HTMLElement>(null);
@@ -61,6 +64,7 @@ export function WorldPanel({
         <p className="mt-2 text-sm text-ink-soft">
           Elige una isla para zarpar. Usa las flechas para recorrer la lista y Enter para abrir.
         </p>
+        {guide}
         <ol ref={list} className="mt-4 divide-y divide-plate-edge border-y-[1.5px] border-ink">
           {world.islands.map((entry) => {
             const p = islandProgress(progress, world, entry.id);
@@ -141,6 +145,7 @@ export function WorldPanel({
         {p.hasFragment ? `${island.fragmentName} recuperado` : `${island.fragmentName} pendiente`}
       </p>
       <ReadAloud target={panel} className="self-start" />
+      {guide}
 
       <h2 className="mt-5 toponym text-[0.6875rem]">Sendero</h2>
       <ol ref={list} className="mt-2 divide-y divide-plate-edge border-y-[1.5px] border-ink">

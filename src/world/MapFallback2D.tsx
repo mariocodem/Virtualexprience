@@ -21,6 +21,7 @@ export function MapFallback2D({
   litIslands,
   highlight,
   selectedStation,
+  guide,
   onSelectPlace,
   onSelectStation,
   onHover,
@@ -32,6 +33,8 @@ export function MapFallback2D({
   litIslands: readonly IslandId[];
   highlight: string | null;
   selectedStation: string | null;
+  /** Escala, isla o faro al que guía Brújula: lo marca un anillo que late. */
+  guide: string | null;
   onSelectPlace: (id: IslandId | 'faro') => void;
   onSelectStation: (id: string) => void;
   onHover: (id: string | null) => void;
@@ -79,6 +82,27 @@ export function MapFallback2D({
         activeIsland={island?.id ?? null}
         className="absolute inset-0 size-full"
       />
+      {size.width > 0 &&
+        guide &&
+        [...places, ...spots.map((s) => ({ id: s.stationId, x: s.position[0], z: s.position[2] }))]
+          .filter((mark) => mark.id === guide)
+          .map((mark) => {
+            const p = at(mark.x, mark.z);
+            const place = places.some((pl) => pl.id === mark.id);
+            return (
+              <span
+                key={`guia-${mark.id}`}
+                data-guide-mark={mark.id}
+                className="guide-ring pointer-events-none absolute"
+                style={{
+                  left: p.left,
+                  top: p.top,
+                  width: place ? 132 : 64,
+                  height: place ? 132 : 64,
+                }}
+              />
+            );
+          })}
       {size.width > 0 &&
         places.map((place) => {
           const p = at(place.x, place.z);

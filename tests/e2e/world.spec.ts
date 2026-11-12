@@ -18,10 +18,10 @@ test.describe('el mundo', () => {
       page.getByRole('heading', { level: 1, name: 'Carta del archipiélago' }),
     ).toBeVisible();
 
-    const comunicarte = worldList(page).getByRole('link', { name: /ComunicArte/ });
+    const comunicarte = worldList(page).getByRole('link', { name: /^ComunicArte/ });
     await comunicarte.focus();
     await page.keyboard.press('ArrowDown');
-    await expect(worldList(page).getByRole('link', { name: /NeuroMath/ })).toBeFocused();
+    await expect(worldList(page).getByRole('link', { name: /^NeuroMath/ })).toBeFocused();
     await page.keyboard.press('ArrowUp');
     await expect(comunicarte).toBeFocused();
     await page.keyboard.press('Enter');
@@ -93,7 +93,7 @@ test.describe('el mundo', () => {
 
   test('pulsar el faro abre el video de VirtuXperience; Esc vuelve al panel', async ({ page }) => {
     await page.goto('/mundo');
-    await page.getByRole('link', { name: /Faro Minuto/ }).click();
+    await page.getByRole('link', { name: /^Faro Minuto/ }).click();
     const video = page.getByRole('dialog', { name: /VirtuXperience/ });
     await expect(video).toBeVisible();
     await expect(page).toHaveURL(/\/mundo\?faro=1&video=1$/);
@@ -121,6 +121,42 @@ test.describe('el mundo', () => {
     await expect(video).toBeVisible();
   });
 
+  test('Brújula guía el sendero: de la carta a la isla y a la escala que sigue', async ({
+    page,
+  }) => {
+    // Axe, dos travesías y una recarga sobre el 3D por software: con pruebas en paralelo tarda.
+    test.slow();
+    await page.goto('/mundo');
+    const guide = page.getByRole('region', { name: 'Brújula' });
+    await expect(guide).toContainText(
+      'Empieza tu expedición en ComunicArte: su sendero arranca en «La imprenta del puerto».',
+    );
+    expect(await seriousViolations(page)).toEqual([]);
+
+    // Con teclado: la acción de la guía lleva a la isla y luego a la escala.
+    await guide.getByRole('link', { name: 'Zarpar a ComunicArte' }).focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/mundo\/comunicarte$/);
+    await expect(guide).toContainText(
+      'Sigue el sendero hasta la escala 1: «La imprenta del puerto» (Explorar · 6 min).',
+    );
+    await guide.getByRole('link', { name: 'Abrir la escala 1' }).focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\?estacion=comunicarte-imprenta$/);
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'La imprenta del puerto' }),
+    ).toBeFocused();
+
+    // Se puede ocultar, y se recuerda al volver.
+    await guide.getByRole('button', { name: 'Ocultar la guía de Brújula' }).click();
+    const reopen = page.getByRole('button', { name: 'Brújula: ¿hacia dónde sigo?' });
+    await expect(reopen).toBeVisible();
+    await page.reload();
+    await expect(reopen).toBeVisible();
+    await reopen.click();
+    await expect(guide).toBeVisible();
+  });
+
   test('una isla inexistente lo dice y ofrece volver', async ({ page }) => {
     await page.goto('/mundo/atlantida');
     await expect(
@@ -135,7 +171,7 @@ test.describe('el mundo', () => {
     await page.getByRole('radio', { name: 'Carta 2D' }).check({ force: true });
     await expect(page.locator('canvas')).toHaveCount(0);
     await worldList(page)
-      .getByRole('link', { name: /ComunicArte/ })
+      .getByRole('link', { name: /^ComunicArte/ })
       .click();
     await worldList(page)
       .getByRole('link', { name: /La imprenta del puerto/ })

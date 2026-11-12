@@ -21,8 +21,10 @@ import type { IslandId } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
 import { ArchipelagoPlate2D } from './ArchipelagoPlate2D';
 import { FaroPanel } from './FaroPanel';
-import { summitHeight } from './geography';
+import { LIGHTHOUSE_ISLAND, summitHeight } from './geography';
 import { islandCrest } from './landmarks';
+import { BrujulaGuide } from './BrujulaGuide';
+import { guideMessage, guideTarget } from './guide';
 import { stationLayout } from './layout';
 import { MapFallback2D } from './MapFallback2D';
 import { Minimap } from './Minimap';
@@ -91,6 +93,31 @@ export default function WorldPage() {
   }, [stations, progress]);
   const completed = stations.filter((s) => statuses[s.id] === 'completada').length;
   const suggested = island ? nextStation(progress, world, island.id)?.id : undefined;
+
+  // Brújula, la guía: hacia dónde sigue el sendero y dónde se posa en el mapa.
+  const target = guideTarget(progress, world, island?.id);
+  const message = guideMessage(target, progress, world);
+  const guideIndex =
+    target.kind === 'station' ? spots.findIndex((s) => s.stationId === target.station.id) : -1;
+  const guideSpot = guideIndex >= 0 ? spots[guideIndex] : undefined;
+  const guide = guideSpot
+    ? { ground: guideSpot.position, ring: 0.5, lift: 2.6 }
+    : !island && target.kind === 'island'
+      ? {
+          ground: [target.island.position.x, 0, target.island.position.z] as const,
+          ring: target.island.radius * 1.22,
+        }
+      : !island && target.kind === 'faro'
+        ? { ground: [0, 0, 0] as const, ring: LIGHTHOUSE_ISLAND.radius * 1.3 }
+        : null;
+  /** Lo que la carta 2D resalta: la escala, la isla o el faro al que guía Brújula. */
+  const guideMark =
+    guideSpot?.stationId ??
+    (!island && target.kind === 'island'
+      ? target.island.id
+      : !island && target.kind === 'faro'
+        ? 'faro'
+        : null);
 
   // Llegar a una isla la registra en la bitácora (y puede otorgar «Cartógrafo»).
   const visitIsland = state.visitIsland;
@@ -219,6 +246,8 @@ export default function WorldPage() {
                 onReady={() => {
                   setCanvasReady(true);
                 }}
+                guide={guide}
+                guideLeg={guideIndex >= 0 ? guideIndex : undefined}
               />
             </Suspense>
             {canvasReady && (
@@ -244,6 +273,7 @@ export default function WorldPage() {
             litIslands={progress.fragments}
             highlight={highlight}
             selectedStation={openStation?.id ?? null}
+            guide={guideMark}
             onSelectPlace={selectPlace}
             onSelectStation={selectStation}
             onHover={setHighlight}
@@ -279,6 +309,7 @@ export default function WorldPage() {
               statuses={statuses}
               suggested={suggested}
               selectedStation={openStation?.id ?? null}
+              guide={<BrujulaGuide message={message} />}
             />
           )}
         </div>

@@ -35,13 +35,15 @@ El dominio se traduce en el nivel de competencia que muestra el pasaporte: Inici
 
 ### Decisiones que toma
 
-| Decisión                    | Regla                                                                                                      | Dónde                                  |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| Dificultad de los retos     | `minigameLevel(m)`, de 1 a 5; cada juego la traduce a sutileza de las señales, recursos y número de rondas | Los seis minijuegos y sus versiones 3D |
-| Fuerza de la Bruma          | `bossLevel`: sube un nivel por cada Bruma vencida y el dominio la ajusta un punto arriba o abajo           | Desafío de isla y Gran Reto            |
-| Cuándo ofrecer pista        | Tras dos fallos seguidos, o tras uno si el dominio es bajo (`shouldOfferHint`)                             | Combates contra la Bruma y Gran Reto   |
-| Otro formato                | Tras dos fallos con el mismo formato, Brújula propone otro (texto, audio, video, infografía, interactivo)  | Estaciones de exploración              |
-| Siguiente estación sugerida | La primera en curso o disponible del sendero, marcada «Sugerida por Brújula»                               | Carta e isla (`nextStation`)           |
+| Decisión                    | Regla                                                                                                                                                                          | Dónde                                                                    |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| Dificultad de los retos     | `minigameLevel(m)`, de 1 a 5; cada juego la traduce a sutileza de las señales, recursos y número de rondas                                                                     | Los seis minijuegos y sus versiones 3D                                   |
+| Fuerza de la Bruma          | `bossLevel`: sube un nivel por cada Bruma vencida y el dominio la ajusta un punto arriba o abajo                                                                               | Desafío de isla y Gran Reto                                              |
+| Cuándo ofrecer pista        | Tras dos fallos seguidos, o tras uno si el dominio es bajo (`shouldOfferHint`)                                                                                                 | Combates contra la Bruma y Gran Reto                                     |
+| Otro formato                | Tras dos fallos con el mismo formato, Brújula propone otro (texto, audio, video, infografía, interactivo)                                                                      | Estaciones de exploración                                                |
+| Siguiente estación sugerida | La primera en curso o disponible del sendero, marcada «Sugerida por Brújula»                                                                                                   | Carta e isla (`nextStation`)                                             |
+| Isla a la que zarpar        | La que tiene una escala a medias; si no, la que ya empezó; si no, la primera sin su fragmento (`suggestedIsland`)                                                              | Carta (`src/world/guide.ts`)                                             |
+| Guía del sendero            | Brújula dice hacia dónde sigue (escala, desafío, isla siguiente, faro o pasaporte) y lleva allá; en el 3D flota sobre la escala con un haz e ilumina el tramo que lleva a ella | Cartela del mundo, relieve 3D y carta 2D (`guideTarget`, `guideMessage`) |
 
 ## Capa 2: Brújula con LLM (opcional)
 

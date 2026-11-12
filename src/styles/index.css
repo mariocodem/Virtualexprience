@@ -228,3 +228,27 @@
 :root[data-spacing='wide'] :is(p, ul, ol, dl) + :is(p, ul, ol, dl) {
   margin-top: 1em;
 }
+
+/*
+ * Anillo de Brújula en la carta 2D: marca la escala, la isla o el faro al que
+ * guía. Late un séptimo de marea; con movimiento reducido queda quieto y visible
+ * (su estado base es el visible, el pulso solo lo agranda y lo desvanece).
+ */
+.guide-ring {
+  border: 3px solid var(--land-sun);
+  border-radius: 50%;
+  outline: 1.5px solid var(--ink);
+  transform: translate(-50%, -50%);
+  animation: guide-pulse calc(var(--tide) / 7) var(--ease-out, ease-out) infinite;
+}
+
+@keyframes guide-pulse {
+  from {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 0.25;
+  }
+}

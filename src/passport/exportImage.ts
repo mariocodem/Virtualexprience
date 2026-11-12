@@ -2,19 +2,13 @@ import { explorerStanding } from '@/progress/levels';
 import { stampInk } from '@/progress/stampInk';
 import type { Progress } from '@/progress/types';
 import type { Badge, World } from '@/types/domain';
+import { BADGE_CATEGORIES } from '@/progress/badgeCategories';
 
 const W = 1200;
 const H = 630;
 const DISPLAY = '"Archivo Variable", "Archivo", sans-serif';
 const BODY = '"Inter Variable", "Inter", sans-serif';
 const TILT = [-7, 4, -3, 8, -5, 3, -8, 5];
-
-const CATEGORY: Record<Badge['category'], string> = {
-  competencia: 'COMPETENCIA',
-  exploracion: 'EXPLORACIÓN',
-  accesibilidad: 'ACCESIBILIDAD',
-  constancia: 'CONSTANCIA',
-};
 
 /** Resuelve `var(--token)` contra la hoja de estilos: el lienzo no entiende variables CSS. */
 function color(value: string): string {
@@ -73,7 +67,7 @@ function drawStamp(ctx: CanvasRenderingContext2D, badge: Badge, r: number, tilt:
   }
   arcText(ctx, badge.name.toUpperCase(), r * 0.66, false);
   ctx.font = `500 ${(r * 0.12).toFixed(1)}px ${DISPLAY}`;
-  arcText(ctx, CATEGORY[badge.category], r * 0.64, true);
+  arcText(ctx, BADGE_CATEGORIES[badge.category].label.toUpperCase(), r * 0.64, true);
 
   ctx.beginPath();
   for (let i = 0; i < 10; i++) {

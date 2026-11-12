@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { world } from '@/data';
+import { BadgeDialog } from '@/passport/BadgeDialog';
 import type { ProgressEvent } from '@/progress/types';
-import type { Island, Station } from '@/types/domain';
+import type { Badge, Island, Station } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
 
 /** Cierre de una estación: lo que se ganó y hacia dónde seguir el sendero. */
@@ -22,6 +23,7 @@ export function CompletionCard({
   epilogue?: string;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
+  const [openBadge, setOpenBadge] = useState<Badge | null>(null);
   useEffect(() => {
     heading.current?.focus();
   }, []);
@@ -83,14 +85,27 @@ export function CompletionCard({
           <h3 className="font-display text-lg font-bold">Sellos nuevos en tu pasaporte</h3>
           <ul className="mt-2 flex flex-wrap gap-2">
             {badges.map((b) => (
-              <li
-                key={b.id}
-                className="border-[1.5px] border-ink bg-land-sun px-3 py-1 text-sm font-semibold text-sea-950"
-              >
-                {b.name}
+              <li key={b.id}>
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={() => {
+                    setOpenBadge(b);
+                  }}
+                  className="min-h-11 border-[1.5px] border-ink bg-land-sun px-3 py-1 text-sm font-semibold text-sea-950 transition-colors duration-(--dur-fast) ease-out hover:bg-plate"
+                >
+                  {b.name}
+                  <span className="sr-only">: ver detalles de la insignia</span>
+                </button>
               </li>
             ))}
           </ul>
+          <BadgeDialog
+            badge={openBadge}
+            onClose={() => {
+              setOpenBadge(null);
+            }}
+          />
         </div>
       )}
 

@@ -4,9 +4,9 @@ import { useReducedMotion } from '@/a11y/useReducedMotion';
 import { world } from '@/data';
 import { competencyLevel, explorerStanding } from '@/progress/levels';
 import { completedCount, hasProgress, islandProgress } from '@/progress/selectors';
-import { Stamp } from '@/progress/Stamp';
 import { pickProgress, useProgress } from '@/progress/store';
 import type { Progress } from '@/progress/types';
+import type { Badge } from '@/types/domain';
 import { Button } from '@/ui/Button';
 import { ButtonLink } from '@/ui/ButtonLink';
 import { cx } from '@/ui/cx';
@@ -15,6 +15,7 @@ import { IconArrowRight } from '@/ui/icons';
 import { Panel } from '@/ui/Panel';
 import { useToast } from '@/ui/toastContext';
 import { download, passportImage } from './exportImage';
+import { BadgeDialog, StampButton } from './BadgeDialog';
 import { badgeTally, dayLabel, journalByDay, journalText } from './journal';
 
 const TILT = [-7, 4, -3, 8, -5, 3, -8, 5];
@@ -281,6 +282,7 @@ function Fragments({ progress }: { progress: Progress }) {
 
 function Stamps({ progress }: { progress: Progress }) {
   const reduced = useReducedMotion();
+  const [open, setOpen] = useState<Badge | null>(null);
   const earned = world.badges.filter((b) => b.id in progress.badges);
   const pending = world.badges.filter((b) => !(b.id in progress.badges));
   return (
@@ -289,7 +291,8 @@ function Stamps({ progress }: { progress: Progress }) {
         Sellos
       </h2>
       <p className="mt-2 text-ink-soft">
-        {earned.length} de {world.badges.length} insignias selladas.
+        {earned.length} de {world.badges.length} insignias selladas. Pulsa una insignia para ver
+        cómo se sella y qué reconoce.
       </p>
       {earned.length > 0 && (
         <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
@@ -303,7 +306,7 @@ function Stamps({ progress }: { progress: Progress }) {
               transition={{ duration: 0.38, delay: (i % 6) * 0.08, ease: [0.2, 1.4, 0.4, 1] }}
             >
               <div style={{ rotate: `${String(TILT[i % TILT.length] ?? 0)}deg` }}>
-                <Stamp badge={badge} size={128} />
+                <StampButton badge={badge} size={128} onOpen={setOpen} />
               </div>
               <p className="mt-3 text-sm text-ink-soft">
                 Sellada el{' '}
@@ -322,22 +325,39 @@ function Stamps({ progress }: { progress: Progress }) {
             {pending.map((badge) => {
               const tally = badgeTally(badge, progress, world);
               return (
-                <li key={badge.id} className="border-b-[1.5px] border-ink py-3">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <p className="font-semibold">{badge.name}</p>
-                    {tally && (
-                      <span className="shrink-0 text-sm text-ink-soft tabular-nums">
-                        {tally.current} de {tally.target}
+                <li key={badge.id} className="border-b-[1.5px] border-ink">
+                  <button
+                    type="button"
+                    aria-haspopup="dialog"
+                    onClick={() => {
+                      setOpen(badge);
+                    }}
+                    className="block w-full py-3 text-left transition-colors duration-(--dur-fast) ease-out hover:bg-plate-sunk"
+                  >
+                    <span className="flex items-baseline justify-between gap-4">
+                      <span className="font-semibold underline decoration-[1.5px] underline-offset-[0.22em]">
+                        {badge.name}
                       </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-sm text-ink-soft">{badge.description}</p>
+                      {tally && (
+                        <span className="shrink-0 text-sm text-ink-soft tabular-nums">
+                          {tally.current} de {tally.target}
+                        </span>
+                      )}
+                    </span>
+                    <span className="mt-1 block text-sm text-ink-soft">{badge.howTo}</span>
+                  </button>
                 </li>
               );
             })}
           </ul>
         </>
       )}
+      <BadgeDialog
+        badge={open}
+        onClose={() => {
+          setOpen(null);
+        }}
+      />
     </section>
   );
 }

@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import { world } from '@/data';
+import { BadgeDialog, StampButton } from '@/passport/BadgeDialog';
 import { explorerStanding } from '@/progress/levels';
-import { Stamp } from '@/progress/Stamp';
 import { useProgress } from '@/progress/store';
+import type { Badge } from '@/types/domain';
 import { ButtonLink } from '@/ui/ButtonLink';
 
 const PREVIEW_IDS = [
@@ -28,6 +30,7 @@ export function PasaportePreview({ reduced }: { reduced: boolean }) {
     (b) => b !== undefined,
   );
   const earnedCount = Object.keys(earned).length;
+  const [open, setOpen] = useState<Badge | null>(null);
 
   return (
     <section
@@ -80,16 +83,22 @@ export function PasaportePreview({ reduced }: { reduced: boolean }) {
                 transition={{ duration: 0.38, delay: i * 0.12, ease: [0.2, 1.4, 0.4, 1] }}
                 style={reduced ? { rotate: TILT[i] ?? 0 } : undefined}
               >
-                <Stamp badge={badge} size={124} />
+                <StampButton badge={badge} size={124} onOpen={setOpen} />
               </motion.li>
             ))}
           </ul>
           <figcaption className="border-t-[1.5px] border-ink px-5 py-3 text-sm text-ink-soft">
             {earnedCount > 0
-              ? 'Vista previa de algunos sellos del pasaporte; los tuyos están en la página Pasaporte.'
-              : 'Vista previa: así se ven los sellos cuando los ganas.'}
+              ? 'Vista previa de algunos sellos del pasaporte; los tuyos están en la página Pasaporte. Pulsa uno para ver cómo se sella.'
+              : 'Vista previa: así se ven los sellos cuando los ganas. Pulsa uno para ver cómo se sella.'}
           </figcaption>
         </figure>
+        <BadgeDialog
+          badge={open}
+          onClose={() => {
+            setOpen(null);
+          }}
+        />
       </div>
     </section>
   );

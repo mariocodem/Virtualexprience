@@ -1,13 +1,7 @@
 import { useId } from 'react';
 import type { Badge } from '@/types/domain';
+import { BADGE_CATEGORIES } from './badgeCategories';
 import { stampInk } from './stampInk';
-
-const CATEGORY_LABEL: Record<Badge['category'], string> = {
-  competencia: 'Competencia',
-  exploracion: 'Exploración',
-  accesibilidad: 'Accesibilidad',
-  constancia: 'Constancia',
-};
 
 function seedOf(text: string): number {
   let sum = 0;
@@ -15,8 +9,22 @@ function seedOf(text: string): number {
   return sum % 97;
 }
 
-/** Sello de insignia: anillo doble con el nombre en arco, como un sello de aduana. */
-export function Stamp({ badge, size = 132 }: { badge: Badge; size?: number }) {
+/**
+ * Sello de insignia: anillo doble con el nombre en arco, como un sello de aduana.
+ * `faded`: aún sin sellar, en tinta tenue. `decorative`: va dentro de un control
+ * que ya la nombra (p. ej. el botón que abre su ficha).
+ */
+export function Stamp({
+  badge,
+  size = 132,
+  faded = false,
+  decorative = false,
+}: {
+  badge: Badge;
+  size?: number;
+  faded?: boolean;
+  decorative?: boolean;
+}) {
   const id = useId();
   const ink = stampInk(badge);
   return (
@@ -24,9 +32,10 @@ export function Stamp({ badge, size = 132 }: { badge: Badge; size?: number }) {
       viewBox="0 0 120 120"
       width={size}
       height={size}
-      role="img"
-      aria-label={`Insignia ${badge.name}: ${badge.description}`}
-      style={{ color: ink }}
+      {...(decorative
+        ? { 'aria-hidden': true }
+        : { role: 'img', 'aria-label': `Insignia ${badge.name}: ${badge.description}` })}
+      style={faded ? { color: 'var(--ink-soft)', opacity: 0.38 } : { color: ink }}
     >
       <defs>
         <filter id={`${id}-ink`} x="-4%" y="-4%" width="108%" height="108%">
@@ -82,7 +91,7 @@ export function Stamp({ badge, size = 132 }: { badge: Badge; size?: number }) {
             textAnchor="middle"
             dominantBaseline="hanging"
           >
-            {CATEGORY_LABEL[badge.category].toUpperCase()}
+            {BADGE_CATEGORIES[badge.category].label.toUpperCase()}
           </textPath>
         </text>
         <path d="M60 40l5 13h13l-10.5 8 4 13L60 66l-11.5 8 4-13L42 53h13z" fill="currentColor" />

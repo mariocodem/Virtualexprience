@@ -3,6 +3,8 @@
     "id": "primer-zarpe",
     "name": "Primer zarpe",
     "description": "Completaste tu primera estación en el archipiélago.",
+    "howTo": "Completa cualquier estación del archipiélago, en la isla que prefieras.",
+    "meaning": "Todo recorrido empieza por una decisión: elegir por dónde entrar y dar el primer paso.",
     "category": "exploracion",
     "criterion": {
       "kind": "stations-completed",
@@ -13,6 +15,8 @@
     "id": "cartografo",
     "name": "Cartógrafo",
     "description": "Visitaste las seis islas del archipiélago.",
+    "howTo": "Zarpa desde la carta a cada una de las seis islas; basta con llegar a ellas.",
+    "meaning": "Conocer el mapa completo te deja elegir tu ruta con criterio y ver cómo se conectan las competencias.",
     "category": "exploracion",
     "criterion": {
       "kind": "islands-visited",
@@ -23,6 +27,8 @@
     "id": "diez-escalas",
     "name": "Diez escalas",
     "description": "Completaste diez estaciones, en una isla o en varias.",
+    "howTo": "Completa diez estaciones, en una sola isla o repartidas entre varias.",
+    "meaning": "Diez escalas ya son un hábito: la constancia convierte la curiosidad en aprendizaje.",
     "category": "exploracion",
     "criterion": {
       "kind": "stations-completed",
@@ -33,6 +39,8 @@
     "id": "voz-con-proposito",
     "name": "Voz con propósito",
     "description": "Completaste la ruta de ComunicArte y recuperaste el Fragmento de la Palabra.",
+    "howTo": "Completa todas las estaciones de ComunicArte, incluido su desafío, para recuperar el Fragmento de la Palabra.",
+    "meaning": "Lees con criterio, verificas antes de compartir y comunicas con claridad y propósito.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -43,6 +51,8 @@
     "id": "pensamiento-logico",
     "name": "Pensamiento lógico",
     "description": "Completaste la ruta de NeuroMath y recuperaste el Fragmento del Patrón.",
+    "howTo": "Completa todas las estaciones de NeuroMath, incluido su desafío, para recuperar el Fragmento del Patrón.",
+    "meaning": "Razonas con patrones, proporciones y estimaciones para resolver problemas reales.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -53,6 +63,8 @@
     "id": "voz-ciudadana",
     "name": "Voz ciudadana",
     "description": "Completaste la ruta de Voxcivitas y recuperaste el Fragmento de la Voz Común.",
+    "howTo": "Completa todas las estaciones de Voxcivitas, incluido su desafío, para recuperar el Fragmento de la Voz Común.",
+    "meaning": "Argumentas con respeto, sopesas dilemas éticos y participas en lo que es de todos.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -63,6 +75,8 @@
     "id": "timonel",
     "name": "Timonel",
     "description": "Completaste la ruta de Gerencia+ y recuperaste el Fragmento del Rumbo.",
+    "howTo": "Completa todas las estaciones de Gerencia+, incluido su desafío, para recuperar el Fragmento del Rumbo.",
+    "meaning": "Planeas con recursos limitados, decides con datos y llevas a un equipo a buen puerto.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -73,6 +87,8 @@
     "id": "activatuidea-encendida",
     "name": "Chispa encendida",
     "description": "Completaste la ruta de ActivaTuIdea y recuperaste el Fragmento de la Idea.",
+    "howTo": "Completa todas las estaciones de ActivaTuIdea, incluido su desafío, para recuperar el Fragmento de la Idea.",
+    "meaning": "Conviertes un problema real en un prototipo y aprendes de cada intento.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -83,6 +99,8 @@
     "id": "raices-firmes",
     "name": "Raíces firmes",
     "description": "Completaste la ruta de LatidoSocial y recuperaste el Fragmento de la Raíz.",
+    "howTo": "Completa todas las estaciones de LatidoSocial, incluido su desafío, para recuperar el Fragmento de la Raíz.",
+    "meaning": "Lees tu territorio, cuidas tu bienestar y diseñas acciones con la comunidad.",
     "category": "competencia",
     "criterion": {
       "kind": "island-completed",
@@ -93,6 +111,8 @@
     "id": "editor-riguroso",
     "name": "Editor riguroso",
     "description": "En la Sala de Redacción acertaste al menos el 80 % de las decisiones editoriales.",
+    "howTo": "En la Sala de Redacción, acierta al menos el 80 % de las decisiones de una edición: qué se publica, qué se descarta y qué se corrige.",
+    "meaning": "Un buen editor no adivina: decide con evidencia qué merece salir al aire.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -105,6 +125,8 @@
     "id": "verificador",
     "name": "Verificador",
     "description": "Usaste las cuatro pistas de verificación en una misma edición: fuente, fecha, cita e imagen.",
+    "howTo": "En una misma edición de la Sala de Redacción, investiga las cuatro pistas: la fuente, la fecha, la cita original y la imagen.",
+    "meaning": "Revisar una noticia desde varios ángulos es la mejor defensa contra la desinformación.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -117,6 +139,8 @@
     "id": "constructor-de-puentes",
     "name": "Constructor de puentes",
     "description": "En Puentes de Fractal, todos los puentes de una partida resistieron la vagoneta.",
+    "howTo": "En Puentes de Fractal, logra que todos los puentes de una partida resistan el paso de la vagoneta.",
+    "meaning": "Una proporción bien calculada sostiene el peso: aquí el razonamiento matemático se pone a prueba.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -129,6 +153,8 @@
     "id": "voz-que-une",
     "name": "Voz que une",
     "description": "En la Sesión de cabildo moderaste sin falacias ni imposiciones: todas tus intervenciones fueron deliberativas.",
+    "howTo": "En la Sesión de cabildo, modera toda la sesión con intervenciones deliberativas, sin falacias ni imposiciones.",
+    "meaning": "Moderar es lograr que todas las voces cuenten y que la decisión se base en razones, no en quién grita más.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -141,6 +167,8 @@
     "id": "cuentas-claras",
     "name": "Cuentas claras",
     "description": "En el Día de mercado, al menos el 80 % de tus pedidos respondió a lo que decían los datos.",
+    "howTo": "En el Día de mercado, haz que al menos el 80 % de tus pedidos respondan a lo que dicen los datos.",
+    "meaning": "Gestionar bien es leer los datos antes de decidir, no después de equivocarse.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -153,6 +181,8 @@
     "id": "iterar-con-evidencia",
     "name": "Iterar con evidencia",
     "description": "En el Banco de pruebas, cada cambio que construiste respondió a algo que se repetía entre quienes tienen el problema.",
+    "howTo": "En el Banco de pruebas, construye solo cambios que respondan a algo que se repite entre quienes tienen el problema.",
+    "meaning": "Innovar es iterar con evidencia: escuchar a las personas y cambiar el prototipo por lo que de verdad se repite.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -165,6 +195,8 @@
     "id": "manos-que-se-cuidan",
     "name": "Manos que se cuidan",
     "description": "En La huerta comunitaria, los cuatro grupos aportaron su trabajo sin que ninguno se agotara.",
+    "howTo": "En La huerta comunitaria, reparte el trabajo para que los cuatro grupos aporten sin que ninguno se agote.",
+    "meaning": "El impacto social se sostiene cuando el trabajo se reparte y nadie se quema en el camino.",
     "category": "competencia",
     "criterion": {
       "kind": "minigame",
@@ -177,6 +209,8 @@
     "id": "otra-mirada",
     "name": "Otra mirada",
     "description": "Probaste un formato distinto para aprender lo mismo.",
+    "howTo": "Aprende en al menos dos formatos distintos: texto, audio, video, infografía o interactivo.",
+    "meaning": "Elegir el formato que mejor te funciona es aprender a tu manera: el principio de representación del Diseño Universal para el Aprendizaje.",
     "category": "accesibilidad",
     "criterion": {
       "kind": "formats-tried",
@@ -187,6 +221,8 @@
     "id": "cinco-sentidos",
     "name": "Cinco sentidos",
     "description": "Aprendiste en los cinco formatos: texto, audio, video, infografía e interactivo.",
+    "howTo": "Aprende en los cinco formatos de las estaciones: texto, audio, video, infografía e interactivo.",
+    "meaning": "Conocer todas las formas de aprender te da libertad para escoger la mejor en cada momento.",
     "category": "accesibilidad",
     "criterion": {
       "kind": "formats-tried",
@@ -197,6 +233,8 @@
     "id": "bitacora-viva",
     "name": "Bitácora viva",
     "description": "Escribiste tres reflexiones en tu bitácora.",
+    "howTo": "Escribe tres reflexiones en las estaciones Reflexionar; Brújula te devuelve su lectura de cada una.",
+    "meaning": "Pensar sobre lo que aprendes lo fija y te deja ver cómo vas cambiando.",
     "category": "constancia",
     "criterion": {
       "kind": "reflections",
@@ -207,6 +245,8 @@
     "id": "marea-constante",
     "name": "Marea constante",
     "description": "Volviste al archipiélago en tres días distintos.",
+    "howTo": "Vuelve al archipiélago y avanza en tres días distintos.",
+    "meaning": "Aprender poco y seguido rinde más que aprenderlo todo de una vez.",
     "category": "constancia",
     "criterion": {
       "kind": "active-days",
@@ -217,6 +257,8 @@
     "id": "primer-fragmento",
     "name": "Primera luz",
     "description": "Recuperaste tu primer fragmento de luz para el Faro Minuto.",
+    "howTo": "Supera el desafío de cualquier isla para recuperar su fragmento de luz.",
+    "meaning": "Cada fragmento es una competencia demostrada; el primero enciende la primera luz del Faro Minuto.",
     "category": "competencia",
     "criterion": {
       "kind": "fragments",
@@ -227,6 +269,8 @@
     "id": "luz-del-archipielago",
     "name": "Luz del archipiélago",
     "description": "Disipaste a la Gran Bruma en el Gran Reto Integrador: el Faro Minuto vuelve a guiar a todas las islas.",
+    "howTo": "Con los seis fragmentos, entra al Gran Reto Integrador del Faro Minuto y disipa a la Gran Bruma.",
+    "meaning": "El Gran Reto combina las seis competencias: demuestra que sabes usarlas juntas.",
     "category": "competencia",
     "criterion": {
       "kind": "finale"
@@ -236,6 +280,8 @@
     "id": "guardian-del-faro",
     "name": "Guardián del Faro",
     "description": "Reuniste los seis fragmentos y encendiste el Faro Minuto.",
+    "howTo": "Recupera los seis fragmentos de luz, uno por cada isla.",
+    "meaning": "Seis competencias reunidas: el faro vuelve a guiar a la comunidad, y tú con él.",
     "category": "competencia",
     "criterion": {
       "kind": "fragments",

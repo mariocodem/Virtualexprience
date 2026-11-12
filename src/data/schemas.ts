@@ -93,7 +93,12 @@ const badgeCriterionSchema = z.discriminatedUnion('kind', [
 export const badgeSchema = z.strictObject({
   id: idSchema,
   name: z.string().min(3),
+  /** Qué lograste, en pasado: se lee en el sello y en la bitácora. */
   description: z.string().min(10),
+  /** Cómo se sella, en imperativo: lo que hay que hacer para ganarla. */
+  howTo: z.string().min(10),
+  /** Qué reconoce: la competencia o el hábito que hay detrás. */
+  meaning: z.string().min(10),
   category: z.enum(['competencia', 'exploracion', 'accesibilidad', 'constancia']),
   criterion: badgeCriterionSchema,
 });

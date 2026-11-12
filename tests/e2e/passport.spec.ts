@@ -20,9 +20,36 @@ test.describe('pasaporte y modo demo', () => {
     await page.goto('/pasaporte');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Cartógrafo');
     await expect(page.getByText('8 de 23 insignias selladas.')).toBeVisible();
-    await expect(page.getByRole('img', { name: /^Insignia Cartógrafo/ })).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Cartógrafo: ver detalles de la insignia' }),
+    ).toBeVisible();
     await expect(page.getByText('Recuperaste el Fragmento del Patrón')).toBeVisible();
     expect(await seriousViolations(page)).toEqual([]);
+  });
+
+  test('cada insignia abre su ficha: cómo se sella, qué reconoce y tu avance', async ({ page }) => {
+    await page.goto('/pasaporte?demo=1');
+    await expect(page.getByRole('heading', { name: 'Sellos' })).toBeVisible();
+
+    // Una sellada: fecha y lo que dice la bitácora.
+    const stamp = page.getByRole('button', { name: 'Cartógrafo: ver detalles de la insignia' });
+    await stamp.click();
+    const sealed = page.getByRole('dialog', { name: 'Cartógrafo' });
+    await expect(sealed).toBeVisible();
+    await expect(sealed.getByText(/^Sellada el/)).toBeVisible();
+    await expect(sealed.getByText('Cómo se sella')).toBeVisible();
+    await expect(sealed.getByText('Qué reconoce')).toBeVisible();
+    expect(await seriousViolations(page)).toEqual([]);
+    await page.keyboard.press('Escape');
+    await expect(sealed).toBeHidden();
+    await expect(stamp).toBeFocused();
+
+    // Una por sellar: cuánto falta y adónde ir a ganarla.
+    await page.getByRole('button', { name: /^Timonel/ }).click();
+    const pending = page.getByRole('dialog', { name: 'Timonel' });
+    await expect(pending.getByText(/Por sellar · llevas \d de 4/)).toBeVisible();
+    await pending.getByRole('link', { name: 'Zarpar a Gerencia+' }).click();
+    await expect(page).toHaveURL(/\/mundo\/gerencia$/);
   });
 
   test('con progreso propio, la demo pregunta antes de reemplazarlo', async ({ page }) => {
